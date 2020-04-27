@@ -1,0 +1,80 @@
+import PoetryItem from '@components/PoetryItem';
+import { graphql } from 'gatsby';
+import React from 'react';
+import { RichText } from 'prismic-reactjs';
+import Helmet from 'react-helmet';
+
+import { ProjectsLayout } from '../containers';
+
+export const query = graphql`
+  query ProjectTemplateQuery($uid: String!) {
+    prismic {
+      poetry_item(lang: "ru", uid: $uid) {
+        poetry_date
+        title
+        _meta {
+          uid
+        }
+        excerpt
+        poetry_image {
+          ... on PRISMIC__ExternalLink {
+            url
+          }
+        }
+        body {
+          ... on PRISMIC_Poetry_itemBodyText {
+            type
+            label
+            primary {
+              description_text
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const ProjectTemplate = (props: any) => {
+  console.log(props);
+
+  if (!props.data) {
+    return null;
+  }
+  const { data, errors } = props;
+  const poetryItem = data && data.prismic.poetry_item;
+
+  if (!poetryItem) return null;
+
+  let services: any[] = [];
+
+  const date = poetryItem?.poetry_date;
+  const slug = poetryItem?._meta.uid;
+  const title = poetryItem?.title && RichText.asText(poetryItem?.title);
+  const socialImage = `${poetryItem?.poetry_image?.url}?tr=w-1080,h-280,fo-top`
+  // const projectServices = poetryItem?.services;
+
+  // if (projectServices && projectServices[0]) {
+  //   projectServices.forEach((projectService: any) =>
+  //     services.push(projectService.serviceTag.service[0].text)
+  //   );
+  // }
+  return (
+    <ProjectsLayout
+      headTitle={title}
+      ogUrl={`https://ckomop0x.me/poetry/${slug}/`}
+      ogImage={socialImage}
+      ogDescription={title}
+      twitterCard={title}
+    >
+      <PoetryItem
+        title={title}
+        poetryDate={date}
+        poetryItem={poetryItem}
+        // services={services}
+      />
+    </ProjectsLayout>
+  );
+};
+
+export default ProjectTemplate;

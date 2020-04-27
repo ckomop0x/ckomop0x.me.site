@@ -1,0 +1,64 @@
+@import 'src/styles/colors';
+
+.title {
+  padding: 50px 0 50px;
+  background-color: $primary-dark;
+}
+
+.details-title {
+  color: $primary-red;
+  padding: 40px 0 20px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.details-line {
+  margin-bottom: 8px;
+  .details-line__title {
+    color: $text-color--light;
+  }
+  .details-line__text {
+    font-weight: 300;
+    color: $text-color;
+  }
+  .details-line__link {
+    display: inline-block;
+    transition: all 0.3s ease;
+    color: lighten($primary-red, 10%);
+    border-bottom: 1px dashed lighten($primary-red, 10%);
+
+    &:hover {
+      text-decoration: none;
+      color: lighten($primary-red, 20%);
+      border-bottom: 1px dashed lighten($primary-red, 20%);
+    }
+  }
+}
+
+.project-content {
+  margin-bottom: 40px;
+
+  h2 {
+    color: $text-color--light;
+    padding: 40px 0 20px;
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  p {
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 26px;
+    margin: 0 0 20px;
+  }
+}
+
+.project-image {
+  margin-bottom: 40px;
+
+  p {
+    font-style: italic;
+    margin-top: 8px;
+    text-align: center;
+  }
+}

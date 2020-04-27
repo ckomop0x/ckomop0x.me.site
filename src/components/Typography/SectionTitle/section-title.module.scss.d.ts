@@ -1,0 +1,1 @@
+export const sectionTitle: string;

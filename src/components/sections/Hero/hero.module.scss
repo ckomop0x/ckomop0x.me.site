@@ -1,0 +1,70 @@
+.main-section {
+  height: 100vh;
+  max-height: 100%;
+  background: radial-gradient(ellipse at 80% 50%, #00000060, #000000) 100% 50%,
+    url(https://ik.imagekit.io/ckomop0x/webtime-studio/pages/webtime-main-page-1_UHK17JzlZ.jpg)
+      no-repeat;
+  background-size: 100%, cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-section__text {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.title {
+  //margin-top: 100px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  font-size: 30px;
+  max-width: 660px;
+  color: #fff;
+
+  @media (min-width: 700px) {
+    font-size: 48px;
+    //margin-top: 280px;
+  }
+}
+
+.sub-title {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  color: #aaaaaa;
+  font-size: 20px;
+  line-height: 32px;
+  margin-top: 24px;
+  max-width: 600px;
+  font-weight: 400;
+}
+
+.start-button {
+  display: flex;
+  line-height: 19px;
+  font-size: 16px;
+  white-space: nowrap;
+  //background: linear-gradient(135deg, #e23c8e 0%, #a33188 80%);
+  background-size: 200px;
+  background: #e41645;
+  //border-radius: 35px;
+  border: 0;
+  color: #e1e1e1;
+  padding: 16px 32px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  margin-top: 48px;
+  transition: 0.5s ease;
+  box-shadow: 0 0 20px #000000;
+
+  &:hover {
+    background-position: -50px;
+    box-shadow: 0 0 10px #000000;
+    color: #e1e1e1;
+    text-decoration: none;
+  }
+}

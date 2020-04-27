@@ -1,0 +1,18 @@
+# Mac files
+.DS_Store
+
+# Dependency directories
+/node_modules
+
+# lerna files
+/lerna-debug.log
+.idea
+.env
+.env.production
+
+node_modules
+.cache
+/webtime-studio/public/
+_materials
+/_materials/
+public

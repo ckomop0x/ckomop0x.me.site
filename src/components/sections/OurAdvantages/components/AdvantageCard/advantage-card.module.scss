@@ -1,0 +1,42 @@
+@import "../../../../../styles/colors";
+
+.card {
+  padding: 48px;
+  border: 24px solid $secondary-dark;
+  background-color: $primary-dark;
+  color: #fff;
+  text-align: center;
+  //margin: 24px 0;
+
+  &:nth-child(2) {
+    background: $primary-red;
+
+    .description {
+      color: #fff;
+    }
+
+    @media(min-width: 992px) {
+      transform: translateY(45px);
+    }
+  }
+
+  &:nth-child(3) {
+    @media(min-width: 992px) {
+      transform: translateY(90px);
+    }
+  }
+}
+
+.title {
+  color: $text-color--light;
+}
+
+.description {
+  color: $text-color;
+}
+
+.image {
+
+  margin-bottom: 48px;
+  max-width: 80%;
+}

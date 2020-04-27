@@ -1,0 +1,52 @@
+@import "colors";
+
+* {
+  font-family: Roboto, sans-serif;
+}
+
+/*
+Text
+ */
+body {
+  color: $text-color;
+}
+
+p {
+  color: $text-color;
+}
+
+
+body,
+html {
+  padding: 0;
+  color: #999;
+
+  &.dark {
+    background-color: #252525;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #999;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
+.content-section {
+  margin: 32px 0;
+}
+
+/*
+* Font Icons
+*/
+@font-face {
+  font-family: 'Fontello';
+  src: url('./fonts/fontello/fontello.woff2') format('woff2'),
+    url('./fonts/fontello/fontello.woff') format('woff'),
+    url('./fonts/fontello/fontello.ttf') format('ttf'),
+    url('./fonts/fontello/fontello.eot') format('eot');
+}

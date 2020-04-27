@@ -1,0 +1,10 @@
+.portfolio-items {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+  }
+}

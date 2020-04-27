@@ -1,0 +1,18 @@
+h2.section-title {
+  text-align: left;
+  font-size: 40px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 48px 0 32px;
+
+  &::before {
+    content: '\E801';
+    font-family: 'Fontello';
+    color: #e41645;
+    font-size: 15px;
+    display: block;
+    line-height: 15px;
+    margin-bottom: 10px;
+  }
+}
