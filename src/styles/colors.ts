@@ -11,3 +11,12 @@ export const blue = {
   800: '#1565c0',
   900: '#0d47a1',
 };
+
+export const themePalette = {
+  primaryBlue: '#318aee',
+  primaryDark: '#292929',
+  primaryRed: '#e41645',
+  secondaryDark: '#252525',
+  textColor: '#a5a5a5',
+  textColorLight: '#FFF',
+}
