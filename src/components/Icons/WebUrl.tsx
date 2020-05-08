@@ -4,6 +4,8 @@ import React from 'react';
 const WebUrlIcon: React.FC<IIcon> = ({
   title = 'WebUrlIcon',
   titleId = 'WebUrlIcon',
+  width = 48,
+  height = 48
 }) => {
   return (
     <svg
@@ -11,8 +13,8 @@ const WebUrlIcon: React.FC<IIcon> = ({
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
-      width="48px"
-      height="48px"
+      width={width}
+      height={height}
       viewBox="0 0 48 48"
       enableBackground="new 0 0 48 48"
       className="icon-www hidden-xs"

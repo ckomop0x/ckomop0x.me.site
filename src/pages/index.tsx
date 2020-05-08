@@ -114,8 +114,8 @@ export default (props: any) => {
   return (
     <MainPageLayout>
       <Hero
-        title="Оптимальные веб-решения для вашего бизнеса"
-        subtitle="Каждый проект требует своего индивидуального подхода."
+        title="Стихи, песни и путешествия"
+        subtitle="Персональный блог Павла Клочкова"
       />
       <div className="container">
         <TitleBlock>Последние публикации</TitleBlock>
