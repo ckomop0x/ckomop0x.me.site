@@ -117,12 +117,12 @@ export default (props: any) => {
         title="Стихи, песни и путешествия"
         subtitle="Персональный блог Павла Клочкова"
       />
-      <div className="container">
-        <TitleBlock>Последние публикации</TitleBlock>
-        <ItemsList queryName="blog" amount={4} category="news" />
-        <TitleBlock>Последние стихи</TitleBlock>
-        <ItemsList queryName="stihi" amount={4} category="poetry" />
-      </div>
+      {/*<div className="container">*/}
+      {/*  <TitleBlock>Последние публикации</TitleBlock>*/}
+      {/*  <ItemsList queryName="blog" amount={4} category="news" />*/}
+      {/*  <TitleBlock>Последние стихи</TitleBlock>*/}
+      {/*  <ItemsList queryName="stihi" amount={4} category="poetry" />*/}
+      {/*</div>*/}
       {/*<MainContent content={content} />*/}
       {/*{errors && <div>Ошибка загрузки</div>}*/}
       {/*{projects && <Portfolio projects={projects} />}*/}

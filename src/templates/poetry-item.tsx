@@ -1,36 +1,24 @@
 import PoetryItem from '@components/PoetryItem';
 import { graphql } from 'gatsby';
 import React from 'react';
-import { RichText } from 'prismic-reactjs';
+// import { RichText } from 'prismic-reactjs';
 import Helmet from 'react-helmet';
 
 import { ProjectsLayout } from '../containers';
 
 export const query = graphql`
-  query ProjectTemplateQuery($uid: String!) {
-    prismic {
-      poetry_item(lang: "ru", uid: $uid) {
-        poetry_date
-        title
-        _meta {
-          uid
-        }
-        excerpt
-        poetry_image {
-          ... on PRISMIC__ExternalLink {
-            url
-          }
-        }
-        body {
-          ... on PRISMIC_Poetry_itemBodyText {
-            type
-            label
-            primary {
-              description_text
-            }
-          }
-        }
-      }
+  query ProjectTemplateQuery($slug: String!) {
+    poetry: strapiPosts(slug: {eq: $slug}) {
+      id
+      title
+      slug
+      published
+      image_url
+      excerpt
+      description
+      date(locale: "ru", formatString: "DD/MM/YYYY")
+      written: date(locale: "ru", fromNow: true)
+      strapiId
     }
   }
 `;
@@ -42,15 +30,15 @@ const ProjectTemplate = (props: any) => {
     return null;
   }
   const { data, errors } = props;
-  const poetryItem = data && data.prismic.poetry_item;
+  const poetryItem = data && data.poetry;
 
   if (!poetryItem) return null;
 
   let services: any[] = [];
 
-  const date = poetryItem?.poetry_date;
-  const slug = poetryItem?._meta.uid;
-  const title = poetryItem?.title && RichText.asText(poetryItem?.title);
+  // const date = poetryItem?.poetry_date;
+  // const slug = poetryItem?._meta?.uid;
+  // const title = poetryItem?.title;
   const socialImage = `${poetryItem?.poetry_image?.url}?tr=w-1080,h-280,fo-top`
   // const projectServices = poetryItem?.services;
 
@@ -61,15 +49,15 @@ const ProjectTemplate = (props: any) => {
   // }
   return (
     <ProjectsLayout
-      headTitle={title}
-      ogUrl={`https://ckomop0x.me/poetry/${slug}/`}
+      headTitle={poetryItem.title}
+      ogUrl={`https://ckomop0x.me/poetry/${poetryItem.slug}/`}
       ogImage={socialImage}
-      ogDescription={title}
-      twitterCard={title}
+      ogDescription={poetryItem.title}
+      twitterCard={poetryItem.title}
     >
       <PoetryItem
-        title={title}
-        poetryDate={date}
+        title={poetryItem.title}
+        poetryDate={poetryItem.date}
         poetryItem={poetryItem}
         // services={services}
       />

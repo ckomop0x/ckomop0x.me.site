@@ -13,12 +13,12 @@ export interface IMainSectionProps {
 const Hero: React.FC<IMainSectionProps> = ({ title, subtitle }) => {
   return (
     <section className={styles.mainSection}>
-      <Nav title="Webtime.Studio" />
+      <Nav title="Ckomop0x.me" />
       <div className={['container', styles.mainSectionText].join(' ')}>
         <p className={styles.subTitle}>{subtitle}</p>
         <h1 className={styles.title}>{title}</h1>
-        <Link className={styles.startButton} to="/portfolio">
-          Смотреть портфолио →
+        <Link className={styles.startButton} to="/poetry">
+          Читать стихи →
         </Link>
       </div>
     </section>

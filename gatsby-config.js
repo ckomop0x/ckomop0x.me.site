@@ -22,19 +22,34 @@ module.exports = {
     'gatsby-plugin-scss-typescript',
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-sitemap',
+    // {
+    //   resolve: `gatsby-source-prismic-graphql`,
+    //   options: {
+    //     repositoryName: 'ckomop0x', // Loads the repo name from prismic configuration
+    //     previews: false,
+    //     pages: [
+    //       {
+    //         type: 'Poetry_item',
+    //         match: '/poetry/:uid',
+    //         path: '/poetry/:uid',
+    //         component: require.resolve('./src/templates/poetry-item.tsx'),
+    //       },
+    //     ],
+    //   },
+    // },
     {
-      resolve: `gatsby-source-prismic-graphql`,
+      resolve: `gatsby-source-strapi`,
       options: {
-        repositoryName: 'ckomop0x', // Loads the repo name from prismic configuration
-        previews: false,
-        pages: [
-          {
-            type: 'Poetry_item',
-            match: '/poetry/:uid',
-            path: '/poetry/:uid',
-            component: require.resolve('./src/templates/poetry-item.tsx'),
-          },
-        ],
+        apiURL: process.env.STRAPI_URL,
+        queryLimit: 1000, // Default to 100
+        contentTypes: [`posts`],
+        //If using single types place them in this array.
+        // singleTypes: [`home-page`, `contact`],
+        // Possibility to login with a strapi user, when content types are not publically available (optional).
+        // loginData: {
+        //   identifier: "",
+        //   password: "",
+        // },
       },
     },
     {
