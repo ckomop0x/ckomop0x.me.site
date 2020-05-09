@@ -3,16 +3,20 @@ import React from 'react';
 import PortfolioItem from '@components/PortfolioItem';
 import * as styles from './portfolio-items.module.scss';
 
-const PortfolioItems: React.FC<any> = ({ projects }) => (
-  <div className={['container', styles.portfolioItems].join(' ')}>
-    {projects &&
+const PortfolioItems: React.FC<any> = ({ projects }) => {
+  console.log(projects)
+
+  return (
+    <div className={['container', styles.portfolioItems].join(' ')}>
+      {projects &&
       projects.map((portfolioItem: any) => (
         <PortfolioItem
-          key={portfolioItem.node._meta.id}
+          key={portfolioItem.node.id}
           {...portfolioItem.node}
         />
       ))}
-  </div>
-);
+    </div>
+  )
+};
 
 export default PortfolioItems;
