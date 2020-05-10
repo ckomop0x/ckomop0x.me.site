@@ -3,7 +3,7 @@ import { IMAGES_ENDPOINT, SMALL_PREVIEW_IMAGE } from '../../config';
 import { TitleStyled } from '@styles/TitleStyled';
 
 export const Wrapper = styled.article`
-  padding: 16px;
+  padding: 32px 16px;
 `;
 
 export const Content = styled.div`

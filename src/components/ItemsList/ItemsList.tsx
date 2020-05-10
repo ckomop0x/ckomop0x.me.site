@@ -4,25 +4,39 @@ import Item from '../Item';
 // import { ALL_ITEMS_QUERY } from '../../queries';
 import { ItemListStyled } from './styles';
 
-const ItemsList = ({queryName}: any) => {
+const ItemsList: React.FC<any> = (props) => {
 
   return (
     <ItemListStyled>
-      {[].map(({ node }) => {
-        const { id, date, title, excerpt, published, slug, extra } = node;
+      {props.items.map(({ node }: any) => {
+        const {
+          strapiId,
+          date,
+          title,
+          excerpt,
+          published,
+          slug,
+          extra,
+          category,
+        } = node;
         const formattedDate = moment(date).format('DD.MM.YYYY');
+        const categoryData = props.categories.filter(
+          (categoryItem: any) => categoryItem.node.slug === category
+        )[0].node;
+
+        console.log(categoryData)
 
         return (
           published && (
             <Item
-              key={id}
-              id={id}
+              key={strapiId}
+              id={strapiId}
               excerpt={excerpt}
               date={formattedDate}
               title={title}
               slug={slug}
               extra={extra}
-              category={''}
+              category={categoryData}
             />
           )
         );

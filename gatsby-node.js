@@ -12,7 +12,41 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      posts: allStrapiPosts(sort: { fields: date, order: ASC }) {
+      poetry: allStrapiPosts(
+        filter: { category: { eq: "poetry" } }
+        sort: { fields: date, order: ASC }
+      ) {
+        edges {
+          node {
+            id
+            title
+            updatedAt
+            createdAt
+            excerpt
+            published
+            slug
+            strapiId
+            description
+            image_url
+            image {
+              childImageSharp {
+                fluid {
+                  srcSet
+                  originalImg
+                  originalName
+                  tracedSVG
+                  srcSetWebp
+                  srcWebp
+                }
+              }
+            }
+          }
+        }
+      }
+      blog: allStrapiPosts(
+        filter: { category: { eq: "blog" } }
+        sort: { fields: date, order: ASC }
+      ) {
         edges {
           node {
             id
@@ -48,10 +82,21 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Create blog articles pages.
-  const posts = result.data.posts.edges;
-  posts.forEach((post, index) => {
+  const poetry = result.data.poetry.edges;
+  const blog = result.data.blog.edges;
+  poetry.forEach((post, index) => {
     createPage({
       path: `/poetry/${post.node.slug}`,
+      component: require.resolve('./src/templates/poetry-item.tsx'),
+      context: {
+        slug: post.node.slug,
+        post,
+      },
+    });
+  });
+  blog.forEach((post, index) => {
+    createPage({
+      path: `/blog/${post.node.slug}`,
       component: require.resolve('./src/templates/poetry-item.tsx'),
       context: {
         slug: post.node.slug,

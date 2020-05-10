@@ -16,7 +16,8 @@ const Nav: React.FC<INavProps> = ({ title, inner }) => {
       </Link>
       <ul className={styles.topMenu}>
         <li>
-          <Link to="/portfolio/" className={inner ? styles.inner : ''}>Портфолио</Link>
+          <Link to="/blog/" className={inner ? styles.inner : ''}>Блог</Link>
+          <Link to="/poetry/" className={inner ? styles.inner : ''}>Стихи</Link>
         </li>
       </ul>
     </nav>

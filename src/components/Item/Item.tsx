@@ -9,6 +9,7 @@ import {
   Content,
 } from './styles';
 import { Link } from 'gatsby';
+import parse from 'html-react-parser';
 // import parse from 'html-react-parser';
 
 const Item = ({ date, title, slug, category, id, extra, excerpt }: any) => {
@@ -16,20 +17,20 @@ const Item = ({ date, title, slug, category, id, extra, excerpt }: any) => {
 
   return (
     <Wrapper>
-      <Link to={`/${category}/${slug}---${id}`}>
-        <a>
-          <Content>
-            <ItemContent>
-              <ItemTitle>{title}</ItemTitle>
-              <TextStyled dangerouslySetInnerHTML={{ __html: excerpt }} />
-              <ItemDateStyled>Опубликовано: {date}</ItemDateStyled>
-            </ItemContent>
-            <ItemContent>
-              <ItemImage background={backgroundImage} />
-            </ItemContent>
-          </Content>
-        </a>
-      </Link>
+      <Content>
+        <ItemContent>
+          <ItemTitle>{title}</ItemTitle>
+          <ItemDateStyled>Опубликовано: {date}</ItemDateStyled>
+          <TextStyled>
+            {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}
+          </TextStyled>
+          <Link to={`/${category.slug}/${slug}`}>Читать далее...</Link>
+        </ItemContent>
+        {/*<ItemContent>*/}
+        {/*  <ItemImage background={backgroundImage} />*/}
+        {/*</ItemContent>*/}
+
+      </Content>
     </Wrapper>
   );
 };

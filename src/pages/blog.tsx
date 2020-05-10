@@ -6,9 +6,9 @@ import PoetryLayout from '../containers/PoetryLayout/PoetryLayout';
 import ItemsList from '@components/ItemsList';
 
 export const query = graphql`
-  query poetryPageQuery {
-    poetry: allStrapiPosts(
-      filter: { category: { eq: "poetry" } }
+  query blogPageQuery {
+    blog: allStrapiPosts(
+      filter: { category: { eq: "blog" } }
       sort: { fields: [createdAt] }
       limit: 100
     ) {
@@ -46,7 +46,7 @@ const PoetryPage: React.FC<IPortfolioProps> = (props) => {
 
   const { data, errors } = props;
   console.log('data', data);
-  const poetryItems = data && data.poetry.edges;
+  const blogItems = data && data.blog.edges;
   const categoriesItems = data && data.categories.edges;
 
   return (
@@ -57,8 +57,8 @@ const PoetryPage: React.FC<IPortfolioProps> = (props) => {
       twitterCard="Мои стихи написанные в разное время, в разных городах и странах"
     >
       <div className="container">
-        {poetryItems && (
-          <ItemsList items={poetryItems} categories={categoriesItems} />
+        {blogItems && (
+          <ItemsList items={blogItems} categories={categoriesItems} />
         )}
         {/*{poetryItems && <PortfolioItems projects={poetryItems} />}*/}
       </div>

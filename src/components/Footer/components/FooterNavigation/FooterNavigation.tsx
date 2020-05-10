@@ -12,7 +12,7 @@ const FooterNavigation: React.FC<IFooterNavProps> = (props) => {
         {/*  <a href="#">Наши сервисы</a>*/}
         {/*</li>*/}
         <li className="footer-nav--item">
-          <Link to="/portfolio/">Портфолио</Link>
+          <Link to="/poetry/">Стихи</Link>
         </li>
         {/*<li className={styles.footerNavItem}><a href="#">О нас</a></li>*/}
       </FooterNav>

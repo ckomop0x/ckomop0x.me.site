@@ -39,6 +39,8 @@
 
     a {
       color: $text-color--light;
+      display: inline-block;
+      margin-left: 20px;
 
       &.inner {
         color: $text-color--light;

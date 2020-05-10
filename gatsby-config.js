@@ -42,7 +42,7 @@ module.exports = {
       options: {
         apiURL: process.env.STRAPI_URL,
         queryLimit: 1000, // Default to 100
-        contentTypes: [`posts`],
+        contentTypes: [`posts`, `categories`],
         //If using single types place them in this array.
         // singleTypes: [`home-page`, `contact`],
         // Possibility to login with a strapi user, when content types are not publically available (optional).
