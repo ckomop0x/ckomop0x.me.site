@@ -8,13 +8,9 @@ const FooterNavigation: React.FC<IFooterNavProps> = (props) => {
   return (
     <nav>
       <FooterNav>
-        {/*<li className={styles.footerNavItem}>*/}
-        {/*  <a href="#">Наши сервисы</a>*/}
-        {/*</li>*/}
         <li className="footer-nav--item">
           <Link to="/poetry/">Стихи</Link>
         </li>
-        {/*<li className={styles.footerNavItem}><a href="#">О нас</a></li>*/}
       </FooterNav>
     </nav>
   );
