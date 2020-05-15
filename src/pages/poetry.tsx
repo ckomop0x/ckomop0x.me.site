@@ -1,7 +1,5 @@
-import PortfolioItems from '@components/PortfolioItems';
 import { graphql } from 'gatsby';
 import React from 'react';
-import Helmet from 'react-helmet';
 import PoetryLayout from '../containers/PoetryLayout/PoetryLayout';
 import ItemsList from '@components/ItemsList';
 
@@ -59,7 +57,6 @@ const PoetryPage: React.FC<IPortfolioProps> = (props) => {
         {poetryItems && (
           <ItemsList items={poetryItems} categories={categoriesItems} />
         )}
-        {/*{poetryItems && <PortfolioItems projects={poetryItems} />}*/}
       </div>
     </PoetryLayout>
   );
