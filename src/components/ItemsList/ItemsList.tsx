@@ -1,11 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import Item from '../Item';
-// import { ALL_ITEMS_QUERY } from '../../queries';
 import { ItemListStyled } from './styles';
 
 const ItemsList: React.FC<any> = (props) => {
-
   return (
     <ItemListStyled>
       {props.items.map(({ node }: any) => {
@@ -15,11 +13,13 @@ const ItemsList: React.FC<any> = (props) => {
           title,
           excerpt,
           published,
+          createdAt,
+          updatedAt,
           slug,
           extra,
           category,
         } = node;
-        const formattedDate = moment(date).format('DD.MM.YYYY');
+        const formattedDate = moment(createdAt).format('DD.MM.YYYY');
         const categoryData = props.categories.filter(
           (categoryItem: any) => categoryItem.node.slug === category
         )[0].node;

@@ -18,6 +18,8 @@ export const query = graphql`
           strapiId
           excerpt
           category
+          createdAt
+          updatedAt
         }
       }
     }

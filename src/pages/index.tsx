@@ -9,7 +9,7 @@ export const query = graphql`
   query IndexPageQuery {
     poetry: allStrapiPosts(
       filter: { category: { eq: "poetry" } }
-      sort: { fields: [createdAt] }
+      sort: { fields: [createdAt], order: [DESC] }
       limit: 4
     ) {
       edges {
@@ -20,12 +20,14 @@ export const query = graphql`
           strapiId
           excerpt
           category
+          createdAt
+          updatedAt
         }
       }
     }
     blog: allStrapiPosts(
       filter: { category: { eq: "blog" } }
-      sort: { fields: [createdAt] }
+      sort: { fields: [createdAt], order: [DESC] }
       limit: 4
     ) {
       edges {
@@ -36,6 +38,8 @@ export const query = graphql`
           strapiId
           excerpt
           category
+          createdAt
+          updatedAt
         }
       }
     }

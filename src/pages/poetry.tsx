@@ -7,7 +7,7 @@ export const query = graphql`
   query poetryPageQuery {
     poetry: allStrapiPosts(
       filter: { category: { eq: "poetry" } }
-      sort: { fields: [createdAt] }
+      sort: { fields: [createdAt], order: [DESC] }
       limit: 100
     ) {
       edges {
@@ -18,6 +18,8 @@ export const query = graphql`
           strapiId
           excerpt
           category
+          createdAt
+          updatedAt
         }
       }
     }
