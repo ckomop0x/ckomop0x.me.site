@@ -24,7 +24,6 @@ export const query = graphql`
 `;
 
 const ProjectTemplate = (props: any) => {
-  console.log(props);
 
   if (!props.data) {
     return null;

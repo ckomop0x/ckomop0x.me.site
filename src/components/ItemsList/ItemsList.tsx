@@ -24,8 +24,6 @@ const ItemsList: React.FC<any> = (props) => {
           (categoryItem: any) => categoryItem.node.slug === category
         )[0].node;
 
-        console.log(categoryData)
-
         return (
           published && (
             <Item

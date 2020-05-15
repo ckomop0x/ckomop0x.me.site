@@ -45,7 +45,6 @@ const PoetryPage: React.FC<IPortfolioProps> = (props) => {
   }
 
   const { data, errors } = props;
-  console.log('data', data);
   const poetryItems = data && data.poetry.edges;
   const categoriesItems = data && data.categories.edges;
 

@@ -4,8 +4,6 @@ import PortfolioItem from '@components/PortfolioItem';
 import * as styles from './portfolio-items.module.scss';
 
 const PortfolioItems: React.FC<any> = ({ projects }) => {
-  console.log(projects)
-
   return (
     <div className={['container', styles.portfolioItems].join(' ')}>
       {projects &&

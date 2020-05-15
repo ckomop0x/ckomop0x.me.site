@@ -25,7 +25,6 @@ const PoetryItem: React.FC<any> = (props) => {
   //   month: 'long',
   //   year: 'numeric',
   // }).format(poetryItem.date);
-  console.log(props);
 
   return (
     <div>
