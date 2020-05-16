@@ -1,5 +1,6 @@
 import React from 'react';
 import * as styles from './section-title.module.scss';
+import { SectionTitleStyled } from './styles';
 
 export interface ISectionTitleProps {
   title: string;
@@ -7,7 +8,7 @@ export interface ISectionTitleProps {
 }
 
 const SectionTitle: React.FC<ISectionTitleProps> = ({ title, className }) => {
-  return <h2 className={[className, styles.sectionTitle].join(' ')}>{title}</h2>;
+  return <SectionTitleStyled className={className}>{title}</SectionTitleStyled>;
 };
 
 export default SectionTitle;

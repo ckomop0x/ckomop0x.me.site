@@ -8,7 +8,12 @@ const Footer: React.FC = () => {
   return (
     <FooterStyled>
       <div className="container">
-        <div className="row center">
+        <div className="row">
+          <div className="col-sm-12 col-lg-5 col-xl-6">
+            <p className="copyright">
+              Ckomop0x.me &copy; {new Date().getFullYear()} Все права защищены.
+            </p>
+          </div>
           <div className="col-sm-12 col-lg-7 col-xl-6">
             <div className="row center">
               {/*<div className="col-auto center">*/}
@@ -25,11 +30,6 @@ const Footer: React.FC = () => {
               {/*  </a>*/}
               {/*</div>*/}
             </div>
-          </div>
-          <div className="col-sm-12 col-lg-5 col-xl-6">
-            <p className="copyright">
-              Ckomop0x.me &copy; {new Date().getFullYear()} Все права защищены.
-            </p>
           </div>
         </div>
       </div>
