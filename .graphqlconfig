@@ -1,15 +1,3 @@
 {
-  "name": "Untitled GraphQL Schema",
-  "extensions": {
-    "schemaPath": "./schema.graphql",
-    "endpoints": {
-      "Default GraphQL Endpoint": {
-        "url": "http://localhost:8000/___graphql",
-        "headers": {
-          "user-agent": "JS GraphQL"
-        },
-        "introspect": false
-      }
-    }
-  }
+    "schemaPath": "./src/__generated__/gatsby-plugin-documents.graphql"
 }

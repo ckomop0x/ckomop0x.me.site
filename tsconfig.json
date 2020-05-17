@@ -21,6 +21,11 @@
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]
     },
+    "plugins": [
+      {
+        "name": "@divyenduz/ts-graphql-plugin"
+      }
+    ],
     "typeRoots": ["./types", "./node_modules/@types"]
   }
 }

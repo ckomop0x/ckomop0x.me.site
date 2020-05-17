@@ -68,9 +68,9 @@ export default (props: any) => {
       />
       <div className="container">
         <h2>Публикации</h2>
-        <ItemsList items={blogItems} categories={categoriesItems}/>
+        <ItemsList items={blogItems} categories={categoriesItems} />
         <h2>Стихи</h2>
-        <ItemsList items={poetryItems} categories={categoriesItems}/>
+        <ItemsList items={poetryItems} categories={categoriesItems} />
       </div>
     </MainPageLayout>
   );

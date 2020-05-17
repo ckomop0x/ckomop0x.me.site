@@ -1,4 +1,4 @@
-import { Date } from 'prismic-reactjs';
+// import { Date } from 'prismic-reactjs';
 import React from 'react';
 
 export interface IProjectDatesProps {
@@ -9,11 +9,12 @@ const ProjectDates: React.FC<IProjectDatesProps> = ({ date }) => {
   const projectDates = new Intl.DateTimeFormat('ru-RU', {
     // month: 'long',
     year: 'numeric',
-  }).format(Date(date));
+  }).format(date);
 
   return (
     <div className="portfolio-data">
-      <b>Когда: </b>{projectDates}
+      <b>Когда: </b>
+      {projectDates}
     </div>
   );
 };

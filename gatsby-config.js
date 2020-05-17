@@ -18,10 +18,25 @@ module.exports = {
         allowSyntheticDefaultImports: true,
       },
     },
+    {
+      resolve: 'gatsby-plugin-typegen',
+      options: {
+        emitSchema: {
+          './src/__generated__/gatsby-introspection.json': true,
+        },
+        emitPluginDocuments: {
+          './src/__generated__/gatsby-plugin-documents.graphql': true,
+        },
+      },
+    },
     'gatsby-plugin-typescript-checker',
     'gatsby-plugin-scss-typescript',
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-codegen',
+      options: {},
+    },
     // {
     //   resolve: `gatsby-source-prismic-graphql`,
     //   options: {
@@ -93,7 +108,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-yandex-metrica`,
       options: {
-        trackingId: "35177405",
+        trackingId: '35177405',
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,
@@ -101,8 +116,8 @@ module.exports = {
 
         // Detailed recordings of user activity on the site: mouse movement, scrolling, and clicks.
         webvisor: true,
-      }
-    }
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

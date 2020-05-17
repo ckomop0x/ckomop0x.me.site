@@ -1,0 +1,11 @@
+# .graphqlconfig.yml
+projects:
+  app:
+    schemaPath: ./src/__generated__/gatsby-plugin-documents.graphql
+    includes: ['**/*.graphql']
+    extensions:
+      codegen:
+        - generator: graphql-binding
+          language: typescript
+          output:
+            binding: ./src/__generated__/gatsby-types.ts

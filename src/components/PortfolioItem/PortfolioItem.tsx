@@ -1,16 +1,16 @@
 import { getSrcSet } from '@utils/image';
 import { Link } from 'gatsby';
-import { RichText } from 'prismic-reactjs';
+// import { RichText } from 'prismic-reactjs';
 import React from 'react';
-import { formatPostDate } from '@utils/date';
-import { linkResolver } from '@utils/prismic';
+// import { formatPostDate } from '@utils/date';
+// import { linkResolver } from '@utils/prismic';
 
 import * as styles from './portfolio-item.module.scss';
 
 const PortfolioItem: React.FC<any> = (props: any) => {
   const {
     title,
-    slug
+    slug,
     // project_date,
     // _meta,
     // excerpt,
