@@ -458,7 +458,7 @@ type Query {
   imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
   site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
   siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
-  sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
+  sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
   strapiCategories(children: NodeFilterListInput, createdAt: DateQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, slug: StringQueryOperatorInput, strapiId: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiCategories
   strapiPosts(category: StringQueryOperatorInput, children: NodeFilterListInput, createdAt: DateQueryOperatorInput, date: DateQueryOperatorInput, description: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, id: StringQueryOperatorInput, image: FileFilterInput, image_url: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, published: BooleanQueryOperatorInput, slug: StringQueryOperatorInput, strapiId: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiPosts
@@ -556,6 +556,7 @@ type SitePage implements Node {
   component: String!
   componentChunkName: String!
   componentPath: String
+  context: SitePageContext
   id: ID!
   internal: Internal!
   internalComponentName: String!
@@ -574,6 +575,46 @@ type SitePageConnection {
   nodes: [SitePage!]!
   pageInfo: PageInfo!
   totalCount: Int!
+}
+
+type SitePageContext {
+  post: SitePageContextPost
+  slug: String
+}
+
+type SitePageContextPost {
+  node: SitePageContextPostNode
+}
+
+type SitePageContextPostNode {
+  createdAt: Date
+  description: String
+  excerpt: String
+  id: String
+  image: SitePageContextPostNodeImage
+  image_url: String
+  published: Boolean
+  slug: String
+  strapiId: String
+  title: String
+  updatedAt: Date
+}
+
+type SitePageContextPostNodeImage {
+  childImageSharp: SitePageContextPostNodeImageChildImageSharp
+}
+
+type SitePageContextPostNodeImageChildImageSharp {
+  fluid: SitePageContextPostNodeImageChildImageSharpFluid
+}
+
+type SitePageContextPostNodeImageChildImageSharpFluid {
+  originalImg: String
+  originalName: String
+  srcSet: String
+  srcSetWebp: String
+  srcWebp: String
+  tracedSVG: String
 }
 
 type SitePageEdge {
@@ -665,6 +706,8 @@ type SitePluginPluginOptions {
   clickmap: Boolean
   contentTypes: [String]
   display: String
+  emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
+  emitSchema: SitePluginPluginOptionsEmitSchema
   icon: String
   name: String
   path: String
@@ -677,6 +720,14 @@ type SitePluginPluginOptions {
   trackLinks: Boolean
   trackingId: String
   webvisor: Boolean
+}
+
+type SitePluginPluginOptionsEmitPluginDocuments {
+  _xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql: Boolean
+}
+
+type SitePluginPluginOptionsEmitSchema {
+  _xsrcxxxgeneratedxxxgatsbyxintrospectionxjson: Boolean
 }
 
 type SiteSiteMetadata {
@@ -1557,6 +1608,17 @@ enum SitePageFieldsEnum {
   component
   componentChunkName
   componentPath
+  context___post___node___createdAt
+  context___post___node___description
+  context___post___node___excerpt
+  context___post___node___id
+  context___post___node___image_url
+  context___post___node___published
+  context___post___node___slug
+  context___post___node___strapiId
+  context___post___node___title
+  context___post___node___updatedAt
+  context___slug
   id
   internalComponentName
   internal___content
@@ -1672,6 +1734,8 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___clickmap
   pluginCreator___pluginOptions___contentTypes
   pluginCreator___pluginOptions___display
+  pluginCreator___pluginOptions___emitPluginDocuments____xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql
+  pluginCreator___pluginOptions___emitSchema____xsrcxxxgeneratedxxxgatsbyxintrospectionxjson
   pluginCreator___pluginOptions___icon
   pluginCreator___pluginOptions___name
   pluginCreator___pluginOptions___path
@@ -1801,6 +1865,8 @@ enum SitePluginFieldsEnum {
   pluginOptions___clickmap
   pluginOptions___contentTypes
   pluginOptions___display
+  pluginOptions___emitPluginDocuments____xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql
+  pluginOptions___emitSchema____xsrcxxxgeneratedxxxgatsbyxintrospectionxjson
   pluginOptions___icon
   pluginOptions___name
   pluginOptions___path
@@ -2443,11 +2509,52 @@ input SiteFilterInput {
   siteMetadata: SiteSiteMetadataFilterInput
 }
 
+input SitePageContextFilterInput {
+  post: SitePageContextPostFilterInput
+  slug: StringQueryOperatorInput
+}
+
+input SitePageContextPostFilterInput {
+  node: SitePageContextPostNodeFilterInput
+}
+
+input SitePageContextPostNodeFilterInput {
+  createdAt: DateQueryOperatorInput
+  description: StringQueryOperatorInput
+  excerpt: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  image: SitePageContextPostNodeImageFilterInput
+  image_url: StringQueryOperatorInput
+  published: BooleanQueryOperatorInput
+  slug: StringQueryOperatorInput
+  strapiId: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  updatedAt: DateQueryOperatorInput
+}
+
+input SitePageContextPostNodeImageChildImageSharpFilterInput {
+  fluid: SitePageContextPostNodeImageChildImageSharpFluidFilterInput
+}
+
+input SitePageContextPostNodeImageChildImageSharpFluidFilterInput {
+  originalImg: StringQueryOperatorInput
+  originalName: StringQueryOperatorInput
+  srcSet: StringQueryOperatorInput
+  srcSetWebp: StringQueryOperatorInput
+  srcWebp: StringQueryOperatorInput
+  tracedSVG: StringQueryOperatorInput
+}
+
+input SitePageContextPostNodeImageFilterInput {
+  childImageSharp: SitePageContextPostNodeImageChildImageSharpFilterInput
+}
+
 input SitePageFilterInput {
   children: NodeFilterListInput
   component: StringQueryOperatorInput
   componentChunkName: StringQueryOperatorInput
   componentPath: StringQueryOperatorInput
+  context: SitePageContextFilterInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   internalComponentName: StringQueryOperatorInput
@@ -2519,6 +2626,14 @@ input SitePluginPackageJsonPeerDependenciesFilterListInput {
   elemMatch: SitePluginPackageJsonPeerDependenciesFilterInput
 }
 
+input SitePluginPluginOptionsEmitPluginDocumentsFilterInput {
+  _xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql: BooleanQueryOperatorInput
+}
+
+input SitePluginPluginOptionsEmitSchemaFilterInput {
+  _xsrcxxxgeneratedxxxgatsbyxintrospectionxjson: BooleanQueryOperatorInput
+}
+
 input SitePluginPluginOptionsFilterInput {
   accurateTrackBounce: BooleanQueryOperatorInput
   allowSyntheticDefaultImports: BooleanQueryOperatorInput
@@ -2526,6 +2641,8 @@ input SitePluginPluginOptionsFilterInput {
   clickmap: BooleanQueryOperatorInput
   contentTypes: StringQueryOperatorInput
   display: StringQueryOperatorInput
+  emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
+  emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   icon: StringQueryOperatorInput
   name: StringQueryOperatorInput
   path: StringQueryOperatorInput

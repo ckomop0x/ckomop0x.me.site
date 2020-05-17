@@ -22,10 +22,10 @@ module.exports = {
       resolve: 'gatsby-plugin-typegen',
       options: {
         emitSchema: {
-          './src/__generated__/gatsby-introspection.json': true,
+          'src/__generated__/gatsby-introspection.json': true,
         },
         emitPluginDocuments: {
-          './src/__generated__/gatsby-plugin-documents.graphql': true,
+          'src/__generated__/gatsby-plugin-documents.graphql': true,
         },
       },
     },
@@ -33,24 +33,9 @@ module.exports = {
     'gatsby-plugin-scss-typescript',
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-codegen',
-      options: {},
-    },
     // {
-    //   resolve: `gatsby-source-prismic-graphql`,
-    //   options: {
-    //     repositoryName: 'ckomop0x', // Loads the repo name from prismic configuration
-    //     previews: false,
-    //     pages: [
-    //       {
-    //         type: 'Poetry_item',
-    //         match: '/poetry/:uid',
-    //         path: '/poetry/:uid',
-    //         component: require.resolve('./src/templates/poetry-item.tsx'),
-    //       },
-    //     ],
-    //   },
+    //   resolve: 'gatsby-plugin-codegen',
+    //   options: {},
     // },
     {
       resolve: `gatsby-source-strapi`,
@@ -108,7 +93,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-yandex-metrica`,
       options: {
-        trackingId: '35177405',
+        trackingId: '57227728',
         clickmap: true,
         trackLinks: true,
         accurateTrackBounce: true,

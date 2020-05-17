@@ -2,8 +2,21 @@ import React from 'react';
 import moment from 'moment';
 import Item from '../Item';
 import { ItemListStyled } from './styles';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const ItemsList: React.FC<any> = (props) => {
+  const data = useStaticQuery<GatsbyTypes.ItemListQueryQuery>(graphql`
+    query ItemListQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `);
+
+  console.log(data);
+
   return (
     <ItemListStyled>
       {props.items.map(({ node }: any) => {

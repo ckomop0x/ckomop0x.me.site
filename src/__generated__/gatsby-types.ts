@@ -2217,8 +2217,8 @@ enum SitePageFieldsEnum {
   pluginCreator___name = 'pluginCreator.name',
   pluginCreator___version = 'pluginCreator.version',
   pluginCreator___pluginOptions___allowSyntheticDefaultImports = 'pluginCreator.pluginOptions.allowSyntheticDefaultImports',
-  pluginCreator___pluginOptions___emitSchema____xsrcxxxgeneratedxxxgatsbyxintrospectionxjson = 'pluginCreator.pluginOptions.emitSchema._xsrcxxxgeneratedxxxgatsbyxintrospectionxjson',
-  pluginCreator___pluginOptions___emitPluginDocuments____xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql = 'pluginCreator.pluginOptions.emitPluginDocuments._xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql',
+  pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
+  pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
   pluginCreator___pluginOptions___queryLimit = 'pluginCreator.pluginOptions.queryLimit',
   pluginCreator___pluginOptions___contentTypes = 'pluginCreator.pluginOptions.contentTypes',
   pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
@@ -2424,8 +2424,8 @@ enum SitePluginFieldsEnum {
   name = 'name',
   version = 'version',
   pluginOptions___allowSyntheticDefaultImports = 'pluginOptions.allowSyntheticDefaultImports',
-  pluginOptions___emitSchema____xsrcxxxgeneratedxxxgatsbyxintrospectionxjson = 'pluginOptions.emitSchema._xsrcxxxgeneratedxxxgatsbyxintrospectionxjson',
-  pluginOptions___emitPluginDocuments____xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql = 'pluginOptions.emitPluginDocuments._xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql',
+  pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
+  pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
   pluginOptions___queryLimit = 'pluginOptions.queryLimit',
   pluginOptions___contentTypes = 'pluginOptions.contentTypes',
   pluginOptions___name = 'pluginOptions.name',
@@ -2579,19 +2579,19 @@ type SitePluginPluginOptions = {
 };
 
 type SitePluginPluginOptionsEmitPluginDocuments = {
-  readonly _xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql: Maybe<Scalars['Boolean']>;
+  readonly src___generated___gatsby_plugin_documents_graphql: Maybe<Scalars['Boolean']>;
 };
 
 type SitePluginPluginOptionsEmitPluginDocumentsFilterInput = {
-  readonly _xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql: Maybe<BooleanQueryOperatorInput>;
+  readonly src___generated___gatsby_plugin_documents_graphql: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsEmitSchema = {
-  readonly _xsrcxxxgeneratedxxxgatsbyxintrospectionxjson: Maybe<Scalars['Boolean']>;
+  readonly src___generated___gatsby_introspection_json: Maybe<Scalars['Boolean']>;
 };
 
 type SitePluginPluginOptionsEmitSchemaFilterInput = {
-  readonly _xsrcxxxgeneratedxxxgatsbyxintrospectionxjson: Maybe<BooleanQueryOperatorInput>;
+  readonly src___generated___gatsby_introspection_json: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsFilterInput = {
@@ -3172,10 +3172,10 @@ type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>;
 };
 
-type IndexPageQueryQueryVariables = {};
+type ItemListQueryQueryVariables = {};
 
 
-type IndexPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
+type ItemListQueryQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 type blogPageQueryQueryVariables = {};
 
@@ -3186,6 +3186,16 @@ type poetryPageQueryQueryVariables = {};
 
 
 type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
+
+type PagesQueryQueryVariables = {};
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
+type IndexPageQueryQueryVariables = {};
+
+
+type IndexPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
 
 type ProjectTemplateQueryQueryVariables = {
   slug: Scalars['String'];
@@ -3244,10 +3254,5 @@ type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 't
 type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type PagesQueryQueryVariables = {};
-
-
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 }

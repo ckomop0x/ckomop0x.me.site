@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import PoetryLayout from '../containers/PoetryLayout/PoetryLayout';
 import ItemsList from '@components/ItemsList';
+import { poetryPageQuery as PoetryPageQuery } from './__generated__/poetryPageQuery';
 
 export const query = graphql`
   query poetryPageQuery {
@@ -35,7 +36,7 @@ export const query = graphql`
 `;
 
 export interface IPortfolioProps {
-  data: any;
+  data: PoetryPageQuery;
   errors: any;
 }
 
