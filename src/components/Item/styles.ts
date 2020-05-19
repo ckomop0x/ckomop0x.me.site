@@ -2,8 +2,15 @@ import styled, { css } from 'styled-components';
 import { IMAGES_ENDPOINT, SMALL_PREVIEW_IMAGE } from '../../config';
 import { TitleStyled } from '@styles/TitleStyled';
 
-export const Wrapper = styled.article`
-  padding: 32px 16px;
+export const ItemWrapper = styled.article`
+  /* padding: 32px 0; */
+  border: 1px solid #a5a5a552;
+  box-shadow: 0px 7px 13px 0px #000;
+  border-radius: 16px;
+  /* FONT-WEIGHT: 100; */
+  padding: 24px;
+  background: #353535;
+  margin: 24px 0;
 `;
 
 export const Content = styled.div`
@@ -15,7 +22,7 @@ export const Content = styled.div`
 `;
 
 export const ItemImage = styled.div<{
-  background: string
+  background: string;
 }>`
   opacity: 1;
   background-color: white;
@@ -33,7 +40,7 @@ export const ItemImage = styled.div<{
 
   ${({ background }) =>
     background &&
-    css`
+    `
       background-size: cover;
       background-image: url("${`${IMAGES_ENDPOINT}/${SMALL_PREVIEW_IMAGE}/${background}
     `}");
@@ -67,10 +74,6 @@ export const ItemImage = styled.div<{
     flex-direction: row;
   }
 
-  //   @media (min-width: ${({ theme }) => theme.$LG}px) {
-  //   max-width: 25%;
-  // }
-
   &:hover {
     cursor: pointer;
     &:before {
@@ -94,8 +97,8 @@ export const ItemDateStyled = styled.p`
 
 export const ItemContent = styled.div`
   position: relative;
-  padding-right: 20px;
-  padding-left: 20px;
+  /* padding-right: 20px; */
+  /* padding-left: 20px; */
   -webkit-box-flex: 0;
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;

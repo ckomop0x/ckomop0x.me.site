@@ -67,12 +67,18 @@ export default (props: any) => {
         title="Стихи, песни и путешествия"
         subtitle="Персональный блог Павла Клочкова"
       />
-      <div className="container">
-        <TitleBlock>Публикации</TitleBlock>
-        <ItemsList items={blogItems} categories={categoriesItems} />
-        <TitleBlock>Стихи</TitleBlock>
-        <ItemsList items={poetryItems} categories={categoriesItems} />
-      </div>
+      <section>
+        <div className="container">
+          <TitleBlock>Публикации</TitleBlock>
+          <ItemsList items={blogItems} categories={categoriesItems} />
+        </div>
+      </section>
+      <section>
+        <div className="container">
+          <TitleBlock>Стихи</TitleBlock>
+          <ItemsList items={poetryItems} categories={categoriesItems} />
+        </div>
+      </section>
     </MainPageLayout>
   );
 };

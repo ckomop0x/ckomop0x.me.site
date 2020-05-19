@@ -5,7 +5,7 @@ import {
   ItemContent,
   ItemTitle,
   TextStyled,
-  Wrapper,
+  ItemWrapper,
   Content,
 } from './styles';
 import { Link } from 'gatsby';
@@ -16,7 +16,7 @@ const Item = ({ date, title, slug, category, id, extra, excerpt }: any) => {
   const backgroundImage = extra && extra.postimage;
 
   return (
-    <Wrapper>
+    <ItemWrapper>
       <Content>
         <ItemContent>
           <ItemTitle>{title}</ItemTitle>
@@ -29,9 +29,8 @@ const Item = ({ date, title, slug, category, id, extra, excerpt }: any) => {
         {/*<ItemContent>*/}
         {/*  <ItemImage background={backgroundImage} />*/}
         {/*</ItemContent>*/}
-
       </Content>
-    </Wrapper>
+    </ItemWrapper>
   );
 };
 
