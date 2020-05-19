@@ -1,7 +1,6 @@
 import PoetryItem from '@components/PoetryItem';
 import { graphql } from 'gatsby';
 import React from 'react';
-// import { RichText } from 'prismic-reactjs';
 import Helmet from 'react-helmet';
 
 import { ProjectsLayout } from '../containers';
