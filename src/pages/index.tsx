@@ -2,8 +2,9 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import { Hero } from '@components/sections';
 
-import { MainPageLayout } from '../containers';
+import { MainPageLayout } from '../components/containers';
 import ItemsList from '@components/ItemsList';
+import { TitleBlock } from '@styles/Typography';
 
 export const query = graphql`
   query IndexPageQuery {
@@ -67,9 +68,9 @@ export default (props: any) => {
         subtitle="Персональный блог Павла Клочкова"
       />
       <div className="container">
-        <h2>Публикации</h2>
+        <TitleBlock>Публикации</TitleBlock>
         <ItemsList items={blogItems} categories={categoriesItems} />
-        <h2>Стихи</h2>
+        <TitleBlock>Стихи</TitleBlock>
         <ItemsList items={poetryItems} categories={categoriesItems} />
       </div>
     </MainPageLayout>

@@ -3177,6 +3177,16 @@ type ItemListQueryQueryVariables = {};
 
 type ItemListQueryQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
+type ProjectTemplateQueryQueryVariables = {
+  slug: Scalars['String'];
+};
+
+
+type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
+    Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'published' | 'image_url' | 'excerpt' | 'description' | 'date' | 'strapiId'>
+    & { written: StrapiPosts['date'] }
+  )> };
+
 type blogPageQueryQueryVariables = {};
 
 
@@ -3187,25 +3197,10 @@ type poetryPageQueryQueryVariables = {};
 
 type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
 
-type PagesQueryQueryVariables = {};
-
-
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
 type IndexPageQueryQueryVariables = {};
 
 
 type IndexPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
-
-type ProjectTemplateQueryQueryVariables = {
-  slug: Scalars['String'];
-};
-
-
-type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
-    Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'published' | 'image_url' | 'excerpt' | 'description' | 'date' | 'strapiId'>
-    & { written: StrapiPosts['date'] }
-  )> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -3254,5 +3249,10 @@ type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 't
 type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type PagesQueryQueryVariables = {};
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 }

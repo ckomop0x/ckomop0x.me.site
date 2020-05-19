@@ -87,7 +87,7 @@ exports.createPages = async ({ graphql, actions }) => {
   poetry.forEach((post, index) => {
     createPage({
       path: `/poetry/${post.node.slug}`,
-      component: require.resolve('./src/templates/poetry-item.tsx'),
+      component: require.resolve('./src/components/templates/poetry-item.tsx'),
       context: {
         slug: post.node.slug,
         post,

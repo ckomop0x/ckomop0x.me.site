@@ -1,5 +1,5 @@
 import React from 'react';
-import PoetryLayout from '../containers/PoetryLayout/PoetryLayout';
+import PoetryLayout from '../components/containers/PoetryLayout/PoetryLayout';
 
 const Page404 = () => (
   <PoetryLayout>

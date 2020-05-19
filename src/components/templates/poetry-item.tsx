@@ -8,7 +8,7 @@ import { ProjectsLayout } from '../containers';
 
 export const query = graphql`
   query ProjectTemplateQuery($slug: String!) {
-    poetry: strapiPosts(slug: {eq: $slug}) {
+    poetry: strapiPosts(slug: { eq: $slug }) {
       id
       title
       slug
@@ -24,7 +24,6 @@ export const query = graphql`
 `;
 
 const ProjectTemplate = (props: any) => {
-
   if (!props.data) {
     return null;
   }
@@ -38,7 +37,7 @@ const ProjectTemplate = (props: any) => {
   // const date = poetryItem?.poetry_date;
   // const slug = poetryItem?._meta?.uid;
   // const title = poetryItem?.title;
-  const socialImage = `${poetryItem?.poetry_image?.url}?tr=w-1080,h-280,fo-top`
+  const socialImage = `${poetryItem?.poetry_image?.url}?tr=w-1080,h-280,fo-top`;
   // const projectServices = poetryItem?.services;
 
   // if (projectServices && projectServices[0]) {
