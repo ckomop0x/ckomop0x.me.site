@@ -2216,6 +2216,7 @@ enum SitePageFieldsEnum {
   pluginCreator___resolve = 'pluginCreator.resolve',
   pluginCreator___name = 'pluginCreator.name',
   pluginCreator___version = 'pluginCreator.version',
+  pluginCreator___pluginOptions___displayName = 'pluginCreator.pluginOptions.displayName',
   pluginCreator___pluginOptions___allowSyntheticDefaultImports = 'pluginCreator.pluginOptions.allowSyntheticDefaultImports',
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
@@ -2423,6 +2424,7 @@ enum SitePluginFieldsEnum {
   resolve = 'resolve',
   name = 'name',
   version = 'version',
+  pluginOptions___displayName = 'pluginOptions.displayName',
   pluginOptions___allowSyntheticDefaultImports = 'pluginOptions.allowSyntheticDefaultImports',
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
@@ -2556,6 +2558,7 @@ type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 type SitePluginPluginOptions = {
+  readonly displayName: Maybe<Scalars['Boolean']>;
   readonly allowSyntheticDefaultImports: Maybe<Scalars['Boolean']>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
@@ -2595,6 +2598,7 @@ type SitePluginPluginOptionsEmitSchemaFilterInput = {
 };
 
 type SitePluginPluginOptionsFilterInput = {
+  readonly displayName: Maybe<BooleanQueryOperatorInput>;
   readonly allowSyntheticDefaultImports: Maybe<BooleanQueryOperatorInput>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>;
@@ -3177,6 +3181,11 @@ type ItemListQueryQueryVariables = {};
 
 type ItemListQueryQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
+type blogPageQueryQueryVariables = {};
+
+
+type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
+
 type ProjectTemplateQueryQueryVariables = {
   slug: Scalars['String'];
 };
@@ -3187,20 +3196,15 @@ type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
     & { written: StrapiPosts['date'] }
   )> };
 
-type blogPageQueryQueryVariables = {};
-
-
-type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
-
-type IndexPageQueryQueryVariables = {};
-
-
-type IndexPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
-
 type poetryPageQueryQueryVariables = {};
 
 
 type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
+
+type PagesQueryQueryVariables = {};
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -3250,9 +3254,9 @@ type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio
 
 type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type PagesQueryQueryVariables = {};
+type IndexPageQueryQueryVariables = {};
 
 
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+type IndexPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
 
 }

@@ -4,6 +4,8 @@ require('dotenv').config({
 });
 // require('./client-config');
 
+console.log('===>', process.env.NODE_ENV);
+
 module.exports = {
   siteMetadata: {
     title: `ckomop0x.me – блок Павла Клочкова`,
@@ -12,6 +14,12 @@ module.exports = {
     siteUrl: `https://ckomop0x.me`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        displayName: process.env.NODE_ENV === 'development' ? true : false,
+      },
+    },
     {
       resolve: `gatsby-plugin-typescript`,
       options: {

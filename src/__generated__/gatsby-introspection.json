@@ -11998,6 +11998,16 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "displayName",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "allowSyntheticDefaultImports",
             "description": "",
             "type": {
@@ -13262,6 +13272,18 @@
         "name": "SitePluginPluginOptions",
         "description": null,
         "fields": [
+          {
+            "name": "displayName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "allowSyntheticDefaultImports",
             "description": null,
@@ -14856,6 +14878,12 @@
           },
           {
             "name": "pluginCreator___version",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___displayName",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -23447,6 +23475,12 @@
           },
           {
             "name": "version",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___displayName",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
