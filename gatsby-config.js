@@ -38,10 +38,10 @@ module.exports = {
     'gatsby-plugin-scss-typescript',
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-sitemap',
-    // {
-    //   resolve: 'gatsby-plugin-codegen',
-    //   options: {},
-    // },
+    {
+      resolve: 'gatsby-plugin-codegen',
+      options: {},
+    },
     {
       resolve: `gatsby-source-strapi`,
       options: {

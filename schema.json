@@ -11999,6 +11999,16 @@
           "fields": null,
           "inputFields": [
             {
+              "name": "displayName",
+              "description": "",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "BooleanQueryOperatorInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "allowSyntheticDefaultImports",
               "description": "",
               "type": {
@@ -12210,7 +12220,7 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "_xsrcxxxgeneratedxxxgatsbyxintrospectionxjson",
+              "name": "src___generated___gatsby_introspection_json",
               "description": "",
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -12231,7 +12241,7 @@
           "fields": null,
           "inputFields": [
             {
-              "name": "_xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql",
+              "name": "src___generated___gatsby_plugin_documents_graphql",
               "description": "",
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -13264,6 +13274,18 @@
           "description": null,
           "fields": [
             {
+              "name": "displayName",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "allowSyntheticDefaultImports",
               "description": null,
               "args": [],
@@ -13519,7 +13541,7 @@
           "description": null,
           "fields": [
             {
-              "name": "_xsrcxxxgeneratedxxxgatsbyxintrospectionxjson",
+              "name": "src___generated___gatsby_introspection_json",
               "description": null,
               "args": [],
               "type": {
@@ -13542,7 +13564,7 @@
           "description": null,
           "fields": [
             {
-              "name": "_xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql",
+              "name": "src___generated___gatsby_plugin_documents_graphql",
               "description": null,
               "args": [],
               "type": {
@@ -14862,19 +14884,25 @@
               "deprecationReason": null
             },
             {
+              "name": "pluginCreator___pluginOptions___displayName",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "pluginCreator___pluginOptions___allowSyntheticDefaultImports",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "pluginCreator___pluginOptions___emitSchema____xsrcxxxgeneratedxxxgatsbyxintrospectionxjson",
+              "name": "pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "pluginCreator___pluginOptions___emitPluginDocuments____xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql",
+              "name": "pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -23453,19 +23481,25 @@
               "deprecationReason": null
             },
             {
+              "name": "pluginOptions___displayName",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "pluginOptions___allowSyntheticDefaultImports",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "pluginOptions___emitSchema____xsrcxxxgeneratedxxxgatsbyxintrospectionxjson",
+              "name": "pluginOptions___emitSchema___src___generated___gatsby_introspection_json",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "pluginOptions___emitPluginDocuments____xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql",
+              "name": "pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
