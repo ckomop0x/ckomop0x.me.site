@@ -2041,36 +2041,70 @@ type SitePageContextPostNodeFilterInput = {
 };
 
 type SitePageContextPostNodeImage = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly publicURL: Maybe<Scalars['String']>;
+  readonly prettySize: Maybe<Scalars['String']>;
+  readonly size: Maybe<Scalars['Int']>;
+  readonly sourceInstanceName: Maybe<Scalars['String']>;
+  readonly uid: Maybe<Scalars['Int']>;
+  readonly root: Maybe<Scalars['String']>;
+  readonly relativePath: Maybe<Scalars['String']>;
+  readonly relativeDirectory: Maybe<Scalars['String']>;
+  readonly rdev: Maybe<Scalars['Int']>;
+  readonly absolutePath: Maybe<Scalars['String']>;
   readonly childImageSharp: Maybe<SitePageContextPostNodeImageChildImageSharp>;
 };
 
 type SitePageContextPostNodeImageChildImageSharp = {
-  readonly fluid: Maybe<SitePageContextPostNodeImageChildImageSharpFluid>;
+  readonly sizes: Maybe<SitePageContextPostNodeImageChildImageSharpSizes>;
 };
 
 type SitePageContextPostNodeImageChildImageSharpFilterInput = {
-  readonly fluid: Maybe<SitePageContextPostNodeImageChildImageSharpFluidFilterInput>;
+  readonly sizes: Maybe<SitePageContextPostNodeImageChildImageSharpSizesFilterInput>;
 };
 
-type SitePageContextPostNodeImageChildImageSharpFluid = {
-  readonly srcSet: Maybe<Scalars['String']>;
-  readonly originalImg: Maybe<Scalars['String']>;
-  readonly originalName: Maybe<Scalars['String']>;
+type SitePageContextPostNodeImageChildImageSharpSizes = {
   readonly tracedSVG: Maybe<Scalars['String']>;
-  readonly srcSetWebp: Maybe<Scalars['String']>;
   readonly srcWebp: Maybe<Scalars['String']>;
+  readonly srcSetWebp: Maybe<Scalars['String']>;
+  readonly srcSet: Maybe<Scalars['String']>;
+  readonly src: Maybe<Scalars['String']>;
+  readonly sizes: Maybe<Scalars['String']>;
+  readonly presentationWidth: Maybe<Scalars['Int']>;
+  readonly presentationHeight: Maybe<Scalars['Int']>;
+  readonly originalName: Maybe<Scalars['String']>;
+  readonly originalImg: Maybe<Scalars['String']>;
+  readonly base64: Maybe<Scalars['String']>;
+  readonly aspectRatio: Maybe<Scalars['Float']>;
 };
 
-type SitePageContextPostNodeImageChildImageSharpFluidFilterInput = {
-  readonly srcSet: Maybe<StringQueryOperatorInput>;
-  readonly originalImg: Maybe<StringQueryOperatorInput>;
-  readonly originalName: Maybe<StringQueryOperatorInput>;
+type SitePageContextPostNodeImageChildImageSharpSizesFilterInput = {
   readonly tracedSVG: Maybe<StringQueryOperatorInput>;
-  readonly srcSetWebp: Maybe<StringQueryOperatorInput>;
   readonly srcWebp: Maybe<StringQueryOperatorInput>;
+  readonly srcSetWebp: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+  readonly presentationWidth: Maybe<IntQueryOperatorInput>;
+  readonly presentationHeight: Maybe<IntQueryOperatorInput>;
+  readonly originalName: Maybe<StringQueryOperatorInput>;
+  readonly originalImg: Maybe<StringQueryOperatorInput>;
+  readonly base64: Maybe<StringQueryOperatorInput>;
+  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
 };
 
 type SitePageContextPostNodeImageFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly publicURL: Maybe<StringQueryOperatorInput>;
+  readonly prettySize: Maybe<StringQueryOperatorInput>;
+  readonly size: Maybe<IntQueryOperatorInput>;
+  readonly sourceInstanceName: Maybe<StringQueryOperatorInput>;
+  readonly uid: Maybe<IntQueryOperatorInput>;
+  readonly root: Maybe<StringQueryOperatorInput>;
+  readonly relativePath: Maybe<StringQueryOperatorInput>;
+  readonly relativeDirectory: Maybe<StringQueryOperatorInput>;
+  readonly rdev: Maybe<IntQueryOperatorInput>;
+  readonly absolutePath: Maybe<StringQueryOperatorInput>;
   readonly childImageSharp: Maybe<SitePageContextPostNodeImageChildImageSharpFilterInput>;
 };
 
@@ -3205,6 +3239,16 @@ type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>;
 };
 
+type ProjectTemplateQueryQueryVariables = {
+  slug: Scalars['String'];
+};
+
+
+type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
+    Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'published' | 'image_url' | 'excerpt' | 'description' | 'date' | 'strapiId'>
+    & { written: StrapiPosts['date'] }
+  )> };
+
 type IndexPageQueryQueryVariables = {};
 
 
@@ -3215,15 +3259,43 @@ type blogPageQueryQueryVariables = {};
 
 type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
 
-type ProjectTemplateQueryQueryVariables = {
-  slug: Scalars['String'];
-};
+type poetryPageQueryQueryVariables = {};
 
 
-type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
-    Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'published' | 'image_url' | 'excerpt' | 'description' | 'date' | 'strapiId'>
-    & { written: StrapiPosts['date'] }
-  )> };
+type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'>
+        & { readonly image: Maybe<(
+          Pick<File, 'id' | 'publicURL' | 'prettySize' | 'size' | 'sourceInstanceName' | 'uid' | 'root' | 'relativePath' | 'relativeDirectory' | 'rdev' | 'absolutePath'>
+          & { readonly childImageSharp: Maybe<{ readonly children: ReadonlyArray<(
+              { readonly __typename: 'File' }
+              & Pick<File, 'id'>
+            ) | (
+              { readonly __typename: 'ImageSharp' }
+              & Pick<ImageSharp, 'id'>
+            ) | (
+              { readonly __typename: 'Directory' }
+              & Pick<Directory, 'id'>
+            ) | (
+              { readonly __typename: 'SitePage' }
+              & Pick<SitePage, 'id'>
+            ) | (
+              { readonly __typename: 'SitePlugin' }
+              & Pick<SitePlugin, 'id'>
+            ) | (
+              { readonly __typename: 'Site' }
+              & Pick<Site, 'id'>
+            ) | (
+              { readonly __typename: 'StrapiCategories' }
+              & Pick<StrapiCategories, 'id'>
+            ) | (
+              { readonly __typename: 'StrapiPosts' }
+              & Pick<StrapiPosts, 'id'>
+            ) | (
+              { readonly __typename: 'SiteBuildMetadata' }
+              & Pick<SiteBuildMetadata, 'id'>
+            )>, readonly sizes: Maybe<Pick<ImageSharpSizes, 'tracedSVG' | 'srcWebp' | 'srcSetWebp' | 'srcSet' | 'src' | 'sizes' | 'presentationWidth' | 'presentationHeight' | 'originalName' | 'originalImg' | 'base64' | 'aspectRatio'>> }> }
+        )> }
+      ) }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -3274,11 +3346,6 @@ type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 't
 type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type poetryPageQueryQueryVariables = {};
-
-
-type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
 
 type PagesQueryQueryVariables = {};
 

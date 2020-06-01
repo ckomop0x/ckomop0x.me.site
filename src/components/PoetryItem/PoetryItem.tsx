@@ -39,7 +39,11 @@ const PoetryItem: React.FC<any> = (props) => {
         <div className="row">
           <div className="col-xs-12 col-lg-8">
             <Fragment>
-              <Content >{parse(`<p>${poetryItem.description.split('\n').join('</br>')}</p>`)}</Content>
+              <Content>
+                {parse(
+                  `<p>${poetryItem.description.split('\n').join('</br>')}</p>`
+                )}
+              </Content>
               {/*<div className={styles.projectImage}>*/}
               {/*  <img*/}
               {/*    src={poetryItem.image_url}*/}
@@ -50,19 +54,19 @@ const PoetryItem: React.FC<any> = (props) => {
               {/*</div>*/}
             </Fragment>
           </div>
-          <div className="col-xs-12 col-lg-4">
+          {/* <div className="col-xs-12 col-lg-4">
             <h2 className={[styles.detailsTitle].join(' ')}>О стихитворении</h2>
 
             {poetryItem.written && <DetailsLine text={`${poetryItem.written} (${poetryItem.date})`} title="Когда написано" />}
 
             {/*{services && services[0] && (*/}
-            {/*  <DetailsLine text={services.join(', ')} title="Сервисы" />*/}
-            {/*)}*/}
+          {/*  <DetailsLine text={services.join(', ')} title="Сервисы" />*/}
+          {/*)}*/}
 
-            {/*{cms && <DetailsLine text={cms} title="CMS"/>}*/}
+          {/*{cms && <DetailsLine text={cms} title="CMS"/>}*/}
 
-            {/*<h2 className={[styles.detailsTitle].join(' ')}>Команда проекта</h2>*/}
-          </div>
+          {/*<h2 className={[styles.detailsTitle].join(' ')}>Команда проекта</h2>*/}
+          {/* </div> */}
         </div>
       </div>
     </div>

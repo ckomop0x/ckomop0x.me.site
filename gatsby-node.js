@@ -29,14 +29,34 @@ exports.createPages = async ({ graphql, actions }) => {
             description
             image_url
             image {
+              id
+              publicURL
+              prettySize
+              size
+              sourceInstanceName
+              uid
+              root
+              relativePath
+              relativeDirectory
+              rdev
+              absolutePath
               childImageSharp {
-                fluid {
-                  srcSet
-                  originalImg
-                  originalName
+                children {
+                  id
+                }
+                sizes {
                   tracedSVG
-                  srcSetWebp
                   srcWebp
+                  srcSetWebp
+                  srcSet
+                  src
+                  sizes
+                  presentationWidth
+                  presentationHeight
+                  originalName
+                  originalImg
+                  base64
+                  aspectRatio
                 }
               }
             }
