@@ -1,6 +1,7 @@
 // Load variables from `.env` as soon as possible
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV || 'development'}`,
+  // path: `.env.${process.env.NODE_ENV || 'development'}`,
+  path: `.env`,
 });
 
 module.exports = {
@@ -23,6 +24,7 @@ module.exports = {
         allowSyntheticDefaultImports: true,
       },
     },
+    'gatsby-plugin-typescript-checker',
     {
       resolve: 'gatsby-plugin-typegen',
       options: {
@@ -34,14 +36,13 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-typescript-checker',
-    'gatsby-plugin-scss-typescript',
-    `gatsby-plugin-react-helmet`,
-    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-codegen',
       options: {},
     },
+    'gatsby-plugin-scss-typescript',
+    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-sitemap',
     {
       resolve: `gatsby-source-strapi`,
       options: {
@@ -77,8 +78,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `ckomop0x.me – блок Павла Клочкова`,
+        short_name: `ckomop0x.me – блок Павла Клочкова`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -96,16 +97,21 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-yandex-metrica`,
+      resolve: `gatsby-plugin-yandex-metrika`,
       options: {
-        trackingId: '57227728',
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-        trackHash: true,
-
-        // Detailed recordings of user activity on the site: mouse movement, scrolling, and clicks.
+        // The ID of yandex metrika.
+        trackingId: 57227728,
+        // Enabled a webvisor. The default value is `false`.
         webvisor: true,
+        // Enables tracking a hash in URL. The default value is `false`.
+        trackHash: true,
+        // Defines where to place the tracking script - `false` means before body (slower loading, more hits)
+        // and `true` means after the body (faster loading, less hits). The default value is `false`.
+        afterBody: true,
+        // Use `defer` attribute of metrika script. If set to `false` - script will be loaded with `async` attribute.
+        // Async enables earlier loading of the metrika but it can negatively affect page loading speed. The default value is `false`.
+        defer: false,
+        // Detailed recordings of user activity on the site: mouse movement, scrolling, and clicks.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

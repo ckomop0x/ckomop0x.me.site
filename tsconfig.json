@@ -23,7 +23,7 @@
     },
     "plugins": [
       {
-        "name": "@divyenduz/ts-graphql-plugin"
+        "name": "ts-graphql-plugin"
       }
     ],
     "typeRoots": ["./types", "./node_modules/@types"]

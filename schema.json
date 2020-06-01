@@ -1151,7 +1151,7 @@
                   "description": "",
                   "type": {
                     "kind": "INPUT_OBJECT",
-                    "name": "IntQueryOperatorInput",
+                    "name": "DateQueryOperatorInput",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -6649,9 +6649,13 @@
               "description": null,
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -6661,9 +6665,13 @@
               "description": null,
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -6820,9 +6828,13 @@
               "description": null,
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -6832,9 +6844,13 @@
               "description": null,
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -8911,7 +8927,7 @@
           "fields": [
             {
               "name": "next",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -8939,7 +8955,7 @@
             },
             {
               "name": "previous",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -9048,6 +9064,22 @@
                 "kind": "SCALAR",
                 "name": "Int",
                 "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalCount",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -11402,7 +11434,7 @@
           "fields": [
             {
               "name": "next",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -11430,7 +11462,7 @@
             },
             {
               "name": "previous",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -12039,6 +12071,16 @@
               "defaultValue": null
             },
             {
+              "name": "apiURL",
+              "description": "",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "StringQueryOperatorInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "queryLimit",
               "description": "",
               "type": {
@@ -12139,7 +12181,7 @@
               "defaultValue": null
             },
             {
-              "name": "trackingId",
+              "name": "cache_busting_mode",
               "description": "",
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -12149,7 +12191,7 @@
               "defaultValue": null
             },
             {
-              "name": "clickmap",
+              "name": "include_favicon",
               "description": "",
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -12159,7 +12201,7 @@
               "defaultValue": null
             },
             {
-              "name": "trackLinks",
+              "name": "legacy",
               "description": "",
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -12169,7 +12211,37 @@
               "defaultValue": null
             },
             {
-              "name": "accurateTrackBounce",
+              "name": "theme_color_in_head",
+              "description": "",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "BooleanQueryOperatorInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "cacheDigest",
+              "description": "",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "StringQueryOperatorInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "trackingId",
+              "description": "",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "IntQueryOperatorInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "webvisor",
               "description": "",
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -12189,7 +12261,17 @@
               "defaultValue": null
             },
             {
-              "name": "webvisor",
+              "name": "afterBody",
+              "description": "",
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "BooleanQueryOperatorInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "defer",
               "description": "",
               "type": {
                 "kind": "INPUT_OBJECT",
@@ -13322,6 +13404,18 @@
               "deprecationReason": null
             },
             {
+              "name": "apiURL",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "queryLimit",
               "description": null,
               "args": [],
@@ -13446,7 +13540,7 @@
               "deprecationReason": null
             },
             {
-              "name": "trackingId",
+              "name": "cache_busting_mode",
               "description": null,
               "args": [],
               "type": {
@@ -13458,7 +13552,7 @@
               "deprecationReason": null
             },
             {
-              "name": "clickmap",
+              "name": "include_favicon",
               "description": null,
               "args": [],
               "type": {
@@ -13470,7 +13564,7 @@
               "deprecationReason": null
             },
             {
-              "name": "trackLinks",
+              "name": "legacy",
               "description": null,
               "args": [],
               "type": {
@@ -13482,7 +13576,43 @@
               "deprecationReason": null
             },
             {
-              "name": "accurateTrackBounce",
+              "name": "theme_color_in_head",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "cacheDigest",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "trackingId",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "webvisor",
               "description": null,
               "args": [],
               "type": {
@@ -13506,7 +13636,19 @@
               "deprecationReason": null
             },
             {
-              "name": "webvisor",
+              "name": "afterBody",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "defer",
               "description": null,
               "args": [],
               "type": {
@@ -14908,6 +15050,12 @@
               "deprecationReason": null
             },
             {
+              "name": "pluginCreator___pluginOptions___apiURL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "pluginCreator___pluginOptions___queryLimit",
               "description": null,
               "isDeprecated": false,
@@ -14968,25 +15116,43 @@
               "deprecationReason": null
             },
             {
+              "name": "pluginCreator___pluginOptions___cache_busting_mode",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginCreator___pluginOptions___include_favicon",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginCreator___pluginOptions___legacy",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginCreator___pluginOptions___theme_color_in_head",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginCreator___pluginOptions___cacheDigest",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "pluginCreator___pluginOptions___trackingId",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "pluginCreator___pluginOptions___clickmap",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "pluginCreator___pluginOptions___trackLinks",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "pluginCreator___pluginOptions___accurateTrackBounce",
+              "name": "pluginCreator___pluginOptions___webvisor",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -14998,7 +15164,13 @@
               "deprecationReason": null
             },
             {
-              "name": "pluginCreator___pluginOptions___webvisor",
+              "name": "pluginCreator___pluginOptions___afterBody",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginCreator___pluginOptions___defer",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -15621,10 +15793,51 @@
             {
               "name": "port",
               "description": null,
-              "args": [],
+              "args": [
+                {
+                  "name": "formatString",
+                  "description": "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "fromNow",
+                  "description": "Returns a string generated with Moment.js' `fromNow` function",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "difference",
+                  "description": "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "locale",
+                  "description": "Configures the locale Moment.js will use to format the date.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "Date",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -15836,7 +16049,7 @@
               "description": "",
               "type": {
                 "kind": "INPUT_OBJECT",
-                "name": "IntQueryOperatorInput",
+                "name": "DateQueryOperatorInput",
                 "ofType": null
               },
               "defaultValue": null
@@ -16732,7 +16945,7 @@
           "fields": [
             {
               "name": "next",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -16760,7 +16973,7 @@
             },
             {
               "name": "previous",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -17975,7 +18188,7 @@
           "fields": [
             {
               "name": "next",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -18003,7 +18216,7 @@
             },
             {
               "name": "previous",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -19258,7 +19471,7 @@
           "fields": [
             {
               "name": "next",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -19286,7 +19499,7 @@
             },
             {
               "name": "previous",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -21606,7 +21819,7 @@
           "fields": [
             {
               "name": "next",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -21634,7 +21847,7 @@
             },
             {
               "name": "previous",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -22736,7 +22949,7 @@
           "fields": [
             {
               "name": "next",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -22764,7 +22977,7 @@
             },
             {
               "name": "previous",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -23505,6 +23718,12 @@
               "deprecationReason": null
             },
             {
+              "name": "pluginOptions___apiURL",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "pluginOptions___queryLimit",
               "description": null,
               "isDeprecated": false,
@@ -23565,25 +23784,43 @@
               "deprecationReason": null
             },
             {
+              "name": "pluginOptions___cache_busting_mode",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginOptions___include_favicon",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginOptions___legacy",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginOptions___theme_color_in_head",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginOptions___cacheDigest",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "pluginOptions___trackingId",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "pluginOptions___clickmap",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "pluginOptions___trackLinks",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "pluginOptions___accurateTrackBounce",
+              "name": "pluginOptions___webvisor",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -23595,7 +23832,13 @@
               "deprecationReason": null
             },
             {
-              "name": "pluginOptions___webvisor",
+              "name": "pluginOptions___afterBody",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pluginOptions___defer",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -23919,7 +24162,7 @@
           "fields": [
             {
               "name": "next",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
@@ -23947,7 +24190,7 @@
             },
             {
               "name": "previous",
-              "description": "",
+              "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",

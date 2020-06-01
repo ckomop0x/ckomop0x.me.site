@@ -58,6 +58,11 @@ fragment GatsbyImageSharpFluid on ImageSharpFluid {
   sizes
 }
 
+fragment GatsbyImageSharpFluidLimitPresentationSize on ImageSharpFluid {
+  maxHeight: presentationHeight
+  maxWidth: presentationWidth
+}
+
 fragment GatsbyImageSharpFluid_tracedSVG on ImageSharpFluid {
   tracedSVG
   aspectRatio
