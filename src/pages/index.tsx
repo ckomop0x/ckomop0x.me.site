@@ -64,7 +64,7 @@ export default (props: any) => {
   return (
     <MainPageLayout>
       <Hero
-        title="Стихи, песни и путешествия"
+        title="Стихи, песни, путешествия и заметки"
         subtitle="Персональный блог Павла Клочкова"
       />
       <section>

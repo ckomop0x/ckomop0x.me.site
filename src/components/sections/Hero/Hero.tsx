@@ -16,10 +16,13 @@ const Hero: React.FC<IMainSectionProps> = ({ title, subtitle }) => {
       <Nav title="Ckomop0x.me" />
       <div className={['container', styles.mainSectionText].join(' ')}>
         <p className={styles.subTitle}>{subtitle}</p>
-        <h1 className={styles.title}>{title}</h1>
-        <Link className={styles.startButton} to="/poetry">
+        <h1 className={styles.title}>
+          {title}
+          <br />
+        </h1>
+        {/* <Link className={styles.startButton} to="/poetry">
           Читать стихи →
-        </Link>
+        </Link> */}{' '}
       </div>
     </section>
   );
