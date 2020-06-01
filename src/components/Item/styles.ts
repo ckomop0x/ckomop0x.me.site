@@ -2,16 +2,7 @@ import styled, { css } from 'styled-components';
 import { IMAGES_ENDPOINT, SMALL_PREVIEW_IMAGE } from '../../config';
 import { TitleStyled } from '@styles/TitleStyled';
 
-export const ItemWrapper = styled.article`
-  /* padding: 32px 0; */
-  border: 1px solid #a5a5a552;
-  box-shadow: 0px 7px 13px 0px #000;
-  border-radius: 16px;
-  /* FONT-WEIGHT: 100; */
-  padding: 24px;
-  background: #353535;
-  margin: 24px 0;
-`;
+export const ItemWrapper = styled.article``;
 
 export const Content = styled.div`
   display: flex;
@@ -92,6 +83,7 @@ export const ItemImage = styled.div<{
 
 export const ItemDateStyled = styled.p`
   color: #747474;
+  padding: 0 16px;
   font-size: 12px;
 `;
 
@@ -99,13 +91,22 @@ export const ItemContent = styled.div`
   position: relative;
   /* padding-right: 20px; */
   /* padding-left: 20px; */
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  /* -webkit-box-flex: 0; */
+  /* -ms-flex: 0 0 50%; */
+  /* flex: 0 0 50%; */
+  /* padding: 32px 0; */
+  border: 1px solid #a5a5a552;
+  /* box-shadow: 0px 7px 13px 0px #000; */
+  /* border-radius: 16px; */
+  /* FONT-WEIGHT: 100; */
+  padding: 0;
+  /* background: #353535; */
+  margin: 16px;
 `;
 
 export const ItemTitle = styled.h3`
   font-size: 21px;
+  padding: 16px 16px 0;
   margin-bottom: 1rem;
   font-weight: 500;
   line-height: 1;
@@ -114,6 +115,7 @@ export const ItemTitle = styled.h3`
 
 export const TextStyled = styled.div`
   line-height: 1.5;
+  padding: 16px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
   color: #777;

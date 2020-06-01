@@ -21,6 +21,38 @@ export const query = graphql`
           category
           createdAt
           updatedAt
+          image {
+            id
+            publicURL
+            prettySize
+            size
+            sourceInstanceName
+            uid
+            root
+            relativePath
+            relativeDirectory
+            rdev
+            absolutePath
+            childImageSharp {
+              children {
+                id
+              }
+              sizes {
+                tracedSVG
+                srcWebp
+                srcSetWebp
+                srcSet
+                src
+                sizes
+                presentationWidth
+                presentationHeight
+                originalName
+                originalImg
+                base64
+                aspectRatio
+              }
+            }
+          }
         }
       }
     }

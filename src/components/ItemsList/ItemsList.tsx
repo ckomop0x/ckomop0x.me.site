@@ -4,8 +4,10 @@ import Item from '../Item';
 import { ItemListStyled } from './styles';
 
 const ItemsList: React.FC<any> = (props) => {
+  console.log(props);
+
   return (
-    <ItemListStyled>
+    <div className="row">
       {props.items.map(({ node }: any) => {
         const {
           strapiId,
@@ -18,6 +20,7 @@ const ItemsList: React.FC<any> = (props) => {
           slug,
           extra,
           category,
+          image,
         } = node;
         const formattedDate = moment(createdAt).format('DD.MM.YYYY');
         const categoryData = props.categories.filter(
@@ -35,11 +38,12 @@ const ItemsList: React.FC<any> = (props) => {
               slug={slug}
               extra={extra}
               category={categoryData}
+              image={image}
             />
           )
         );
       })}
-    </ItemListStyled>
+    </div>
   );
 };
 
