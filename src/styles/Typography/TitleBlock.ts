@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const TitleBlock = styled.h2`
-  margin-top: 40px;
-  font-family: Roboto, sans-serif;
-  font-size: 24px;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  font-family: Neucha, Roboto, sans-serif;
+  font-size: 32px;
   font-weight: 500;
   letter-spacing: 0;
   text-transform: uppercase;
-  color: #e0e0e0;
+  color: #312420;
 `;

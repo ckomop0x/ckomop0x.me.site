@@ -1,4 +1,4 @@
-@import "colors";
+@import 'colors';
 
 * {
   font-family: Roboto, sans-serif;
@@ -15,14 +15,14 @@ p {
   color: $text-color;
 }
 
-
 body,
 html {
   padding: 0;
   color: #999;
 
   &.dark {
-    background-color: #252525;
+    // background-color: #252525;
+    background-color: #f0ebde;
   }
 }
 
@@ -32,8 +32,8 @@ h3,
 h4,
 h5,
 h6 {
-  color: #999;
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  color: #312420;
+  font-family: Neucha, Roboto, Helvetica, Arial, sans-serif;
 }
 
 .content-section {

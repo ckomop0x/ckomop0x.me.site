@@ -1,9 +1,8 @@
-import { Link } from 'gatsby';
 import React from 'react';
 
 import Nav from '@components/Nav';
 
-import * as styles from './hero.module.scss';
+import { MainSection, Title, SubTitle } from './styles';
 
 export interface IMainSectionProps {
   title: string;
@@ -12,19 +11,16 @@ export interface IMainSectionProps {
 
 const Hero: React.FC<IMainSectionProps> = ({ title, subtitle }) => {
   return (
-    <section className={styles.mainSection}>
+    <MainSection>
       <Nav title="Ckomop0x.me" />
-      <div className={['container', styles.mainSectionText].join(' ')}>
-        <p className={styles.subTitle}>{subtitle}</p>
-        <h1 className={styles.title}>
-          {title}
-          <br />
-        </h1>
+      <div className="container main-section__text">
+        <Title>{title}</Title>
+        <SubTitle>{subtitle}</SubTitle>
         {/* <Link className={styles.startButton} to="/poetry">
           Читать стихи →
         </Link> */}{' '}
       </div>
-    </section>
+    </MainSection>
   );
 };
 

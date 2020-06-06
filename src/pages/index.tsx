@@ -65,17 +65,33 @@ export default (props: any) => {
     <MainPageLayout>
       <Hero
         title="Стихи, песни, путешествия и заметки"
-        subtitle="Персональный блог Павла Клочкова"
+        subtitle="Привет, здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
-      <section>
+      <section
+        style={{
+          height: '100vh',
+          // backgroundSize: 'cover',
+          // backgroundImage:
+          //   'url(https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/Image_3_dS7shj5y-3Q.png)',
+        }}
+      >
         <div className="container">
-          <TitleBlock>Публикации</TitleBlock>
+          <TitleBlock>Пробуй и Путешествуй</TitleBlock>
+          <h5>
+            Каждый новый вкус, запах звук раскрывает нас всё больше и больше и
+            больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в
+            своих желаниях.
+          </h5>
           <ItemsList items={blogItems} categories={categoriesItems} />
         </div>
       </section>
       <section>
         <div className="container">
-          <TitleBlock>Стихи</TitleBlock>
+          <TitleBlock>Твори</TitleBlock>
+          <h5>
+            Пиши, играй, пой, делай то, что тебе нравится и чувствуй
+            вдохновение!
+          </h5>
           <ItemsList items={poetryItems} categories={categoriesItems} />
         </div>
       </section>
