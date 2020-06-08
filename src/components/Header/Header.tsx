@@ -24,7 +24,7 @@ interface IHeader {
 const Header: React.FC<IHeader> = ({
   articleAuthor = 'Pavel Klochkov @ckomop0x',
   headTitle = 'Ckomop0x.me | Персональный блог, стихи и путешествия',
-  fbAppId= '',
+  fbAppId = '',
   ogUrl = 'https://ckomop0x.me',
   ogImage = 'https://ik.imagekit.io/ckomop0x/webtime-studio/pages/webtime-main-page-1_UHK17JzlZ.jpg',
   ogImageHeight = '280',
@@ -43,10 +43,10 @@ const Header: React.FC<IHeader> = ({
   return (
     <Helmet
       bodyAttributes={{
-        class: 'dark',
+        class: 'light',
       }}
       htmlAttributes={{
-        class: 'dark',
+        class: 'light',
         lang: 'ru',
       }}
     >
