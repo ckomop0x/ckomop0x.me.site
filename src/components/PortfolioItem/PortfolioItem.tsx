@@ -32,7 +32,7 @@ const PortfolioItem: React.FC<any> = (props: any) => {
   // }
 
   return (
-    <article className={['col-sm-12', styles.portfolioItem].join(' ')}>
+    <article className={['col-12', styles.portfolioItem].join(' ')}>
       <Link to={articleLink} className={styles.link}>
         {/*{imageSrc && (*/}
         {/*  <img*/}

@@ -67,14 +67,7 @@ export default (props: any) => {
         title="Стихи, песни, путешествия и заметки"
         subtitle="Привет, здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
-      <section
-        style={{
-          height: '100vh',
-          // backgroundSize: 'cover',
-          // backgroundImage:
-          //   'url(https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/Image_3_dS7shj5y-3Q.png)',
-        }}
-      >
+      <section>
         <div className="container">
           <TitleBlock>Пробуй и Путешествуй</TitleBlock>
           <h5>

@@ -25,7 +25,7 @@ const Item = ({
   const backgroundImage = extra && extra.postimage;
 
   return (
-    <ItemWrapper className="col-xs-12 col-md-6 col-4">
+    <ItemWrapper className="col-12 col-md-6">
       <Content>
         <ItemContent>
           {image && (
