@@ -1,4 +1,4 @@
-@import "src/styles/colors";
+@import 'src/styles/colors';
 
 .navbar {
   height: 120px;
@@ -21,10 +21,10 @@
   }
 
   &.inner {
-    color: $text-color--light;
+    color: #312420;
 
     &:hover {
-      color: $text-color--light;
+      color: #312420;
     }
   }
 }
@@ -43,13 +43,12 @@
       margin-left: 20px;
 
       &.inner {
-        color: $text-color--light;
+        color: #312420;
 
         &:hover {
-          color: $text-color--light;
+          color: #312420;
         }
       }
     }
   }
-
 }

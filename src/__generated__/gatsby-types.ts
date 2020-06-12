@@ -3249,15 +3249,15 @@ type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
     & { written: StrapiPosts['date'] }
   )> };
 
-type blogPageQueryQueryVariables = {};
-
-
-type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
-
 type IndexPageQueryQueryVariables = {};
 
 
 type IndexPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
+
+type blogPageQueryQueryVariables = {};
+
+
+type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
 
 type poetryPageQueryQueryVariables = {};
 
