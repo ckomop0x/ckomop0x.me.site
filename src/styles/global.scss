@@ -7,9 +7,6 @@
 /*
 Text
  */
-body {
-  color: $text-color;
-}
 
 p {
   color: $text-color;
@@ -19,6 +16,10 @@ body,
 html {
   padding: 0;
   color: #999;
+
+  &.light {
+    background-color: #f0ebde;
+  }
 
   &.dark {
     // background-color: #252525;
