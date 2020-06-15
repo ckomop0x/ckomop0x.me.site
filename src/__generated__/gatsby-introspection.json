@@ -25601,7 +25601,7 @@
       },
       {
         "name": "dateformat",
-        "description": "Add date formating options.",
+        "description": "Add date formatting options.",
         "locations": [
           "FIELD_DEFINITION"
         ],
