@@ -1563,6 +1563,7 @@ type Query_strapiPostsArgs = {
   internal: Maybe<InternalFilterInput>;
   published: Maybe<BooleanQueryOperatorInput>;
   category: Maybe<StringQueryOperatorInput>;
+  featured: Maybe<BooleanQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
@@ -1570,7 +1571,6 @@ type Query_strapiPostsArgs = {
   description: Maybe<StringQueryOperatorInput>;
   excerpt: Maybe<StringQueryOperatorInput>;
   slug: Maybe<StringQueryOperatorInput>;
-  image: Maybe<FileFilterInput>;
   image_url: Maybe<StringQueryOperatorInput>;
   strapiId: Maybe<StringQueryOperatorInput>;
 };
@@ -2013,99 +2013,27 @@ type SitePageContextPostFilterInput = {
 };
 
 type SitePageContextPostNode = {
-  readonly id: Maybe<Scalars['String']>;
-  readonly title: Maybe<Scalars['String']>;
-  readonly updatedAt: Maybe<Scalars['Date']>;
-  readonly createdAt: Maybe<Scalars['Date']>;
-  readonly excerpt: Maybe<Scalars['String']>;
-  readonly published: Maybe<Scalars['Boolean']>;
-  readonly slug: Maybe<Scalars['String']>;
-  readonly strapiId: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
+  readonly category: Maybe<Scalars['String']>;
   readonly image_url: Maybe<Scalars['String']>;
-  readonly image: Maybe<SitePageContextPostNodeImage>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly published: Maybe<Scalars['Boolean']>;
+  readonly strapiId: Maybe<Scalars['String']>;
+  readonly excerpt: Maybe<Scalars['String']>;
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly updatedAt: Maybe<Scalars['Date']>;
+  readonly title: Maybe<Scalars['String']>;
 };
 
 type SitePageContextPostNodeFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly createdAt: Maybe<DateQueryOperatorInput>;
-  readonly excerpt: Maybe<StringQueryOperatorInput>;
-  readonly published: Maybe<BooleanQueryOperatorInput>;
-  readonly slug: Maybe<StringQueryOperatorInput>;
-  readonly strapiId: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly category: Maybe<StringQueryOperatorInput>;
   readonly image_url: Maybe<StringQueryOperatorInput>;
-  readonly image: Maybe<SitePageContextPostNodeImageFilterInput>;
-};
-
-type SitePageContextPostNodeImage = {
-  readonly id: Maybe<Scalars['String']>;
-  readonly publicURL: Maybe<Scalars['String']>;
-  readonly prettySize: Maybe<Scalars['String']>;
-  readonly size: Maybe<Scalars['Int']>;
-  readonly sourceInstanceName: Maybe<Scalars['String']>;
-  readonly uid: Maybe<Scalars['Int']>;
-  readonly root: Maybe<Scalars['String']>;
-  readonly relativePath: Maybe<Scalars['String']>;
-  readonly relativeDirectory: Maybe<Scalars['String']>;
-  readonly rdev: Maybe<Scalars['Int']>;
-  readonly absolutePath: Maybe<Scalars['String']>;
-  readonly childImageSharp: Maybe<SitePageContextPostNodeImageChildImageSharp>;
-};
-
-type SitePageContextPostNodeImageChildImageSharp = {
-  readonly sizes: Maybe<SitePageContextPostNodeImageChildImageSharpSizes>;
-};
-
-type SitePageContextPostNodeImageChildImageSharpFilterInput = {
-  readonly sizes: Maybe<SitePageContextPostNodeImageChildImageSharpSizesFilterInput>;
-};
-
-type SitePageContextPostNodeImageChildImageSharpSizes = {
-  readonly tracedSVG: Maybe<Scalars['String']>;
-  readonly srcWebp: Maybe<Scalars['String']>;
-  readonly srcSetWebp: Maybe<Scalars['String']>;
-  readonly srcSet: Maybe<Scalars['String']>;
-  readonly src: Maybe<Scalars['String']>;
-  readonly sizes: Maybe<Scalars['String']>;
-  readonly presentationWidth: Maybe<Scalars['Int']>;
-  readonly presentationHeight: Maybe<Scalars['Int']>;
-  readonly originalName: Maybe<Scalars['String']>;
-  readonly originalImg: Maybe<Scalars['String']>;
-  readonly base64: Maybe<Scalars['String']>;
-  readonly aspectRatio: Maybe<Scalars['Float']>;
-};
-
-type SitePageContextPostNodeImageChildImageSharpSizesFilterInput = {
-  readonly tracedSVG: Maybe<StringQueryOperatorInput>;
-  readonly srcWebp: Maybe<StringQueryOperatorInput>;
-  readonly srcSetWebp: Maybe<StringQueryOperatorInput>;
-  readonly srcSet: Maybe<StringQueryOperatorInput>;
-  readonly src: Maybe<StringQueryOperatorInput>;
-  readonly sizes: Maybe<StringQueryOperatorInput>;
-  readonly presentationWidth: Maybe<IntQueryOperatorInput>;
-  readonly presentationHeight: Maybe<IntQueryOperatorInput>;
-  readonly originalName: Maybe<StringQueryOperatorInput>;
-  readonly originalImg: Maybe<StringQueryOperatorInput>;
-  readonly base64: Maybe<StringQueryOperatorInput>;
-  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
-};
-
-type SitePageContextPostNodeImageFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly publicURL: Maybe<StringQueryOperatorInput>;
-  readonly prettySize: Maybe<StringQueryOperatorInput>;
-  readonly size: Maybe<IntQueryOperatorInput>;
-  readonly sourceInstanceName: Maybe<StringQueryOperatorInput>;
-  readonly uid: Maybe<IntQueryOperatorInput>;
-  readonly root: Maybe<StringQueryOperatorInput>;
-  readonly relativePath: Maybe<StringQueryOperatorInput>;
-  readonly relativeDirectory: Maybe<StringQueryOperatorInput>;
-  readonly rdev: Maybe<IntQueryOperatorInput>;
-  readonly absolutePath: Maybe<StringQueryOperatorInput>;
-  readonly childImageSharp: Maybe<SitePageContextPostNodeImageChildImageSharpFilterInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly published: Maybe<BooleanQueryOperatorInput>;
+  readonly strapiId: Maybe<StringQueryOperatorInput>;
+  readonly excerpt: Maybe<StringQueryOperatorInput>;
+  readonly createdAt: Maybe<DateQueryOperatorInput>;
+  readonly updatedAt: Maybe<DateQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageEdge = {
@@ -2208,16 +2136,15 @@ enum SitePageFieldsEnum {
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
   context___slug = 'context.slug',
-  context___post___node___id = 'context.post.node.id',
-  context___post___node___title = 'context.post.node.title',
-  context___post___node___updatedAt = 'context.post.node.updatedAt',
-  context___post___node___createdAt = 'context.post.node.createdAt',
-  context___post___node___excerpt = 'context.post.node.excerpt',
-  context___post___node___published = 'context.post.node.published',
-  context___post___node___slug = 'context.post.node.slug',
-  context___post___node___strapiId = 'context.post.node.strapiId',
-  context___post___node___description = 'context.post.node.description',
+  context___post___node___category = 'context.post.node.category',
   context___post___node___image_url = 'context.post.node.image_url',
+  context___post___node___slug = 'context.post.node.slug',
+  context___post___node___published = 'context.post.node.published',
+  context___post___node___strapiId = 'context.post.node.strapiId',
+  context___post___node___excerpt = 'context.post.node.excerpt',
+  context___post___node___createdAt = 'context.post.node.createdAt',
+  context___post___node___updatedAt = 'context.post.node.updatedAt',
+  context___post___node___title = 'context.post.node.title',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -2895,6 +2822,7 @@ type StrapiPosts = Node & {
   readonly internal: Internal;
   readonly published: Maybe<Scalars['Boolean']>;
   readonly category: Maybe<Scalars['String']>;
+  readonly featured: Maybe<Scalars['Boolean']>;
   readonly title: Maybe<Scalars['String']>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -2902,7 +2830,6 @@ type StrapiPosts = Node & {
   readonly description: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
-  readonly image: Maybe<File>;
   readonly image_url: Maybe<Scalars['String']>;
   readonly strapiId: Maybe<Scalars['String']>;
 };
@@ -3047,6 +2974,7 @@ enum StrapiPostsFieldsEnum {
   internal___type = 'internal.type',
   published = 'published',
   category = 'category',
+  featured = 'featured',
   title = 'title',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
@@ -3054,145 +2982,6 @@ enum StrapiPostsFieldsEnum {
   description = 'description',
   excerpt = 'excerpt',
   slug = 'slug',
-  image___sourceInstanceName = 'image.sourceInstanceName',
-  image___absolutePath = 'image.absolutePath',
-  image___relativePath = 'image.relativePath',
-  image___extension = 'image.extension',
-  image___size = 'image.size',
-  image___prettySize = 'image.prettySize',
-  image___modifiedTime = 'image.modifiedTime',
-  image___accessTime = 'image.accessTime',
-  image___changeTime = 'image.changeTime',
-  image___birthTime = 'image.birthTime',
-  image___root = 'image.root',
-  image___dir = 'image.dir',
-  image___base = 'image.base',
-  image___ext = 'image.ext',
-  image___name = 'image.name',
-  image___relativeDirectory = 'image.relativeDirectory',
-  image___dev = 'image.dev',
-  image___mode = 'image.mode',
-  image___nlink = 'image.nlink',
-  image___uid = 'image.uid',
-  image___gid = 'image.gid',
-  image___rdev = 'image.rdev',
-  image___ino = 'image.ino',
-  image___atimeMs = 'image.atimeMs',
-  image___mtimeMs = 'image.mtimeMs',
-  image___ctimeMs = 'image.ctimeMs',
-  image___atime = 'image.atime',
-  image___mtime = 'image.mtime',
-  image___ctime = 'image.ctime',
-  image___birthtime = 'image.birthtime',
-  image___birthtimeMs = 'image.birthtimeMs',
-  image___blksize = 'image.blksize',
-  image___blocks = 'image.blocks',
-  image___publicURL = 'image.publicURL',
-  image___childImageSharp___fixed___base64 = 'image.childImageSharp.fixed.base64',
-  image___childImageSharp___fixed___tracedSVG = 'image.childImageSharp.fixed.tracedSVG',
-  image___childImageSharp___fixed___aspectRatio = 'image.childImageSharp.fixed.aspectRatio',
-  image___childImageSharp___fixed___width = 'image.childImageSharp.fixed.width',
-  image___childImageSharp___fixed___height = 'image.childImageSharp.fixed.height',
-  image___childImageSharp___fixed___src = 'image.childImageSharp.fixed.src',
-  image___childImageSharp___fixed___srcSet = 'image.childImageSharp.fixed.srcSet',
-  image___childImageSharp___fixed___srcWebp = 'image.childImageSharp.fixed.srcWebp',
-  image___childImageSharp___fixed___srcSetWebp = 'image.childImageSharp.fixed.srcSetWebp',
-  image___childImageSharp___fixed___originalName = 'image.childImageSharp.fixed.originalName',
-  image___childImageSharp___resolutions___base64 = 'image.childImageSharp.resolutions.base64',
-  image___childImageSharp___resolutions___tracedSVG = 'image.childImageSharp.resolutions.tracedSVG',
-  image___childImageSharp___resolutions___aspectRatio = 'image.childImageSharp.resolutions.aspectRatio',
-  image___childImageSharp___resolutions___width = 'image.childImageSharp.resolutions.width',
-  image___childImageSharp___resolutions___height = 'image.childImageSharp.resolutions.height',
-  image___childImageSharp___resolutions___src = 'image.childImageSharp.resolutions.src',
-  image___childImageSharp___resolutions___srcSet = 'image.childImageSharp.resolutions.srcSet',
-  image___childImageSharp___resolutions___srcWebp = 'image.childImageSharp.resolutions.srcWebp',
-  image___childImageSharp___resolutions___srcSetWebp = 'image.childImageSharp.resolutions.srcSetWebp',
-  image___childImageSharp___resolutions___originalName = 'image.childImageSharp.resolutions.originalName',
-  image___childImageSharp___fluid___base64 = 'image.childImageSharp.fluid.base64',
-  image___childImageSharp___fluid___tracedSVG = 'image.childImageSharp.fluid.tracedSVG',
-  image___childImageSharp___fluid___aspectRatio = 'image.childImageSharp.fluid.aspectRatio',
-  image___childImageSharp___fluid___src = 'image.childImageSharp.fluid.src',
-  image___childImageSharp___fluid___srcSet = 'image.childImageSharp.fluid.srcSet',
-  image___childImageSharp___fluid___srcWebp = 'image.childImageSharp.fluid.srcWebp',
-  image___childImageSharp___fluid___srcSetWebp = 'image.childImageSharp.fluid.srcSetWebp',
-  image___childImageSharp___fluid___sizes = 'image.childImageSharp.fluid.sizes',
-  image___childImageSharp___fluid___originalImg = 'image.childImageSharp.fluid.originalImg',
-  image___childImageSharp___fluid___originalName = 'image.childImageSharp.fluid.originalName',
-  image___childImageSharp___fluid___presentationWidth = 'image.childImageSharp.fluid.presentationWidth',
-  image___childImageSharp___fluid___presentationHeight = 'image.childImageSharp.fluid.presentationHeight',
-  image___childImageSharp___sizes___base64 = 'image.childImageSharp.sizes.base64',
-  image___childImageSharp___sizes___tracedSVG = 'image.childImageSharp.sizes.tracedSVG',
-  image___childImageSharp___sizes___aspectRatio = 'image.childImageSharp.sizes.aspectRatio',
-  image___childImageSharp___sizes___src = 'image.childImageSharp.sizes.src',
-  image___childImageSharp___sizes___srcSet = 'image.childImageSharp.sizes.srcSet',
-  image___childImageSharp___sizes___srcWebp = 'image.childImageSharp.sizes.srcWebp',
-  image___childImageSharp___sizes___srcSetWebp = 'image.childImageSharp.sizes.srcSetWebp',
-  image___childImageSharp___sizes___sizes = 'image.childImageSharp.sizes.sizes',
-  image___childImageSharp___sizes___originalImg = 'image.childImageSharp.sizes.originalImg',
-  image___childImageSharp___sizes___originalName = 'image.childImageSharp.sizes.originalName',
-  image___childImageSharp___sizes___presentationWidth = 'image.childImageSharp.sizes.presentationWidth',
-  image___childImageSharp___sizes___presentationHeight = 'image.childImageSharp.sizes.presentationHeight',
-  image___childImageSharp___original___width = 'image.childImageSharp.original.width',
-  image___childImageSharp___original___height = 'image.childImageSharp.original.height',
-  image___childImageSharp___original___src = 'image.childImageSharp.original.src',
-  image___childImageSharp___resize___src = 'image.childImageSharp.resize.src',
-  image___childImageSharp___resize___tracedSVG = 'image.childImageSharp.resize.tracedSVG',
-  image___childImageSharp___resize___width = 'image.childImageSharp.resize.width',
-  image___childImageSharp___resize___height = 'image.childImageSharp.resize.height',
-  image___childImageSharp___resize___aspectRatio = 'image.childImageSharp.resize.aspectRatio',
-  image___childImageSharp___resize___originalName = 'image.childImageSharp.resize.originalName',
-  image___childImageSharp___id = 'image.childImageSharp.id',
-  image___childImageSharp___parent___id = 'image.childImageSharp.parent.id',
-  image___childImageSharp___parent___children = 'image.childImageSharp.parent.children',
-  image___childImageSharp___children = 'image.childImageSharp.children',
-  image___childImageSharp___children___id = 'image.childImageSharp.children.id',
-  image___childImageSharp___children___children = 'image.childImageSharp.children.children',
-  image___childImageSharp___internal___content = 'image.childImageSharp.internal.content',
-  image___childImageSharp___internal___contentDigest = 'image.childImageSharp.internal.contentDigest',
-  image___childImageSharp___internal___description = 'image.childImageSharp.internal.description',
-  image___childImageSharp___internal___fieldOwners = 'image.childImageSharp.internal.fieldOwners',
-  image___childImageSharp___internal___ignoreType = 'image.childImageSharp.internal.ignoreType',
-  image___childImageSharp___internal___mediaType = 'image.childImageSharp.internal.mediaType',
-  image___childImageSharp___internal___owner = 'image.childImageSharp.internal.owner',
-  image___childImageSharp___internal___type = 'image.childImageSharp.internal.type',
-  image___id = 'image.id',
-  image___parent___id = 'image.parent.id',
-  image___parent___parent___id = 'image.parent.parent.id',
-  image___parent___parent___children = 'image.parent.parent.children',
-  image___parent___children = 'image.parent.children',
-  image___parent___children___id = 'image.parent.children.id',
-  image___parent___children___children = 'image.parent.children.children',
-  image___parent___internal___content = 'image.parent.internal.content',
-  image___parent___internal___contentDigest = 'image.parent.internal.contentDigest',
-  image___parent___internal___description = 'image.parent.internal.description',
-  image___parent___internal___fieldOwners = 'image.parent.internal.fieldOwners',
-  image___parent___internal___ignoreType = 'image.parent.internal.ignoreType',
-  image___parent___internal___mediaType = 'image.parent.internal.mediaType',
-  image___parent___internal___owner = 'image.parent.internal.owner',
-  image___parent___internal___type = 'image.parent.internal.type',
-  image___children = 'image.children',
-  image___children___id = 'image.children.id',
-  image___children___parent___id = 'image.children.parent.id',
-  image___children___parent___children = 'image.children.parent.children',
-  image___children___children = 'image.children.children',
-  image___children___children___id = 'image.children.children.id',
-  image___children___children___children = 'image.children.children.children',
-  image___children___internal___content = 'image.children.internal.content',
-  image___children___internal___contentDigest = 'image.children.internal.contentDigest',
-  image___children___internal___description = 'image.children.internal.description',
-  image___children___internal___fieldOwners = 'image.children.internal.fieldOwners',
-  image___children___internal___ignoreType = 'image.children.internal.ignoreType',
-  image___children___internal___mediaType = 'image.children.internal.mediaType',
-  image___children___internal___owner = 'image.children.internal.owner',
-  image___children___internal___type = 'image.children.internal.type',
-  image___internal___content = 'image.internal.content',
-  image___internal___contentDigest = 'image.internal.contentDigest',
-  image___internal___description = 'image.internal.description',
-  image___internal___fieldOwners = 'image.internal.fieldOwners',
-  image___internal___ignoreType = 'image.internal.ignoreType',
-  image___internal___mediaType = 'image.internal.mediaType',
-  image___internal___owner = 'image.internal.owner',
-  image___internal___type = 'image.internal.type',
   image_url = 'image_url',
   strapiId = 'strapiId'
 }
@@ -3204,6 +2993,7 @@ type StrapiPostsFilterInput = {
   readonly internal: Maybe<InternalFilterInput>;
   readonly published: Maybe<BooleanQueryOperatorInput>;
   readonly category: Maybe<StringQueryOperatorInput>;
+  readonly featured: Maybe<BooleanQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
@@ -3211,7 +3001,6 @@ type StrapiPostsFilterInput = {
   readonly description: Maybe<StringQueryOperatorInput>;
   readonly excerpt: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
-  readonly image: Maybe<FileFilterInput>;
   readonly image_url: Maybe<StringQueryOperatorInput>;
   readonly strapiId: Maybe<StringQueryOperatorInput>;
 };
@@ -3249,53 +3038,24 @@ type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
     & { written: StrapiPosts['date'] }
   )> };
 
+type StrapiCategoriesFragment = { readonly node: Pick<StrapiCategories, 'name' | 'slug'> };
+
+type PostFieldsFragment = Pick<StrapiPosts, 'category' | 'image_url' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'createdAt' | 'updatedAt' | 'title' | 'featured'>;
+
 type blogPageQueryQueryVariables = {};
 
 
-type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
-
-type IndexPageQueryQueryVariables = {};
-
-
-type IndexPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'> }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
+type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
 
 type poetryPageQueryQueryVariables = {};
 
 
-type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<StrapiPosts, 'title' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'category' | 'createdAt' | 'updatedAt'>
-        & { readonly image: Maybe<(
-          Pick<File, 'id' | 'publicURL' | 'prettySize' | 'size' | 'sourceInstanceName' | 'uid' | 'root' | 'relativePath' | 'relativeDirectory' | 'rdev' | 'absolutePath'>
-          & { readonly childImageSharp: Maybe<{ readonly children: ReadonlyArray<(
-              { readonly __typename: 'File' }
-              & Pick<File, 'id'>
-            ) | (
-              { readonly __typename: 'ImageSharp' }
-              & Pick<ImageSharp, 'id'>
-            ) | (
-              { readonly __typename: 'Directory' }
-              & Pick<Directory, 'id'>
-            ) | (
-              { readonly __typename: 'SitePage' }
-              & Pick<SitePage, 'id'>
-            ) | (
-              { readonly __typename: 'SitePlugin' }
-              & Pick<SitePlugin, 'id'>
-            ) | (
-              { readonly __typename: 'Site' }
-              & Pick<Site, 'id'>
-            ) | (
-              { readonly __typename: 'StrapiCategories' }
-              & Pick<StrapiCategories, 'id'>
-            ) | (
-              { readonly __typename: 'StrapiPosts' }
-              & Pick<StrapiPosts, 'id'>
-            ) | (
-              { readonly __typename: 'SiteBuildMetadata' }
-              & Pick<SiteBuildMetadata, 'id'>
-            )>, readonly sizes: Maybe<Pick<ImageSharpSizes, 'tracedSVG' | 'srcWebp' | 'srcSetWebp' | 'srcSet' | 'src' | 'sizes' | 'presentationWidth' | 'presentationHeight' | 'originalName' | 'originalImg' | 'base64' | 'aspectRatio'>> }> }
-        )> }
-      ) }> }, readonly categories: { readonly edges: ReadonlyArray<{ readonly node: Pick<StrapiCategories, 'name' | 'slug'> }> } };
+type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
+
+type IndexPageQueryQueryVariables = {};
+
+
+type IndexPageQueryQuery = { readonly featured: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

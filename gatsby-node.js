@@ -18,48 +18,15 @@ exports.createPages = async ({ graphql, actions }) => {
       ) {
         edges {
           node {
-            id
-            title
-            updatedAt
-            createdAt
-            excerpt
-            published
-            slug
-            strapiId
-            description
+            category
             image_url
-            image {
-              id
-              publicURL
-              prettySize
-              size
-              sourceInstanceName
-              uid
-              root
-              relativePath
-              relativeDirectory
-              rdev
-              absolutePath
-              childImageSharp {
-                children {
-                  id
-                }
-                sizes {
-                  tracedSVG
-                  srcWebp
-                  srcSetWebp
-                  srcSet
-                  src
-                  sizes
-                  presentationWidth
-                  presentationHeight
-                  originalName
-                  originalImg
-                  base64
-                  aspectRatio
-                }
-              }
-            }
+            slug
+            published
+            strapiId
+            excerpt
+            createdAt
+            updatedAt
+            title
           }
         }
       }
@@ -69,28 +36,15 @@ exports.createPages = async ({ graphql, actions }) => {
       ) {
         edges {
           node {
-            id
-            title
-            updatedAt
-            createdAt
-            excerpt
-            published
-            slug
-            strapiId
-            description
+            category
             image_url
-            image {
-              childImageSharp {
-                fluid {
-                  srcSet
-                  originalImg
-                  originalName
-                  tracedSVG
-                  srcSetWebp
-                  srcWebp
-                }
-              }
-            }
+            slug
+            published
+            strapiId
+            excerpt
+            createdAt
+            updatedAt
+            title
           }
         }
       }

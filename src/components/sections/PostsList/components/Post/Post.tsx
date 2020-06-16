@@ -12,34 +12,34 @@ import {
 import { Link } from 'gatsby';
 import parse from 'html-react-parser';
 
-const Item = ({
+const Post = ({
   date,
   title,
   slug,
   category,
+  featured,
   id,
   extra,
   excerpt,
   image,
 }: any) => {
-  const backgroundImage = extra && extra.postimage;
-
-  console.log(image);
-  console.log(extra);
+  const isWithImage = featured && image;
 
   return (
-    <ItemWrapper className="col-12 col-md-6">
-      <Content>
-        <ItemContent>
-          {image && (
-            <img
-              sizes={image?.childImageSharp?.sizes?.sizes}
-              srcSet={image?.childImageSharp?.sizes?.srcSet}
-              src={image?.childImageSharp?.sizes?.src}
-              style={{ width: '100%' }}
-              // src={image?.childImageSharp?.sizes?.tracedSVG}
-            />
-          )}
+    <ItemWrapper
+      className={`${isWithImage ? 'col-12' : 'col-4'}`}
+      featured={featured}
+    >
+      <div className="row">
+        {isWithImage && (
+          <ItemImage className="col-12 col-sm-12 col-md-6" background={image}>
+            <div className="item-image--blurred"></div>
+            <img className="item-image" src={image} />
+          </ItemImage>
+        )}
+        <ItemContent
+          className={`col-12 col-sm-12 ${isWithImage ? 'col-md-6' : ''}`}
+        >
           <ItemTitle>{title}</ItemTitle>
           <ItemDateStyled>Опубликовано: {date}</ItemDateStyled>
           <TextStyled>
@@ -49,12 +49,9 @@ const Item = ({
             </LinkStyled>
           </TextStyled>
         </ItemContent>
-        {/*<ItemContent>*/}
-        {/*  <ItemImage background={backgroundImage} />*/}
-        {/*</ItemContent>*/}
-      </Content>
+      </div>
     </ItemWrapper>
   );
 };
 
-export default Item;
+export default Post;

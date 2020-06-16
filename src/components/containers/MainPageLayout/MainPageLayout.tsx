@@ -11,7 +11,7 @@ export interface ILayoutContainerProps {
 const MainPageLayout: React.FC<ILayoutContainerProps> = ({ children }) => {
   return (
     <>
-      <Header/>
+      <Header />
       {children}
       <Footer />
     </>

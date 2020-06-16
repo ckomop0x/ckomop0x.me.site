@@ -7,15 +7,38 @@
 // GraphQL query operation: IndexPageQuery
 // ====================================================
 
-export interface IndexPageQuery_poetry_edges_node {
-  title: string | null;
+export interface IndexPageQuery_featured_edges_node {
+  category: string | null;
+  image_url: string | null;
   slug: string | null;
   published: boolean | null;
   strapiId: string | null;
   excerpt: string | null;
-  category: string | null;
   createdAt: any | null;
   updatedAt: any | null;
+  title: string | null;
+  featured: boolean | null;
+}
+
+export interface IndexPageQuery_featured_edges {
+  node: IndexPageQuery_featured_edges_node;
+}
+
+export interface IndexPageQuery_featured {
+  edges: IndexPageQuery_featured_edges[];
+}
+
+export interface IndexPageQuery_poetry_edges_node {
+  category: string | null;
+  image_url: string | null;
+  slug: string | null;
+  published: boolean | null;
+  strapiId: string | null;
+  excerpt: string | null;
+  createdAt: any | null;
+  updatedAt: any | null;
+  title: string | null;
+  featured: boolean | null;
 }
 
 export interface IndexPageQuery_poetry_edges {
@@ -27,14 +50,16 @@ export interface IndexPageQuery_poetry {
 }
 
 export interface IndexPageQuery_blog_edges_node {
-  title: string | null;
+  category: string | null;
+  image_url: string | null;
   slug: string | null;
   published: boolean | null;
   strapiId: string | null;
   excerpt: string | null;
-  category: string | null;
   createdAt: any | null;
   updatedAt: any | null;
+  title: string | null;
+  featured: boolean | null;
 }
 
 export interface IndexPageQuery_blog_edges {
@@ -59,6 +84,7 @@ export interface IndexPageQuery_categories {
 }
 
 export interface IndexPageQuery {
+  featured: IndexPageQuery_featured;
   poetry: IndexPageQuery_poetry;
   blog: IndexPageQuery_blog;
   categories: IndexPageQuery_categories;

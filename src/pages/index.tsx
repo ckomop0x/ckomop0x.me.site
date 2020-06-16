@@ -1,55 +1,45 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import { Hero } from '@components/sections';
 
-import { MainPageLayout } from '../components/containers';
-import ItemsList from '@components/ItemsList';
-import { TitleBlock } from '@styles/Typography';
+import { MainPageLayout } from '@components/containers';
+import { PostsList, Hero } from '@components/sections';
+import { TitleBlock, SubtitleBlock } from '@styles/Typography';
 
 export const query = graphql`
   query IndexPageQuery {
+    featured: allStrapiPosts(filter: { featured: { eq: true } }, limit: 1) {
+      edges {
+        node {
+          ...PostFields
+        }
+      }
+    }
+
     poetry: allStrapiPosts(
-      filter: { category: { eq: "poetry" } }
+      filter: { category: { eq: "poetry" }, featured: { eq: false } }
       sort: { fields: [createdAt], order: [DESC] }
-      limit: 4
+      limit: 3
     ) {
       edges {
         node {
-          title
-          slug
-          published
-          strapiId
-          excerpt
-          category
-          createdAt
-          updatedAt
+          ...PostFields
         }
       }
     }
     blog: allStrapiPosts(
-      filter: { category: { eq: "blog" } }
+      filter: { category: { eq: "blog" }, featured: { eq: false } }
       sort: { fields: [createdAt], order: [DESC] }
-      limit: 4
+      limit: 3
     ) {
       edges {
         node {
-          title
-          slug
-          published
-          strapiId
-          excerpt
-          category
-          createdAt
-          updatedAt
+          ...PostFields
         }
       }
     }
     categories: allStrapiCategories {
       edges {
-        node {
-          name
-          slug
-        }
+        ...StrapiCategories
       }
     }
   }
@@ -57,9 +47,12 @@ export const query = graphql`
 
 export default (props: any) => {
   const { data, errors } = props;
+  const featuredItem = data && data.featured.edges;
   const poetryItems = data && data.poetry.edges;
   const blogItems = data && data.blog.edges;
   const categoriesItems = data && data.categories.edges;
+
+  console.log('featuredItem', featuredItem);
 
   return (
     <MainPageLayout>
@@ -68,24 +61,27 @@ export default (props: any) => {
         subtitle="Привет, здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
       <section>
+        <PostsList items={featuredItem} categories={categoriesItems} />
+      </section>
+      <section>
         <div className="container">
           <TitleBlock>Пробуй и Путешествуй</TitleBlock>
-          <h5>
+          <SubtitleBlock>
             Каждый новый вкус, запах звук раскрывает нас всё больше и больше и
             больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в
             своих желаниях.
-          </h5>
-          <ItemsList items={blogItems} categories={categoriesItems} />
+          </SubtitleBlock>
+          <PostsList items={blogItems} categories={categoriesItems} />
         </div>
       </section>
       <section>
         <div className="container">
           <TitleBlock>Твори</TitleBlock>
-          <h5>
+          <SubtitleBlock>
             Пиши, играй, пой, делай то, что тебе нравится и чувствуй
             вдохновение!
-          </h5>
-          <ItemsList items={poetryItems} categories={categoriesItems} />
+          </SubtitleBlock>
+          <PostsList items={poetryItems} categories={categoriesItems} />
         </div>
       </section>
     </MainPageLayout>
