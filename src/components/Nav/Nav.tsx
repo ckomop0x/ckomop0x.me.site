@@ -1,7 +1,6 @@
-import { Link } from 'gatsby';
 import React from 'react';
 
-import * as styles from './nav.module.scss';
+import { Navbar, TopLogo, LinkStyled, TopMenu } from './styles';
 
 export interface INavProps {
   title: string;
@@ -10,17 +9,21 @@ export interface INavProps {
 
 const Nav: React.FC<INavProps> = ({ title, inner }) => {
   return (
-    <nav className={`${styles.navbar} container`}>
-      <Link to="/" className={`${styles.topLogo} ${inner ? styles.inner : ''}`}>
+    <Navbar className="container">
+      <TopLogo to="/" inner={inner}>
         {title}
-      </Link>
-      <ul className={styles.topMenu}>
+      </TopLogo>
+      <TopMenu>
         <li>
-          <Link to="/blog/" className={inner ? styles.inner : ''}>Блог</Link>
-          <Link to="/poetry/" className={inner ? styles.inner : ''}>Стихи</Link>
+          <LinkStyled to="/blog/" inner={inner}>
+            Блог
+          </LinkStyled>
+          <LinkStyled to="/poetry/" inner={inner}>
+            Стихи
+          </LinkStyled>
         </li>
-      </ul>
-    </nav>
+      </TopMenu>
+    </Navbar>
   );
 };
 

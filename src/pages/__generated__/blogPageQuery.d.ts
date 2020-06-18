@@ -8,14 +8,16 @@
 // ====================================================
 
 export interface blogPageQuery_blog_edges_node {
-  title: string | null;
+  category: string | null;
+  image_url: string | null;
   slug: string | null;
   published: boolean | null;
   strapiId: string | null;
   excerpt: string | null;
-  category: string | null;
   createdAt: any | null;
   updatedAt: any | null;
+  title: string | null;
+  featured: boolean | null;
 }
 
 export interface blogPageQuery_blog_edges {

@@ -12,23 +12,13 @@ export const query = graphql`
     ) {
       edges {
         node {
-          title
-          slug
-          published
-          strapiId
-          excerpt
-          category
-          createdAt
-          updatedAt
+          ...PostFields
         }
       }
     }
     categories: allStrapiCategories {
       edges {
-        node {
-          name
-          slug
-        }
+        ...StrapiCategories
       }
     }
   }

@@ -7,10 +7,10 @@ import {
   TextStyled,
   ItemWrapper,
   Content,
+  LinkStyled,
 } from './styles';
 import { Link } from 'gatsby';
 import parse from 'html-react-parser';
-// import parse from 'html-react-parser';
 
 const Item = ({
   date,
@@ -23,6 +23,9 @@ const Item = ({
   image,
 }: any) => {
   const backgroundImage = extra && extra.postimage;
+
+  console.log(image);
+  console.log(extra);
 
   return (
     <ItemWrapper className="col-12 col-md-6">
@@ -41,7 +44,9 @@ const Item = ({
           <ItemDateStyled>Опубликовано: {date}</ItemDateStyled>
           <TextStyled>
             {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}
-            <Link to={`/${category.slug}/${slug}`}>Читать далее...</Link>
+            <LinkStyled to={`/${category.slug}/${slug}`}>
+              Читать далее...
+            </LinkStyled>
           </TextStyled>
         </ItemContent>
         {/*<ItemContent>*/}

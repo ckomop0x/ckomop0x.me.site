@@ -1,35 +1,13 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import AdvantagesGallery from '@components/AdvantagesGallery';
 
-import * as styles from './main-content.module.scss';
+import { MainContentWrapper } from './styles';
 
 export interface IMainContent {
   content: any;
 }
 
 const MainContent: React.FC<IMainContent> = ({ content }) => {
-  return (
-    <div className={['container', styles.mainContent].join(' ')}>
-      {content.map((contentItem: any, index: number) => {
-        if (contentItem.type === 'text') {
-          return (
-            <h2 key={index}>
-              2
-              {/* {contentItem.primary.text &&
-                RichText.asText(
-                  contentItem.primary.text,
-                  linkResolver,
-                  htmlSerializer
-                )} */}
-            </h2>
-          );
-        } else if (contentItem.type === 'advantages_gallery') {
-          return <AdvantagesGallery key={index} {...contentItem} />;
-        }
-      })}
-    </div>
-  );
+  return <MainContentWrapper className="container"></MainContentWrapper>;
 };
 
 export default MainContent;
