@@ -91,11 +91,11 @@ const Header: React.FC<IHeader> = ({
         crossOrigin="anonymous"
       />
       <link
-        href="https://fonts.googleapis.com/css?family=Pacifico|Roboto:400,700&display=swap"
+        href="https://fonts.googleapis.com/css?family=Pacifico|Roboto:400,500,700&display=swap"
         rel="stylesheet"
       />
       <link
-        href="https://fonts.googleapis.com/css?family=Neucha:500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Neucha&display=swap"
         rel="stylesheet"
       />
       <link
