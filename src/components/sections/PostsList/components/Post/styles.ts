@@ -9,9 +9,11 @@ export const Content = styled.div`
   }
 `;
 
-export const ItemImage = styled.div<{ background?: string }>`
+export const ItemImage = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 
   .item-image {
@@ -24,7 +26,7 @@ export const ItemImage = styled.div<{ background?: string }>`
     padding: 2%;
   }
 
-  ${({ background }) =>
+  ${({ background }: { background?: string }) =>
     background
       ? css`
           .item-image--blurred {
@@ -36,9 +38,9 @@ export const ItemImage = styled.div<{ background?: string }>`
             right: 0;
             bottom: 0;
             opacity: 1;
-            background-size: 110%;
+            background-size: cover;
             background-position: center;
-            background-image: url(${background});
+            background-image: url(${background}?tr=w-480);
           }
         `
       : ''}

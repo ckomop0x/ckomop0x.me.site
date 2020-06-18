@@ -1,4 +1,9 @@
 import React from 'react';
+import { Link } from 'gatsby';
+import parse from 'html-react-parser';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+
 import {
   ItemImage,
   ItemDateStyled,
@@ -9,8 +14,7 @@ import {
   Content,
   LinkStyled,
 } from './styles';
-import { Link } from 'gatsby';
-import parse from 'html-react-parser';
+import { getSrcSet } from '@utils/image';
 
 const Post = ({
   date,
@@ -34,7 +38,14 @@ const Post = ({
         {isWithImage && (
           <ItemImage className="col-12 col-sm-12 col-md-6" background={image}>
             <div className="item-image--blurred"></div>
-            <img className="item-image" src={image} />
+            <img
+              className="item-image lazyload"
+              loading="lazy"
+              data-src={`${image}?tr=w-1080,h-280,fo-top`}
+              data-srcset={getSrcSet(image)}
+              data-sizes="(max-width: 600px) 480px, 600px"
+              alt={title}
+            />
           </ItemImage>
         )}
         <ItemContent
