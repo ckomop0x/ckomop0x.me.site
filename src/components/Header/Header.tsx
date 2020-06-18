@@ -95,6 +95,10 @@ const Header: React.FC<IHeader> = ({
         rel="stylesheet"
       />
       <link
+        href="https://fonts.googleapis.com/css?family=Neucha:500&display=swap"
+        rel="stylesheet"
+      />
+      <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
       />
