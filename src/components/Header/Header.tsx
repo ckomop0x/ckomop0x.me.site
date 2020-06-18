@@ -95,7 +95,7 @@ const Header: React.FC<IHeader> = ({
         rel="stylesheet"
       />
       <link
-        href="https://fonts.googleapis.com/css2?family=Neucha&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Neucha&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet"
       />
       <link
