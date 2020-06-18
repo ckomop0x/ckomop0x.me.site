@@ -27,7 +27,7 @@ const Post = ({
 
   return (
     <ItemWrapper
-      className={`${isWithImage ? 'col-12' : 'col-4'}`}
+      className={`${isWithImage ? 'col-12' : 'col-12 col-lg-4'}`}
       featured={featured}
     >
       <div className="row">
