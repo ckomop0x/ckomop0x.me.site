@@ -30,36 +30,35 @@ const Post = ({
   const isWithImage = featured && image;
 
   return (
-    <ItemWrapper
-      className={`${isWithImage ? 'col-12' : 'col-12 col-lg-4'}`}
-      featured={featured}
-    >
+    <ItemWrapper className={`${isWithImage ? 'col-12' : 'col-12 col-lg-4'}`}>
       <div className="row">
-        {isWithImage && (
-          <ItemImage className="col-12 col-sm-12 col-md-6" background={image}>
-            <div className="item-image--blurred"></div>
-            <img
-              className="item-image lazyload"
-              loading="lazy"
-              data-src={`${image}?tr=w-1080,h-280,fo-top`}
-              data-srcset={getSrcSet(image)}
-              data-sizes="(max-width: 600px) 480px, 600px"
-              alt={title}
-            />
-          </ItemImage>
-        )}
-        <ItemContent
-          className={`col-12 col-sm-12 ${isWithImage ? 'col-md-6' : ''}`}
-        >
-          <ItemTitle>{title}</ItemTitle>
-          <ItemDateStyled>Опубликовано: {date}</ItemDateStyled>
-          <TextStyled>
-            {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}
+        <div className="post-content">
+          {isWithImage && (
+            <ItemImage className="col-12 col-sm-12 col-md-6" background={image}>
+              <div className="item-image--blurred"></div>
+              <img
+                className="item-image lazyload"
+                loading="lazy"
+                data-src={`${image}?tr=w-1080,h-280,fo-top`}
+                data-srcset={getSrcSet(image)}
+                data-sizes="(max-width: 600px) 480px, 600px"
+                alt={title}
+              />
+            </ItemImage>
+          )}
+          <ItemContent
+            className={`col-12 col-sm-12 ${isWithImage ? 'col-md-6' : ''}`}
+          >
+            <ItemTitle>{title}</ItemTitle>
+            <ItemDateStyled>Опубликовано: {date}</ItemDateStyled>
+            <TextStyled>
+              {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}
+            </TextStyled>
             <LinkStyled to={`/${category.slug}/${slug}`}>
               Читать далее...
             </LinkStyled>
-          </TextStyled>
-        </ItemContent>
+          </ItemContent>
+        </div>
       </div>
     </ItemWrapper>
   );

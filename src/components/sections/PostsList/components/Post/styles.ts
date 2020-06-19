@@ -54,16 +54,18 @@ export const ItemDateStyled = styled.p`
 
 export const ItemContent = styled.div`
   position: relative;
+  height: 100%;
   padding: 0;
   margin: 16px 0;
   display: flex;
   flex-direction: column;
+  padding-bottom: 32px;
 `;
 
 export const ItemTitle = styled.h3`
-  font-size: 34px;
+  font-size: 28px;
   text-align: center;
-  padding: 32px 0 0;
+  padding: 16px 0 0;
   margin-bottom: 1rem;
   font-weight: 500;
   line-height: 1;
@@ -73,17 +75,30 @@ export const ItemTitle = styled.h3`
 export const TextStyled = styled.div`
   text-align: center;
   line-height: 1.5;
-  padding: 16px 0;
+  padding: 16px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  color: #777;
-  font-size: 16px;
+  color: #322421;
+
+  p {
+    color: #747474;
+    font-size: 14px;
+  }
 `;
 
 export const LinkStyled = styled(Link)`
-  color: #777;
+  display: block;
+  margin: auto auto 0;
+  padding: 10px 20px;
+  color: hsl(211, 100%, 40%);
+  border: 1px solid hsl(211, 100%, 40%);
 `;
 
-export const ItemWrapper = styled.article<{
-  featured?: boolean | null;
-}>``;
+export const ItemWrapper = styled.article`
+  .post-content {
+    margin: 32px;
+    background-color: #f5f5f5c2;
+    min-height: 400px;
+    width: 100%;
+  }
+`;

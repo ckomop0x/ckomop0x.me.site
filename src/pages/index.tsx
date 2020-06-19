@@ -62,9 +62,6 @@ export default (props: { data: IndexPageQuery }) => {
         subtitle="Привет, здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
       <FeaturedPost post={featuredItem.node} categories={categoriesItems} />
-      {/* <section>
-        <PostsList items={featuredItem} categories={categoriesItems} />
-      </section> */}
       <section>
         <div className="container">
           <TitleBlock>Пробуй и Путешествуй</TitleBlock>

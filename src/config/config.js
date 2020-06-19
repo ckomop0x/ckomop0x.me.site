@@ -1,5 +1,4 @@
 // Endpoints
-const API_ENDPOINT = 'https://api.webtime-studio.ru/graphql';
 const IMAGES_ENDPOINT = 'https://res.cloudinary.com/ckomop0x/image/upload';
 
 // Images transformations
@@ -16,7 +15,6 @@ const W320_IMAGE = 'c_scale,f_auto,q_60,w_320';
 const SITE_HEAD = 'Ckomop0x.me';
 
 module.exports = {
-  API_ENDPOINT,
   SITE_HEAD,
   IMAGES_ENDPOINT,
   SMALL_PREVIEW_IMAGE,
@@ -26,5 +24,5 @@ module.exports = {
   W960_IMAGE,
   W800_IMAGE,
   W480_IMAGE,
-  W320_IMAGE
-}
+  W320_IMAGE,
+};
