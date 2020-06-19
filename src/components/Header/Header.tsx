@@ -37,7 +37,7 @@ const Header: React.FC<IHeader> = ({
   twitterSite = '@ckomop0x',
   twitterCreator = '@ckomop0x',
   author = 'Pavel Klochkov @ckomop0x',
-  yandexVerification = '',
+  yandexVerification = 'b117b164fd8573ac',
   googleSiteVerification = '',
 }) => {
   return (
