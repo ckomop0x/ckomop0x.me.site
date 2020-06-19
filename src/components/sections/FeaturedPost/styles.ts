@@ -95,7 +95,8 @@ export const LinkStyled = styled(Link)`
   display: inline-block;
   padding: 10px 20px;
   margin-top: 40px;
-  box-shadow: 40px 10px 0px #b37100, -40px -10px 0 #ffa200, 0 0 10px #0000002e;
+  box-shadow: 40px 10px 0px #b3710037, -40px -10px 0 #ffa20050,
+    0 0 10px #0000002e;
   transition: all 0.5s ease;
 
   &:hover {

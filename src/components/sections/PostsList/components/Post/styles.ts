@@ -88,10 +88,12 @@ export const TextStyled = styled.div`
 
 export const LinkStyled = styled(Link)`
   display: block;
-  margin: auto auto 0;
+  margin: auto auto 16px;
   padding: 10px 20px;
-  color: hsl(211, 100%, 40%);
-  border: 1px solid hsl(211, 100%, 40%);
+  color: white;
+  background-color: hsla(38, 100%, 38%, 1);
+  /* color: hsl(211, 100%, 40%); */
+  /* border: 1px solid hsl(211, 100%, 40%); */
 `;
 
 export const ItemWrapper = styled.article`
