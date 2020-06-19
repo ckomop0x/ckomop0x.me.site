@@ -4,11 +4,7 @@ import Header from '@components/Header';
 import Footer from '@components/Footer';
 import '@styles/global.scss';
 
-export interface ILayoutContainerProps {
-  children: any;
-}
-
-const MainPageLayout: React.FC<ILayoutContainerProps> = ({ children }) => {
+const MainPageLayout: React.FC = ({ children }) => {
   return (
     <>
       <Header />

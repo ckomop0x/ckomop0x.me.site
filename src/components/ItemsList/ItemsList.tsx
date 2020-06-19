@@ -11,12 +11,10 @@ const ItemsList: React.FC<any> = (props) => {
       {props.items.map(({ node }: any) => {
         const {
           strapiId,
-          date,
           title,
           excerpt,
           published,
           createdAt,
-          updatedAt,
           slug,
           extra,
           category,

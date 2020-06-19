@@ -2,8 +2,9 @@ import { graphql } from 'gatsby';
 import React from 'react';
 
 import { MainPageLayout } from '@components/containers';
-import { PostsList, Hero } from '@components/sections';
+import { PostsList, Hero, FeaturedPost } from '@components/sections';
 import { TitleBlock, SubtitleBlock } from '@styles/Typography';
+import { IndexPageQuery } from './__generated__/IndexPageQuery';
 
 export const query = graphql`
   query IndexPageQuery {
@@ -45,9 +46,9 @@ export const query = graphql`
   }
 `;
 
-export default (props: any) => {
-  const { data, errors } = props;
-  const featuredItem = data && data.featured.edges;
+export default (props: { data: IndexPageQuery }) => {
+  const { data } = props;
+  const [featuredItem] = data && data.featured.edges;
   const poetryItems = data && data.poetry.edges;
   const blogItems = data && data.blog.edges;
   const categoriesItems = data && data.categories.edges;
@@ -60,9 +61,10 @@ export default (props: any) => {
         title="Стихи, песни, путешествия и заметки"
         subtitle="Привет, здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
-      <section>
+      <FeaturedPost post={featuredItem.node} categories={categoriesItems} />
+      {/* <section>
         <PostsList items={featuredItem} categories={categoriesItems} />
-      </section>
+      </section> */}
       <section>
         <div className="container">
           <TitleBlock>Пробуй и Путешествуй</TitleBlock>

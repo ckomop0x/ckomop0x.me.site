@@ -3,7 +3,12 @@ import { IMAGES_ENDPOINT, SMALL_PREVIEW_IMAGE } from '../../config';
 import { TitleStyled } from '@styles/TitleStyled';
 import { Link } from 'gatsby';
 
-export const ItemWrapper = styled.article``;
+interface IItemWrapper {
+  className?: string;
+  featured?: boolean | null;
+}
+
+export const ItemWrapper = styled.article<IItemWrapper>``;
 
 export const Content = styled.div`
   display: flex;
