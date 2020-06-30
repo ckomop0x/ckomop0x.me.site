@@ -18,7 +18,7 @@ const PostsList: React.FC<any> = (props) => {
       <div className="container">
         <TitleBlock>{blockTitle}</TitleBlock>
         <SubtitleBlock>{blockSubtitle}</SubtitleBlock>
-        <div className="col-12 text-center">
+        <div className="text-center">
           <PostsListStyled className="row">
             {props.items.map(({ node }: any) => {
               const {

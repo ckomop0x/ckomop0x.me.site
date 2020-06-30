@@ -87,6 +87,8 @@ export const TextStyled = styled.div`
 // `;
 
 export const ItemWrapper = styled.article`
+  padding: 0;
+
   a:hover {
     text-decoration: none;
   }
