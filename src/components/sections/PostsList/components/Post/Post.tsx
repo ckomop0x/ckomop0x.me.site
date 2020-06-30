@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import parse from 'html-react-parser';
+import { format, parse as parseDate } from 'date-fns';
+import ruLocale from 'date-fns/locale/ru';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
@@ -12,13 +13,16 @@ const Post = ({
   title,
   slug,
   category,
-  featured,
   id,
   extra,
   excerpt,
   image,
 }: any) => {
   const isWithImage = !!image;
+  const parsedDate = parseDate(date, 'mm.dd.yyyy', new Date());
+  const dateString = format(parsedDate, 'd MMMM yyyy', {
+    locale: ruLocale,
+  });
 
   return (
     <ItemWrapper className="col-12 col-md-6 col-lg-4">
@@ -37,14 +41,11 @@ const Post = ({
                 />
               </div>
             )}
-            {date && <p className="item__date">Опубликовано: {date}</p>}
-            {/* <ItemContent className="col-12 col-sm-12"> */}
+            {date && <p className="item__date">{dateString}</p>}
             <h3 className="item__title">{title}</h3>
             <div className="item__content">
               {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}
             </div>
-
-            {/* </ItemContent> */}
           </div>
         </div>
       </StyledLink>

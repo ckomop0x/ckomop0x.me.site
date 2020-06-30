@@ -19,4 +19,10 @@ export const themePalette = {
   secondaryDark: '#252525',
   textColor: '#a5a5a5',
   textColorLight: '#FFF',
-}
+
+  // Text colours
+  primaryTitle: '#312420',
+
+  // BackgroudColor
+  primaryBackground: '#f0ebde',
+};

@@ -20,8 +20,8 @@ module.exports = {
   ogLanguage: 'ru_RU',
 
   // Manifest and Progress color
-  themeColor: '#4147DC',
-  backgroundColor: '#231C42',
+  themeColor: '#f0ebde',
+  backgroundColor: '#f0ebde',
 
   // Social component
   twitter: 'https://twitter.com/ckomop0x/',

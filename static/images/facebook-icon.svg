@@ -9,7 +9,7 @@
               stroke:#ff0000
             }
             .cls-2{
-            c lip-path:url(#clip-path)
+            clip-path:url(#clip-path)
             }
             .cls-1:hover,.cls-3:hover{fill:#4267b2}
         </style>
