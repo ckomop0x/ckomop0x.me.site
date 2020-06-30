@@ -2,11 +2,12 @@ import React from 'react';
 
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import '@styles/global.scss';
+import { GlobalStyle } from '@styles/GlobalStyle';
 
 const MainPageLayout: React.FC = ({ children }) => {
   return (
     <>
+      <GlobalStyle />
       <Header />
       {children}
       <Footer />

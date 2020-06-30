@@ -1839,9 +1839,17 @@ type SiteEdge = {
 enum SiteFieldsEnum {
   buildTime = 'buildTime',
   siteMetadata___title = 'siteMetadata.title',
-  siteMetadata___description = 'siteMetadata.description',
-  siteMetadata___author = 'siteMetadata.author',
+  siteMetadata___author___name = 'siteMetadata.author.name',
+  siteMetadata___author___minibio = 'siteMetadata.author.minibio',
   siteMetadata___siteUrl = 'siteMetadata.siteUrl',
+  siteMetadata___keywords = 'siteMetadata.keywords',
+  siteMetadata___canonicalUrl = 'siteMetadata.canonicalUrl',
+  siteMetadata___image = 'siteMetadata.image',
+  siteMetadata___organization___name = 'siteMetadata.organization.name',
+  siteMetadata___organization___url = 'siteMetadata.organization.url',
+  siteMetadata___organization___logo = 'siteMetadata.organization.logo',
+  siteMetadata___social___twitter = 'siteMetadata.social.twitter',
+  siteMetadata___social___fbAppID = 'siteMetadata.social.fbAppID',
   port = 'port',
   host = 'host',
   polyfill = 'polyfill',
@@ -2186,26 +2194,30 @@ enum SitePageFieldsEnum {
   pluginCreator___resolve = 'pluginCreator.resolve',
   pluginCreator___name = 'pluginCreator.name',
   pluginCreator___version = 'pluginCreator.version',
-  pluginCreator___pluginOptions___displayName = 'pluginCreator.pluginOptions.displayName',
   pluginCreator___pluginOptions___allowSyntheticDefaultImports = 'pluginCreator.pluginOptions.allowSyntheticDefaultImports',
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginCreator___pluginOptions___displayName = 'pluginCreator.pluginOptions.displayName',
   pluginCreator___pluginOptions___apiURL = 'pluginCreator.pluginOptions.apiURL',
   pluginCreator___pluginOptions___queryLimit = 'pluginCreator.pluginOptions.queryLimit',
   pluginCreator___pluginOptions___contentTypes = 'pluginCreator.pluginOptions.contentTypes',
   pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
   pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
+  pluginCreator___pluginOptions___description = 'pluginCreator.pluginOptions.description',
   pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
+  pluginCreator___pluginOptions___lang = 'pluginCreator.pluginOptions.lang',
   pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
   pluginCreator___pluginOptions___theme_color = 'pluginCreator.pluginOptions.theme_color',
   pluginCreator___pluginOptions___display = 'pluginCreator.pluginOptions.display',
-  pluginCreator___pluginOptions___icon = 'pluginCreator.pluginOptions.icon',
+  pluginCreator___pluginOptions___icons = 'pluginCreator.pluginOptions.icons',
+  pluginCreator___pluginOptions___icons___src = 'pluginCreator.pluginOptions.icons.src',
+  pluginCreator___pluginOptions___icons___sizes = 'pluginCreator.pluginOptions.icons.sizes',
+  pluginCreator___pluginOptions___icons___type = 'pluginCreator.pluginOptions.icons.type',
   pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator.pluginOptions.cache_busting_mode',
   pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
   pluginCreator___pluginOptions___legacy = 'pluginCreator.pluginOptions.legacy',
   pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator.pluginOptions.theme_color_in_head',
-  pluginCreator___pluginOptions___cacheDigest = 'pluginCreator.pluginOptions.cacheDigest',
   pluginCreator___pluginOptions___trackingId = 'pluginCreator.pluginOptions.trackingId',
   pluginCreator___pluginOptions___webvisor = 'pluginCreator.pluginOptions.webvisor',
   pluginCreator___pluginOptions___trackHash = 'pluginCreator.pluginOptions.trackHash',
@@ -2399,26 +2411,30 @@ enum SitePluginFieldsEnum {
   resolve = 'resolve',
   name = 'name',
   version = 'version',
-  pluginOptions___displayName = 'pluginOptions.displayName',
   pluginOptions___allowSyntheticDefaultImports = 'pluginOptions.allowSyntheticDefaultImports',
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginOptions___displayName = 'pluginOptions.displayName',
   pluginOptions___apiURL = 'pluginOptions.apiURL',
   pluginOptions___queryLimit = 'pluginOptions.queryLimit',
   pluginOptions___contentTypes = 'pluginOptions.contentTypes',
   pluginOptions___name = 'pluginOptions.name',
   pluginOptions___path = 'pluginOptions.path',
   pluginOptions___short_name = 'pluginOptions.short_name',
+  pluginOptions___description = 'pluginOptions.description',
   pluginOptions___start_url = 'pluginOptions.start_url',
+  pluginOptions___lang = 'pluginOptions.lang',
   pluginOptions___background_color = 'pluginOptions.background_color',
   pluginOptions___theme_color = 'pluginOptions.theme_color',
   pluginOptions___display = 'pluginOptions.display',
-  pluginOptions___icon = 'pluginOptions.icon',
+  pluginOptions___icons = 'pluginOptions.icons',
+  pluginOptions___icons___src = 'pluginOptions.icons.src',
+  pluginOptions___icons___sizes = 'pluginOptions.icons.sizes',
+  pluginOptions___icons___type = 'pluginOptions.icons.type',
   pluginOptions___cache_busting_mode = 'pluginOptions.cache_busting_mode',
   pluginOptions___include_favicon = 'pluginOptions.include_favicon',
   pluginOptions___legacy = 'pluginOptions.legacy',
   pluginOptions___theme_color_in_head = 'pluginOptions.theme_color_in_head',
-  pluginOptions___cacheDigest = 'pluginOptions.cacheDigest',
   pluginOptions___trackingId = 'pluginOptions.trackingId',
   pluginOptions___webvisor = 'pluginOptions.webvisor',
   pluginOptions___trackHash = 'pluginOptions.trackHash',
@@ -2538,26 +2554,27 @@ type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 type SitePluginPluginOptions = {
-  readonly displayName: Maybe<Scalars['Boolean']>;
   readonly allowSyntheticDefaultImports: Maybe<Scalars['Boolean']>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
+  readonly displayName: Maybe<Scalars['Boolean']>;
   readonly apiURL: Maybe<Scalars['String']>;
   readonly queryLimit: Maybe<Scalars['Int']>;
   readonly contentTypes: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly name: Maybe<Scalars['String']>;
   readonly path: Maybe<Scalars['String']>;
   readonly short_name: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
   readonly start_url: Maybe<Scalars['String']>;
+  readonly lang: Maybe<Scalars['String']>;
   readonly background_color: Maybe<Scalars['String']>;
   readonly theme_color: Maybe<Scalars['String']>;
   readonly display: Maybe<Scalars['String']>;
-  readonly icon: Maybe<Scalars['String']>;
+  readonly icons: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsIcons>>>;
   readonly cache_busting_mode: Maybe<Scalars['String']>;
   readonly include_favicon: Maybe<Scalars['Boolean']>;
   readonly legacy: Maybe<Scalars['Boolean']>;
   readonly theme_color_in_head: Maybe<Scalars['Boolean']>;
-  readonly cacheDigest: Maybe<Scalars['String']>;
   readonly trackingId: Maybe<Scalars['Int']>;
   readonly webvisor: Maybe<Scalars['Boolean']>;
   readonly trackHash: Maybe<Scalars['Boolean']>;
@@ -2583,32 +2600,49 @@ type SitePluginPluginOptionsEmitSchemaFilterInput = {
 };
 
 type SitePluginPluginOptionsFilterInput = {
-  readonly displayName: Maybe<BooleanQueryOperatorInput>;
   readonly allowSyntheticDefaultImports: Maybe<BooleanQueryOperatorInput>;
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>;
+  readonly displayName: Maybe<BooleanQueryOperatorInput>;
   readonly apiURL: Maybe<StringQueryOperatorInput>;
   readonly queryLimit: Maybe<IntQueryOperatorInput>;
   readonly contentTypes: Maybe<StringQueryOperatorInput>;
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly short_name: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
   readonly start_url: Maybe<StringQueryOperatorInput>;
+  readonly lang: Maybe<StringQueryOperatorInput>;
   readonly background_color: Maybe<StringQueryOperatorInput>;
   readonly theme_color: Maybe<StringQueryOperatorInput>;
   readonly display: Maybe<StringQueryOperatorInput>;
-  readonly icon: Maybe<StringQueryOperatorInput>;
+  readonly icons: Maybe<SitePluginPluginOptionsIconsFilterListInput>;
   readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
   readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
   readonly legacy: Maybe<BooleanQueryOperatorInput>;
   readonly theme_color_in_head: Maybe<BooleanQueryOperatorInput>;
-  readonly cacheDigest: Maybe<StringQueryOperatorInput>;
   readonly trackingId: Maybe<IntQueryOperatorInput>;
   readonly webvisor: Maybe<BooleanQueryOperatorInput>;
   readonly trackHash: Maybe<BooleanQueryOperatorInput>;
   readonly afterBody: Maybe<BooleanQueryOperatorInput>;
   readonly defer: Maybe<BooleanQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsIcons = {
+  readonly src: Maybe<Scalars['String']>;
+  readonly sizes: Maybe<Scalars['String']>;
+  readonly type: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsIconsFilterInput = {
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsIconsFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPluginOptionsIconsFilterInput>;
 };
 
 type SitePluginSortInput = {
@@ -2618,16 +2652,56 @@ type SitePluginSortInput = {
 
 type SiteSiteMetadata = {
   readonly title: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly author: Maybe<Scalars['String']>;
+  readonly author: Maybe<SiteSiteMetadataAuthor>;
   readonly siteUrl: Maybe<Scalars['String']>;
+  readonly keywords: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly canonicalUrl: Maybe<Scalars['String']>;
+  readonly image: Maybe<Scalars['String']>;
+  readonly organization: Maybe<SiteSiteMetadataOrganization>;
+  readonly social: Maybe<SiteSiteMetadataSocial>;
+};
+
+type SiteSiteMetadataAuthor = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly minibio: Maybe<Scalars['String']>;
+};
+
+type SiteSiteMetadataAuthorFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly minibio: Maybe<StringQueryOperatorInput>;
 };
 
 type SiteSiteMetadataFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly author: Maybe<StringQueryOperatorInput>;
+  readonly author: Maybe<SiteSiteMetadataAuthorFilterInput>;
   readonly siteUrl: Maybe<StringQueryOperatorInput>;
+  readonly keywords: Maybe<StringQueryOperatorInput>;
+  readonly canonicalUrl: Maybe<StringQueryOperatorInput>;
+  readonly image: Maybe<StringQueryOperatorInput>;
+  readonly organization: Maybe<SiteSiteMetadataOrganizationFilterInput>;
+  readonly social: Maybe<SiteSiteMetadataSocialFilterInput>;
+};
+
+type SiteSiteMetadataOrganization = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly url: Maybe<Scalars['String']>;
+  readonly logo: Maybe<Scalars['String']>;
+};
+
+type SiteSiteMetadataOrganizationFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly logo: Maybe<StringQueryOperatorInput>;
+};
+
+type SiteSiteMetadataSocial = {
+  readonly twitter: Maybe<Scalars['String']>;
+  readonly fbAppID: Maybe<Scalars['String']>;
+};
+
+type SiteSiteMetadataSocialFilterInput = {
+  readonly twitter: Maybe<StringQueryOperatorInput>;
+  readonly fbAppID: Maybe<StringQueryOperatorInput>;
 };
 
 type SiteSortInput = {
@@ -3038,19 +3112,14 @@ type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
     & { written: StrapiPosts['date'] }
   )> };
 
-type PostFieldsFragment = Pick<StrapiPosts, 'category' | 'image_url' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'createdAt' | 'updatedAt' | 'title' | 'featured'>;
-
 type StrapiCategoriesFragment = { readonly node: Pick<StrapiCategories, 'name' | 'slug'> };
+
+type PostFieldsFragment = Pick<StrapiPosts, 'category' | 'image_url' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'createdAt' | 'updatedAt' | 'title' | 'featured'>;
 
 type blogPageQueryQueryVariables = {};
 
 
 type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
-
-type IndexPageQueryQueryVariables = {};
-
-
-type IndexPageQueryQuery = { readonly featured: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
 
 type poetryPageQueryQueryVariables = {};
 
@@ -3106,6 +3175,11 @@ type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 't
 type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type IndexPageQueryQueryVariables = {};
+
+
+type IndexPageQueryQuery = { readonly featured: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
 
 type PagesQueryQueryVariables = {};
 

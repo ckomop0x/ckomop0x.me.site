@@ -3,21 +3,33 @@ require('dotenv').config({
   // path: `.env.${process.env.NODE_ENV || 'development'}`,
   path: `.env`,
 });
+const path = require('path');
+const config = require('./config/site');
 
 module.exports = {
   siteMetadata: {
-    title: `ckomop0x.me – блок Павла Клочкова`,
-    description: `Мой блог со стихами, событиями и путешествиями`,
-    author: `@ckomop0x`,
-    siteUrl: `https://ckomop0x.me`,
+    title: config.siteTitle,
+    description: config.description,
+    author: config.author,
+    siteUrl: config.siteUrl,
+    keywords: ['стихи', 'песни', 'путешествия', 'заметки', 'фотографии'],
+    canonicalUrl: config.siteUrl,
+    image: config.siteLogo,
+    author: {
+      name: config.author,
+      minibio: config.minibio,
+    },
+    organization: {
+      name: config.organization,
+      url: config.siteUrl,
+      logo: config.siteLogo,
+    },
+    social: {
+      twitter: config.twitterHandle,
+      fbAppID: '',
+    },
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {
-        displayName: process.env.NODE_ENV === 'development' ? true : false,
-      },
-    },
     {
       resolve: `gatsby-plugin-typescript`,
       options: {
@@ -25,6 +37,11 @@ module.exports = {
       },
     },
     'gatsby-plugin-typescript-checker',
+    {
+      resolve: 'gatsby-plugin-codegen',
+      options: {},
+    },
+    'gatsby-plugin-scss-typescript',
     {
       resolve: 'gatsby-plugin-typegen',
       options: {
@@ -37,10 +54,11 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-codegen',
-      options: {},
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        displayName: process.env.NODE_ENV === 'development' ? true : false,
+      },
     },
-    'gatsby-plugin-scss-typescript',
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-sitemap',
     {
@@ -65,28 +83,42 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        // Override the file regex for SASS
-        sassRuleTest: /\.global\.s(a|c)ss$/,
-        // Override the file regex for CSS modules
-        sassRuleModulesTest: /\.mod\.s(a|c)ss$/,
-      },
-    },
-    'gatsby-plugin-postcss',
+    // {
+    //   resolve: `gatsby-plugin-sass`,
+    //   options: {
+    //     // Override the file regex for SASS
+    //     sassRuleTest: /\.global\.s(a|c)ss$/,
+    //     // Override the file regex for CSS modules
+    //     sassRuleModulesTest: /\.mod\.s(a|c)ss$/,
+    //   },
+    // },
+    // 'gatsby-plugin-postcss',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `ckomop0x.me – блок Павла Клочкова`,
-        short_name: `ckomop0x.me – блок Павла Клочкова`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
+        name: config.siteTitle,
+        short_name: config.siteTitleShort,
+        description: config.siteDescription,
+        start_url: config.pathPrefix,
+        lang: config.lang,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
+        display: 'standalone',
+        icons: [
+          {
+            src: '/images/favicon.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/images/favicon.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
       },
     },
+    'gatsby-plugin-robots-txt',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

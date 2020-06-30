@@ -53,8 +53,6 @@ export default (props: { data: IndexPageQuery }) => {
   const blogItems = data && data.blog.edges;
   const categoriesItems = data && data.categories.edges;
 
-  console.log('featuredItem', featuredItem);
-
   return (
     <MainPageLayout>
       <Hero
@@ -62,27 +60,19 @@ export default (props: { data: IndexPageQuery }) => {
         subtitle="Привет, здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
       <FeaturedPost post={featuredItem.node} categories={categoriesItems} />
-      <section>
-        <div className="container">
-          <TitleBlock>Пробуй и Путешествуй</TitleBlock>
-          <SubtitleBlock>
-            Каждый новый вкус, запах звук раскрывает нас всё больше и больше и
-            больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в
-            своих желаниях.
-          </SubtitleBlock>
-          <PostsList items={blogItems} categories={categoriesItems} />
-        </div>
-      </section>
-      <section>
-        <div className="container">
-          <TitleBlock>Твори</TitleBlock>
-          <SubtitleBlock>
-            Пиши, играй, пой, делай то, что тебе нравится и чувствуй
-            вдохновение!
-          </SubtitleBlock>
-          <PostsList items={poetryItems} categories={categoriesItems} />
-        </div>
-      </section>
+      <PostsList
+        items={blogItems}
+        categories={categoriesItems}
+        blockTitle="Пробуй и Путешествуй"
+        blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
+      />
+
+      <PostsList
+        items={poetryItems}
+        categories={categoriesItems}
+        blockTitle="Твори"
+        blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
+      />
     </MainPageLayout>
   );
 };

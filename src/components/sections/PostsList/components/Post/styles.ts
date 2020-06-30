@@ -16,16 +16,6 @@ export const ItemImage = styled.div`
   justify-content: center;
   overflow: hidden;
 
-  .item-image {
-    position: relative;
-    z-index: 10;
-    box-sizing: border-box;
-    max-width: 100%;
-    flex-grow: 0;
-    flex-shrink: 0;
-    padding: 2%;
-  }
-
   ${({ background }: { background?: string }) =>
     background
       ? css`
@@ -48,23 +38,23 @@ export const ItemImage = styled.div`
 
 export const ItemDateStyled = styled.p`
   color: #747474;
-  text-align: center;
+  text-align: left;
   font-size: 12px;
 `;
 
 export const ItemContent = styled.div`
   position: relative;
-  height: 100%;
   padding: 0;
   margin: 16px 0;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
-  padding-bottom: 32px;
+  align-items: space-between;
 `;
 
 export const ItemTitle = styled.h3`
   font-size: 28px;
-  text-align: center;
+  text-align: left;
   padding: 16px 0 0;
   margin-bottom: 1rem;
   font-weight: 500;
@@ -73,12 +63,11 @@ export const ItemTitle = styled.h3`
 `;
 
 export const TextStyled = styled.div`
-  text-align: center;
-  line-height: 1.5;
-  padding: 16px;
+  text-align: left;
+  line-height: 1.3;
+  padding: 0 20px;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  color: #322421;
 
   p {
     color: #747474;
@@ -86,21 +75,78 @@ export const TextStyled = styled.div`
   }
 `;
 
-export const LinkStyled = styled(Link)`
-  display: block;
-  margin: auto auto 16px;
-  padding: 10px 20px;
-  color: white;
-  background-color: hsla(38, 100%, 38%, 1);
-  /* color: hsl(211, 100%, 40%); */
-  /* border: 1px solid hsl(211, 100%, 40%); */
-`;
+// export const LinkStyled = styled(Link)`
+//   display: inline-block;
+//   margin: auto auto 20px;
+//   padding: 10px 20px;
+//   color: white;
+//   background-color: hsla(38, 100%, 38%, 1);
+//   align-self: flex-end;
+//   /* color: hsl(211, 100%, 40%); */
+//   /* border: 1px solid hsl(211, 100%, 40%); */
+// `;
 
 export const ItemWrapper = styled.article`
+  a:hover {
+    text-decoration: none;
+  }
+
   .post-content {
     margin: 32px;
     background-color: #f5f5f5c2;
-    min-height: 400px;
     width: 100%;
+    box-shadow: 0 2px 3px #0000001c;
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 6px #0000001c;
+    }
+  }
+
+  .item__image {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .item__date {
+    color: #747474;
+    text-align: left;
+    font-size: 12px;
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  .item__title {
+    font-size: 26px;
+    text-align: left;
+    padding: 10px 20px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    margin-top: 0;
+  }
+
+  .item__content {
+    text-align: left;
+    line-height: 1.3;
+    padding: 0 20px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+
+    p {
+      color: #747474;
+      font-size: 14px;
+    }
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
   }
 `;

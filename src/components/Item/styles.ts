@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { IMAGES_ENDPOINT, SMALL_PREVIEW_IMAGE } from '../../config';
-import { TitleStyled } from '@styles/TitleStyled';
+import { TitleStyled } from '@styles/Typography/TitleStyled';
 import { Link } from 'gatsby';
 
 interface IItemWrapper {

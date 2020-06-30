@@ -3,9 +3,9 @@ import React from 'react';
 import Nav from '@components/Nav';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
-import '@styles/global.scss';
 
 import { PoetryLayoutStyled } from './styles';
+import { GlobalStyle } from '@styles/GlobalStyle';
 
 export interface IProjectsLayoutProps {
   articleAuthor?: string;
@@ -39,22 +39,25 @@ const PoetryLayout: React.FC<IProjectsLayoutProps> = ({
   twitterCard,
 }) => {
   return (
-    <PoetryLayoutStyled>
-      <Header
-        headTitle={headTitle}
-        ogUrl={ogUrl}
-        ogImage={ogImage}
-        ogImageHeight={ogImageHeight}
-        ogImageWidth={ogImageWidth}
-        ogDescription={ogDescription}
-        ogLocale={ogLocale}
-        ogType={ogType}
-        twitterCard={twitterCard}
-      />
-      <Nav title="Ckomop0x.me" inner />
-      <main>{children}</main>
-      <Footer />
-    </PoetryLayoutStyled>
+    <>
+      <GlobalStyle />
+      <PoetryLayoutStyled>
+        <Header
+          headTitle={headTitle}
+          ogUrl={ogUrl}
+          ogImage={ogImage}
+          ogImageHeight={ogImageHeight}
+          ogImageWidth={ogImageWidth}
+          ogDescription={ogDescription}
+          ogLocale={ogLocale}
+          ogType={ogType}
+          twitterCard={twitterCard}
+        />
+        <Nav title="Ckomop0x.me" inner />
+        <main>{children}</main>
+        <Footer />
+      </PoetryLayoutStyled>
+    </>
   );
 };
 

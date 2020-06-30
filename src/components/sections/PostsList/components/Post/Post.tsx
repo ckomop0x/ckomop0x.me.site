@@ -4,16 +4,7 @@ import parse from 'html-react-parser';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import {
-  ItemImage,
-  ItemDateStyled,
-  ItemContent,
-  ItemTitle,
-  TextStyled,
-  ItemWrapper,
-  Content,
-  LinkStyled,
-} from './styles';
+import { ItemWrapper, StyledLink } from './styles';
 import { getSrcSet } from '@utils/image';
 
 const Post = ({
@@ -27,39 +18,36 @@ const Post = ({
   excerpt,
   image,
 }: any) => {
-  const isWithImage = featured && image;
+  const isWithImage = !!image;
 
   return (
-    <ItemWrapper className={`${isWithImage ? 'col-12' : 'col-12 col-lg-4'}`}>
-      <div className="row">
-        <div className="post-content">
-          {isWithImage && (
-            <ItemImage className="col-12 col-sm-12 col-md-6" background={image}>
-              <div className="item-image--blurred"></div>
-              <img
-                className="item-image lazyload"
-                loading="lazy"
-                data-src={`${image}?tr=w-1080,h-280,fo-top`}
-                data-srcset={getSrcSet(image)}
-                data-sizes="(max-width: 600px) 480px, 600px"
-                alt={title}
-              />
-            </ItemImage>
-          )}
-          <ItemContent
-            className={`col-12 col-sm-12 ${isWithImage ? 'col-md-6' : ''}`}
-          >
-            <ItemTitle>{title}</ItemTitle>
-            <ItemDateStyled>Опубликовано: {date}</ItemDateStyled>
-            <TextStyled>
+    <ItemWrapper className="col-12 col-md-6 col-lg-4">
+      <StyledLink to={`/${category.slug}/${slug}`}>
+        <div className="row h-100">
+          <div className="post-content">
+            {isWithImage && (
+              <div>
+                <img
+                  className="item__image lazyload"
+                  loading="lazy"
+                  data-src={`${image}`}
+                  data-srcset={getSrcSet(image)}
+                  data-sizes="(max-width: 600px) 480px, 600px"
+                  alt={title}
+                />
+              </div>
+            )}
+            {date && <p className="item__date">Опубликовано: {date}</p>}
+            {/* <ItemContent className="col-12 col-sm-12"> */}
+            <h3 className="item__title">{title}</h3>
+            <div className="item__content">
               {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}
-            </TextStyled>
-            <LinkStyled to={`/${category.slug}/${slug}`}>
-              Читать далее...
-            </LinkStyled>
-          </ItemContent>
+            </div>
+
+            {/* </ItemContent> */}
+          </div>
         </div>
-      </div>
+      </StyledLink>
     </ItemWrapper>
   );
 };
