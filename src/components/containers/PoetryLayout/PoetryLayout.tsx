@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Nav from '@components/Nav';
-import Footer from '@components/Footer';
-import Header from '@components/Header';
+import Nav from '@components/blocks/Nav';
+import Footer from '@components/blocks/Footer';
+import Header from '@components/blocks/Head';
 
 import { PoetryLayoutStyled } from './styles';
 import { GlobalStyle } from '@styles/GlobalStyle';
@@ -53,7 +53,7 @@ const PoetryLayout: React.FC<IProjectsLayoutProps> = ({
           ogType={ogType}
           twitterCard={twitterCard}
         />
-        <Nav title="Ckomop0x.me" inner />
+        <Nav inner={true} />
         <main>{children}</main>
         <Footer />
       </PoetryLayoutStyled>

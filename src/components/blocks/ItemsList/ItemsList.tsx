@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import Item from '../Item';
 import { ItemListStyled } from './styles';
+import { Post } from '@components/sections/PostsList/components';
 
 const ItemsList: React.FC<any> = (props) => {
   console.log(props);
@@ -18,7 +18,7 @@ const ItemsList: React.FC<any> = (props) => {
           slug,
           extra,
           category,
-          image,
+          image_url,
         } = node;
         const formattedDate = moment(createdAt).format('DD.MM.YYYY');
         const categoryData = props.categories.filter(
@@ -27,7 +27,7 @@ const ItemsList: React.FC<any> = (props) => {
 
         return (
           published && (
-            <Item
+            <Post
               key={strapiId}
               id={strapiId}
               excerpt={excerpt}
@@ -36,7 +36,7 @@ const ItemsList: React.FC<any> = (props) => {
               slug={slug}
               extra={extra}
               category={categoryData}
-              image={image}
+              image={image_url}
             />
           )
         );

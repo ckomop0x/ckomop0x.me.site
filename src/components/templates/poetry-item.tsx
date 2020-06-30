@@ -1,4 +1,4 @@
-import PoetryItem from '@components/PoetryItem';
+import PoetryItem from '@components/blocks/PoetryItem';
 import { graphql } from 'gatsby';
 import React from 'react';
 import Helmet from 'react-helmet';

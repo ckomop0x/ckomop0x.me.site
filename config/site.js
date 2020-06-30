@@ -1,5 +1,5 @@
 module.exports = {
-  siteTitle: 'Павел Клочков || Ckomop0x.me', // Navigation and Site Title
+  siteTitle: 'Павел Клочков | Персональный блог, стихи и путешествия', // Navigation and Site Title
   siteTitleAlt: 'Сайт о жизни и творчестве Павла Клочкова', // Alternative Site title for SEO
   siteTitleShort: 'Ckomop0x.me', // short_name for manifest
   siteUrl: process.env.ROOT_URL || 'https://Ckomop0x.me', // Domain of your site. No trailing slash!
@@ -16,7 +16,7 @@ module.exports = {
 
   // siteFBAppID: '123456789', // Facebook App ID - Optional
   userTwitter: '@ckomop0x', // Twitter Username
-  ogSiteName: 'Павел Клочков || Ckomop0x.me', // Facebook Site Name
+  ogSiteName: 'Павел Клочков | Персональный блог, стихи и путешествия', // Facebook Site Name
   ogLanguage: 'ru_RU',
 
   // Manifest and Progress color

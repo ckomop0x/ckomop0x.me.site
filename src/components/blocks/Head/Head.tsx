@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-interface IHeader {
+interface IHead {
   articleAuthor?: string;
   headTitle?: string;
   fbAppId?: string;
@@ -21,15 +21,15 @@ interface IHeader {
   googleSiteVerification?: string;
 }
 
-const Header: React.FC<IHeader> = ({
+const Head: React.FC<IHead> = ({
   articleAuthor = 'Pavel Klochkov @ckomop0x',
   headTitle = 'Ckomop0x.me | Персональный блог, стихи и путешествия',
   fbAppId = '',
   ogUrl = 'https://ckomop0x.me',
-  ogImage = 'https://ik.imagekit.io/ckomop0x/webtime-studio/pages/webtime-main-page-1_UHK17JzlZ.jpg',
+  ogImage = 'https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg?tr=w-600',
   ogImageHeight = '280',
   ogImageWidth = '1080',
-  ogDescription = 'Мы создаём проекты с индивидуальным подходом.',
+  ogDescription = 'Персональный блог, стихи и путешествия',
   ogLocale = 'ru_RU',
   ogType = 'website',
   ogSiteName = 'Ckomop0x.me',
@@ -99,6 +99,10 @@ const Header: React.FC<IHeader> = ({
         rel="stylesheet"
       />
       <link
+        href="https://fonts.googleapis.com/css2?family=Lobster&text=ПавелКлочков&display=swap"
+        rel="stylesheet"
+      ></link>
+      <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
       />
@@ -106,16 +110,19 @@ const Header: React.FC<IHeader> = ({
       <link
         rel="icon"
         sizes="192x192"
-        href={require('../../../src/images/favicon.png')}
+        href={require('../../../../static/images/android-icon-192x192.png')}
       />
       <link
         rel="apple-touch-icon"
-        href={require('../../../src/images/favicon.png')}
+        href={require('../../../../static/images/apple-icon-180x180.png')}
       />
-      <link rel="mask-icon" href={require('../../../src/images/favicon.png')} />
+      <link
+        rel="mask-icon"
+        href={require('../../../../static/images/favicon-96x96.png')}
+      />
       <title>{headTitle}</title>
     </Helmet>
   );
 };
 
-export default Header;
+export default Head;

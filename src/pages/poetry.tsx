@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import PoetryLayout from '../components/containers/PoetryLayout/PoetryLayout';
-import ItemsList from '@components/ItemsList';
+import ItemsList from '@components/blocks/ItemsList';
 import { poetryPageQuery as PoetryPageQuery } from './__generated__/poetryPageQuery';
 
 export const query = graphql`

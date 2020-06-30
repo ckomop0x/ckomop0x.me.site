@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { themePalette } from '@styles/colors';
 
-export const Footer = styled.footer`
+export const FooterWrapper = styled.footer`
   margin-top: auto;
   background: hsla(38, 20%, 80%, 1);
   color: ${themePalette.primaryTitle};

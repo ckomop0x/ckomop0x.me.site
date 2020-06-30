@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Nav from '@components/Nav';
+import Nav from '@components/blocks/Nav';
 
 import { MainSection, Title, SubTitle } from './styles';
 
@@ -12,7 +12,7 @@ export interface IMainSectionProps {
 const Hero: React.FC<IMainSectionProps> = ({ title, subtitle }) => {
   return (
     <MainSection>
-      <Nav title="Ckomop0x.me" />
+      <Nav />
       <div className="container main-section__text">
         <Title>{title}</Title>
         <SubTitle>{subtitle}</SubTitle>
