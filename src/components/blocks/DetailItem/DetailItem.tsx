@@ -5,7 +5,12 @@ import ruLocale from 'date-fns/locale/ru';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import { Content, StyledTitleBlock, PoetryItemWrapper } from './styles';
+import {
+  Content,
+  StyledTitleBlock,
+  PoetryItemWrapper,
+  PoetryItemImage,
+} from './styles';
 
 export interface IProjectProps {
   title: string;
@@ -22,10 +27,7 @@ const PoetryItem: React.FC<IProjectProps> = (props) => {
 
   return (
     <PoetryItemWrapper>
-      <div
-        className="poetry-item__image lazyload"
-        style={{ backgroundImage: `url(${image})` }}
-      />
+      <PoetryItemImage className="poetry-item__image lazyload" image={image} />
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-lg-12">

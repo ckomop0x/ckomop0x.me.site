@@ -41,22 +41,42 @@ export const Content = styled.div`
   }
 `;
 
-export const PoetryItemWrapper = styled.div`
-  .poetry-item__image {
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 480px;
-    background-position: center;
-    position: relative;
+export const PoetryItemWrapper = styled.div``;
 
-    &::after {
-      position: absolute;
-      content: '';
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: #00000014;
-    }
+interface IPoetryItemImage {
+  className: string;
+  image: string;
+}
+
+export const PoetryItemImage = styled.div`
+  background-image: url(${({ image }: IPoetryItemImage) =>
+    image && `${image}?tr=h-960`});
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 240px;
+  background-position: center;
+  position: relative;
+  /* background-attachment: fixed; */
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #00000014;
+  }
+
+  @media (min-width: 700px) {
+    background-image: url(${({ image }: IPoetryItemImage) =>
+      image && `${image}?tr=w-900`});
+    height: 320px;
+  }
+
+  @media (min-width: 1200px) {
+    background-image: url(${({ image }: IPoetryItemImage) =>
+      image && `${image}?tr=w-2000`});
+    height: 480px;
   }
 `;

@@ -51,7 +51,7 @@ export const LinkStyled = styled(Link)`
 // color: #312400;
 
 export const Navbar = styled.nav`
-  height: 120px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   flex-grow: 0;
