@@ -13,15 +13,15 @@ export const StyledTitleBlock = styled(TitleBlock)`
 `;
 
 export const Content = styled.div`
-  max-width: 500px;
-  margin: -40px auto;
-  background-color: #f0ebde;
+  max-width: 600px;
+  margin: -40px auto 40px;
   padding: 20px;
-  box-shadow: 0 2px 4px #0000001c;
+  background-color: #fcfbf8;
+  box-shadow: 0 2px 2px #0000001c;
 
   h2 {
     color: ${themePalette.primaryTitle};
-    padding: 0px 0 20px;
+    padding: 0;
     font-size: 26px;
     font-weight: 700;
   }
@@ -30,8 +30,14 @@ export const Content = styled.div`
     font-family: Roboto, sans-serif;
     font-size: 16px;
     line-height: 26px;
-    margin: 0 0 20px;
+    margin: 0 0 10px;
     color: ${themePalette.primaryTitle};
+    color: #5d443c;
+  }
+
+  .poetry-item__date {
+    font-size: 14px;
+    margin-bottom: 20px;
   }
 `;
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import parse from 'html-react-parser';
+import { format, parse as parseDate } from 'date-fns';
+import ruLocale from 'date-fns/locale/ru';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
@@ -12,8 +14,13 @@ export interface IProjectProps {
 }
 
 const PoetryItem: React.FC<any> = (props) => {
-  const { poetryItem } = props;
+  console.log(props);
+  const { poetryItem, poetryDate } = props;
   const { image_url } = poetryItem;
+  const parsedDate = parseDate(poetryDate, 'mm/dd/yyyy', new Date());
+  const dateString = format(parsedDate, 'd MMMM yyyy', {
+    locale: ruLocale,
+  });
 
   return (
     <PoetryItemWrapper>
@@ -34,6 +41,7 @@ const PoetryItem: React.FC<any> = (props) => {
           <div className="col-xs-12 col-lg-12">
             <Content>
               <h2>{poetryItem.title}</h2>
+              <div className="poetry-item__date">{dateString}</div>
               {parse(
                 `<p>${poetryItem.description.split('\n').join('</br>')}</p>`
               )}

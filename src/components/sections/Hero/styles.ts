@@ -5,9 +5,10 @@ export const MainSection = styled.section`
   height: 100vh;
   max-height: 100%;
   background: radial-gradient(ellipse at 80% 50%, #00000010, #00000080) 100% 50%,
-    url('https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg?tr=w-4920,h-4400,cm-extract,fo-top_left')
+    url('https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg?tr=w-2000')
       no-repeat;
   background-size: cover;
+  background-position: center;
   color: white;
   display: flex;
   flex-direction: column;
