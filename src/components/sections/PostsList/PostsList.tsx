@@ -6,12 +6,10 @@ import { TitleBlock, SubtitleBlock } from '@styles/Typography';
 
 const PostsList: React.FC<any> = (props) => {
   const { blockTitle, blockSubtitle } = props;
-  console.log(props);
   const postsCategoryLink = props.items[0].node.category;
   const [postsCategory] = props.categories.filter(
     (category: any) => category.node.slug === postsCategoryLink
   );
-  console.log(postsCategory);
 
   return (
     <section style={{ padding: '0 0 80px' }}>

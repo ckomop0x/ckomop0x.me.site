@@ -58,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create blog articles pages.
   const poetry = result.data.poetry.edges;
   const blog = result.data.blog.edges;
-  poetry.forEach((post, index) => {
+  poetry.forEach((post) => {
     createPage({
       path: `/poetry/${post.node.slug}`,
       component: require.resolve('./src/components/templates/poetry-item.tsx'),
@@ -68,7 +68,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-  blog.forEach((post, index) => {
+  blog.forEach((post) => {
     createPage({
       path: `/blog/${post.node.slug}`,
       component: require.resolve('./src/components/templates/poetry-item.tsx'),

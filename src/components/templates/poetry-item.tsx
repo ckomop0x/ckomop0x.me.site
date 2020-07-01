@@ -1,4 +1,4 @@
-import PoetryItem from '@components/blocks/PoetryItem';
+import { DetailItem as DetailItemComponent } from '@components/blocks';
 import { graphql } from 'gatsby';
 import React from 'react';
 import Helmet from 'react-helmet';
@@ -15,51 +15,38 @@ export const query = graphql`
       image_url
       excerpt
       description
-      date(locale: "ru", formatString: "DD/MM/YYYY")
-      written: date(locale: "ru", fromNow: true)
       strapiId
+      createdAt
     }
   }
 `;
 
-const ProjectTemplate = (props: any) => {
+const DetailItem = (props: any) => {
   if (!props.data) {
     return null;
   }
   const { data, errors } = props;
-  const poetryItem = data && data.poetry;
+  const itemData = data && data.poetry;
 
-  if (!poetryItem) return null;
+  if (!itemData) return null;
 
-  let services: any[] = [];
-
-  // const date = poetryItem?.poetry_date;
-  // const slug = poetryItem?._meta?.uid;
-  // const title = poetryItem?.title;
-  const socialImage = `${poetryItem?.poetry_image?.url}?tr=w-1080,h-280,fo-top`;
-  // const projectServices = poetryItem?.services;
-
-  // if (projectServices && projectServices[0]) {
-  //   projectServices.forEach((projectService: any) =>
-  //     services.push(projectService.serviceTag.service[0].text)
-  //   );
-  // }
+  const socialImage = `${itemData?.image_url}?tr=w-1080,h-280,fo-top`;
   return (
     <ProjectsLayout
-      headTitle={poetryItem.title}
-      ogUrl={`https://ckomop0x.me/poetry/${poetryItem.slug}/`}
+      headTitle={itemData.title}
+      ogUrl={`https://ckomop0x.me/poetry/${itemData.slug}/`}
       ogImage={socialImage}
-      ogDescription={poetryItem.title}
-      twitterCard={poetryItem.title}
+      ogDescription={itemData.title}
+      twitterCard={itemData.title}
     >
-      <PoetryItem
-        title={poetryItem.title}
-        poetryDate={poetryItem.date}
-        poetryItem={poetryItem}
-        // services={services}
+      <DetailItemComponent
+        title={itemData.title}
+        date={itemData.createdAt}
+        description={itemData.description}
+        image={itemData.image_url}
       />
     </ProjectsLayout>
   );
 };
 
-export default ProjectTemplate;
+export default DetailItem;

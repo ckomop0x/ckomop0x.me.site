@@ -15,9 +15,8 @@ export interface ProjectTemplateQuery_poetry {
   image_url: string | null;
   excerpt: string | null;
   description: string | null;
-  date: any | null;
-  written: any | null;
   strapiId: string | null;
+  createdAt: any | null;
 }
 
 export interface ProjectTemplateQuery {

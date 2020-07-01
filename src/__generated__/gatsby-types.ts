@@ -3107,10 +3107,7 @@ type ProjectTemplateQueryQueryVariables = {
 };
 
 
-type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
-    Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'published' | 'image_url' | 'excerpt' | 'description' | 'date' | 'strapiId'>
-    & { written: StrapiPosts['date'] }
-  )> };
+type ProjectTemplateQueryQuery = { readonly poetry: Maybe<Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'published' | 'image_url' | 'excerpt' | 'description' | 'strapiId' | 'createdAt'>> };
 
 type PostFieldsFragment = Pick<StrapiPosts, 'category' | 'image_url' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'createdAt' | 'updatedAt' | 'title' | 'featured'>;
 
@@ -3121,15 +3118,15 @@ type blogPageQueryQueryVariables = {};
 
 type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
 
-type poetryPageQueryQueryVariables = {};
-
-
-type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
-
 type IndexPageQueryQueryVariables = {};
 
 
 type IndexPageQueryQuery = { readonly featured: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
+
+type poetryPageQueryQueryVariables = {};
+
+
+type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

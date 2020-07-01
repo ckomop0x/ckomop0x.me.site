@@ -1,11 +1,8 @@
 import React from 'react';
 import moment from 'moment';
-import { ItemListStyled } from './styles';
 import { Post } from '@components/sections/PostsList/components';
 
 const ItemsList: React.FC<any> = (props) => {
-  console.log(props);
-
   return (
     <div className="row">
       {props.items.map(({ node }: any) => {
