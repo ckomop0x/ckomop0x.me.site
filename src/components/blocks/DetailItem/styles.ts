@@ -19,9 +19,13 @@ export const Content = styled.div`
   background-color: #fcfbf8;
   box-shadow: 0 2px 2px #0000001c;
 
+  h1 {
+    font-size: 30px;
+  }
+
   h2 {
     color: ${themePalette.primaryTitle};
-    padding: 0;
+    padding: 32px 0 20px;
     font-size: 26px;
     font-weight: 700;
   }
@@ -30,14 +34,41 @@ export const Content = styled.div`
     font-family: Roboto, sans-serif;
     font-size: 16px;
     line-height: 26px;
-    margin: 0 0 10px;
-    color: ${themePalette.primaryTitle};
+    margin: 0 0 20px;
+    /* color: ${themePalette.primaryTitle}; */
+    color: #5d443c;
+  }
+
+  cite {
+    display: inline-block;
+    margin: 0 0 20px;
     color: #5d443c;
   }
 
   .poetry-item__date {
     font-size: 14px;
     margin-bottom: 20px;
+  }
+
+  ul {
+    margin: 0 0 20px;
+
+    li {
+      position: relative;
+      color: #5d443c;
+      list-style: none;
+      margin-bottom: 20px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        width: 4px;
+        top: 0px;
+        border-left: 4px solid #ffa20050;
+        height: 100%;
+      }
+    }
   }
 `;
 

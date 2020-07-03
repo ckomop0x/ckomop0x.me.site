@@ -32,9 +32,10 @@ const PoetryItem: React.FC<IProjectProps> = (props) => {
         <div className="row">
           <div className="col-xs-12 col-lg-12">
             <Content>
-              <h2>{title}</h2>
+              <h1>{title}</h1>
               <div className="poetry-item__date">{dateString}</div>
-              {parse(`<p>${description.split('\n').join('</br>')}</p>`)}
+              {/* {parse(`<p>${description.split('\n').join('</br>')}</p>`)} */}
+              {parse(description)}
             </Content>
           </div>
         </div>

@@ -60,19 +60,23 @@ export default (props: { data: IndexPageQuery }) => {
         subtitle="Привет, здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
       <FeaturedPost post={featuredItem.node} categories={categoriesItems} />
-      <PostsList
-        items={blogItems}
-        categories={categoriesItems}
-        blockTitle="Пробуй и Путешествуй"
-        blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
-      />
+      {blogItems?.length > 0 && (
+        <PostsList
+          items={blogItems}
+          categories={categoriesItems}
+          blockTitle="Пробуй и Путешествуй"
+          blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
+        />
+      )}
 
-      <PostsList
-        items={poetryItems}
-        categories={categoriesItems}
-        blockTitle="Твори"
-        blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
-      />
+      {poetryItems?.length > 0 && (
+        <PostsList
+          items={poetryItems}
+          categories={categoriesItems}
+          blockTitle="Твори"
+          blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
+        />
+      )}
     </MainPageLayout>
   );
 };
