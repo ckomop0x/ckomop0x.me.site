@@ -26,9 +26,9 @@ const Head: React.FC<IHead> = ({
   headTitle = 'Ckomop0x.me | Персональный блог, стихи и путешествия',
   fbAppId = '',
   ogUrl = 'https://ckomop0x.me',
-  ogImage = 'https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg?tr=w-600',
-  ogImageHeight = '280',
-  ogImageWidth = '1080',
+  ogImage = 'https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg?tr=w-1200',
+  // ogImageHeight = '280',
+  // ogImageWidth = '1080',
   ogDescription = 'Персональный блог, стихи и путешествия',
   ogLocale = 'ru_RU',
   ogType = 'website',
@@ -62,28 +62,30 @@ const Head: React.FC<IHead> = ({
 
       {/* Facebook Open Graph */}
       <meta property="fb:app_id" content={fbAppId} />
+
       <meta property="og:url" content={ogUrl} />
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={headTitle} />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:image:width" content={ogImageWidth} />
-      <meta property="og:image:height" content={ogImageHeight} />
-      <meta property="og:image:alt" content={headTitle} />
       <meta property="og:description" content={ogDescription} />
-      <meta property="og:site_name" content={ogSiteName} />
-      <meta property="og:locale" content={ogLocale} />
+      <meta property="og:image" content={ogImage} />
+      {/* <meta property="og:image:width" content={ogImageWidth} /> */}
+      {/* <meta property="og:image:height" content={ogImageHeight} /> */}
+      {/* <meta property="og:image:alt" content={headTitle} /> */}
+
+      {/* <meta property="og:site_name" content={ogSiteName} /> */}
+      {/* <meta property="og:locale" content={ogLocale} /> */}
       <meta property="article:author" content={articleAuthor} />
 
       {/* Twitter Open Graph */}
       <meta name="twitter:card" content={twitterCard} />
-      <meta name="twitter:site" content={twitterSite} />
       <meta name="twitter:creator" content={twitterCreator} />
-      <meta name="twitter:url" content={ogUrl} />
       <meta name="twitter:title" content={headTitle} />
       <meta name="twitter:description" content={ogDescription} />
       <meta name="twitter:image" content={ogImage} />
-      <meta name="twitter:image:alt" content={headTitle} />
+      {/* <meta name="twitter:image:alt" content={headTitle} /> */}
 
+      {/* <meta name="twitter:url" content={ogUrl} /> */}
+      {/* <meta name="twitter:site" content={twitterSite} /> */}
       <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
