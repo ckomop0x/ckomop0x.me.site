@@ -64,7 +64,7 @@ export default (props: { data: IndexPageQuery }) => {
         <PostsList
           items={blogItems}
           categories={categoriesItems}
-          blockTitle="Пробуй и Путешествуй"
+          blockTitle="Последние статьи"
           blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
         />
       )}
@@ -73,7 +73,7 @@ export default (props: { data: IndexPageQuery }) => {
         <PostsList
           items={poetryItems}
           categories={categoriesItems}
-          blockTitle="Твори"
+          blockTitle="Последние стихи и песни"
           blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
         />
       )}
