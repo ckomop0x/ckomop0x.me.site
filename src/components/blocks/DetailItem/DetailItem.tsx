@@ -14,13 +14,13 @@ import {
 
 export interface IProjectProps {
   title: string;
-  description: string;
   image: string;
   date: Date;
+  content?: any[];
 }
 
 const PoetryItem: React.FC<IProjectProps> = (props) => {
-  const { date, title, description, image } = props;
+  const { date, title, image, content } = props;
   const dateString = format(new Date(date), 'd MMMM yyyy', {
     locale: ruLocale,
   });
@@ -35,7 +35,17 @@ const PoetryItem: React.FC<IProjectProps> = (props) => {
               <h1>{title}</h1>
               <div className="poetry-item__date">{dateString}</div>
               {/* {parse(`<p>${description.split('\n').join('</br>')}</p>`)} */}
-              {parse(description)}
+              {content?.map((contentItem, index) => {
+                if (contentItem?.rich_text) {
+                  return (
+                    contentItem?.rich_text && (
+                      <React.Fragment key={index}>
+                        {parse(contentItem.rich_text)}
+                      </React.Fragment>
+                    )
+                  );
+                }
+              })}
             </Content>
           </div>
         </div>

@@ -5,6 +5,7 @@ require('dotenv').config({
 });
 const path = require('path');
 const config = require('./config/site');
+const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
   siteMetadata: {
@@ -61,10 +62,18 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-sitemap',
+    // {
+    //   resolve: 'gatsby-source-graphql',
+    //   options: {
+    //     typeName: 'STRAPI',
+    //     fieldName: 'STRAPI',
+    //     url: process.env.STRAPI_URL_GRAPHQL_LOCAL,
+    //   },
+    // },
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: process.env.STRAPI_URL,
+        apiURL: isDev ? process.env.STRAPI_URL_LOCAL : process.env.STRAPI_URL,
         queryLimit: 1000, // Default to 100
         contentTypes: [`posts`, `categories`],
         //If using single types place them in this array.
@@ -83,16 +92,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-sass`,
-    //   options: {
-    //     // Override the file regex for SASS
-    //     sassRuleTest: /\.global\.s(a|c)ss$/,
-    //     // Override the file regex for CSS modules
-    //     sassRuleModulesTest: /\.mod\.s(a|c)ss$/,
-    //   },
-    // },
-    // 'gatsby-plugin-postcss',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
