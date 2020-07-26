@@ -13,18 +13,25 @@ export const StyledTitleBlock = styled(TitleBlock)`
 `;
 
 export const Content = styled.div`
-  max-width: 600px;
+  max-width: 800px;
   margin: -40px auto 40px;
   padding: 20px;
   background-color: #fcfbf8;
   box-shadow: 0 2px 2px #0000001c;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h6 {
+    color: ${themePalette.primaryTitle};
+  }
 
   h1 {
     font-size: 30px;
   }
 
   h2 {
-    color: ${themePalette.primaryTitle};
     padding: 32px 0 20px;
     font-size: 26px;
     font-weight: 700;
@@ -35,14 +42,13 @@ export const Content = styled.div`
     font-size: 16px;
     line-height: 26px;
     margin: 0 0 20px;
-    /* color: ${themePalette.primaryTitle}; */
-    color: #5d443c;
+    color: ${themePalette.primaryText};
   }
 
   cite {
     display: inline-block;
     margin: 0 0 20px;
-    color: #5d443c;
+    color: ${themePalette.primaryText};
   }
 
   .poetry-item__date {
@@ -55,7 +61,7 @@ export const Content = styled.div`
 
     li {
       position: relative;
-      color: #5d443c;
+      color: ${themePalette.primaryText};
       list-style: none;
       margin-bottom: 20px;
 
@@ -65,7 +71,7 @@ export const Content = styled.div`
         left: -20px;
         width: 4px;
         top: 0px;
-        border-left: 4px solid #ffa20050;
+        border-left: 4px solid ${themePalette.listBorder};
         height: 100%;
       }
     }
@@ -79,9 +85,8 @@ interface IPoetryItemImage {
   image: string;
 }
 
-export const PoetryItemImage = styled.div`
-  background-image: url(${({ image }: IPoetryItemImage) =>
-    image && `${image}?tr=h-960`});
+export const PoetryItemImage = styled.div<IPoetryItemImage>`
+  background-image: url(${({ image }) => image && `${image}?tr=h-960`});
   background-size: cover;
   background-repeat: no-repeat;
   height: 240px;
@@ -100,14 +105,12 @@ export const PoetryItemImage = styled.div`
   }
 
   @media (min-width: 700px) {
-    background-image: url(${({ image }: IPoetryItemImage) =>
-      image && `${image}?tr=w-900`});
+    background-image: url(${({ image }) => image && `${image}?tr=w-900`});
     height: 320px;
   }
 
   @media (min-width: 1200px) {
-    background-image: url(${({ image }: IPoetryItemImage) =>
-      image && `${image}?tr=w-2000`});
+    background-image: url(${({ image }) => image && `${image}?tr=w-2000`});
     height: 480px;
   }
 `;

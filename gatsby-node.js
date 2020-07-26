@@ -19,6 +19,9 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             category
+            content {
+              rich_text
+            }
             image_url
             slug
             published
@@ -37,6 +40,9 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             category
+            content {
+              rich_text
+            }
             image_url
             slug
             published

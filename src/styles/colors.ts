@@ -21,8 +21,12 @@ export const themePalette = {
   textColorLight: '#FFF',
 
   // Text colours
-  primaryTitle: '#312420',
+  primaryTitle: '#513b34',
+  primaryText: '#5d443c',
 
   // BackgroudColor
   primaryBackground: '#f0ebde',
+
+  // List border Color
+  listBorder: '#ffa20050',
 };

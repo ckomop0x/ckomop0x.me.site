@@ -7,6 +7,10 @@
 // GraphQL query operation: ProjectTemplateQuery
 // ====================================================
 
+export interface ProjectTemplateQuery_poetry_content {
+  rich_text: string | null;
+}
+
 export interface ProjectTemplateQuery_poetry {
   id: string;
   title: string | null;
@@ -17,6 +21,7 @@ export interface ProjectTemplateQuery_poetry {
   description: string | null;
   strapiId: string | null;
   createdAt: any | null;
+  content: (ProjectTemplateQuery_poetry_content | null)[] | null;
 }
 
 export interface ProjectTemplateQuery {
