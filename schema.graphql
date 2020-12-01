@@ -271,7 +271,7 @@ type FileGroupConnection {
 
 type ImageSharp implements Node {
   children: [Node!]!
-  fixed(background: String = "rgba(0,0,0,1)", base64Width: Int, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = NO_CHANGE, toFormatBase64: ImageFormat = NO_CHANGE, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpFixed
+  fixed(background: String = "rgba(0,0,0,1)", base64Width: Int, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpFixed
   fluid(
     background: String = "rgba(0,0,0,1)",
     base64Width: Int,
@@ -290,18 +290,97 @@ type ImageSharp implements Node {
     sizes: String = "",
     "A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]"
     srcSetBreakpoints: [Int] = [],
-    toFormat: ImageFormat = NO_CHANGE,
-    toFormatBase64: ImageFormat = NO_CHANGE,
+    toFormat: ImageFormat = AUTO,
+    toFormatBase64: ImageFormat = AUTO,
     traceSVG: Potrace,
     trim: Float = 0.0,
     webpQuality: Int
   ): ImageSharpFluid
+  gatsbyImageData(
+    "Background color applied to the wrapper. Also passed to sharp to use as a background when \"letterboxing\" an image to another aspect ratio."
+    background: String = "rgba(0,0,0,0)",
+    "Options for the low-resolution placeholder image. Set placeholder to \"BLURRED\" to use this"
+    blurredOptions: BlurredOptions,
+    """
+
+    The image formats to generate. Valid values are "AUTO" (meaning the same format as the source image), "JPG", "PNG" and "WEBP".
+    The default value is [AUTO, WEBP], and you should rarely need to change this. Take care if you specify JPG or PNG when you do
+    not know the formats of the source images, as this could lead to unwanted results such as converting JPEGs to PNGs. Specifying
+    both PNG and JPG is not supported and will be ignored.
+    """
+    formats: [ImageFormat] = [WEBP],
+    "If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image."
+    height: Int,
+    "Options to pass to sharp when generating JPG images."
+    jpgOptions: JPGOptions,
+    """
+
+    The layout for the image.
+    FIXED: A static image sized, that does not resize according to the screen width
+    FLUID: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    """
+    layout: ImageLayout = FIXED,
+    """
+
+    If set, the generated image is a maximum of this height, cropping if necessary.
+    If the image layout is "constrained" then the image will be limited to this height.
+    If the aspect ratio of the image is different than the source, then the image will be cropped.
+    """
+    maxHeight: Int,
+    """
+
+    Maximum display width of generated files.
+    The actual largest image resolution will be this value multipled by the largest value in outputPixelDensities
+    This only applies when layout = FLUID or CONSTRAINED. For other layout types, use "width"
+    """
+    maxWidth: Int,
+    """
+
+    A list of image pixel densities to generate. It will never generate images larger than the source, and will always include a 1x image.
+    Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide
+    """
+    outputPixelDensities: [Float],
+    """
+
+    Format of generated placeholder image, displayed while the main image loads.
+    BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    TRACED_SVG: a low-resolution traced SVG of the image.
+    NONE: no placeholder. Set "background" to use a fixed background color.
+    """
+    placeholder: ImagePlaceholder = BLURRED,
+    "Options to pass to sharp when generating PNG images."
+    pngOptions: PNGOptions,
+    "The default quality. This is overriden by any format-specific options"
+    quality: Int,
+    """
+
+    The "sizes" property, passed to the img tag. This describes the display size of the image.
+    This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
+    container will be the full width of the screen. In these cases we will generate an appropriate value.
+    """
+    sizes: String = "",
+    "Options for traced placeholder SVGs. You also should set placeholder to \"SVG\"."
+    tracedSVGOptions: Potrace,
+    "Options to pass to sharp to control cropping and other image manipulations."
+    transformOptions: TransformOptions,
+    "Options to pass to sharp when generating WebP images."
+    webpOptions: WebPOptions,
+    """
+
+    The display width of the generated image.
+    The actual largest image resolution will be this value multipled by the largest value in outputPixelDensities
+    Ignored if layout = FLUID or CONSTRAINED, where you should use "maxWidth" instead.
+    """
+    width: Int
+  ): JSON!
   id: ID!
   internal: Internal!
   original: ImageSharpOriginal
   parent: Node
-  resize(background: String = "rgba(0,0,0,1)", base64: Boolean = false, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionLevel: Int = 9, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = NO_CHANGE, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResize
-  resolutions(background: String = "rgba(0,0,0,1)", base64Width: Int, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = NO_CHANGE, toFormatBase64: ImageFormat = NO_CHANGE, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResolutions @deprecated(reason : "Resolutions was deprecated in Gatsby v2. It's been renamed to \"fixed\" https://example.com/write-docs-and-fix-this-example-link")
+  resize(background: String = "rgba(0,0,0,1)", base64: Boolean = false, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionLevel: Int = 9, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = AUTO, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResize
+  resolutions(background: String = "rgba(0,0,0,1)", base64Width: Int, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResolutions @deprecated(reason : "Resolutions was deprecated in Gatsby v2. It's been renamed to \"fixed\" https://example.com/write-docs-and-fix-this-example-link")
   sizes(
     background: String = "rgba(0,0,0,1)",
     base64Width: Int,
@@ -320,8 +399,8 @@ type ImageSharp implements Node {
     sizes: String = "",
     "A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]"
     srcSetBreakpoints: [Int] = [],
-    toFormat: ImageFormat = NO_CHANGE,
-    toFormatBase64: ImageFormat = NO_CHANGE,
+    toFormat: ImageFormat = AUTO,
+    toFormatBase64: ImageFormat = AUTO,
     traceSVG: Potrace,
     trim: Float = 0.0,
     webpQuality: Int
@@ -361,8 +440,8 @@ type ImageSharpFluid {
   base64: String
   originalImg: String
   originalName: String
-  presentationHeight: Int
-  presentationWidth: Int
+  presentationHeight: Int!
+  presentationWidth: Int!
   sizes: String!
   src: String!
   srcSet: String!
@@ -413,8 +492,8 @@ type ImageSharpSizes {
   base64: String
   originalImg: String
   originalName: String
-  presentationHeight: Int
-  presentationWidth: Int
+  presentationHeight: Int!
+  presentationWidth: Int!
   sizes: String!
   src: String!
   srcSet: String!
@@ -441,6 +520,7 @@ type PageInfo {
   itemCount: Int!
   pageCount: Int!
   perPage: Int
+  totalCount: Int!
 }
 
 type Query {
@@ -455,13 +535,13 @@ type Query {
   allStrapiPosts(filter: StrapiPostsFilterInput, limit: Int, skip: Int, sort: StrapiPostsSortInput): StrapiPostsConnection!
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
-  imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
+  imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
   site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
   siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
   sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
   strapiCategories(children: NodeFilterListInput, createdAt: DateQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, slug: StringQueryOperatorInput, strapiId: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiCategories
-  strapiPosts(category: StringQueryOperatorInput, children: NodeFilterListInput, createdAt: DateQueryOperatorInput, date: DateQueryOperatorInput, description: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, id: StringQueryOperatorInput, image: FileFilterInput, image_url: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, published: BooleanQueryOperatorInput, slug: StringQueryOperatorInput, strapiId: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiPosts
+  strapiPosts(category: StringQueryOperatorInput, children: NodeFilterListInput, content: StrapiPostsContentFilterListInput, createdAt: DateQueryOperatorInput, date: DateQueryOperatorInput, description: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, featured: BooleanQueryOperatorInput, id: StringQueryOperatorInput, image_url: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, published: BooleanQueryOperatorInput, slug: StringQueryOperatorInput, strapiId: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiPosts
 }
 
 type Site implements Node {
@@ -587,34 +667,15 @@ type SitePageContextPost {
 }
 
 type SitePageContextPostNode {
+  category: String
   createdAt: Date
-  description: String
   excerpt: String
-  id: String
-  image: SitePageContextPostNodeImage
   image_url: String
   published: Boolean
   slug: String
   strapiId: String
   title: String
   updatedAt: Date
-}
-
-type SitePageContextPostNodeImage {
-  childImageSharp: SitePageContextPostNodeImageChildImageSharp
-}
-
-type SitePageContextPostNodeImageChildImageSharp {
-  fluid: SitePageContextPostNodeImageChildImageSharpFluid
-}
-
-type SitePageContextPostNodeImageChildImageSharpFluid {
-  originalImg: String
-  originalName: String
-  srcSet: String
-  srcSetWebp: String
-  srcWebp: String
-  tracedSVG: String
 }
 
 type SitePageEdge {
@@ -700,41 +761,87 @@ type SitePluginPackageJsonPeerDependencies {
 }
 
 type SitePluginPluginOptions {
-  accurateTrackBounce: Boolean
+  afterBody: Boolean
   allowSyntheticDefaultImports: Boolean
+  apiURL: String
   background_color: String
-  clickmap: Boolean
+  base64Width: Int
+  cache_busting_mode: String
   contentTypes: [String]
+  createLinkInHead: Boolean
+  crossOrigin: String
+  defaultQuality: Int
+  defer: Boolean
+  description: String
   display: String
+  displayName: Boolean
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
   emitSchema: SitePluginPluginOptionsEmitSchema
-  icon: String
+  failOnError: Boolean
+  fileName: Boolean
+  icons: [SitePluginPluginOptionsIcons]
+  include_favicon: Boolean
+  lang: String
+  legacy: Boolean
+  minify: Boolean
   name: String
+  output: String
   path: String
   pathCheck: Boolean
+  pure: Boolean
   queryLimit: Int
   short_name: String
   start_url: String
+  stripMetadata: Boolean
   theme_color: String
+  theme_color_in_head: Boolean
   trackHash: Boolean
-  trackLinks: Boolean
-  trackingId: String
+  trackingId: Int
+  transpileTemplateLiterals: Boolean
   webvisor: Boolean
 }
 
 type SitePluginPluginOptionsEmitPluginDocuments {
-  _xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql: Boolean
+  src___generated___gatsby_plugin_documents_graphql: Boolean
 }
 
 type SitePluginPluginOptionsEmitSchema {
-  _xsrcxxxgeneratedxxxgatsbyxintrospectionxjson: Boolean
+  src___generated___gatsby_introspection_json: Boolean
+}
+
+type SitePluginPluginOptionsIcons {
+  sizes: String
+  src: String
+  type: String
 }
 
 type SiteSiteMetadata {
-  author: String
+  author: SiteSiteMetadataAuthor
+  canonicalUrl: String
   description: String
+  image: String
+  keywords: [String]
+  organization: SiteSiteMetadataOrganization
   siteUrl: String
+  social: SiteSiteMetadataSocial
   title: String
+  version: String
+}
+
+type SiteSiteMetadataAuthor {
+  minibio: String
+  name: String
+}
+
+type SiteSiteMetadataOrganization {
+  logo: String
+  name: String
+  url: String
+}
+
+type SiteSiteMetadataSocial {
+  fbAppID: String
+  twitter: String
 }
 
 type StrapiCategories implements Node {
@@ -794,6 +901,7 @@ type StrapiCategoriesGroupConnection {
 type StrapiPosts implements Node {
   category: String
   children: [Node!]!
+  content: [StrapiPostsContent]
   createdAt(
     "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
@@ -816,8 +924,8 @@ type StrapiPosts implements Node {
   ): Date
   description: String
   excerpt: String
+  featured: Boolean
   id: ID!
-  image: File
   image_url: String
   internal: Internal!
   parent: Node
@@ -844,6 +952,31 @@ type StrapiPostsConnection {
   nodes: [StrapiPosts!]!
   pageInfo: PageInfo!
   totalCount: Int!
+}
+
+type StrapiPostsContent {
+  createdAt(
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+    difference: String,
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+    formatString: String,
+    "Returns a string generated with Moment.js' `fromNow` function"
+    fromNow: Boolean,
+    "Configures the locale Moment.js will use to format the date."
+    locale: String
+  ): Date
+  id: String
+  rich_text: String
+  updatedAt(
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+    difference: String,
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+    formatString: String,
+    "Returns a string generated with Moment.js' `fromNow` function"
+    fromNow: Boolean,
+    "Configures the locale Moment.js will use to format the date."
+    locale: String
+  ): Date
 }
 
 type StrapiPostsEdge {
@@ -1032,6 +1165,7 @@ enum FileFieldsEnum {
   childImageSharp___fluid___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___fluid___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  childImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1220,10 +1354,24 @@ enum ImageFit {
 }
 
 enum ImageFormat {
+  AUTO
   JPG
   NO_CHANGE
   PNG
   WEBP
+}
+
+enum ImageLayout {
+  CONSTRAINED
+  FIXED
+  FLUID
+}
+
+enum ImagePlaceholder {
+  BLURRED
+  DOMINANT_COLOR
+  NONE
+  TRACED_SVG
 }
 
 enum ImageSharpFieldsEnum {
@@ -1288,6 +1436,7 @@ enum ImageSharpFieldsEnum {
   fluid___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   fluid___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1559,10 +1708,20 @@ enum SiteFieldsEnum {
   pathPrefix
   polyfill
   port
-  siteMetadata___author
+  siteMetadata___author___minibio
+  siteMetadata___author___name
+  siteMetadata___canonicalUrl
   siteMetadata___description
+  siteMetadata___image
+  siteMetadata___keywords
+  siteMetadata___organization___logo
+  siteMetadata___organization___name
+  siteMetadata___organization___url
   siteMetadata___siteUrl
+  siteMetadata___social___fbAppID
+  siteMetadata___social___twitter
   siteMetadata___title
+  siteMetadata___version
 }
 
 enum SitePageFieldsEnum {
@@ -1608,10 +1767,9 @@ enum SitePageFieldsEnum {
   component
   componentChunkName
   componentPath
+  context___post___node___category
   context___post___node___createdAt
-  context___post___node___description
   context___post___node___excerpt
-  context___post___node___id
   context___post___node___image_url
   context___post___node___published
   context___post___node___slug
@@ -1728,25 +1886,46 @@ enum SitePageFieldsEnum {
   pluginCreator___parent___parent___children
   pluginCreator___parent___parent___id
   pluginCreator___pluginFilepath
-  pluginCreator___pluginOptions___accurateTrackBounce
+  pluginCreator___pluginOptions___afterBody
   pluginCreator___pluginOptions___allowSyntheticDefaultImports
+  pluginCreator___pluginOptions___apiURL
   pluginCreator___pluginOptions___background_color
-  pluginCreator___pluginOptions___clickmap
+  pluginCreator___pluginOptions___base64Width
+  pluginCreator___pluginOptions___cache_busting_mode
   pluginCreator___pluginOptions___contentTypes
+  pluginCreator___pluginOptions___createLinkInHead
+  pluginCreator___pluginOptions___crossOrigin
+  pluginCreator___pluginOptions___defaultQuality
+  pluginCreator___pluginOptions___defer
+  pluginCreator___pluginOptions___description
   pluginCreator___pluginOptions___display
-  pluginCreator___pluginOptions___emitPluginDocuments____xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql
-  pluginCreator___pluginOptions___emitSchema____xsrcxxxgeneratedxxxgatsbyxintrospectionxjson
-  pluginCreator___pluginOptions___icon
+  pluginCreator___pluginOptions___displayName
+  pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
+  pluginCreator___pluginOptions___failOnError
+  pluginCreator___pluginOptions___fileName
+  pluginCreator___pluginOptions___icons
+  pluginCreator___pluginOptions___icons___sizes
+  pluginCreator___pluginOptions___icons___src
+  pluginCreator___pluginOptions___icons___type
+  pluginCreator___pluginOptions___include_favicon
+  pluginCreator___pluginOptions___lang
+  pluginCreator___pluginOptions___legacy
+  pluginCreator___pluginOptions___minify
   pluginCreator___pluginOptions___name
+  pluginCreator___pluginOptions___output
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
+  pluginCreator___pluginOptions___pure
   pluginCreator___pluginOptions___queryLimit
   pluginCreator___pluginOptions___short_name
   pluginCreator___pluginOptions___start_url
+  pluginCreator___pluginOptions___stripMetadata
   pluginCreator___pluginOptions___theme_color
+  pluginCreator___pluginOptions___theme_color_in_head
   pluginCreator___pluginOptions___trackHash
-  pluginCreator___pluginOptions___trackLinks
   pluginCreator___pluginOptions___trackingId
+  pluginCreator___pluginOptions___transpileTemplateLiterals
   pluginCreator___pluginOptions___webvisor
   pluginCreator___resolve
   pluginCreator___ssrAPIs
@@ -1859,25 +2038,46 @@ enum SitePluginFieldsEnum {
   parent___parent___parent___children
   parent___parent___parent___id
   pluginFilepath
-  pluginOptions___accurateTrackBounce
+  pluginOptions___afterBody
   pluginOptions___allowSyntheticDefaultImports
+  pluginOptions___apiURL
   pluginOptions___background_color
-  pluginOptions___clickmap
+  pluginOptions___base64Width
+  pluginOptions___cache_busting_mode
   pluginOptions___contentTypes
+  pluginOptions___createLinkInHead
+  pluginOptions___crossOrigin
+  pluginOptions___defaultQuality
+  pluginOptions___defer
+  pluginOptions___description
   pluginOptions___display
-  pluginOptions___emitPluginDocuments____xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql
-  pluginOptions___emitSchema____xsrcxxxgeneratedxxxgatsbyxintrospectionxjson
-  pluginOptions___icon
+  pluginOptions___displayName
+  pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginOptions___emitSchema___src___generated___gatsby_introspection_json
+  pluginOptions___failOnError
+  pluginOptions___fileName
+  pluginOptions___icons
+  pluginOptions___icons___sizes
+  pluginOptions___icons___src
+  pluginOptions___icons___type
+  pluginOptions___include_favicon
+  pluginOptions___lang
+  pluginOptions___legacy
+  pluginOptions___minify
   pluginOptions___name
+  pluginOptions___output
   pluginOptions___path
   pluginOptions___pathCheck
+  pluginOptions___pure
   pluginOptions___queryLimit
   pluginOptions___short_name
   pluginOptions___start_url
+  pluginOptions___stripMetadata
   pluginOptions___theme_color
+  pluginOptions___theme_color_in_head
   pluginOptions___trackHash
-  pluginOptions___trackLinks
   pluginOptions___trackingId
+  pluginOptions___transpileTemplateLiterals
   pluginOptions___webvisor
   resolve
   ssrAPIs
@@ -2024,150 +2224,17 @@ enum StrapiPostsFieldsEnum {
   children___parent___internal___type
   children___parent___parent___children
   children___parent___parent___id
+  content
+  content___createdAt
+  content___id
+  content___rich_text
+  content___updatedAt
   createdAt
   date
   description
   excerpt
+  featured
   id
-  image___absolutePath
-  image___accessTime
-  image___atime
-  image___atimeMs
-  image___base
-  image___birthTime
-  image___birthtime
-  image___birthtimeMs
-  image___blksize
-  image___blocks
-  image___changeTime
-  image___childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fixed___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___original___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___original___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___original___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resize___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resize___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resize___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___resolutions___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___childImageSharp___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  image___children
-  image___children___children
-  image___children___children___children
-  image___children___children___id
-  image___children___id
-  image___children___internal___content
-  image___children___internal___contentDigest
-  image___children___internal___description
-  image___children___internal___fieldOwners
-  image___children___internal___ignoreType
-  image___children___internal___mediaType
-  image___children___internal___owner
-  image___children___internal___type
-  image___children___parent___children
-  image___children___parent___id
-  image___ctime
-  image___ctimeMs
-  image___dev
-  image___dir
-  image___ext
-  image___extension
-  image___gid
-  image___id
-  image___ino
-  image___internal___content
-  image___internal___contentDigest
-  image___internal___description
-  image___internal___fieldOwners
-  image___internal___ignoreType
-  image___internal___mediaType
-  image___internal___owner
-  image___internal___type
-  image___mode
-  image___modifiedTime
-  image___mtime
-  image___mtimeMs
-  image___name
-  image___nlink
-  image___parent___children
-  image___parent___children___children
-  image___parent___children___id
-  image___parent___id
-  image___parent___internal___content
-  image___parent___internal___contentDigest
-  image___parent___internal___description
-  image___parent___internal___fieldOwners
-  image___parent___internal___ignoreType
-  image___parent___internal___mediaType
-  image___parent___internal___owner
-  image___parent___internal___type
-  image___parent___parent___children
-  image___parent___parent___id
-  image___prettySize
-  image___publicURL
-  image___rdev
-  image___relativeDirectory
-  image___relativePath
-  image___root
-  image___size
-  image___sourceInstanceName
-  image___uid
   image_url
   internal___content
   internal___contentDigest
@@ -2220,6 +2287,13 @@ enum StrapiPostsFieldsEnum {
   strapiId
   title
   updatedAt
+}
+
+input BlurredOptions {
+  "Force the output format for the low-res preview. Default is to use the same format as the input. You should rarely need to change this"
+  toFormat: ImageFormat
+  "Width of the generated low-res preview. Default is 20px"
+  width: Int
 }
 
 input BooleanQueryOperatorInput {
@@ -2353,6 +2427,7 @@ input ImageSharpFilterInput {
   children: NodeFilterListInput
   fixed: ImageSharpFixedFilterInput
   fluid: ImageSharpFluidFilterInput
+  gatsbyImageData: JSONQueryOperatorInput
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   original: ImageSharpOriginalFilterInput
@@ -2460,6 +2535,20 @@ input InternalFilterInput {
   type: StringQueryOperatorInput
 }
 
+input JPGOptions {
+  progressive: Boolean = true
+  quality: Int
+}
+
+input JSONQueryOperatorInput {
+  eq: JSON
+  glob: JSON
+  in: [JSON]
+  ne: JSON
+  nin: [JSON]
+  regex: JSON
+}
+
 input NodeFilterInput {
   children: NodeFilterListInput
   id: StringQueryOperatorInput
@@ -2469,6 +2558,11 @@ input NodeFilterInput {
 
 input NodeFilterListInput {
   elemMatch: NodeFilterInput
+}
+
+input PNGOptions {
+  compressionSpeed: Int = 4
+  quality: Int
 }
 
 input Potrace {
@@ -2519,34 +2613,15 @@ input SitePageContextPostFilterInput {
 }
 
 input SitePageContextPostNodeFilterInput {
+  category: StringQueryOperatorInput
   createdAt: DateQueryOperatorInput
-  description: StringQueryOperatorInput
   excerpt: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-  image: SitePageContextPostNodeImageFilterInput
   image_url: StringQueryOperatorInput
   published: BooleanQueryOperatorInput
   slug: StringQueryOperatorInput
   strapiId: StringQueryOperatorInput
   title: StringQueryOperatorInput
   updatedAt: DateQueryOperatorInput
-}
-
-input SitePageContextPostNodeImageChildImageSharpFilterInput {
-  fluid: SitePageContextPostNodeImageChildImageSharpFluidFilterInput
-}
-
-input SitePageContextPostNodeImageChildImageSharpFluidFilterInput {
-  originalImg: StringQueryOperatorInput
-  originalName: StringQueryOperatorInput
-  srcSet: StringQueryOperatorInput
-  srcSetWebp: StringQueryOperatorInput
-  srcWebp: StringQueryOperatorInput
-  tracedSVG: StringQueryOperatorInput
-}
-
-input SitePageContextPostNodeImageFilterInput {
-  childImageSharp: SitePageContextPostNodeImageChildImageSharpFilterInput
 }
 
 input SitePageFilterInput {
@@ -2627,34 +2702,62 @@ input SitePluginPackageJsonPeerDependenciesFilterListInput {
 }
 
 input SitePluginPluginOptionsEmitPluginDocumentsFilterInput {
-  _xsrcxxxgeneratedxxxgatsbyxpluginxdocumentsxgraphql: BooleanQueryOperatorInput
+  src___generated___gatsby_plugin_documents_graphql: BooleanQueryOperatorInput
 }
 
 input SitePluginPluginOptionsEmitSchemaFilterInput {
-  _xsrcxxxgeneratedxxxgatsbyxintrospectionxjson: BooleanQueryOperatorInput
+  src___generated___gatsby_introspection_json: BooleanQueryOperatorInput
 }
 
 input SitePluginPluginOptionsFilterInput {
-  accurateTrackBounce: BooleanQueryOperatorInput
+  afterBody: BooleanQueryOperatorInput
   allowSyntheticDefaultImports: BooleanQueryOperatorInput
+  apiURL: StringQueryOperatorInput
   background_color: StringQueryOperatorInput
-  clickmap: BooleanQueryOperatorInput
+  base64Width: IntQueryOperatorInput
+  cache_busting_mode: StringQueryOperatorInput
   contentTypes: StringQueryOperatorInput
+  createLinkInHead: BooleanQueryOperatorInput
+  crossOrigin: StringQueryOperatorInput
+  defaultQuality: IntQueryOperatorInput
+  defer: BooleanQueryOperatorInput
+  description: StringQueryOperatorInput
   display: StringQueryOperatorInput
+  displayName: BooleanQueryOperatorInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
-  icon: StringQueryOperatorInput
+  failOnError: BooleanQueryOperatorInput
+  fileName: BooleanQueryOperatorInput
+  icons: SitePluginPluginOptionsIconsFilterListInput
+  include_favicon: BooleanQueryOperatorInput
+  lang: StringQueryOperatorInput
+  legacy: BooleanQueryOperatorInput
+  minify: BooleanQueryOperatorInput
   name: StringQueryOperatorInput
+  output: StringQueryOperatorInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
+  pure: BooleanQueryOperatorInput
   queryLimit: IntQueryOperatorInput
   short_name: StringQueryOperatorInput
   start_url: StringQueryOperatorInput
+  stripMetadata: BooleanQueryOperatorInput
   theme_color: StringQueryOperatorInput
+  theme_color_in_head: BooleanQueryOperatorInput
   trackHash: BooleanQueryOperatorInput
-  trackLinks: BooleanQueryOperatorInput
-  trackingId: StringQueryOperatorInput
+  trackingId: IntQueryOperatorInput
+  transpileTemplateLiterals: BooleanQueryOperatorInput
   webvisor: BooleanQueryOperatorInput
+}
+
+input SitePluginPluginOptionsIconsFilterInput {
+  sizes: StringQueryOperatorInput
+  src: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsIconsFilterListInput {
+  elemMatch: SitePluginPluginOptionsIconsFilterInput
 }
 
 input SitePluginSortInput {
@@ -2662,11 +2765,33 @@ input SitePluginSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
+input SiteSiteMetadataAuthorFilterInput {
+  minibio: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+}
+
 input SiteSiteMetadataFilterInput {
-  author: StringQueryOperatorInput
+  author: SiteSiteMetadataAuthorFilterInput
+  canonicalUrl: StringQueryOperatorInput
   description: StringQueryOperatorInput
+  image: StringQueryOperatorInput
+  keywords: StringQueryOperatorInput
+  organization: SiteSiteMetadataOrganizationFilterInput
   siteUrl: StringQueryOperatorInput
+  social: SiteSiteMetadataSocialFilterInput
   title: StringQueryOperatorInput
+  version: StringQueryOperatorInput
+}
+
+input SiteSiteMetadataOrganizationFilterInput {
+  logo: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+}
+
+input SiteSiteMetadataSocialFilterInput {
+  fbAppID: StringQueryOperatorInput
+  twitter: StringQueryOperatorInput
 }
 
 input SiteSortInput {
@@ -2691,15 +2816,27 @@ input StrapiCategoriesSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
+input StrapiPostsContentFilterInput {
+  createdAt: DateQueryOperatorInput
+  id: StringQueryOperatorInput
+  rich_text: StringQueryOperatorInput
+  updatedAt: DateQueryOperatorInput
+}
+
+input StrapiPostsContentFilterListInput {
+  elemMatch: StrapiPostsContentFilterInput
+}
+
 input StrapiPostsFilterInput {
   category: StringQueryOperatorInput
   children: NodeFilterListInput
+  content: StrapiPostsContentFilterListInput
   createdAt: DateQueryOperatorInput
   date: DateQueryOperatorInput
   description: StringQueryOperatorInput
   excerpt: StringQueryOperatorInput
+  featured: BooleanQueryOperatorInput
   id: StringQueryOperatorInput
-  image: FileFilterInput
   image_url: StringQueryOperatorInput
   internal: InternalFilterInput
   parent: NodeFilterInput
@@ -2722,6 +2859,19 @@ input StringQueryOperatorInput {
   ne: String
   nin: [String]
   regex: String
+}
+
+input TransformOptions {
+  cropFocus: ImageCropFocus = ATTENTION
+  duotone: DuotoneGradient
+  fit: ImageFit = COVER
+  grayscale: Boolean = false
+  rotate: Int = 0
+  trim: Float = 0.0
+}
+
+input WebPOptions {
+  quality: Int
 }
 
 

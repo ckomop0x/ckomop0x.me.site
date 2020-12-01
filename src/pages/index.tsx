@@ -1,10 +1,12 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import { MainPageLayout } from '@components/containers';
-import { PostsList, Hero, FeaturedPost } from '@components/sections';
-import { TitleBlock, SubtitleBlock } from '@styles/Typography';
 import { IndexPageQuery } from './__generated__/IndexPageQuery';
+
+import MainPageLayout from 'components/layouts/MainPageLayout';
+import FeaturedPost from 'components/sections/FeaturedPost';
+import Hero from 'components/sections/Hero';
+import PostsList from 'components/sections/PostsList';
 
 export const query = graphql`
   query IndexPageQuery {

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { siteTitle } from '../../../../config/site';
+
 import { FooterWrapper } from './styles';
 
 const Footer: React.FC = () => (

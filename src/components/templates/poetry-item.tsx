@@ -1,9 +1,9 @@
-import { DetailItem as DetailItemComponent } from '@components/blocks';
 import { graphql } from 'gatsby';
 import React from 'react';
-import Helmet from 'react-helmet';
 
-import { ProjectsLayout } from '../containers';
+import ProjectsLayout from '../layouts/PoetryLayout';
+
+import { default as DetailItemComponent } from 'components/shared/DetailItem';
 
 export const query = graphql`
   query ProjectTemplateQuery($slug: String!) {
@@ -14,7 +14,9 @@ export const query = graphql`
       published
       image_url
       excerpt
-      description
+      content {
+        rich_text
+      }
       strapiId
       createdAt
     }
@@ -25,10 +27,12 @@ const DetailItem = (props: any) => {
   if (!props.data) {
     return null;
   }
-  const { data, errors } = props;
+  const { data } = props;
   const itemData = data && data.poetry;
 
   if (!itemData) return null;
+
+  console.log(itemData);
 
   const socialImage = `${itemData?.image_url}?tr=w-1080,h-280,fo-top`;
   return (
@@ -42,7 +46,7 @@ const DetailItem = (props: any) => {
       <DetailItemComponent
         title={itemData.title}
         date={itemData.createdAt}
-        description={itemData.description}
+        description={itemData.content[0].rich_text}
         image={itemData.image_url}
       />
     </ProjectsLayout>

@@ -1,16 +1,18 @@
-import React from 'react';
-import moment from 'moment';
 import parse from 'html-react-parser';
-import {
-  IndexPageQuery_featured_edges_node,
-  IndexPageQuery_categories_edges,
-} from 'pages/__generated__/IndexPageQuery';
+import moment from 'moment';
+import React from 'react';
+
 import {
   ContentWrapper,
   FeaturedPostWrapper,
   LinkStyled,
   ItemImage,
 } from './styles';
+
+import {
+  IndexPageQuery_featured_edges_node,
+  IndexPageQuery_categories_edges,
+} from 'pages/__generated__/IndexPageQuery';
 
 interface IFeaturedPost {
   post: IndexPageQuery_featured_edges_node;
@@ -29,7 +31,7 @@ const FeaturedPost: React.FC<IFeaturedPost> = ({ post, categories }) => {
   } = post;
   const formattedDate = moment(createdAt).format('DD.MM.YYYY');
   const categoryData = categories.filter(
-    (categoryItem) => categoryItem.node.slug === category
+    categoryItem => categoryItem.node.slug === category,
   )[0].node;
   const excerptText = excerpt
     ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)

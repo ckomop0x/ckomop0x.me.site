@@ -42,7 +42,6 @@ module.exports = {
       resolve: 'gatsby-plugin-codegen',
       options: {},
     },
-    'gatsby-plugin-scss-typescript',
     {
       resolve: 'gatsby-plugin-typegen',
       options: {
@@ -57,7 +56,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {
-        displayName: process.env.NODE_ENV === 'development' ? true : false,
+        displayName: process.env.NODE_ENV === 'development',
       },
     },
     `gatsby-plugin-react-helmet`,

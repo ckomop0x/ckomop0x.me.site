@@ -3276,7 +3276,10 @@ type ProjectTemplateQueryQueryVariables = Exact<{
 }>;
 
 
-type ProjectTemplateQueryQuery = { readonly poetry: Maybe<Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'published' | 'image_url' | 'excerpt' | 'description' | 'strapiId' | 'createdAt'>> };
+type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
+    Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'published' | 'image_url' | 'excerpt' | 'strapiId' | 'createdAt'>
+    & { readonly content: Maybe<ReadonlyArray<Maybe<Pick<StrapiPostsContent, 'rich_text'>>>> }
+  )> };
 
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SectionTitleStyled } from './styles';
 
 export interface ISectionTitleProps {
@@ -6,8 +7,8 @@ export interface ISectionTitleProps {
   className?: string;
 }
 
-const SectionTitle: React.FC<ISectionTitleProps> = ({ title, className }) => {
-  return <SectionTitleStyled className={className}>{title}</SectionTitleStyled>;
-};
+const SectionTitle: React.FC<ISectionTitleProps> = ({ title, className }) => (
+  <SectionTitleStyled className={className}>{title}</SectionTitleStyled>
+);
 
 export default SectionTitle;

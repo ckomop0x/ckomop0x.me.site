@@ -1,27 +1,25 @@
 import React from 'react';
 
-import Nav from '@components/blocks/Nav';
-
 import { MainSection, Title, SubTitle } from './styles';
+
+import Nav from 'components/shared/Nav';
 
 export interface IMainSectionProps {
   title: string;
   subtitle: string;
 }
 
-const Hero: React.FC<IMainSectionProps> = ({ title, subtitle }) => {
-  return (
-    <MainSection>
-      <Nav />
-      <div className="container main-section__text">
-        <Title>{title}</Title>
-        <SubTitle>{subtitle}</SubTitle>
-        {/* <Link className={styles.startButton} to="/poetry">
+const Hero: React.FC<IMainSectionProps> = ({ title, subtitle }) => (
+  <MainSection>
+    <Nav />
+    <div className="container main-section__text">
+      <Title>{title}</Title>
+      <SubTitle>{subtitle}</SubTitle>
+      {/* <Link className={styles.startButton} to="/poetry">
           Читать стихи →
         </Link> */}{' '}
-      </div>
-    </MainSection>
-  );
-};
+    </div>
+  </MainSection>
+);
 
 export default Hero;

@@ -1,16 +1,11 @@
-import React from 'react';
-import parse from 'html-react-parser';
-import { format, parse as parseDate } from 'date-fns';
+import { format } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
+import parse from 'html-react-parser';
+import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import {
-  Content,
-  StyledTitleBlock,
-  PoetryItemWrapper,
-  PoetryItemImage,
-} from './styles';
+import { Content, PoetryItemWrapper, PoetryItemImage } from './styles';
 
 export interface IProjectProps {
   title: string;
@@ -19,13 +14,15 @@ export interface IProjectProps {
   date: Date;
 }
 
-const PoetryItem: React.FC<IProjectProps> = (props) => {
-  const { date, title, description, image } = props;
+const PoetryItem: React.FC<IProjectProps> = ({
+  date,
+  title,
+  description,
+  image,
+}) => {
   const dateString = format(new Date(date), 'd MMMM yyyy', {
     locale: ruLocale,
   });
-
-  console.log(description)
 
   return (
     <PoetryItemWrapper>
@@ -36,8 +33,8 @@ const PoetryItem: React.FC<IProjectProps> = (props) => {
             <Content>
               <h1>{title}</h1>
               <div className="poetry-item__date">{dateString}</div>
-              {/* {parse(`<p>${description.split('\n').join('</br>')}</p>`)} */}
-              {/*{parse(description)}*/}
+              {/* {parse(`<p>${description.split('\n').join('</br>')}</p>`)}*/}
+              {parse(description)}
             </Content>
           </div>
         </div>

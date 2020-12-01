@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Nav from '@components/blocks/Nav';
-import Footer from '@components/blocks/Footer';
-import Header from '@components/blocks/Head';
-
 import { PoetryLayoutStyled } from './styles';
-import { GlobalStyle } from '@styles/GlobalStyle';
+
+import Footer from 'components/shared/Footer';
+import Header from 'components/shared/Head';
+import Nav from 'components/shared/Nav';
+import { GlobalStyle } from 'styles/GlobalStyle';
 
 export interface IProjectsLayoutProps {
   articleAuthor?: string;
@@ -37,28 +37,26 @@ const PoetryLayout: React.FC<IProjectsLayoutProps> = ({
   ogLocale,
   ogType,
   twitterCard,
-}) => {
-  return (
-    <>
-      <GlobalStyle />
-      <PoetryLayoutStyled>
-        <Header
-          headTitle={headTitle}
-          ogUrl={ogUrl}
-          ogImage={ogImage}
-          ogImageHeight={ogImageHeight}
-          ogImageWidth={ogImageWidth}
-          ogDescription={ogDescription}
-          ogLocale={ogLocale}
-          ogType={ogType}
-          twitterCard={twitterCard}
-        />
-        <Nav inner={true} />
-        <main>{children}</main>
-        <Footer />
-      </PoetryLayoutStyled>
-    </>
-  );
-};
+}) => (
+  <>
+    <GlobalStyle />
+    <PoetryLayoutStyled>
+      <Header
+        headTitle={headTitle}
+        ogUrl={ogUrl}
+        ogImage={ogImage}
+        ogImageHeight={ogImageHeight}
+        ogImageWidth={ogImageWidth}
+        ogDescription={ogDescription}
+        ogLocale={ogLocale}
+        ogType={ogType}
+        twitterCard={twitterCard}
+      />
+      <Nav inner={true} />
+      <main>{children}</main>
+      <Footer />
+    </PoetryLayoutStyled>
+  </>
+);
 
 export default PoetryLayout;

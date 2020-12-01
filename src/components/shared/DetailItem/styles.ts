@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { themePalette } from '@styles/colors';
-import { TitleBlock } from '@styles/Typography';
+
+import { TitleBlock } from 'styles/Typography';
+import { themePalette } from 'styles/colors';
 
 export const Title = styled.div`
   padding: 50px 0 50px;

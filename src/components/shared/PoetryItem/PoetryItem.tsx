@@ -1,7 +1,7 @@
-import React from 'react';
-import parse from 'html-react-parser';
 import { format, parse as parseDate } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
+import parse from 'html-react-parser';
+import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
@@ -13,9 +13,7 @@ export interface IProjectProps {
   poetryItem: any;
 }
 
-const PoetryItem: React.FC<any> = (props) => {
-  console.log(props);
-  const { poetryItem, poetryDate } = props;
+const PoetryItem: React.FC<any> = ({ poetryItem, poetryDate }) => {
   const { image_url } = poetryItem;
   const parsedDate = parseDate(poetryDate, 'mm/dd/yyyy', new Date());
   const dateString = format(parsedDate, 'd MMMM yyyy', {
@@ -31,7 +29,7 @@ const PoetryItem: React.FC<any> = (props) => {
         <div className="container">
           <div className="row">
             <div>
-              <StyledTitleBlock className="col-12"></StyledTitleBlock>
+              <StyledTitleBlock className="col-12" />
             </div>
           </div>
         </div>
@@ -43,7 +41,7 @@ const PoetryItem: React.FC<any> = (props) => {
               <h2>{poetryItem.title}</h2>
               <div className="poetry-item__date">{dateString}</div>
               {parse(
-                `<p>${poetryItem.description.split('\n').join('</br>')}</p>`
+                `<p>${poetryItem.description.split('\n').join('</br>')}</p>`,
               )}
             </Content>
           </div>

@@ -1,12 +1,13 @@
-import React from 'react';
-import parse from 'html-react-parser';
 import { format, parse as parseDate } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
+import parse from 'html-react-parser';
+import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import { ItemWrapper, StyledLink } from './styles';
-import { getSrcSet } from '@utils/image';
+
+import { getSrcSet } from 'utils/image';
 
 const Post = ({
   date,
