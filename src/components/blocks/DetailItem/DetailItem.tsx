@@ -25,6 +25,8 @@ const PoetryItem: React.FC<IProjectProps> = (props) => {
     locale: ruLocale,
   });
 
+  console.log(description)
+
   return (
     <PoetryItemWrapper>
       <PoetryItemImage className="poetry-item__image lazyload" image={image} />
@@ -35,7 +37,7 @@ const PoetryItem: React.FC<IProjectProps> = (props) => {
               <h1>{title}</h1>
               <div className="poetry-item__date">{dateString}</div>
               {/* {parse(`<p>${description.split('\n').join('</br>')}</p>`)} */}
-              {parse(description)}
+              {/*{parse(description)}*/}
             </Content>
           </div>
         </div>

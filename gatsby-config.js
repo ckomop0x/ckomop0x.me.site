@@ -5,12 +5,12 @@ require('dotenv').config({
 });
 const path = require('path');
 const config = require('./config/site');
+const sitePackage = require('./package.json');
 
 module.exports = {
   siteMetadata: {
     title: config.siteTitle,
     description: config.description,
-    author: config.author,
     siteUrl: config.siteUrl,
     keywords: ['стихи', 'песни', 'путешествия', 'заметки', 'фотографии'],
     canonicalUrl: config.siteUrl,
@@ -28,6 +28,7 @@ module.exports = {
       twitter: config.twitterHandle,
       fbAppID: '',
     },
+    version: sitePackage.version
   },
   plugins: [
     {
@@ -83,16 +84,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-sass`,
-    //   options: {
-    //     // Override the file regex for SASS
-    //     sassRuleTest: /\.global\.s(a|c)ss$/,
-    //     // Override the file regex for CSS modules
-    //     sassRuleModulesTest: /\.mod\.s(a|c)ss$/,
-    //   },
-    // },
-    // 'gatsby-plugin-postcss',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
