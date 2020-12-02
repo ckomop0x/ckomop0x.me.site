@@ -2,6 +2,9 @@
 
 declare namespace GatsbyTypes {
 type Maybe<T> = T | undefined;
+type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 type Scalars = {
   ID: string;
@@ -10,13 +13,6 @@ type Scalars = {
   Int: number;
   Float: number;
   Date: string;
-  STRAPI_DateTime: any;
-  STRAPI_JSON: any;
-  STRAPI_PostContentDynamicZoneInput: any;
-  STRAPI_Upload: any;
-  STRAPI_Time: any;
-  STRAPI_Date: any;
-  STRAPI_Long: any;
   JSON: never;
 };
 
@@ -29,6 +25,16 @@ type Scalars = {
 
 
 
+
+type BlurredOptions = {
+  /** Width of the generated low-res preview. Default is 20px */
+  readonly width: Maybe<Scalars['Int']>;
+  /**
+   * Force the output format for the low-res preview. Default is to use the same
+   * format as the input. You should rarely need to change this
+   */
+  readonly toFormat: Maybe<ImageFormat>;
+};
 
 type BooleanQueryOperatorInput = {
   readonly eq: Maybe<Scalars['Boolean']>;
@@ -563,6 +569,7 @@ enum FileFieldsEnum {
   childImageSharp___sizes___originalName = 'childImageSharp.sizes.originalName',
   childImageSharp___sizes___presentationWidth = 'childImageSharp.sizes.presentationWidth',
   childImageSharp___sizes___presentationHeight = 'childImageSharp.sizes.presentationHeight',
+  childImageSharp___gatsbyImageData = 'childImageSharp.gatsbyImageData',
   childImageSharp___original___width = 'childImageSharp.original.width',
   childImageSharp___original___height = 'childImageSharp.original.height',
   childImageSharp___original___src = 'childImageSharp.original.src',
@@ -765,158 +772,8 @@ type FloatQueryOperatorInput = {
   readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Float']>>>;
 };
 
-type GraphQLSource = Node & {
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-  readonly typeName: Maybe<Scalars['String']>;
-  readonly fieldName: Maybe<Scalars['String']>;
-};
-
-type GraphQLSourceConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<GraphQLSourceEdge>;
-  readonly nodes: ReadonlyArray<GraphQLSource>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly group: ReadonlyArray<GraphQLSourceGroupConnection>;
-};
-
-
-type GraphQLSourceConnection_distinctArgs = {
-  field: GraphQLSourceFieldsEnum;
-};
-
-
-type GraphQLSourceConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: GraphQLSourceFieldsEnum;
-};
-
-type GraphQLSourceEdge = {
-  readonly next: Maybe<GraphQLSource>;
-  readonly node: GraphQLSource;
-  readonly previous: Maybe<GraphQLSource>;
-};
-
-enum GraphQLSourceFieldsEnum {
-  id = 'id',
-  parent___id = 'parent.id',
-  parent___parent___id = 'parent.parent.id',
-  parent___parent___parent___id = 'parent.parent.parent.id',
-  parent___parent___parent___children = 'parent.parent.parent.children',
-  parent___parent___children = 'parent.parent.children',
-  parent___parent___children___id = 'parent.parent.children.id',
-  parent___parent___children___children = 'parent.parent.children.children',
-  parent___parent___internal___content = 'parent.parent.internal.content',
-  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
-  parent___parent___internal___description = 'parent.parent.internal.description',
-  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
-  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
-  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
-  parent___parent___internal___owner = 'parent.parent.internal.owner',
-  parent___parent___internal___type = 'parent.parent.internal.type',
-  parent___children = 'parent.children',
-  parent___children___id = 'parent.children.id',
-  parent___children___parent___id = 'parent.children.parent.id',
-  parent___children___parent___children = 'parent.children.parent.children',
-  parent___children___children = 'parent.children.children',
-  parent___children___children___id = 'parent.children.children.id',
-  parent___children___children___children = 'parent.children.children.children',
-  parent___children___internal___content = 'parent.children.internal.content',
-  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
-  parent___children___internal___description = 'parent.children.internal.description',
-  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
-  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
-  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
-  parent___children___internal___owner = 'parent.children.internal.owner',
-  parent___children___internal___type = 'parent.children.internal.type',
-  parent___internal___content = 'parent.internal.content',
-  parent___internal___contentDigest = 'parent.internal.contentDigest',
-  parent___internal___description = 'parent.internal.description',
-  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
-  parent___internal___ignoreType = 'parent.internal.ignoreType',
-  parent___internal___mediaType = 'parent.internal.mediaType',
-  parent___internal___owner = 'parent.internal.owner',
-  parent___internal___type = 'parent.internal.type',
-  children = 'children',
-  children___id = 'children.id',
-  children___parent___id = 'children.parent.id',
-  children___parent___parent___id = 'children.parent.parent.id',
-  children___parent___parent___children = 'children.parent.parent.children',
-  children___parent___children = 'children.parent.children',
-  children___parent___children___id = 'children.parent.children.id',
-  children___parent___children___children = 'children.parent.children.children',
-  children___parent___internal___content = 'children.parent.internal.content',
-  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
-  children___parent___internal___description = 'children.parent.internal.description',
-  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
-  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
-  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
-  children___parent___internal___owner = 'children.parent.internal.owner',
-  children___parent___internal___type = 'children.parent.internal.type',
-  children___children = 'children.children',
-  children___children___id = 'children.children.id',
-  children___children___parent___id = 'children.children.parent.id',
-  children___children___parent___children = 'children.children.parent.children',
-  children___children___children = 'children.children.children',
-  children___children___children___id = 'children.children.children.id',
-  children___children___children___children = 'children.children.children.children',
-  children___children___internal___content = 'children.children.internal.content',
-  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
-  children___children___internal___description = 'children.children.internal.description',
-  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
-  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
-  children___children___internal___mediaType = 'children.children.internal.mediaType',
-  children___children___internal___owner = 'children.children.internal.owner',
-  children___children___internal___type = 'children.children.internal.type',
-  children___internal___content = 'children.internal.content',
-  children___internal___contentDigest = 'children.internal.contentDigest',
-  children___internal___description = 'children.internal.description',
-  children___internal___fieldOwners = 'children.internal.fieldOwners',
-  children___internal___ignoreType = 'children.internal.ignoreType',
-  children___internal___mediaType = 'children.internal.mediaType',
-  children___internal___owner = 'children.internal.owner',
-  children___internal___type = 'children.internal.type',
-  internal___content = 'internal.content',
-  internal___contentDigest = 'internal.contentDigest',
-  internal___description = 'internal.description',
-  internal___fieldOwners = 'internal.fieldOwners',
-  internal___ignoreType = 'internal.ignoreType',
-  internal___mediaType = 'internal.mediaType',
-  internal___owner = 'internal.owner',
-  internal___type = 'internal.type',
-  typeName = 'typeName',
-  fieldName = 'fieldName'
-}
-
-type GraphQLSourceFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-  readonly typeName: Maybe<StringQueryOperatorInput>;
-  readonly fieldName: Maybe<StringQueryOperatorInput>;
-};
-
-type GraphQLSourceGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<GraphQLSourceEdge>;
-  readonly nodes: ReadonlyArray<GraphQLSource>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type GraphQLSourceSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<GraphQLSourceFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
 enum ImageCropFocus {
-  CENTER = 'CENTER',
+  CENTER = 0,
   NORTH = 1,
   NORTHEAST = 5,
   EAST = 2,
@@ -938,10 +795,24 @@ enum ImageFit {
 }
 
 enum ImageFormat {
-  NO_CHANGE = 'NO_CHANGE',
+  NO_CHANGE = '',
+  AUTO = '',
   JPG = 'jpg',
   PNG = 'png',
   WEBP = 'webp'
+}
+
+enum ImageLayout {
+  FIXED = 'fixed',
+  FLUID = 'fluid',
+  CONSTRAINED = 'constrained'
+}
+
+enum ImagePlaceholder {
+  DOMINANT_COLOR = 'dominantColor',
+  TRACED_SVG = 'tracedSVG',
+  BLURRED = 'blurred',
+  NONE = 'none'
 }
 
 type ImageSharp = Node & {
@@ -951,6 +822,7 @@ type ImageSharp = Node & {
   readonly fluid: Maybe<ImageSharpFluid>;
   /** @deprecated Sizes was deprecated in Gatsby v2. It's been renamed to "fluid" https://example.com/write-docs-and-fix-this-example-link */
   readonly sizes: Maybe<ImageSharpSizes>;
+  readonly gatsbyImageData: Scalars['JSON'];
   readonly original: Maybe<ImageSharpOriginal>;
   readonly resize: Maybe<ImageSharpResize>;
   readonly id: Scalars['ID'];
@@ -1056,6 +928,27 @@ type ImageSharp_sizesArgs = {
 };
 
 
+type ImageSharp_gatsbyImageDataArgs = {
+  layout?: Maybe<ImageLayout>;
+  maxWidth: Maybe<Scalars['Int']>;
+  maxHeight: Maybe<Scalars['Int']>;
+  width: Maybe<Scalars['Int']>;
+  height: Maybe<Scalars['Int']>;
+  placeholder?: Maybe<ImagePlaceholder>;
+  blurredOptions: Maybe<BlurredOptions>;
+  tracedSVGOptions: Maybe<Potrace>;
+  formats?: Maybe<ReadonlyArray<Maybe<ImageFormat>>>;
+  outputPixelDensities: Maybe<ReadonlyArray<Maybe<Scalars['Float']>>>;
+  sizes?: Maybe<Scalars['String']>;
+  quality: Maybe<Scalars['Int']>;
+  jpgOptions: Maybe<JPGOptions>;
+  pngOptions: Maybe<PNGOptions>;
+  webpOptions: Maybe<WebPOptions>;
+  transformOptions: Maybe<TransformOptions>;
+  background?: Maybe<Scalars['String']>;
+};
+
+
 type ImageSharp_resizeArgs = {
   width: Maybe<Scalars['Int']>;
   height: Maybe<Scalars['Int']>;
@@ -1150,6 +1043,7 @@ enum ImageSharpFieldsEnum {
   sizes___originalName = 'sizes.originalName',
   sizes___presentationWidth = 'sizes.presentationWidth',
   sizes___presentationHeight = 'sizes.presentationHeight',
+  gatsbyImageData = 'gatsbyImageData',
   original___width = 'original.width',
   original___height = 'original.height',
   original___src = 'original.src',
@@ -1252,6 +1146,7 @@ type ImageSharpFilterInput = {
   readonly resolutions: Maybe<ImageSharpResolutionsFilterInput>;
   readonly fluid: Maybe<ImageSharpFluidFilterInput>;
   readonly sizes: Maybe<ImageSharpSizesFilterInput>;
+  readonly gatsbyImageData: Maybe<JSONQueryOperatorInput>;
   readonly original: Maybe<ImageSharpOriginalFilterInput>;
   readonly resize: Maybe<ImageSharpResizeFilterInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
@@ -1449,6 +1344,20 @@ type IntQueryOperatorInput = {
   readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['Int']>>>;
 };
 
+type JPGOptions = {
+  readonly quality: Maybe<Scalars['Int']>;
+  readonly progressive: Maybe<Scalars['Boolean']>;
+};
+
+
+type JSONQueryOperatorInput = {
+  readonly eq: Maybe<Scalars['JSON']>;
+  readonly ne: Maybe<Scalars['JSON']>;
+  readonly in: Maybe<ReadonlyArray<Maybe<Scalars['JSON']>>>;
+  readonly nin: Maybe<ReadonlyArray<Maybe<Scalars['JSON']>>>;
+  readonly regex: Maybe<Scalars['JSON']>;
+  readonly glob: Maybe<Scalars['JSON']>;
+};
 
 /** Node Interface */
 type Node = {
@@ -1479,6 +1388,11 @@ type PageInfo = {
   readonly totalCount: Scalars['Int'];
 };
 
+type PNGOptions = {
+  readonly quality: Maybe<Scalars['Int']>;
+  readonly compressionSpeed: Maybe<Scalars['Int']>;
+};
+
 type Potrace = {
   readonly turnPolicy: Maybe<PotraceTurnPolicy>;
   readonly turdSize: Maybe<Scalars['Float']>;
@@ -1505,23 +1419,20 @@ type Query = {
   readonly allFile: FileConnection;
   readonly directory: Maybe<Directory>;
   readonly allDirectory: DirectoryConnection;
-  readonly sitePage: Maybe<SitePage>;
-  readonly allSitePage: SitePageConnection;
   readonly site: Maybe<Site>;
   readonly allSite: SiteConnection;
+  readonly sitePage: Maybe<SitePage>;
+  readonly allSitePage: SitePageConnection;
   readonly imageSharp: Maybe<ImageSharp>;
   readonly allImageSharp: ImageSharpConnection;
   readonly strapiCategories: Maybe<StrapiCategories>;
   readonly allStrapiCategories: StrapiCategoriesConnection;
   readonly strapiPosts: Maybe<StrapiPosts>;
   readonly allStrapiPosts: StrapiPostsConnection;
-  readonly graphQlSource: Maybe<GraphQLSource>;
-  readonly allGraphQlSource: GraphQLSourceConnection;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
   readonly sitePlugin: Maybe<SitePlugin>;
   readonly allSitePlugin: SitePluginConnection;
-  readonly STRAPI: STRAPI;
 };
 
 
@@ -1625,37 +1536,13 @@ type Query_allDirectoryArgs = {
 };
 
 
-type Query_sitePageArgs = {
-  path: Maybe<StringQueryOperatorInput>;
-  component: Maybe<StringQueryOperatorInput>;
-  internalComponentName: Maybe<StringQueryOperatorInput>;
-  componentChunkName: Maybe<StringQueryOperatorInput>;
-  matchPath: Maybe<StringQueryOperatorInput>;
-  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
-  context: Maybe<SitePageContextFilterInput>;
-  pluginCreator: Maybe<SitePluginFilterInput>;
-  pluginCreatorId: Maybe<StringQueryOperatorInput>;
-  componentPath: Maybe<StringQueryOperatorInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-};
-
-
-type Query_allSitePageArgs = {
-  filter: Maybe<SitePageFilterInput>;
-  sort: Maybe<SitePageSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
 type Query_siteArgs = {
   buildTime: Maybe<DateQueryOperatorInput>;
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-  port: Maybe<DateQueryOperatorInput>;
+  port: Maybe<IntQueryOperatorInput>;
   host: Maybe<StringQueryOperatorInput>;
+  polyfill: Maybe<BooleanQueryOperatorInput>;
+  pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -1671,11 +1558,38 @@ type Query_allSiteArgs = {
 };
 
 
+type Query_sitePageArgs = {
+  path: Maybe<StringQueryOperatorInput>;
+  component: Maybe<StringQueryOperatorInput>;
+  internalComponentName: Maybe<StringQueryOperatorInput>;
+  componentChunkName: Maybe<StringQueryOperatorInput>;
+  matchPath: Maybe<StringQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  context: Maybe<SitePageContextFilterInput>;
+  pluginCreator: Maybe<SitePluginFilterInput>;
+  pluginCreatorId: Maybe<StringQueryOperatorInput>;
+  componentPath: Maybe<StringQueryOperatorInput>;
+};
+
+
+type Query_allSitePageArgs = {
+  filter: Maybe<SitePageFilterInput>;
+  sort: Maybe<SitePageSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
 type Query_imageSharpArgs = {
   fixed: Maybe<ImageSharpFixedFilterInput>;
   resolutions: Maybe<ImageSharpResolutionsFilterInput>;
   fluid: Maybe<ImageSharpFluidFilterInput>;
   sizes: Maybe<ImageSharpSizesFilterInput>;
+  gatsbyImageData: Maybe<JSONQueryOperatorInput>;
   original: Maybe<ImageSharpOriginalFilterInput>;
   resize: Maybe<ImageSharpResizeFilterInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -1731,7 +1645,6 @@ type Query_strapiPostsArgs = {
   slug: Maybe<StringQueryOperatorInput>;
   image_url: Maybe<StringQueryOperatorInput>;
   content: Maybe<StrapiPostsContentFilterListInput>;
-  updated_by: Maybe<StrapiPostsUpdated_byFilterInput>;
   strapiId: Maybe<StringQueryOperatorInput>;
 };
 
@@ -1739,24 +1652,6 @@ type Query_strapiPostsArgs = {
 type Query_allStrapiPostsArgs = {
   filter: Maybe<StrapiPostsFilterInput>;
   sort: Maybe<StrapiPostsSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
-type Query_graphQlSourceArgs = {
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-  typeName: Maybe<StringQueryOperatorInput>;
-  fieldName: Maybe<StringQueryOperatorInput>;
-};
-
-
-type Query_allGraphQlSourceArgs = {
-  filter: Maybe<GraphQLSourceFilterInput>;
-  sort: Maybe<GraphQLSourceSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -1806,8 +1701,10 @@ type Query_allSitePluginArgs = {
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
-  readonly port: Maybe<Scalars['Date']>;
+  readonly port: Maybe<Scalars['Int']>;
   readonly host: Maybe<Scalars['String']>;
+  readonly polyfill: Maybe<Scalars['Boolean']>;
+  readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
@@ -1816,14 +1713,6 @@ type Site = Node & {
 
 
 type Site_buildTimeArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type Site_portArgs = {
   formatString: Maybe<Scalars['String']>;
   fromNow: Maybe<Scalars['Boolean']>;
   difference: Maybe<Scalars['String']>;
@@ -2015,19 +1904,23 @@ type SiteEdge = {
 enum SiteFieldsEnum {
   buildTime = 'buildTime',
   siteMetadata___title = 'siteMetadata.title',
-  siteMetadata___author___name = 'siteMetadata.author.name',
-  siteMetadata___author___minibio = 'siteMetadata.author.minibio',
+  siteMetadata___description = 'siteMetadata.description',
   siteMetadata___siteUrl = 'siteMetadata.siteUrl',
   siteMetadata___keywords = 'siteMetadata.keywords',
   siteMetadata___canonicalUrl = 'siteMetadata.canonicalUrl',
   siteMetadata___image = 'siteMetadata.image',
+  siteMetadata___author___name = 'siteMetadata.author.name',
+  siteMetadata___author___minibio = 'siteMetadata.author.minibio',
   siteMetadata___organization___name = 'siteMetadata.organization.name',
   siteMetadata___organization___url = 'siteMetadata.organization.url',
   siteMetadata___organization___logo = 'siteMetadata.organization.logo',
   siteMetadata___social___twitter = 'siteMetadata.social.twitter',
   siteMetadata___social___fbAppID = 'siteMetadata.social.fbAppID',
+  siteMetadata___version = 'siteMetadata.version',
   port = 'port',
   host = 'host',
+  polyfill = 'polyfill',
+  pathPrefix = 'pathPrefix',
   id = 'id',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
@@ -2119,8 +2012,10 @@ enum SiteFieldsEnum {
 type SiteFilterInput = {
   readonly buildTime: Maybe<DateQueryOperatorInput>;
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-  readonly port: Maybe<DateQueryOperatorInput>;
+  readonly port: Maybe<IntQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
+  readonly polyfill: Maybe<BooleanQueryOperatorInput>;
+  readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -2142,15 +2037,15 @@ type SitePage = Node & {
   readonly internalComponentName: Scalars['String'];
   readonly componentChunkName: Scalars['String'];
   readonly matchPath: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   readonly context: Maybe<SitePageContext>;
   readonly pluginCreator: Maybe<SitePlugin>;
   readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly componentPath: Maybe<Scalars['String']>;
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
 };
 
 type SitePageConnection = {
@@ -2194,7 +2089,6 @@ type SitePageContextPostFilterInput = {
 
 type SitePageContextPostNode = {
   readonly category: Maybe<Scalars['String']>;
-  readonly content: Maybe<ReadonlyArray<Maybe<SitePageContextPostNodeContent>>>;
   readonly image_url: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly published: Maybe<Scalars['Boolean']>;
@@ -2205,37 +2099,8 @@ type SitePageContextPostNode = {
   readonly title: Maybe<Scalars['String']>;
 };
 
-
-type SitePageContextPostNode_createdAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type SitePageContextPostNode_updatedAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type SitePageContextPostNodeContent = {
-  readonly rich_text: Maybe<Scalars['String']>;
-};
-
-type SitePageContextPostNodeContentFilterInput = {
-  readonly rich_text: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextPostNodeContentFilterListInput = {
-  readonly elemMatch: Maybe<SitePageContextPostNodeContentFilterInput>;
-};
-
 type SitePageContextPostNodeFilterInput = {
   readonly category: Maybe<StringQueryOperatorInput>;
-  readonly content: Maybe<SitePageContextPostNodeContentFilterListInput>;
   readonly image_url: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly published: Maybe<BooleanQueryOperatorInput>;
@@ -2258,113 +2123,6 @@ enum SitePageFieldsEnum {
   internalComponentName = 'internalComponentName',
   componentChunkName = 'componentChunkName',
   matchPath = 'matchPath',
-  isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
-  context___slug = 'context.slug',
-  context___post___node___category = 'context.post.node.category',
-  context___post___node___content = 'context.post.node.content',
-  context___post___node___image_url = 'context.post.node.image_url',
-  context___post___node___slug = 'context.post.node.slug',
-  context___post___node___published = 'context.post.node.published',
-  context___post___node___strapiId = 'context.post.node.strapiId',
-  context___post___node___excerpt = 'context.post.node.excerpt',
-  context___post___node___createdAt = 'context.post.node.createdAt',
-  context___post___node___updatedAt = 'context.post.node.updatedAt',
-  context___post___node___title = 'context.post.node.title',
-  pluginCreator___id = 'pluginCreator.id',
-  pluginCreator___parent___id = 'pluginCreator.parent.id',
-  pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
-  pluginCreator___parent___parent___children = 'pluginCreator.parent.parent.children',
-  pluginCreator___parent___children = 'pluginCreator.parent.children',
-  pluginCreator___parent___children___id = 'pluginCreator.parent.children.id',
-  pluginCreator___parent___children___children = 'pluginCreator.parent.children.children',
-  pluginCreator___parent___internal___content = 'pluginCreator.parent.internal.content',
-  pluginCreator___parent___internal___contentDigest = 'pluginCreator.parent.internal.contentDigest',
-  pluginCreator___parent___internal___description = 'pluginCreator.parent.internal.description',
-  pluginCreator___parent___internal___fieldOwners = 'pluginCreator.parent.internal.fieldOwners',
-  pluginCreator___parent___internal___ignoreType = 'pluginCreator.parent.internal.ignoreType',
-  pluginCreator___parent___internal___mediaType = 'pluginCreator.parent.internal.mediaType',
-  pluginCreator___parent___internal___owner = 'pluginCreator.parent.internal.owner',
-  pluginCreator___parent___internal___type = 'pluginCreator.parent.internal.type',
-  pluginCreator___children = 'pluginCreator.children',
-  pluginCreator___children___id = 'pluginCreator.children.id',
-  pluginCreator___children___parent___id = 'pluginCreator.children.parent.id',
-  pluginCreator___children___parent___children = 'pluginCreator.children.parent.children',
-  pluginCreator___children___children = 'pluginCreator.children.children',
-  pluginCreator___children___children___id = 'pluginCreator.children.children.id',
-  pluginCreator___children___children___children = 'pluginCreator.children.children.children',
-  pluginCreator___children___internal___content = 'pluginCreator.children.internal.content',
-  pluginCreator___children___internal___contentDigest = 'pluginCreator.children.internal.contentDigest',
-  pluginCreator___children___internal___description = 'pluginCreator.children.internal.description',
-  pluginCreator___children___internal___fieldOwners = 'pluginCreator.children.internal.fieldOwners',
-  pluginCreator___children___internal___ignoreType = 'pluginCreator.children.internal.ignoreType',
-  pluginCreator___children___internal___mediaType = 'pluginCreator.children.internal.mediaType',
-  pluginCreator___children___internal___owner = 'pluginCreator.children.internal.owner',
-  pluginCreator___children___internal___type = 'pluginCreator.children.internal.type',
-  pluginCreator___internal___content = 'pluginCreator.internal.content',
-  pluginCreator___internal___contentDigest = 'pluginCreator.internal.contentDigest',
-  pluginCreator___internal___description = 'pluginCreator.internal.description',
-  pluginCreator___internal___fieldOwners = 'pluginCreator.internal.fieldOwners',
-  pluginCreator___internal___ignoreType = 'pluginCreator.internal.ignoreType',
-  pluginCreator___internal___mediaType = 'pluginCreator.internal.mediaType',
-  pluginCreator___internal___owner = 'pluginCreator.internal.owner',
-  pluginCreator___internal___type = 'pluginCreator.internal.type',
-  pluginCreator___resolve = 'pluginCreator.resolve',
-  pluginCreator___name = 'pluginCreator.name',
-  pluginCreator___version = 'pluginCreator.version',
-  pluginCreator___pluginOptions___allowSyntheticDefaultImports = 'pluginCreator.pluginOptions.allowSyntheticDefaultImports',
-  pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
-  pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
-  pluginCreator___pluginOptions___displayName = 'pluginCreator.pluginOptions.displayName',
-  pluginCreator___pluginOptions___typeName = 'pluginCreator.pluginOptions.typeName',
-  pluginCreator___pluginOptions___fieldName = 'pluginCreator.pluginOptions.fieldName',
-  pluginCreator___pluginOptions___url = 'pluginCreator.pluginOptions.url',
-  pluginCreator___pluginOptions___apiURL = 'pluginCreator.pluginOptions.apiURL',
-  pluginCreator___pluginOptions___queryLimit = 'pluginCreator.pluginOptions.queryLimit',
-  pluginCreator___pluginOptions___contentTypes = 'pluginCreator.pluginOptions.contentTypes',
-  pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
-  pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
-  pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
-  pluginCreator___pluginOptions___description = 'pluginCreator.pluginOptions.description',
-  pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
-  pluginCreator___pluginOptions___lang = 'pluginCreator.pluginOptions.lang',
-  pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
-  pluginCreator___pluginOptions___theme_color = 'pluginCreator.pluginOptions.theme_color',
-  pluginCreator___pluginOptions___display = 'pluginCreator.pluginOptions.display',
-  pluginCreator___pluginOptions___icons = 'pluginCreator.pluginOptions.icons',
-  pluginCreator___pluginOptions___icons___src = 'pluginCreator.pluginOptions.icons.src',
-  pluginCreator___pluginOptions___icons___sizes = 'pluginCreator.pluginOptions.icons.sizes',
-  pluginCreator___pluginOptions___icons___type = 'pluginCreator.pluginOptions.icons.type',
-  pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator.pluginOptions.cache_busting_mode',
-  pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
-  pluginCreator___pluginOptions___legacy = 'pluginCreator.pluginOptions.legacy',
-  pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator.pluginOptions.theme_color_in_head',
-  pluginCreator___pluginOptions___trackingId = 'pluginCreator.pluginOptions.trackingId',
-  pluginCreator___pluginOptions___webvisor = 'pluginCreator.pluginOptions.webvisor',
-  pluginCreator___pluginOptions___trackHash = 'pluginCreator.pluginOptions.trackHash',
-  pluginCreator___pluginOptions___afterBody = 'pluginCreator.pluginOptions.afterBody',
-  pluginCreator___pluginOptions___defer = 'pluginCreator.pluginOptions.defer',
-  pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
-  pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
-  pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
-  pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
-  pluginCreator___pluginFilepath = 'pluginCreator.pluginFilepath',
-  pluginCreator___packageJson___name = 'pluginCreator.packageJson.name',
-  pluginCreator___packageJson___description = 'pluginCreator.packageJson.description',
-  pluginCreator___packageJson___version = 'pluginCreator.packageJson.version',
-  pluginCreator___packageJson___main = 'pluginCreator.packageJson.main',
-  pluginCreator___packageJson___license = 'pluginCreator.packageJson.license',
-  pluginCreator___packageJson___dependencies = 'pluginCreator.packageJson.dependencies',
-  pluginCreator___packageJson___dependencies___name = 'pluginCreator.packageJson.dependencies.name',
-  pluginCreator___packageJson___dependencies___version = 'pluginCreator.packageJson.dependencies.version',
-  pluginCreator___packageJson___devDependencies = 'pluginCreator.packageJson.devDependencies',
-  pluginCreator___packageJson___devDependencies___name = 'pluginCreator.packageJson.devDependencies.name',
-  pluginCreator___packageJson___devDependencies___version = 'pluginCreator.packageJson.devDependencies.version',
-  pluginCreator___packageJson___peerDependencies = 'pluginCreator.packageJson.peerDependencies',
-  pluginCreator___packageJson___peerDependencies___name = 'pluginCreator.packageJson.peerDependencies.name',
-  pluginCreator___packageJson___peerDependencies___version = 'pluginCreator.packageJson.peerDependencies.version',
-  pluginCreator___packageJson___keywords = 'pluginCreator.packageJson.keywords',
-  pluginCreatorId = 'pluginCreatorId',
-  componentPath = 'componentPath',
   id = 'id',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
@@ -2450,7 +2208,121 @@ enum SitePageFieldsEnum {
   internal___ignoreType = 'internal.ignoreType',
   internal___mediaType = 'internal.mediaType',
   internal___owner = 'internal.owner',
-  internal___type = 'internal.type'
+  internal___type = 'internal.type',
+  isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___slug = 'context.slug',
+  context___post___node___category = 'context.post.node.category',
+  context___post___node___image_url = 'context.post.node.image_url',
+  context___post___node___slug = 'context.post.node.slug',
+  context___post___node___published = 'context.post.node.published',
+  context___post___node___strapiId = 'context.post.node.strapiId',
+  context___post___node___excerpt = 'context.post.node.excerpt',
+  context___post___node___createdAt = 'context.post.node.createdAt',
+  context___post___node___updatedAt = 'context.post.node.updatedAt',
+  context___post___node___title = 'context.post.node.title',
+  pluginCreator___id = 'pluginCreator.id',
+  pluginCreator___parent___id = 'pluginCreator.parent.id',
+  pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
+  pluginCreator___parent___parent___children = 'pluginCreator.parent.parent.children',
+  pluginCreator___parent___children = 'pluginCreator.parent.children',
+  pluginCreator___parent___children___id = 'pluginCreator.parent.children.id',
+  pluginCreator___parent___children___children = 'pluginCreator.parent.children.children',
+  pluginCreator___parent___internal___content = 'pluginCreator.parent.internal.content',
+  pluginCreator___parent___internal___contentDigest = 'pluginCreator.parent.internal.contentDigest',
+  pluginCreator___parent___internal___description = 'pluginCreator.parent.internal.description',
+  pluginCreator___parent___internal___fieldOwners = 'pluginCreator.parent.internal.fieldOwners',
+  pluginCreator___parent___internal___ignoreType = 'pluginCreator.parent.internal.ignoreType',
+  pluginCreator___parent___internal___mediaType = 'pluginCreator.parent.internal.mediaType',
+  pluginCreator___parent___internal___owner = 'pluginCreator.parent.internal.owner',
+  pluginCreator___parent___internal___type = 'pluginCreator.parent.internal.type',
+  pluginCreator___children = 'pluginCreator.children',
+  pluginCreator___children___id = 'pluginCreator.children.id',
+  pluginCreator___children___parent___id = 'pluginCreator.children.parent.id',
+  pluginCreator___children___parent___children = 'pluginCreator.children.parent.children',
+  pluginCreator___children___children = 'pluginCreator.children.children',
+  pluginCreator___children___children___id = 'pluginCreator.children.children.id',
+  pluginCreator___children___children___children = 'pluginCreator.children.children.children',
+  pluginCreator___children___internal___content = 'pluginCreator.children.internal.content',
+  pluginCreator___children___internal___contentDigest = 'pluginCreator.children.internal.contentDigest',
+  pluginCreator___children___internal___description = 'pluginCreator.children.internal.description',
+  pluginCreator___children___internal___fieldOwners = 'pluginCreator.children.internal.fieldOwners',
+  pluginCreator___children___internal___ignoreType = 'pluginCreator.children.internal.ignoreType',
+  pluginCreator___children___internal___mediaType = 'pluginCreator.children.internal.mediaType',
+  pluginCreator___children___internal___owner = 'pluginCreator.children.internal.owner',
+  pluginCreator___children___internal___type = 'pluginCreator.children.internal.type',
+  pluginCreator___internal___content = 'pluginCreator.internal.content',
+  pluginCreator___internal___contentDigest = 'pluginCreator.internal.contentDigest',
+  pluginCreator___internal___description = 'pluginCreator.internal.description',
+  pluginCreator___internal___fieldOwners = 'pluginCreator.internal.fieldOwners',
+  pluginCreator___internal___ignoreType = 'pluginCreator.internal.ignoreType',
+  pluginCreator___internal___mediaType = 'pluginCreator.internal.mediaType',
+  pluginCreator___internal___owner = 'pluginCreator.internal.owner',
+  pluginCreator___internal___type = 'pluginCreator.internal.type',
+  pluginCreator___resolve = 'pluginCreator.resolve',
+  pluginCreator___name = 'pluginCreator.name',
+  pluginCreator___version = 'pluginCreator.version',
+  pluginCreator___pluginOptions___allowSyntheticDefaultImports = 'pluginCreator.pluginOptions.allowSyntheticDefaultImports',
+  pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
+  pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginCreator___pluginOptions___displayName = 'pluginCreator.pluginOptions.displayName',
+  pluginCreator___pluginOptions___fileName = 'pluginCreator.pluginOptions.fileName',
+  pluginCreator___pluginOptions___minify = 'pluginCreator.pluginOptions.minify',
+  pluginCreator___pluginOptions___transpileTemplateLiterals = 'pluginCreator.pluginOptions.transpileTemplateLiterals',
+  pluginCreator___pluginOptions___pure = 'pluginCreator.pluginOptions.pure',
+  pluginCreator___pluginOptions___output = 'pluginCreator.pluginOptions.output',
+  pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
+  pluginCreator___pluginOptions___apiURL = 'pluginCreator.pluginOptions.apiURL',
+  pluginCreator___pluginOptions___queryLimit = 'pluginCreator.pluginOptions.queryLimit',
+  pluginCreator___pluginOptions___contentTypes = 'pluginCreator.pluginOptions.contentTypes',
+  pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
+  pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
+  pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
+  pluginCreator___pluginOptions___description = 'pluginCreator.pluginOptions.description',
+  pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
+  pluginCreator___pluginOptions___lang = 'pluginCreator.pluginOptions.lang',
+  pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
+  pluginCreator___pluginOptions___theme_color = 'pluginCreator.pluginOptions.theme_color',
+  pluginCreator___pluginOptions___display = 'pluginCreator.pluginOptions.display',
+  pluginCreator___pluginOptions___icons = 'pluginCreator.pluginOptions.icons',
+  pluginCreator___pluginOptions___icons___src = 'pluginCreator.pluginOptions.icons.src',
+  pluginCreator___pluginOptions___icons___sizes = 'pluginCreator.pluginOptions.icons.sizes',
+  pluginCreator___pluginOptions___icons___type = 'pluginCreator.pluginOptions.icons.type',
+  pluginCreator___pluginOptions___legacy = 'pluginCreator.pluginOptions.legacy',
+  pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator.pluginOptions.theme_color_in_head',
+  pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator.pluginOptions.cache_busting_mode',
+  pluginCreator___pluginOptions___crossOrigin = 'pluginCreator.pluginOptions.crossOrigin',
+  pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
+  pluginCreator___pluginOptions___base64Width = 'pluginCreator.pluginOptions.base64Width',
+  pluginCreator___pluginOptions___stripMetadata = 'pluginCreator.pluginOptions.stripMetadata',
+  pluginCreator___pluginOptions___defaultQuality = 'pluginCreator.pluginOptions.defaultQuality',
+  pluginCreator___pluginOptions___failOnError = 'pluginCreator.pluginOptions.failOnError',
+  pluginCreator___pluginOptions___trackingId = 'pluginCreator.pluginOptions.trackingId',
+  pluginCreator___pluginOptions___webvisor = 'pluginCreator.pluginOptions.webvisor',
+  pluginCreator___pluginOptions___trackHash = 'pluginCreator.pluginOptions.trackHash',
+  pluginCreator___pluginOptions___afterBody = 'pluginCreator.pluginOptions.afterBody',
+  pluginCreator___pluginOptions___defer = 'pluginCreator.pluginOptions.defer',
+  pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
+  pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
+  pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
+  pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
+  pluginCreator___pluginFilepath = 'pluginCreator.pluginFilepath',
+  pluginCreator___packageJson___name = 'pluginCreator.packageJson.name',
+  pluginCreator___packageJson___description = 'pluginCreator.packageJson.description',
+  pluginCreator___packageJson___version = 'pluginCreator.packageJson.version',
+  pluginCreator___packageJson___main = 'pluginCreator.packageJson.main',
+  pluginCreator___packageJson___license = 'pluginCreator.packageJson.license',
+  pluginCreator___packageJson___dependencies = 'pluginCreator.packageJson.dependencies',
+  pluginCreator___packageJson___dependencies___name = 'pluginCreator.packageJson.dependencies.name',
+  pluginCreator___packageJson___dependencies___version = 'pluginCreator.packageJson.dependencies.version',
+  pluginCreator___packageJson___devDependencies = 'pluginCreator.packageJson.devDependencies',
+  pluginCreator___packageJson___devDependencies___name = 'pluginCreator.packageJson.devDependencies.name',
+  pluginCreator___packageJson___devDependencies___version = 'pluginCreator.packageJson.devDependencies.version',
+  pluginCreator___packageJson___peerDependencies = 'pluginCreator.packageJson.peerDependencies',
+  pluginCreator___packageJson___peerDependencies___name = 'pluginCreator.packageJson.peerDependencies.name',
+  pluginCreator___packageJson___peerDependencies___version = 'pluginCreator.packageJson.peerDependencies.version',
+  pluginCreator___packageJson___keywords = 'pluginCreator.packageJson.keywords',
+  pluginCreatorId = 'pluginCreatorId',
+  componentPath = 'componentPath'
 }
 
 type SitePageFilterInput = {
@@ -2459,15 +2331,15 @@ type SitePageFilterInput = {
   readonly internalComponentName: Maybe<StringQueryOperatorInput>;
   readonly componentChunkName: Maybe<StringQueryOperatorInput>;
   readonly matchPath: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly componentPath: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
 };
 
 type SitePageGroupConnection = {
@@ -2621,9 +2493,12 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
   pluginOptions___displayName = 'pluginOptions.displayName',
-  pluginOptions___typeName = 'pluginOptions.typeName',
-  pluginOptions___fieldName = 'pluginOptions.fieldName',
-  pluginOptions___url = 'pluginOptions.url',
+  pluginOptions___fileName = 'pluginOptions.fileName',
+  pluginOptions___minify = 'pluginOptions.minify',
+  pluginOptions___transpileTemplateLiterals = 'pluginOptions.transpileTemplateLiterals',
+  pluginOptions___pure = 'pluginOptions.pure',
+  pluginOptions___output = 'pluginOptions.output',
+  pluginOptions___createLinkInHead = 'pluginOptions.createLinkInHead',
   pluginOptions___apiURL = 'pluginOptions.apiURL',
   pluginOptions___queryLimit = 'pluginOptions.queryLimit',
   pluginOptions___contentTypes = 'pluginOptions.contentTypes',
@@ -2640,10 +2515,15 @@ enum SitePluginFieldsEnum {
   pluginOptions___icons___src = 'pluginOptions.icons.src',
   pluginOptions___icons___sizes = 'pluginOptions.icons.sizes',
   pluginOptions___icons___type = 'pluginOptions.icons.type',
-  pluginOptions___cache_busting_mode = 'pluginOptions.cache_busting_mode',
-  pluginOptions___include_favicon = 'pluginOptions.include_favicon',
   pluginOptions___legacy = 'pluginOptions.legacy',
   pluginOptions___theme_color_in_head = 'pluginOptions.theme_color_in_head',
+  pluginOptions___cache_busting_mode = 'pluginOptions.cache_busting_mode',
+  pluginOptions___crossOrigin = 'pluginOptions.crossOrigin',
+  pluginOptions___include_favicon = 'pluginOptions.include_favicon',
+  pluginOptions___base64Width = 'pluginOptions.base64Width',
+  pluginOptions___stripMetadata = 'pluginOptions.stripMetadata',
+  pluginOptions___defaultQuality = 'pluginOptions.defaultQuality',
+  pluginOptions___failOnError = 'pluginOptions.failOnError',
   pluginOptions___trackingId = 'pluginOptions.trackingId',
   pluginOptions___webvisor = 'pluginOptions.webvisor',
   pluginOptions___trackHash = 'pluginOptions.trackHash',
@@ -2767,9 +2647,12 @@ type SitePluginPluginOptions = {
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
   readonly displayName: Maybe<Scalars['Boolean']>;
-  readonly typeName: Maybe<Scalars['String']>;
-  readonly fieldName: Maybe<Scalars['String']>;
-  readonly url: Maybe<Scalars['String']>;
+  readonly fileName: Maybe<Scalars['Boolean']>;
+  readonly minify: Maybe<Scalars['Boolean']>;
+  readonly transpileTemplateLiterals: Maybe<Scalars['Boolean']>;
+  readonly pure: Maybe<Scalars['Boolean']>;
+  readonly output: Maybe<Scalars['String']>;
+  readonly createLinkInHead: Maybe<Scalars['Boolean']>;
   readonly apiURL: Maybe<Scalars['String']>;
   readonly queryLimit: Maybe<Scalars['Int']>;
   readonly contentTypes: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
@@ -2783,10 +2666,15 @@ type SitePluginPluginOptions = {
   readonly theme_color: Maybe<Scalars['String']>;
   readonly display: Maybe<Scalars['String']>;
   readonly icons: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsIcons>>>;
-  readonly cache_busting_mode: Maybe<Scalars['String']>;
-  readonly include_favicon: Maybe<Scalars['Boolean']>;
   readonly legacy: Maybe<Scalars['Boolean']>;
   readonly theme_color_in_head: Maybe<Scalars['Boolean']>;
+  readonly cache_busting_mode: Maybe<Scalars['String']>;
+  readonly crossOrigin: Maybe<Scalars['String']>;
+  readonly include_favicon: Maybe<Scalars['Boolean']>;
+  readonly base64Width: Maybe<Scalars['Int']>;
+  readonly stripMetadata: Maybe<Scalars['Boolean']>;
+  readonly defaultQuality: Maybe<Scalars['Int']>;
+  readonly failOnError: Maybe<Scalars['Boolean']>;
   readonly trackingId: Maybe<Scalars['Int']>;
   readonly webvisor: Maybe<Scalars['Boolean']>;
   readonly trackHash: Maybe<Scalars['Boolean']>;
@@ -2816,9 +2704,12 @@ type SitePluginPluginOptionsFilterInput = {
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>;
   readonly displayName: Maybe<BooleanQueryOperatorInput>;
-  readonly typeName: Maybe<StringQueryOperatorInput>;
-  readonly fieldName: Maybe<StringQueryOperatorInput>;
-  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly fileName: Maybe<BooleanQueryOperatorInput>;
+  readonly minify: Maybe<BooleanQueryOperatorInput>;
+  readonly transpileTemplateLiterals: Maybe<BooleanQueryOperatorInput>;
+  readonly pure: Maybe<BooleanQueryOperatorInput>;
+  readonly output: Maybe<StringQueryOperatorInput>;
+  readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
   readonly apiURL: Maybe<StringQueryOperatorInput>;
   readonly queryLimit: Maybe<IntQueryOperatorInput>;
   readonly contentTypes: Maybe<StringQueryOperatorInput>;
@@ -2832,10 +2723,15 @@ type SitePluginPluginOptionsFilterInput = {
   readonly theme_color: Maybe<StringQueryOperatorInput>;
   readonly display: Maybe<StringQueryOperatorInput>;
   readonly icons: Maybe<SitePluginPluginOptionsIconsFilterListInput>;
-  readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
-  readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
   readonly legacy: Maybe<BooleanQueryOperatorInput>;
   readonly theme_color_in_head: Maybe<BooleanQueryOperatorInput>;
+  readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
+  readonly crossOrigin: Maybe<StringQueryOperatorInput>;
+  readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
+  readonly base64Width: Maybe<IntQueryOperatorInput>;
+  readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
+  readonly defaultQuality: Maybe<IntQueryOperatorInput>;
+  readonly failOnError: Maybe<BooleanQueryOperatorInput>;
   readonly trackingId: Maybe<IntQueryOperatorInput>;
   readonly webvisor: Maybe<BooleanQueryOperatorInput>;
   readonly trackHash: Maybe<BooleanQueryOperatorInput>;
@@ -2867,13 +2763,15 @@ type SitePluginSortInput = {
 
 type SiteSiteMetadata = {
   readonly title: Maybe<Scalars['String']>;
-  readonly author: Maybe<SiteSiteMetadataAuthor>;
+  readonly description: Maybe<Scalars['String']>;
   readonly siteUrl: Maybe<Scalars['String']>;
   readonly keywords: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly canonicalUrl: Maybe<Scalars['String']>;
   readonly image: Maybe<Scalars['String']>;
+  readonly author: Maybe<SiteSiteMetadataAuthor>;
   readonly organization: Maybe<SiteSiteMetadataOrganization>;
   readonly social: Maybe<SiteSiteMetadataSocial>;
+  readonly version: Maybe<Scalars['String']>;
 };
 
 type SiteSiteMetadataAuthor = {
@@ -2888,13 +2786,15 @@ type SiteSiteMetadataAuthorFilterInput = {
 
 type SiteSiteMetadataFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly author: Maybe<SiteSiteMetadataAuthorFilterInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
   readonly siteUrl: Maybe<StringQueryOperatorInput>;
   readonly keywords: Maybe<StringQueryOperatorInput>;
   readonly canonicalUrl: Maybe<StringQueryOperatorInput>;
   readonly image: Maybe<StringQueryOperatorInput>;
+  readonly author: Maybe<SiteSiteMetadataAuthorFilterInput>;
   readonly organization: Maybe<SiteSiteMetadataOrganizationFilterInput>;
   readonly social: Maybe<SiteSiteMetadataSocialFilterInput>;
+  readonly version: Maybe<StringQueryOperatorInput>;
 };
 
 type SiteSiteMetadataOrganization = {
@@ -2928,1053 +2828,6 @@ enum SortOrderEnum {
   ASC = 'ASC',
   DESC = 'DESC'
 }
-
-type STRAPI = {
-  readonly category: Maybe<STRAPI_Category>;
-  readonly categories: Maybe<ReadonlyArray<Maybe<STRAPI_Category>>>;
-  readonly categoriesConnection: Maybe<STRAPI_CategoryConnection>;
-  readonly post: Maybe<STRAPI_Post>;
-  readonly posts: Maybe<ReadonlyArray<Maybe<STRAPI_Post>>>;
-  readonly postsConnection: Maybe<STRAPI_PostConnection>;
-  readonly files: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFile>>>;
-  readonly filesConnection: Maybe<STRAPI_UploadFileConnection>;
-  readonly role: Maybe<STRAPI_UsersPermissionsRole>;
-  /** Retrieve all the existing roles. You can't apply filters on this query. */
-  readonly roles: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRole>>>;
-  readonly rolesConnection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-  readonly user: Maybe<STRAPI_UsersPermissionsUser>;
-  readonly users: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUser>>>;
-  readonly usersConnection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-  readonly me: Maybe<STRAPI_UsersPermissionsMe>;
-};
-
-
-type STRAPI_categoryArgs = {
-  id: Scalars['ID'];
-};
-
-
-type STRAPI_categoriesArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_categoriesConnectionArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_postArgs = {
-  id: Scalars['ID'];
-};
-
-
-type STRAPI_postsArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_postsConnectionArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_filesArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_filesConnectionArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_roleArgs = {
-  id: Scalars['ID'];
-};
-
-
-type STRAPI_rolesArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_rolesConnectionArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_userArgs = {
-  id: Scalars['ID'];
-};
-
-
-type STRAPI_usersArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_usersConnectionArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-type STRAPI_AdminUser = {
-  readonly id: Scalars['ID'];
-  readonly username: Maybe<Scalars['String']>;
-};
-
-enum STRAPI_CacheControlScope {
-  PUBLIC = 'PUBLIC',
-  PRIVATE = 'PRIVATE'
-}
-
-type STRAPI_Category = {
-  readonly id: Scalars['ID'];
-  readonly _id: Scalars['ID'];
-  readonly createdAt: Scalars['STRAPI_DateTime'];
-  readonly updatedAt: Scalars['STRAPI_DateTime'];
-  readonly name: Maybe<Scalars['String']>;
-  readonly slug: Scalars['String'];
-  readonly created_by: Maybe<STRAPI_AdminUser>;
-  readonly updated_by: Maybe<STRAPI_AdminUser>;
-};
-
-type STRAPI_CategoryAggregator = {
-  readonly count: Maybe<Scalars['Int']>;
-  readonly totalCount: Maybe<Scalars['Int']>;
-};
-
-type STRAPI_CategoryConnection = {
-  readonly values: Maybe<ReadonlyArray<Maybe<STRAPI_Category>>>;
-  readonly groupBy: Maybe<STRAPI_CategoryGroupBy>;
-  readonly aggregate: Maybe<STRAPI_CategoryAggregator>;
-};
-
-type STRAPI_CategoryConnection_id = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_CategoryConnection>;
-};
-
-type STRAPI_CategoryConnectionCreated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_CategoryConnection>;
-};
-
-type STRAPI_CategoryConnectionCreatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_CategoryConnection>;
-};
-
-type STRAPI_CategoryConnectionId = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_CategoryConnection>;
-};
-
-type STRAPI_CategoryConnectionName = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_CategoryConnection>;
-};
-
-type STRAPI_CategoryConnectionSlug = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_CategoryConnection>;
-};
-
-type STRAPI_CategoryConnectionUpdated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_CategoryConnection>;
-};
-
-type STRAPI_CategoryConnectionUpdatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_CategoryConnection>;
-};
-
-type STRAPI_CategoryGroupBy = {
-  readonly id: Maybe<ReadonlyArray<Maybe<STRAPI_CategoryConnectionId>>>;
-  readonly _id: Maybe<ReadonlyArray<Maybe<STRAPI_CategoryConnection_id>>>;
-  readonly createdAt: Maybe<ReadonlyArray<Maybe<STRAPI_CategoryConnectionCreatedAt>>>;
-  readonly updatedAt: Maybe<ReadonlyArray<Maybe<STRAPI_CategoryConnectionUpdatedAt>>>;
-  readonly name: Maybe<ReadonlyArray<Maybe<STRAPI_CategoryConnectionName>>>;
-  readonly slug: Maybe<ReadonlyArray<Maybe<STRAPI_CategoryConnectionSlug>>>;
-  readonly created_by: Maybe<ReadonlyArray<Maybe<STRAPI_CategoryConnectionCreated_by>>>;
-  readonly updated_by: Maybe<ReadonlyArray<Maybe<STRAPI_CategoryConnectionUpdated_by>>>;
-};
-
-type STRAPI_CategoryInput = {
-  readonly name: Maybe<Scalars['String']>;
-  readonly slug: Scalars['String'];
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-type STRAPI_ComponentPostRichText = {
-  readonly id: Scalars['ID'];
-  readonly _id: Scalars['ID'];
-  readonly createdAt: Scalars['STRAPI_DateTime'];
-  readonly updatedAt: Scalars['STRAPI_DateTime'];
-  readonly rich_text: Maybe<Scalars['String']>;
-};
-
-type STRAPI_ComponentPostRichTextInput = {
-  readonly rich_text: Maybe<Scalars['String']>;
-};
-
-type STRAPI_createCategoryInput = {
-  readonly data: Maybe<STRAPI_CategoryInput>;
-};
-
-type STRAPI_createCategoryPayload = {
-  readonly category: Maybe<STRAPI_Category>;
-};
-
-type STRAPI_createPostInput = {
-  readonly data: Maybe<STRAPI_PostInput>;
-};
-
-type STRAPI_createPostPayload = {
-  readonly post: Maybe<STRAPI_Post>;
-};
-
-type STRAPI_createRoleInput = {
-  readonly data: Maybe<STRAPI_RoleInput>;
-};
-
-type STRAPI_createRolePayload = {
-  readonly role: Maybe<STRAPI_UsersPermissionsRole>;
-};
-
-type STRAPI_createUserInput = {
-  readonly data: Maybe<STRAPI_UserInput>;
-};
-
-type STRAPI_createUserPayload = {
-  readonly user: Maybe<STRAPI_UsersPermissionsUser>;
-};
-
-
-
-type STRAPI_deleteCategoryInput = {
-  readonly where: Maybe<STRAPI_InputID>;
-};
-
-type STRAPI_deleteCategoryPayload = {
-  readonly category: Maybe<STRAPI_Category>;
-};
-
-type STRAPI_deletePostInput = {
-  readonly where: Maybe<STRAPI_InputID>;
-};
-
-type STRAPI_deletePostPayload = {
-  readonly post: Maybe<STRAPI_Post>;
-};
-
-type STRAPI_deleteRoleInput = {
-  readonly where: Maybe<STRAPI_InputID>;
-};
-
-type STRAPI_deleteRolePayload = {
-  readonly role: Maybe<STRAPI_UsersPermissionsRole>;
-};
-
-type STRAPI_deleteUserInput = {
-  readonly where: Maybe<STRAPI_InputID>;
-};
-
-type STRAPI_deleteUserPayload = {
-  readonly user: Maybe<STRAPI_UsersPermissionsUser>;
-};
-
-type STRAPI_editCategoryInput = {
-  readonly name: Maybe<Scalars['String']>;
-  readonly slug: Maybe<Scalars['String']>;
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-type STRAPI_editComponentPostRichTextInput = {
-  readonly id: Maybe<Scalars['ID']>;
-  readonly rich_text: Maybe<Scalars['String']>;
-};
-
-type STRAPI_editFileInput = {
-  readonly name: Maybe<Scalars['String']>;
-  readonly alternativeText: Maybe<Scalars['String']>;
-  readonly caption: Maybe<Scalars['String']>;
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-  readonly formats: Maybe<Scalars['STRAPI_JSON']>;
-  readonly hash: Maybe<Scalars['String']>;
-  readonly ext: Maybe<Scalars['String']>;
-  readonly mime: Maybe<Scalars['String']>;
-  readonly size: Maybe<Scalars['Float']>;
-  readonly url: Maybe<Scalars['String']>;
-  readonly previewUrl: Maybe<Scalars['String']>;
-  readonly provider: Maybe<Scalars['String']>;
-  readonly provider_metadata: Maybe<Scalars['STRAPI_JSON']>;
-  readonly related: Maybe<ReadonlyArray<Maybe<Scalars['ID']>>>;
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-type STRAPI_editPostInput = {
-  readonly title: Maybe<Scalars['String']>;
-  readonly date: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly excerpt: Maybe<Scalars['String']>;
-  readonly image: Maybe<Scalars['ID']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly published: Maybe<Scalars['Boolean']>;
-  readonly image_url: Maybe<Scalars['String']>;
-  readonly category: Maybe<STRAPI_ENUM_POST_CATEGORY>;
-  readonly slug: Maybe<Scalars['String']>;
-  readonly featured: Maybe<Scalars['Boolean']>;
-  readonly content: Maybe<ReadonlyArray<Scalars['STRAPI_PostContentDynamicZoneInput']>>;
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-type STRAPI_editRoleInput = {
-  readonly name: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly type: Maybe<Scalars['String']>;
-  readonly permissions: Maybe<ReadonlyArray<Maybe<Scalars['ID']>>>;
-  readonly users: Maybe<ReadonlyArray<Maybe<Scalars['ID']>>>;
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-type STRAPI_editUserInput = {
-  readonly username: Maybe<Scalars['String']>;
-  readonly email: Maybe<Scalars['String']>;
-  readonly provider: Maybe<Scalars['String']>;
-  readonly password: Maybe<Scalars['String']>;
-  readonly resetPasswordToken: Maybe<Scalars['String']>;
-  readonly confirmed: Maybe<Scalars['Boolean']>;
-  readonly blocked: Maybe<Scalars['Boolean']>;
-  readonly role: Maybe<Scalars['ID']>;
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-enum STRAPI_ENUM_POST_CATEGORY {
-  poetry = 'poetry',
-  blog = 'blog',
-  unsorted = 'unsorted'
-}
-
-type STRAPI_FileInput = {
-  readonly name: Scalars['String'];
-  readonly alternativeText: Maybe<Scalars['String']>;
-  readonly caption: Maybe<Scalars['String']>;
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-  readonly formats: Maybe<Scalars['STRAPI_JSON']>;
-  readonly hash: Scalars['String'];
-  readonly ext: Maybe<Scalars['String']>;
-  readonly mime: Scalars['String'];
-  readonly size: Scalars['Float'];
-  readonly url: Scalars['String'];
-  readonly previewUrl: Maybe<Scalars['String']>;
-  readonly provider: Scalars['String'];
-  readonly provider_metadata: Maybe<Scalars['STRAPI_JSON']>;
-  readonly related: Maybe<ReadonlyArray<Maybe<Scalars['ID']>>>;
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-type STRAPI_InputID = {
-  readonly id: Scalars['ID'];
-};
-
-
-
-type STRAPI_Morph = STRAPI_UsersPermissionsMe | STRAPI_UsersPermissionsMeRole | STRAPI_UsersPermissionsLoginPayload | STRAPI_UserPermissionsPasswordPayload | STRAPI_Category | STRAPI_CategoryConnection | STRAPI_CategoryAggregator | STRAPI_CategoryGroupBy | STRAPI_CategoryConnectionId | STRAPI_CategoryConnection_id | STRAPI_CategoryConnectionCreatedAt | STRAPI_CategoryConnectionUpdatedAt | STRAPI_CategoryConnectionName | STRAPI_CategoryConnectionSlug | STRAPI_CategoryConnectionCreated_by | STRAPI_CategoryConnectionUpdated_by | STRAPI_createCategoryPayload | STRAPI_updateCategoryPayload | STRAPI_deleteCategoryPayload | STRAPI_Post | STRAPI_PostConnection | STRAPI_PostAggregator | STRAPI_PostGroupBy | STRAPI_PostConnectionId | STRAPI_PostConnection_id | STRAPI_PostConnectionCreatedAt | STRAPI_PostConnectionUpdatedAt | STRAPI_PostConnectionTitle | STRAPI_PostConnectionDate | STRAPI_PostConnectionExcerpt | STRAPI_PostConnectionImage | STRAPI_PostConnectionDescription | STRAPI_PostConnectionPublished | STRAPI_PostConnectionImage_url | STRAPI_PostConnectionCategory | STRAPI_PostConnectionSlug | STRAPI_PostConnectionFeatured | STRAPI_PostConnectionCreated_by | STRAPI_PostConnectionUpdated_by | STRAPI_createPostPayload | STRAPI_updatePostPayload | STRAPI_deletePostPayload | STRAPI_UploadFile | STRAPI_UploadFileConnection | STRAPI_UploadFileAggregator | STRAPI_UploadFileAggregatorSum | STRAPI_UploadFileAggregatorAvg | STRAPI_UploadFileAggregatorMin | STRAPI_UploadFileAggregatorMax | STRAPI_UploadFileGroupBy | STRAPI_UploadFileConnectionId | STRAPI_UploadFileConnection_id | STRAPI_UploadFileConnectionCreatedAt | STRAPI_UploadFileConnectionUpdatedAt | STRAPI_UploadFileConnectionName | STRAPI_UploadFileConnectionAlternativeText | STRAPI_UploadFileConnectionCaption | STRAPI_UploadFileConnectionWidth | STRAPI_UploadFileConnectionHeight | STRAPI_UploadFileConnectionFormats | STRAPI_UploadFileConnectionHash | STRAPI_UploadFileConnectionExt | STRAPI_UploadFileConnectionMime | STRAPI_UploadFileConnectionSize | STRAPI_UploadFileConnectionUrl | STRAPI_UploadFileConnectionPreviewUrl | STRAPI_UploadFileConnectionProvider | STRAPI_UploadFileConnectionProvider_metadata | STRAPI_UploadFileConnectionCreated_by | STRAPI_UploadFileConnectionUpdated_by | STRAPI_UsersPermissionsPermission | STRAPI_UsersPermissionsRole | STRAPI_UsersPermissionsRoleConnection | STRAPI_UsersPermissionsRoleAggregator | STRAPI_UsersPermissionsRoleGroupBy | STRAPI_UsersPermissionsRoleConnectionId | STRAPI_UsersPermissionsRoleConnection_id | STRAPI_UsersPermissionsRoleConnectionCreatedAt | STRAPI_UsersPermissionsRoleConnectionUpdatedAt | STRAPI_UsersPermissionsRoleConnectionName | STRAPI_UsersPermissionsRoleConnectionDescription | STRAPI_UsersPermissionsRoleConnectionType | STRAPI_UsersPermissionsRoleConnectionCreated_by | STRAPI_UsersPermissionsRoleConnectionUpdated_by | STRAPI_createRolePayload | STRAPI_updateRolePayload | STRAPI_deleteRolePayload | STRAPI_UsersPermissionsUser | STRAPI_UsersPermissionsUserConnection | STRAPI_UsersPermissionsUserAggregator | STRAPI_UsersPermissionsUserGroupBy | STRAPI_UsersPermissionsUserConnectionId | STRAPI_UsersPermissionsUserConnection_id | STRAPI_UsersPermissionsUserConnectionCreatedAt | STRAPI_UsersPermissionsUserConnectionUpdatedAt | STRAPI_UsersPermissionsUserConnectionUsername | STRAPI_UsersPermissionsUserConnectionEmail | STRAPI_UsersPermissionsUserConnectionProvider | STRAPI_UsersPermissionsUserConnectionConfirmed | STRAPI_UsersPermissionsUserConnectionBlocked | STRAPI_UsersPermissionsUserConnectionRole | STRAPI_UsersPermissionsUserConnectionCreated_by | STRAPI_UsersPermissionsUserConnectionUpdated_by | STRAPI_createUserPayload | STRAPI_updateUserPayload | STRAPI_deleteUserPayload | STRAPI_ComponentPostRichText;
-
-type STRAPI_Post = {
-  readonly id: Scalars['ID'];
-  readonly _id: Scalars['ID'];
-  readonly createdAt: Scalars['STRAPI_DateTime'];
-  readonly updatedAt: Scalars['STRAPI_DateTime'];
-  readonly title: Maybe<Scalars['String']>;
-  readonly date: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly excerpt: Scalars['String'];
-  readonly image: Maybe<STRAPI_UploadFile>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly published: Maybe<Scalars['Boolean']>;
-  readonly image_url: Maybe<Scalars['String']>;
-  readonly category: STRAPI_ENUM_POST_CATEGORY;
-  readonly slug: Scalars['String'];
-  readonly featured: Maybe<Scalars['Boolean']>;
-  readonly content: Maybe<ReadonlyArray<Maybe<STRAPI_PostContentDynamicZone>>>;
-  readonly created_by: Maybe<STRAPI_AdminUser>;
-  readonly updated_by: Maybe<STRAPI_AdminUser>;
-};
-
-type STRAPI_PostAggregator = {
-  readonly count: Maybe<Scalars['Int']>;
-  readonly totalCount: Maybe<Scalars['Int']>;
-};
-
-type STRAPI_PostConnection = {
-  readonly values: Maybe<ReadonlyArray<Maybe<STRAPI_Post>>>;
-  readonly groupBy: Maybe<STRAPI_PostGroupBy>;
-  readonly aggregate: Maybe<STRAPI_PostAggregator>;
-};
-
-type STRAPI_PostConnection_id = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionCategory = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionCreated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionCreatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionDate = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionDescription = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionExcerpt = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionFeatured = {
-  readonly key: Maybe<Scalars['Boolean']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionId = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionImage = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionImage_url = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionPublished = {
-  readonly key: Maybe<Scalars['Boolean']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionSlug = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionTitle = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionUpdated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostConnectionUpdatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_PostConnection>;
-};
-
-type STRAPI_PostContentDynamicZone = STRAPI_ComponentPostRichText;
-
-
-type STRAPI_PostGroupBy = {
-  readonly id: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionId>>>;
-  readonly _id: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnection_id>>>;
-  readonly createdAt: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionCreatedAt>>>;
-  readonly updatedAt: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionUpdatedAt>>>;
-  readonly title: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionTitle>>>;
-  readonly date: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionDate>>>;
-  readonly excerpt: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionExcerpt>>>;
-  readonly image: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionImage>>>;
-  readonly description: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionDescription>>>;
-  readonly published: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionPublished>>>;
-  readonly image_url: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionImage_url>>>;
-  readonly category: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionCategory>>>;
-  readonly slug: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionSlug>>>;
-  readonly featured: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionFeatured>>>;
-  readonly created_by: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionCreated_by>>>;
-  readonly updated_by: Maybe<ReadonlyArray<Maybe<STRAPI_PostConnectionUpdated_by>>>;
-};
-
-type STRAPI_PostInput = {
-  readonly title: Maybe<Scalars['String']>;
-  readonly date: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly excerpt: Scalars['String'];
-  readonly image: Maybe<Scalars['ID']>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly published: Maybe<Scalars['Boolean']>;
-  readonly image_url: Maybe<Scalars['String']>;
-  readonly category: Maybe<STRAPI_ENUM_POST_CATEGORY>;
-  readonly slug: Scalars['String'];
-  readonly featured: Maybe<Scalars['Boolean']>;
-  readonly content: Maybe<ReadonlyArray<Scalars['STRAPI_PostContentDynamicZoneInput']>>;
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-type STRAPI_RoleInput = {
-  readonly name: Scalars['String'];
-  readonly description: Maybe<Scalars['String']>;
-  readonly type: Maybe<Scalars['String']>;
-  readonly permissions: Maybe<ReadonlyArray<Maybe<Scalars['ID']>>>;
-  readonly users: Maybe<ReadonlyArray<Maybe<Scalars['ID']>>>;
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-
-type STRAPI_updateCategoryInput = {
-  readonly where: Maybe<STRAPI_InputID>;
-  readonly data: Maybe<STRAPI_editCategoryInput>;
-};
-
-type STRAPI_updateCategoryPayload = {
-  readonly category: Maybe<STRAPI_Category>;
-};
-
-type STRAPI_updatePostInput = {
-  readonly where: Maybe<STRAPI_InputID>;
-  readonly data: Maybe<STRAPI_editPostInput>;
-};
-
-type STRAPI_updatePostPayload = {
-  readonly post: Maybe<STRAPI_Post>;
-};
-
-type STRAPI_updateRoleInput = {
-  readonly where: Maybe<STRAPI_InputID>;
-  readonly data: Maybe<STRAPI_editRoleInput>;
-};
-
-type STRAPI_updateRolePayload = {
-  readonly role: Maybe<STRAPI_UsersPermissionsRole>;
-};
-
-type STRAPI_updateUserInput = {
-  readonly where: Maybe<STRAPI_InputID>;
-  readonly data: Maybe<STRAPI_editUserInput>;
-};
-
-type STRAPI_updateUserPayload = {
-  readonly user: Maybe<STRAPI_UsersPermissionsUser>;
-};
-
-
-type STRAPI_UploadFile = {
-  readonly id: Scalars['ID'];
-  readonly _id: Scalars['ID'];
-  readonly createdAt: Scalars['STRAPI_DateTime'];
-  readonly updatedAt: Scalars['STRAPI_DateTime'];
-  readonly name: Scalars['String'];
-  readonly alternativeText: Maybe<Scalars['String']>;
-  readonly caption: Maybe<Scalars['String']>;
-  readonly width: Maybe<Scalars['Int']>;
-  readonly height: Maybe<Scalars['Int']>;
-  readonly formats: Maybe<Scalars['STRAPI_JSON']>;
-  readonly hash: Scalars['String'];
-  readonly ext: Maybe<Scalars['String']>;
-  readonly mime: Scalars['String'];
-  readonly size: Scalars['Float'];
-  readonly url: Scalars['String'];
-  readonly previewUrl: Maybe<Scalars['String']>;
-  readonly provider: Scalars['String'];
-  readonly provider_metadata: Maybe<Scalars['STRAPI_JSON']>;
-  readonly created_by: Maybe<STRAPI_AdminUser>;
-  readonly updated_by: Maybe<STRAPI_AdminUser>;
-  readonly related: Maybe<ReadonlyArray<Maybe<STRAPI_Morph>>>;
-};
-
-
-type STRAPI_UploadFile_relatedArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-type STRAPI_UploadFileAggregator = {
-  readonly count: Maybe<Scalars['Int']>;
-  readonly totalCount: Maybe<Scalars['Int']>;
-  readonly sum: Maybe<STRAPI_UploadFileAggregatorSum>;
-  readonly avg: Maybe<STRAPI_UploadFileAggregatorAvg>;
-  readonly min: Maybe<STRAPI_UploadFileAggregatorMin>;
-  readonly max: Maybe<STRAPI_UploadFileAggregatorMax>;
-};
-
-type STRAPI_UploadFileAggregatorAvg = {
-  readonly width: Maybe<Scalars['Float']>;
-  readonly height: Maybe<Scalars['Float']>;
-  readonly size: Maybe<Scalars['Float']>;
-};
-
-type STRAPI_UploadFileAggregatorMax = {
-  readonly width: Maybe<Scalars['Float']>;
-  readonly height: Maybe<Scalars['Float']>;
-  readonly size: Maybe<Scalars['Float']>;
-};
-
-type STRAPI_UploadFileAggregatorMin = {
-  readonly width: Maybe<Scalars['Float']>;
-  readonly height: Maybe<Scalars['Float']>;
-  readonly size: Maybe<Scalars['Float']>;
-};
-
-type STRAPI_UploadFileAggregatorSum = {
-  readonly width: Maybe<Scalars['Float']>;
-  readonly height: Maybe<Scalars['Float']>;
-  readonly size: Maybe<Scalars['Float']>;
-};
-
-type STRAPI_UploadFileConnection = {
-  readonly values: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFile>>>;
-  readonly groupBy: Maybe<STRAPI_UploadFileGroupBy>;
-  readonly aggregate: Maybe<STRAPI_UploadFileAggregator>;
-};
-
-type STRAPI_UploadFileConnection_id = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionAlternativeText = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionCaption = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionCreated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionCreatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionExt = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionFormats = {
-  readonly key: Maybe<Scalars['STRAPI_JSON']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionHash = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionHeight = {
-  readonly key: Maybe<Scalars['Int']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionId = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionMime = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionName = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionPreviewUrl = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionProvider = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionProvider_metadata = {
-  readonly key: Maybe<Scalars['STRAPI_JSON']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionSize = {
-  readonly key: Maybe<Scalars['Float']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionUpdated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionUpdatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionUrl = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileConnectionWidth = {
-  readonly key: Maybe<Scalars['Int']>;
-  readonly connection: Maybe<STRAPI_UploadFileConnection>;
-};
-
-type STRAPI_UploadFileGroupBy = {
-  readonly id: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionId>>>;
-  readonly _id: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnection_id>>>;
-  readonly createdAt: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionCreatedAt>>>;
-  readonly updatedAt: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionUpdatedAt>>>;
-  readonly name: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionName>>>;
-  readonly alternativeText: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionAlternativeText>>>;
-  readonly caption: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionCaption>>>;
-  readonly width: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionWidth>>>;
-  readonly height: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionHeight>>>;
-  readonly formats: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionFormats>>>;
-  readonly hash: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionHash>>>;
-  readonly ext: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionExt>>>;
-  readonly mime: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionMime>>>;
-  readonly size: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionSize>>>;
-  readonly url: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionUrl>>>;
-  readonly previewUrl: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionPreviewUrl>>>;
-  readonly provider: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionProvider>>>;
-  readonly provider_metadata: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionProvider_metadata>>>;
-  readonly created_by: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionCreated_by>>>;
-  readonly updated_by: Maybe<ReadonlyArray<Maybe<STRAPI_UploadFileConnectionUpdated_by>>>;
-};
-
-type STRAPI_UserInput = {
-  readonly username: Scalars['String'];
-  readonly email: Scalars['String'];
-  readonly provider: Maybe<Scalars['String']>;
-  readonly password: Maybe<Scalars['String']>;
-  readonly resetPasswordToken: Maybe<Scalars['String']>;
-  readonly confirmed: Maybe<Scalars['Boolean']>;
-  readonly blocked: Maybe<Scalars['Boolean']>;
-  readonly role: Maybe<Scalars['ID']>;
-  readonly created_by: Maybe<Scalars['ID']>;
-  readonly updated_by: Maybe<Scalars['ID']>;
-};
-
-type STRAPI_UserPermissionsPasswordPayload = {
-  readonly ok: Scalars['Boolean'];
-};
-
-type STRAPI_UsersPermissionsLoginInput = {
-  readonly identifier: Scalars['String'];
-  readonly password: Scalars['String'];
-  readonly provider: Maybe<Scalars['String']>;
-};
-
-type STRAPI_UsersPermissionsLoginPayload = {
-  readonly jwt: Maybe<Scalars['String']>;
-  readonly user: STRAPI_UsersPermissionsMe;
-};
-
-type STRAPI_UsersPermissionsMe = {
-  readonly id: Scalars['ID'];
-  readonly username: Scalars['String'];
-  readonly email: Scalars['String'];
-  readonly confirmed: Maybe<Scalars['Boolean']>;
-  readonly blocked: Maybe<Scalars['Boolean']>;
-  readonly role: Maybe<STRAPI_UsersPermissionsMeRole>;
-};
-
-type STRAPI_UsersPermissionsMeRole = {
-  readonly id: Scalars['ID'];
-  readonly name: Scalars['String'];
-  readonly description: Maybe<Scalars['String']>;
-  readonly type: Maybe<Scalars['String']>;
-};
-
-type STRAPI_UsersPermissionsPermission = {
-  readonly id: Scalars['ID'];
-  readonly _id: Scalars['ID'];
-  readonly createdAt: Scalars['STRAPI_DateTime'];
-  readonly updatedAt: Scalars['STRAPI_DateTime'];
-  readonly type: Scalars['String'];
-  readonly controller: Scalars['String'];
-  readonly action: Scalars['String'];
-  readonly enabled: Scalars['Boolean'];
-  readonly policy: Maybe<Scalars['String']>;
-  readonly role: Maybe<STRAPI_UsersPermissionsRole>;
-  readonly created_by: Maybe<STRAPI_AdminUser>;
-  readonly updated_by: Maybe<STRAPI_AdminUser>;
-};
-
-type STRAPI_UsersPermissionsRegisterInput = {
-  readonly username: Scalars['String'];
-  readonly email: Scalars['String'];
-  readonly password: Scalars['String'];
-};
-
-type STRAPI_UsersPermissionsRole = {
-  readonly id: Scalars['ID'];
-  readonly _id: Scalars['ID'];
-  readonly createdAt: Scalars['STRAPI_DateTime'];
-  readonly updatedAt: Scalars['STRAPI_DateTime'];
-  readonly name: Scalars['String'];
-  readonly description: Maybe<Scalars['String']>;
-  readonly type: Maybe<Scalars['String']>;
-  readonly created_by: Maybe<STRAPI_AdminUser>;
-  readonly updated_by: Maybe<STRAPI_AdminUser>;
-  readonly permissions: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsPermission>>>;
-  readonly users: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUser>>>;
-};
-
-
-type STRAPI_UsersPermissionsRole_permissionsArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-
-type STRAPI_UsersPermissionsRole_usersArgs = {
-  sort: Maybe<Scalars['String']>;
-  limit: Maybe<Scalars['Int']>;
-  start: Maybe<Scalars['Int']>;
-  where: Maybe<Scalars['STRAPI_JSON']>;
-};
-
-type STRAPI_UsersPermissionsRoleAggregator = {
-  readonly count: Maybe<Scalars['Int']>;
-  readonly totalCount: Maybe<Scalars['Int']>;
-};
-
-type STRAPI_UsersPermissionsRoleConnection = {
-  readonly values: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRole>>>;
-  readonly groupBy: Maybe<STRAPI_UsersPermissionsRoleGroupBy>;
-  readonly aggregate: Maybe<STRAPI_UsersPermissionsRoleAggregator>;
-};
-
-type STRAPI_UsersPermissionsRoleConnection_id = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-};
-
-type STRAPI_UsersPermissionsRoleConnectionCreated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-};
-
-type STRAPI_UsersPermissionsRoleConnectionCreatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-};
-
-type STRAPI_UsersPermissionsRoleConnectionDescription = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-};
-
-type STRAPI_UsersPermissionsRoleConnectionId = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-};
-
-type STRAPI_UsersPermissionsRoleConnectionName = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-};
-
-type STRAPI_UsersPermissionsRoleConnectionType = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-};
-
-type STRAPI_UsersPermissionsRoleConnectionUpdated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-};
-
-type STRAPI_UsersPermissionsRoleConnectionUpdatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsRoleConnection>;
-};
-
-type STRAPI_UsersPermissionsRoleGroupBy = {
-  readonly id: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRoleConnectionId>>>;
-  readonly _id: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRoleConnection_id>>>;
-  readonly createdAt: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRoleConnectionCreatedAt>>>;
-  readonly updatedAt: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRoleConnectionUpdatedAt>>>;
-  readonly name: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRoleConnectionName>>>;
-  readonly description: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRoleConnectionDescription>>>;
-  readonly type: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRoleConnectionType>>>;
-  readonly created_by: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRoleConnectionCreated_by>>>;
-  readonly updated_by: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsRoleConnectionUpdated_by>>>;
-};
-
-type STRAPI_UsersPermissionsUser = {
-  readonly id: Scalars['ID'];
-  readonly _id: Scalars['ID'];
-  readonly createdAt: Scalars['STRAPI_DateTime'];
-  readonly updatedAt: Scalars['STRAPI_DateTime'];
-  readonly username: Scalars['String'];
-  readonly email: Scalars['String'];
-  readonly provider: Maybe<Scalars['String']>;
-  readonly confirmed: Maybe<Scalars['Boolean']>;
-  readonly blocked: Maybe<Scalars['Boolean']>;
-  readonly role: Maybe<STRAPI_UsersPermissionsRole>;
-  readonly created_by: Maybe<STRAPI_AdminUser>;
-  readonly updated_by: Maybe<STRAPI_AdminUser>;
-};
-
-type STRAPI_UsersPermissionsUserAggregator = {
-  readonly count: Maybe<Scalars['Int']>;
-  readonly totalCount: Maybe<Scalars['Int']>;
-};
-
-type STRAPI_UsersPermissionsUserConnection = {
-  readonly values: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUser>>>;
-  readonly groupBy: Maybe<STRAPI_UsersPermissionsUserGroupBy>;
-  readonly aggregate: Maybe<STRAPI_UsersPermissionsUserAggregator>;
-};
-
-type STRAPI_UsersPermissionsUserConnection_id = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionBlocked = {
-  readonly key: Maybe<Scalars['Boolean']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionConfirmed = {
-  readonly key: Maybe<Scalars['Boolean']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionCreated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionCreatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionEmail = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionId = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionProvider = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionRole = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionUpdated_by = {
-  readonly key: Maybe<Scalars['ID']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionUpdatedAt = {
-  readonly key: Maybe<Scalars['STRAPI_DateTime']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserConnectionUsername = {
-  readonly key: Maybe<Scalars['String']>;
-  readonly connection: Maybe<STRAPI_UsersPermissionsUserConnection>;
-};
-
-type STRAPI_UsersPermissionsUserGroupBy = {
-  readonly id: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionId>>>;
-  readonly _id: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnection_id>>>;
-  readonly createdAt: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionCreatedAt>>>;
-  readonly updatedAt: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionUpdatedAt>>>;
-  readonly username: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionUsername>>>;
-  readonly email: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionEmail>>>;
-  readonly provider: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionProvider>>>;
-  readonly confirmed: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionConfirmed>>>;
-  readonly blocked: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionBlocked>>>;
-  readonly role: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionRole>>>;
-  readonly created_by: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionCreated_by>>>;
-  readonly updated_by: Maybe<ReadonlyArray<Maybe<STRAPI_UsersPermissionsUserConnectionUpdated_by>>>;
-};
 
 type StrapiCategories = Node & {
   readonly id: Scalars['ID'];
@@ -4168,7 +3021,6 @@ type StrapiPosts = Node & {
   readonly slug: Maybe<Scalars['String']>;
   readonly image_url: Maybe<Scalars['String']>;
   readonly content: Maybe<ReadonlyArray<Maybe<StrapiPostsContent>>>;
-  readonly updated_by: Maybe<StrapiPostsUpdated_by>;
   readonly strapiId: Maybe<Scalars['String']>;
 };
 
@@ -4360,10 +3212,6 @@ enum StrapiPostsFieldsEnum {
   content___createdAt = 'content.createdAt',
   content___updatedAt = 'content.updatedAt',
   content___id = 'content.id',
-  updated_by___username = 'updated_by.username',
-  updated_by___createdAt = 'updated_by.createdAt',
-  updated_by___updatedAt = 'updated_by.updatedAt',
-  updated_by___id = 'updated_by.id',
   strapiId = 'strapiId'
 }
 
@@ -4384,7 +3232,6 @@ type StrapiPostsFilterInput = {
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly image_url: Maybe<StringQueryOperatorInput>;
   readonly content: Maybe<StrapiPostsContentFilterListInput>;
-  readonly updated_by: Maybe<StrapiPostsUpdated_byFilterInput>;
   readonly strapiId: Maybe<StringQueryOperatorInput>;
 };
 
@@ -4402,36 +3249,6 @@ type StrapiPostsSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type StrapiPostsUpdated_by = {
-  readonly username: Maybe<Scalars['String']>;
-  readonly createdAt: Maybe<Scalars['Date']>;
-  readonly updatedAt: Maybe<Scalars['Date']>;
-  readonly id: Maybe<Scalars['String']>;
-};
-
-
-type StrapiPostsUpdated_by_createdAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type StrapiPostsUpdated_by_updatedAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type StrapiPostsUpdated_byFilterInput = {
-  readonly username: Maybe<StringQueryOperatorInput>;
-  readonly createdAt: Maybe<DateQueryOperatorInput>;
-  readonly updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-};
-
 type StringQueryOperatorInput = {
   readonly eq: Maybe<Scalars['String']>;
   readonly ne: Maybe<Scalars['String']>;
@@ -4441,88 +3258,51 @@ type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>;
 };
 
-type ProjectTemplateQueryQueryVariables = {
-  slug: Scalars['String'];
+type TransformOptions = {
+  readonly grayscale: Maybe<Scalars['Boolean']>;
+  readonly duotone: Maybe<DuotoneGradient>;
+  readonly rotate: Maybe<Scalars['Int']>;
+  readonly trim: Maybe<Scalars['Float']>;
+  readonly cropFocus: Maybe<ImageCropFocus>;
+  readonly fit: Maybe<ImageFit>;
 };
 
+type WebPOptions = {
+  readonly quality: Maybe<Scalars['Int']>;
+};
 
-type ProjectTemplateQueryQuery = { readonly post: Maybe<(
-    Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'category' | 'published' | 'image_url' | 'excerpt' | 'description' | 'strapiId' | 'createdAt'>
+type ProjectTemplateQueryQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+type ProjectTemplateQueryQuery = { readonly poetry: Maybe<(
+    Pick<StrapiPosts, 'id' | 'title' | 'slug' | 'published' | 'image_url' | 'excerpt' | 'strapiId' | 'createdAt'>
     & { readonly content: Maybe<ReadonlyArray<Maybe<Pick<StrapiPostsContent, 'rich_text'>>>> }
   )> };
+
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 type PostFieldsFragment = Pick<StrapiPosts, 'category' | 'image_url' | 'slug' | 'published' | 'strapiId' | 'excerpt' | 'createdAt' | 'updatedAt' | 'title' | 'featured'>;
 
 type StrapiCategoriesFragment = { readonly node: Pick<StrapiCategories, 'name' | 'slug'> };
 
-type blogPageQueryQueryVariables = {};
+type blogPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type blogPageQueryQuery = { readonly blog: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
 
-type IndexPageQueryQueryVariables = {};
+type IndexPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type IndexPageQueryQuery = { readonly featured: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly blog: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
 
-type poetryPageQueryQueryVariables = {};
+type poetryPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type poetryPageQueryQuery = { readonly poetry: { readonly edges: ReadonlyArray<{ readonly node: PostFieldsFragment }> }, readonly categories: { readonly edges: ReadonlyArray<StrapiCategoriesFragment> } };
-
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebpFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebp_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: ImageSharpFluid['presentationHeight'], maxWidth: ImageSharpFluid['presentationWidth'] };
-
-type GatsbyImageSharpFluid_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpResolutionsFragment = Pick<ImageSharpResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpResolutions_tracedSVGFragment = Pick<ImageSharpResolutions, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpResolutions_withWebpFragment = Pick<ImageSharpResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpResolutions_withWebp_tracedSVGFragment = Pick<ImageSharpResolutions, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpResolutions_noBase64Fragment = Pick<ImageSharpResolutions, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpResolutions_withWebp_noBase64Fragment = Pick<ImageSharpResolutions, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpSizesFragment = Pick<ImageSharpSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpSizes_tracedSVGFragment = Pick<ImageSharpSizes, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpSizes_withWebpFragment = Pick<ImageSharpSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type PagesQueryQueryVariables = {};
-
-
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 }

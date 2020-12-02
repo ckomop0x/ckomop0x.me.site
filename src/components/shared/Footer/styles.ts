@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { themePalette } from '@styles/colors';
+
+import { themePalette } from 'styles/colors';
 
 export const FooterWrapper = styled.footer`
   margin-top: auto;

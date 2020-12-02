@@ -1,9 +1,11 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import PoetryLayout from '../components/containers/PoetryLayout/PoetryLayout';
-import ItemsList from '@components/blocks/ItemsList';
+
 import { poetryPageQuery as PoetryPageQuery } from './__generated__/poetryPageQuery';
-import { TitleBlock, SubtitleBlock } from '@styles/Typography';
+
+import PoetryLayout from 'components/layouts/PoetryLayout';
+import ItemsList from 'components/shared/ItemsList';
+import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
 export const query = graphql`
   query poetryPageQuery {
@@ -28,17 +30,16 @@ export const query = graphql`
 
 export interface IPortfolioProps {
   data: PoetryPageQuery;
-  errors: any;
 }
 
-const PoetryPage: React.FC<IPortfolioProps> = (props) => {
+const PoetryPage: React.FC<IPortfolioProps> = props => {
   if (!props.data) {
     return null;
   }
 
-  const { data, errors } = props;
-  const poetryItems = data && data.poetry.edges;
-  const categoriesItems = data && data.categories.edges;
+  const { data } = props;
+  const poetryItems = data?.poetry.edges;
+  const categoriesItems = data?.categories.edges;
 
   return (
     <PoetryLayout

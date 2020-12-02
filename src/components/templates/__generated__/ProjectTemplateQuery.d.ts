@@ -18,7 +18,7 @@ export interface ProjectTemplateQuery_poetry {
   published: boolean | null;
   image_url: string | null;
   excerpt: string | null;
-  description: string | null;
+  content: (ProjectTemplateQuery_poetry_content | null)[] | null;
   strapiId: string | null;
   createdAt: any | null;
   content: (ProjectTemplateQuery_poetry_content | null)[] | null;

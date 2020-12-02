@@ -5,13 +5,12 @@ require('dotenv').config({
 });
 const path = require('path');
 const config = require('./config/site');
-const isDev = process.env.NODE_ENV === 'development';
+const sitePackage = require('./package.json');
 
 module.exports = {
   siteMetadata: {
     title: config.siteTitle,
     description: config.description,
-    author: config.author,
     siteUrl: config.siteUrl,
     keywords: ['стихи', 'песни', 'путешествия', 'заметки', 'фотографии'],
     canonicalUrl: config.siteUrl,
@@ -29,6 +28,7 @@ module.exports = {
       twitter: config.twitterHandle,
       fbAppID: '',
     },
+    version: sitePackage.version
   },
   plugins: [
     {
@@ -42,7 +42,6 @@ module.exports = {
       resolve: 'gatsby-plugin-codegen',
       options: {},
     },
-    'gatsby-plugin-scss-typescript',
     {
       resolve: 'gatsby-plugin-typegen',
       options: {
@@ -57,23 +56,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {
-        displayName: process.env.NODE_ENV === 'development' ? true : false,
+        displayName: process.env.NODE_ENV === 'development',
       },
     },
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-sitemap',
-    // {
-    //   resolve: 'gatsby-source-graphql',
-    //   options: {
-    //     typeName: 'STRAPI',
-    //     fieldName: 'STRAPI',
-    //     url: process.env.STRAPI_URL_GRAPHQL_LOCAL,
-    //   },
-    // },
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: isDev ? process.env.STRAPI_URL_LOCAL : process.env.STRAPI_URL,
+        apiURL: process.env.STRAPI_URL,
         queryLimit: 1000, // Default to 100
         contentTypes: [`posts`, `categories`],
         //If using single types place them in this array.

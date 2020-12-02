@@ -1,26 +1,24 @@
-import { DetailItem as DetailItemComponent } from '@components/blocks';
 import { graphql } from 'gatsby';
 import React from 'react';
-import Helmet from 'react-helmet';
 
-import { ProjectsLayout } from '../containers';
+import ProjectsLayout from '../layouts/PoetryLayout';
+
+import { default as DetailItemComponent } from 'components/shared/DetailItem';
 
 export const query = graphql`
   query ProjectTemplateQuery($slug: String!) {
-    post: strapiPosts(slug: { eq: $slug }) {
+    poetry: strapiPosts(slug: { eq: $slug }) {
       id
       title
       slug
-      category
       published
       image_url
       excerpt
-      description
-      strapiId
-      createdAt
       content {
         rich_text
       }
+      strapiId
+      createdAt
     }
   }
 `;
@@ -29,17 +27,18 @@ const DetailItem = (props: any) => {
   if (!props.data) {
     return null;
   }
-  const { data, errors } = props;
-  const itemData = data && data.post;
+  const { data } = props;
+  const itemData = data && data.poetry;
 
   if (!itemData) return null;
 
-  const socialImage = `${itemData?.image_url}?tr=w-1080,h-280,fo-top`;
+  console.log(itemData);
 
+  const socialImage = `${itemData?.image_url}?tr=w-1080,h-280,fo-top`;
   return (
     <ProjectsLayout
       headTitle={itemData.title}
-      ogUrl={`https://ckomop0x.me/${itemData.category}/${itemData.slug}/`}
+      ogUrl={`https://ckomop0x.me/poetry/${itemData.slug}/`}
       ogImage={socialImage}
       ogDescription={itemData.title}
       twitterCard={itemData.title}
@@ -47,8 +46,8 @@ const DetailItem = (props: any) => {
       <DetailItemComponent
         title={itemData.title}
         date={itemData.createdAt}
+        description={itemData.content[0].rich_text}
         image={itemData.image_url}
-        content={itemData.content}
       />
     </ProjectsLayout>
   );

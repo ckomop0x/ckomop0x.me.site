@@ -1,5 +1,6 @@
 import React from 'react';
-import { IIcon } from '@components/Icons/types';
+
+import { IIcon } from './types';
 
 const FacebookLogoIcon: React.FC<IIcon> = ({
   title = 'WebUrlIcon',

@@ -1,6 +1,7 @@
-import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { themePalette } from '@styles/colors';
+import styled from 'styled-components';
+
+import { themePalette } from 'styles/colors';
 
 export const TopLogo = styled(Link)`
   display: flex;
