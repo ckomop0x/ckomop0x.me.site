@@ -10,7 +10,8 @@ import {
   poetryPageQuery_categories_edges,
   poetryPageQuery_poetry_edges,
 } from '../../../pages/__generated__/poetryPageQuery';
-import Post from 'components/sections/PostsList/components/Post';
+
+import Post from 'components/sections/PostsList/Post';
 
 interface IItemsList {
   items: poetryPageQuery_poetry_edges[] | blogPageQuery_blog_edges[];
