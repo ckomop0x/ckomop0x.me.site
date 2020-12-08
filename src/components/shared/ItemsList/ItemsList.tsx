@@ -1,4 +1,5 @@
-import moment from 'moment';
+import { format } from 'date-fns';
+import ruLocale from 'date-fns/locale/ru';
 import React from 'react';
 
 import {
@@ -9,8 +10,7 @@ import {
   poetryPageQuery_categories_edges,
   poetryPageQuery_poetry_edges,
 } from '../../../pages/__generated__/poetryPageQuery';
-
-import Post from 'components/sections/PostsList/Post';
+import Post from 'components/sections/PostsList/components/Post';
 
 interface IItemsList {
   items: poetryPageQuery_poetry_edges[] | blogPageQuery_blog_edges[];
@@ -34,7 +34,10 @@ const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
           category,
           image_url,
         } = node;
-        const formattedDate = moment(createdAt).format('DD.MM.YYYY');
+
+        const publicationDate = format(new Date(createdAt), 'dd MMMM yyyy', {
+          locale: ruLocale,
+        });
         const categoryData = categories.filter(
           (categoryItem: any) => categoryItem.node.slug === category,
         )[0].node;
@@ -45,7 +48,7 @@ const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
               key={strapiId}
               id={strapiId}
               excerpt={excerpt}
-              date={formattedDate}
+              date={publicationDate}
               title={title}
               slug={slug}
               // extra={extra}
