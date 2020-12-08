@@ -20,10 +20,10 @@ const Post = ({
   image,
 }: any) => {
   const isWithImage = !!image;
-  const parsedDate = parseDate(date, 'mm.dd.yyyy', new Date());
-  const dateString = format(parsedDate, 'd MMMM yyyy', {
-    locale: ruLocale,
-  });
+  // const parsedDate = parseDate(date, 'mm.dd.yyyy', new Date());
+  // const dateString = format(parsedDate, 'd MMMM yyyy', {
+  //   locale: ruLocale,
+  // });
 
   return (
     <ItemWrapper className="col-12 col-md-6 col-lg-4">
@@ -42,7 +42,7 @@ const Post = ({
                 />
               </div>
             )}
-            {date && <p className="item__date">{dateString}</p>}
+            {date && <p className="item__date">{date}</p>}
             <h3 className="item__title">{title}</h3>
             <div className="item__content">
               {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}

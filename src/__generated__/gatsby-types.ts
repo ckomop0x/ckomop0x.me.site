@@ -2089,6 +2089,7 @@ type SitePageContextPostFilterInput = {
 
 type SitePageContextPostNode = {
   readonly category: Maybe<Scalars['String']>;
+  readonly content: Maybe<ReadonlyArray<Maybe<SitePageContextPostNodeContent>>>;
   readonly image_url: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly published: Maybe<Scalars['Boolean']>;
@@ -2099,8 +2100,21 @@ type SitePageContextPostNode = {
   readonly title: Maybe<Scalars['String']>;
 };
 
+type SitePageContextPostNodeContent = {
+  readonly rich_text: Maybe<Scalars['String']>;
+};
+
+type SitePageContextPostNodeContentFilterInput = {
+  readonly rich_text: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPostNodeContentFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextPostNodeContentFilterInput>;
+};
+
 type SitePageContextPostNodeFilterInput = {
   readonly category: Maybe<StringQueryOperatorInput>;
+  readonly content: Maybe<SitePageContextPostNodeContentFilterListInput>;
   readonly image_url: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly published: Maybe<BooleanQueryOperatorInput>;
@@ -2212,6 +2226,7 @@ enum SitePageFieldsEnum {
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
   context___slug = 'context.slug',
   context___post___node___category = 'context.post.node.category',
+  context___post___node___content = 'context.post.node.content',
   context___post___node___image_url = 'context.post.node.image_url',
   context___post___node___slug = 'context.post.node.slug',
   context___post___node___published = 'context.post.node.published',

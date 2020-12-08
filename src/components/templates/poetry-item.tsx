@@ -32,8 +32,6 @@ const DetailItem = (props: any) => {
 
   if (!itemData) return null;
 
-  console.log(itemData);
-
   const socialImage = `${itemData?.image_url}?tr=w-1080,h-280,fo-top`;
   return (
     <ProjectsLayout
