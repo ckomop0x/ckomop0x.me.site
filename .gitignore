@@ -16,3 +16,4 @@ node_modules
 _materials
 /_materials/
 public
+/src/__generated__/
