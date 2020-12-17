@@ -9,7 +9,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "dev": "gatsby clean && gatsby develop",
-    "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest --env=jsdom --ci --verbose",
+    "test": "jest --env=jsdom --ci --verbose",
     "pretty": "prettier --check \"./**/*.{ts,tsx,js,jsx,json,md}\"",
     "check-ts": "tsc",
     "lint": "eslint \"./src/**/*.{ts,tsx,js}\" --fix"
