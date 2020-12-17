@@ -13,12 +13,12 @@ jobs:
       matrix:
         node-version: [12.x, 14.x]
     steps:
-      env:
-        STRAPI_URL: https://ckme-admin.herokuapp.com
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile
       - run: yarn build
+        env:
+          STRAPI_URL: "https://ckme-admin.herokuapp.com"
       - run: yarn test
