@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Ckomop0x.me site",
   "author": "Pavel Klochkov, paul.klochkov@gmail.com",
   "license": "MIT",
@@ -8,7 +8,25 @@
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "dev": "gatsby clean && gatsby develop"
+    "dev": "gatsby clean && gatsby develop",
+    "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest --env=jsdom --ci --verbose",
+    "pretty": "prettier --check \"./**/*.{ts,tsx,js,jsx,json,md}\"",
+    "check-ts": "tsc",
+    "lint": "eslint \"./src/**/*.{ts,tsx,js}\" --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn check-ts && yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,csgis,md}": [
+      "prettier --config ./.prettierrc --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint -c ./.eslintrc.js --fix"
+    ]
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.12.0",
