@@ -19,4 +19,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --frozen-lockfile
       - run: yarn build
+        env:
+          STRAPI_URL: "https://ckme-admin.herokuapp.com"
       - run: yarn test
