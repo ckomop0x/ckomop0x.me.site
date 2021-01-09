@@ -1,9 +1,9 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b694641f-f653-4ac4-91e1-ee0a804cf727/deploy-status)](https://app.netlify.com/sites/webtime-studio/deploys)
 ![Version](https://img.shields.io/badge/version-2.3.0-blue.svg?cacheSeconds=2592000)
 
-# Ckomop0x.me Blog website
+# Pavel Klochkov @ckomop0x blog website
 
-**[Ckomop0x.me](https://ckomop0x.me)**
+**[https://ckomop0x.me](https://ckomop0x.me)**
 
 ## Technologies
 
