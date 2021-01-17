@@ -77,9 +77,9 @@ yarn test
 👤 **Pavel Klochkov, paul.klochkov@gmail.com**
 
 - Website: https://webtime.studio
-- Twitter: [@webtime-studio](https://twitter.com/ckomop0x)
-- Github: [@webtime-studio](https://github.com/ckomop0x)
-- LinkedIn: [@webtime-studio](https://linkedin.com/in/ckomop0x)
+- Twitter: [https://twitter.com/ckomop0x](https://twitter.com/ckomop0x)
+- Github: [https://github.com/ckomop0x](https://github.com/ckomop0x)
+- LinkedIn: [https://linkedin.com/in/ckomop0x](https://linkedin.com/in/ckomop0x)
 
 ## Show your support
 
