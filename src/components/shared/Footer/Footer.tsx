@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { siteTitle } from '../../../../config/site';
+import { version } from '../../../../package.json';
 
 import { FooterWrapper } from './styles';
 
@@ -12,6 +13,7 @@ const Footer: React.FC = () => (
           <p className="copyright">
             &copy; {new Date().getFullYear()} {siteTitle}
           </p>
+          <p className="version">v{version}</p>
         </div>
       </div>
     </div>
