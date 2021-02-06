@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { themePalette } from 'styles/colors';
 
 export const FooterWrapper = styled.footer`
-  margin-top: auto;
+  margin: auto;
   background: hsla(38, 20%, 80%, 1);
   color: ${themePalette.primaryTitle};
   padding: 32px 0;
@@ -12,5 +12,15 @@ export const FooterWrapper = styled.footer`
     font-size: 16px;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .version {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
