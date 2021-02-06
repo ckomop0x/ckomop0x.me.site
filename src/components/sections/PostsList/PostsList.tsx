@@ -1,18 +1,31 @@
-import moment from 'moment';
+import { format } from 'date-fns';
+import ruLocale from 'date-fns/locale/ru';
 import React from 'react';
+
+import {
+  IndexPageQuery_categories_edges,
+  IndexPageQuery_poetry_edges,
+} from '../../../pages/__generated__/IndexPageQuery';
 
 import Post from './Post';
 import { PostsListStyled, AllPostsLink } from './styles';
 
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
-const PostsList: React.FC<any> = ({
+interface IPostsList {
+  blockTitle: string;
+  blockSubtitle: string;
+  items: IndexPageQuery_poetry_edges[];
+  categories: IndexPageQuery_categories_edges[];
+}
+
+const PostsList: React.FC<IPostsList> = ({
   blockTitle,
   blockSubtitle,
   items,
   categories,
 }) => {
-  const postsCategoryLink = items[0].node.category;
+  const postsCategoryLink = items[0].node.category ?? '';
   const [postsCategory] = categories.filter(
     (category: any) => category.node.slug === postsCategoryLink,
   );
@@ -27,19 +40,22 @@ const PostsList: React.FC<any> = ({
             {items.map(({ node }: any) => {
               const {
                 strapiId,
-                date,
                 title,
                 excerpt,
                 published,
                 createdAt,
-                featured,
-                updatedAt,
                 slug,
-                extra,
                 category,
                 image_url,
               } = node;
-              const formattedDate = moment(createdAt).format('DD.MM.YYYY');
+              // const formattedDate = moment(createdAt).format('DD.MM.YYYY');
+              const publicationDate = format(
+                new Date(createdAt),
+                'dd MMMM yyyy',
+                {
+                  locale: ruLocale,
+                },
+              );
               const categoryData = categories.filter(
                 (categoryItem: any) => categoryItem.node.slug === category,
               )[0].node;
@@ -50,11 +66,9 @@ const PostsList: React.FC<any> = ({
                     key={strapiId}
                     id={strapiId}
                     excerpt={excerpt}
-                    date={formattedDate}
+                    publicationDate={publicationDate}
                     title={title}
                     slug={slug}
-                    extra={extra}
-                    featured={featured}
                     category={categoryData}
                     image={image_url}
                   />

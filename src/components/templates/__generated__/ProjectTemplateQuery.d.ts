@@ -21,6 +21,7 @@ export interface ProjectTemplateQuery_poetry {
   content: (ProjectTemplateQuery_poetry_content | null)[] | null;
   strapiId: string | null;
   createdAt: any | null;
+  updatedAt: any | null;
 }
 
 export interface ProjectTemplateQuery {
