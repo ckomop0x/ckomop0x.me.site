@@ -9,16 +9,16 @@ import { GlobalStyle } from 'styles/GlobalStyle';
 
 export interface IProjectsLayoutProps {
   articleAuthor?: string;
-  headTitle?: string;
+  headTitle?: string | null;
   ogUrl?: string;
   ogImage?: string;
   ogImageWidth?: string;
   ogImageHeight?: string;
-  ogDescription?: string;
+  ogDescription?: string | null;
   ogLocale?: string;
   ogSiteName?: string;
   ogType?: string;
-  twitterCard?: string;
+  twitterCard?: string | null;
   twitterSite?: string;
   twitterCreator?: string;
   author?: string;

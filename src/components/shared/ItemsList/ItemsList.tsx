@@ -30,13 +30,16 @@ const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
           excerpt,
           published,
           createdAt,
+          updatedAt,
           slug,
-          // extra,
           category,
           image_url,
         } = node;
 
         const publicationDate = format(new Date(createdAt), 'dd MMMM yyyy', {
+          locale: ruLocale,
+        });
+        const updateDate = format(new Date(updatedAt), 'dd MMMM yyyy', {
           locale: ruLocale,
         });
         const categoryData = categories.filter(
@@ -49,10 +52,10 @@ const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
               key={strapiId}
               id={strapiId}
               excerpt={excerpt}
-              date={publicationDate}
+              publicationDate={publicationDate}
+              updateDate={updateDate}
               title={title}
               slug={slug}
-              // extra={extra}
               category={categoryData}
               image={image_url}
             />

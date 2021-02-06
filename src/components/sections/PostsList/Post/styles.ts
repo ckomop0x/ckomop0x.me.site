@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
+import styled, { css } from 'styled-components';
 
 export const Content = styled.div`
   display: flex;
@@ -36,12 +36,6 @@ export const ItemImage = styled.div`
       : ''}
 `;
 
-export const ItemDateStyled = styled.p`
-  color: #747474;
-  text-align: left;
-  font-size: 12px;
-`;
-
 export const ItemContent = styled.div`
   position: relative;
   padding: 0;
@@ -75,17 +69,6 @@ export const TextStyled = styled.div`
   }
 `;
 
-// export const LinkStyled = styled(Link)`
-//   display: inline-block;
-//   margin: auto auto 20px;
-//   padding: 10px 20px;
-//   color: white;
-//   background-color: hsla(38, 100%, 38%, 1);
-//   align-self: flex-end;
-//   /* color: hsl(211, 100%, 40%); */
-//   /* border: 1px solid hsl(211, 100%, 40%); */
-// `;
-
 export const ItemWrapper = styled.article`
   padding: 0;
 
@@ -99,7 +82,6 @@ export const ItemWrapper = styled.article`
     width: 100%;
     box-shadow: 0 2px 3px #0000001c;
     display: flex;
-    /* align-items: center; */
     flex-direction: column;
     transition: box-shadow 0.3s ease;
 
@@ -141,6 +123,10 @@ export const ItemWrapper = styled.article`
     p {
       color: #747474;
       font-size: 14px;
+    }
+
+    .link {
+      text-align: center;
     }
   }
 `;

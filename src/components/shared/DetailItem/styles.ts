@@ -71,7 +71,7 @@ export const Content = styled.div`
         position: absolute;
         left: -20px;
         width: 4px;
-        top: 0px;
+        top: 0;
         border-left: 4px solid ${themePalette.listBorder};
         height: 100%;
       }

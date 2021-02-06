@@ -1,29 +1,34 @@
-import { format, parse as parseDate } from 'date-fns';
-import ruLocale from 'date-fns/locale/ru';
 import parse from 'html-react-parser';
 import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
+import { poetryPageQuery_categories_edges_node } from '../../../../pages/__generated__/poetryPageQuery';
+
 import { ItemWrapper, StyledLink } from './styles';
 
 import { getSrcSet } from 'utils/image';
 
-const Post = ({
-  date,
+interface IPost {
+  id: string | null;
+  excerpt: string | null;
+  publicationDate: string;
+  title: string | null;
+  slug: string | null;
+  category: poetryPageQuery_categories_edges_node;
+  image: string | null;
+  updateDate?: string;
+}
+
+const Post: React.FC<IPost> = ({
+  publicationDate,
   title,
   slug,
   category,
-  id,
-  extra,
   excerpt,
   image,
 }: any) => {
   const isWithImage = !!image;
-  // const parsedDate = parseDate(date, 'mm.dd.yyyy', new Date());
-  // const dateString = format(parsedDate, 'd MMMM yyyy', {
-  //   locale: ruLocale,
-  // });
 
   return (
     <ItemWrapper className="col-12 col-md-6 col-lg-4">
@@ -42,10 +47,15 @@ const Post = ({
                 />
               </div>
             )}
-            {date && <p className="item__date">{date}</p>}
+            {publicationDate && (
+              <p className="item__date">
+                <b>Дата:</b> {publicationDate}
+              </p>
+            )}
             <h3 className="item__title">{title}</h3>
             <div className="item__content">
               {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}
+              <p className="link">Читать дальше...</p>
             </div>
           </div>
         </div>
