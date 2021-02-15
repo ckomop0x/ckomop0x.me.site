@@ -11,7 +11,7 @@ const Footer: React.FC = () => (
       <div className="row">
         <div className="col-12">
           <p className="copyright">
-            &copy; {new Date().getFullYear()} {siteTitle}
+            &copy; 2019-{new Date().getFullYear()} {siteTitle}
           </p>
           <p className="version">v{version}</p>
         </div>
