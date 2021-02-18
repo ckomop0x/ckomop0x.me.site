@@ -15,9 +15,6 @@ const Hero: React.FC<IMainSectionProps> = ({ title, subtitle }) => (
     <div className="container main-section__text">
       <Title>{title}</Title>
       <SubTitle>{subtitle}</SubTitle>
-      {/* <Link className={styles.startButton} to="/poetry">
-          Читать стихи →
-        </Link> */}{' '}
     </div>
   </MainSection>
 );
