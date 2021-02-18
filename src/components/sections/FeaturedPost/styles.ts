@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
+import styled, { css } from 'styled-components';
 
 export const FeaturedPostWrapper = styled.section`
   min-height: 100vh;
@@ -28,23 +28,21 @@ export const ItemImage = styled.div`
   }
 
   ${({ background }: { background?: string }) =>
-    background
-      ? css`
-          .item-image {
-            /* filter: blur(10px); */
-            position: absolute;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 1;
-            background-size: cover;
-            background-position: center;
-            background-image: url(${background}?tr=w-1080);
-          }
-        `
-      : ''}
+    background &&
+    css`
+      .item-image {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        background-size: cover;
+        background-position: center;
+        background-image: url(${background}?tr=w-1080);
+      }
+    `}
 `;
 
 export const ContentWrapper = styled.div`
@@ -95,14 +93,13 @@ export const LinkStyled = styled(Link)`
   display: inline-block;
   padding: 10px 20px;
   margin-top: 40px;
-  box-shadow: 40px 10px 0px #b3710037, -40px -10px 0 #ffa20050,
-    0 0 10px #0000002e;
+  box-shadow: 40px 10px 0 #b3710037, -40px -10px 0 #ffa20050, 0 0 10px #0000002e;
   transition: all 0.5s ease;
 
   &:hover {
     text-decoration: none;
     background: #0056b3;
     color: #f5f5f5;
-    box-shadow: 30px 10px 0px #b37100, -30px -10px 0 #ffa200, 0 0 10px #0000004e;
+    box-shadow: 30px 10px 0 #b37100, -30px -10px 0 #ffa200, 0 0 10px #0000004e;
   }
 `;

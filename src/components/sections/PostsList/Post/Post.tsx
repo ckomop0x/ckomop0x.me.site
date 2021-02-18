@@ -49,7 +49,7 @@ const Post: React.FC<IPost> = ({
             )}
             {publicationDate && (
               <p className="item__date">
-                <b>Дата:</b> {publicationDate}
+                <b>Опубликовано:</b> {publicationDate}
               </p>
             )}
             <h3 className="item__title">{title}</h3>
