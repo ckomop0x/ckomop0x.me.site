@@ -32,8 +32,10 @@ const PoetryPage: React.FC<IPortfolioProps> = ({ data }) => {
           Мои стихи и песни написанные в разное время, в разных городах и
           странах
         </SubtitleBlock>
-        {poetryItems && (
+        {poetryItems ? (
           <ItemsList items={poetryItems} categories={categoriesItems} />
+        ) : (
+          'Здесь ещё ничего нет или что-то пошло не так. 😎'
         )}
       </div>
     </PoetryLayout>

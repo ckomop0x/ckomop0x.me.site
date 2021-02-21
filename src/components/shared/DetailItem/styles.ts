@@ -8,11 +8,6 @@ export const Title = styled.div`
   background-color: #292929;
 `;
 
-export const StyledTitleBlock = styled(TitleBlock)`
-  color: white;
-  text-align: center;
-`;
-
 export const Content = styled.div`
   max-width: 800px;
   margin: -40px auto 40px;
@@ -79,8 +74,6 @@ export const Content = styled.div`
   }
 `;
 
-export const PoetryItemWrapper = styled.div``;
-
 interface IPoetryItemImage {
   className: string;
   image: string;
@@ -93,7 +86,6 @@ export const PoetryItemImage = styled.div<IPoetryItemImage>`
   height: 240px;
   background-position: center;
   position: relative;
-  /* background-attachment: fixed; */
 
   &::after {
     position: absolute;

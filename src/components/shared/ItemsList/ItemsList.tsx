@@ -1,5 +1,3 @@
-import { format } from 'date-fns';
-import ruLocale from 'date-fns/locale/ru';
 import React from 'react';
 
 import {
@@ -12,12 +10,17 @@ import {
 } from '../../../pages/__generated__/poetryPageQuery';
 
 import Post from 'components/sections/PostsList/Post';
+import formatDate from 'utils/dates/formatDate';
+
+type ICategory =
+  | poetryPageQuery_categories_edges
+  | blogPageQuery_categories_edges;
+
+type IItem = poetryPageQuery_poetry_edges | blogPageQuery_blog_edges;
 
 interface IItemsList {
-  items: poetryPageQuery_poetry_edges[] | blogPageQuery_blog_edges[];
-  categories:
-    | poetryPageQuery_categories_edges[]
-    | blogPageQuery_categories_edges[];
+  items: IItem[];
+  categories: ICategory[];
 }
 
 const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
@@ -36,14 +39,11 @@ const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
           image_url,
         } = node;
 
-        const publicationDate = format(new Date(createdAt), 'dd MMMM yyyy', {
-          locale: ruLocale,
-        });
-        const updateDate = format(new Date(updatedAt), 'dd MMMM yyyy', {
-          locale: ruLocale,
-        });
+        const publicationDate = formatDate(createdAt);
+        const updateDate = formatDate(updatedAt);
+
         const categoryData = categories.filter(
-          (categoryItem: any) => categoryItem.node.slug === category,
+          (categoryItem: ICategory) => categoryItem.node.slug === category,
         )[0].node;
 
         return (
