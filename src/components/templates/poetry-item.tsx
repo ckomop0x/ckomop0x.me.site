@@ -3,7 +3,7 @@ import React from 'react';
 
 import ProjectsLayout from '../layouts/PoetryLayout';
 
-import { default as DetailItemComponent } from 'components/shared/DetailItem';
+import DetailItemComponent from 'components/shared/DetailItem';
 import { ProjectTemplateQuery } from 'components/templates/__generated__/ProjectTemplateQuery';
 
 interface IDetailItem {

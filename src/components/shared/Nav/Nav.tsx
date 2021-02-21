@@ -9,7 +9,7 @@ export interface INavProps {
 const Nav: React.FC<INavProps> = ({ inner }) => (
   <Navbar className={`container ${inner ? 'inner' : ''}`}>
     <TopLogo to="/">
-      <img src="/images/apple-icon.png" />
+      <img src="/images/apple-icon.png" alt="Павел Клочков" />
       <span>Павел Клочков</span>
     </TopLogo>
     <TopMenu>
