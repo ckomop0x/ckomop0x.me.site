@@ -3,6 +3,8 @@
 
 # Pavel Klochkov @ckomop0x blog website
 
+My personal blog website. It uses Gatsby, Strapi, TypeScript, etc. and has many good optimisations under the hood.
+
 **[https://ckomop0x.me](https://ckomop0x.me)**
 
 ## Technologies
