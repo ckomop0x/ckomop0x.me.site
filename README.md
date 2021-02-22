@@ -3,16 +3,29 @@
 
 # Pavel Klochkov @ckomop0x blog website
 
+My personal blog website. It uses Gatsby, Strapi, TypeScript, etc. and has many good optimisations under the hood.
+
 **[https://ckomop0x.me](https://ckomop0x.me)**
+
+## How it works
+
+### Backend
+I use Strapi as headless CMS. It's hosted on Heroku and connected to MongoDB on MongoDB atlas. It allows to have cloud-based infrastructure with a free-tier enough big for the personal blog. 
+
+### Frontend
+For client-side part I use Gatsby, which is hosted on Netlify. Each deploy it gets the newest data and even can be redeployed with updated data. It's possible with webhook trigger connected from Strapi to Netlify. For automatisation I've connected GitHub actions and strict deploy policy – only from master if test deploy and tests are ✅passing.
 
 ## Technologies
 
 - Gatsby
-- TypeScript
+- TypeScript with automated types for data generation; 
 - Styled Components
 - GraphQL
-- Prettier
+- Prettier / Husky / Git-hooks
 - Eslint
+- Apollo
+- Lazy load images 
+- Jest
 
 ## Files structure
 
@@ -45,14 +58,6 @@ tsconfig.json           - main TypeScript config
 tsconfig.test.json      - TypeScript for tests
 yarn.lock               - installed dependencies
 ```
-
-## Under the hood
-
-- Webpack
-- SCSS
-- JS с Babel
-- Stylelint, Eslint
-- Prettier
 
 ## Install
 
