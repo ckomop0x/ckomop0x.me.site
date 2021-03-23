@@ -91,7 +91,6 @@ module.exports = {
     ],
     // '@typescript-eslint/ban-ts-ignore': 'warn',
     '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/ban-ts-ignore': 0,
     // '@typescript-eslint/camelcase': 'warn',
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/no-unused-vars': 'off',

@@ -79,8 +79,12 @@ export const ItemWrapper = styled.article`
   .post-content {
     margin: 32px;
     background-color: #f5f5f5c2;
+    border-radius: 30px;
     width: 100%;
     box-shadow: 0 2px 3px #0000001c;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     flex-direction: column;
     transition: box-shadow 0.3s ease;
@@ -92,15 +96,22 @@ export const ItemWrapper = styled.article`
 
   .item__image {
     width: 100%;
-    padding: 20px;
+    /* padding: 20px; */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 2px 3px #00000022;
   }
 
   .item__date {
     color: #747474;
-    text-align: left;
-    font-size: 12px;
-    margin: 0;
-    padding: 0 20px;
+    text-align: center;
+    font-size: 13px;
+    padding: 8px 20px;
+    background: #fff;
+    width: 60%;
+    margin: -27px auto 0;
+    border-radius: 32px;
+    opacity: 0.9;
   }
 
   .item__title {
@@ -136,5 +147,40 @@ export const StyledLink = styled(Link)`
 
   &:hover {
     text-decoration: none;
+  }
+`;
+
+export const PostTitle = styled.h3`
+  font-size: 26px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  margin-top: 0;
+  border-bottom: 1px solid #88808030;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+`;
+
+export const PostContent = styled.div`
+  text-align: left;
+  line-height: 1.3;
+  padding: 0 20px;
+  font-family: sans-serif, sans-serif;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    text-align: center;
+    color: #747474;
+    font-size: 13px;
+    padding: 20px 0;
+  }
+
+  .link {
+    text-align: center;
   }
 `;

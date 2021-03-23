@@ -5,7 +5,7 @@ import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import { poetryPageQuery_categories_edges_node } from '../../../../pages/__generated__/poetryPageQuery';
 
-import { ItemWrapper, StyledLink } from './styles';
+import { ItemWrapper, PostTitle, StyledLink, PostContent } from './styles';
 
 import { getSrcSet } from 'utils/image';
 
@@ -49,14 +49,15 @@ const Post: React.FC<IPost> = ({
             )}
             {publicationDate && (
               <p className="item__date">
-                <b>Опубликовано:</b> {publicationDate}
+                <b>Опубликовано:</b>
+                <br />
+                {publicationDate}
               </p>
             )}
-            <h3 className="item__title">{title}</h3>
-            <div className="item__content">
+            <PostTitle>{title}</PostTitle>
+            <PostContent>
               {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}
-              <p className="link">Читать дальше...</p>
-            </div>
+            </PostContent>
           </div>
         </div>
       </StyledLink>
