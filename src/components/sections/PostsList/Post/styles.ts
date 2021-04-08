@@ -110,7 +110,6 @@ export const ItemWrapper = styled.article`
     width: 60%;
     margin: -27px auto 0;
     border-radius: 32px;
-    opacity: 1;
   }
 
   .item__title {
