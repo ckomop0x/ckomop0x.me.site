@@ -96,7 +96,6 @@ export const ItemWrapper = styled.article`
 
   .item__image {
     width: 100%;
-    /* padding: 20px; */
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 0 2px 3px #00000022;
@@ -111,7 +110,7 @@ export const ItemWrapper = styled.article`
     width: 60%;
     margin: -27px auto 0;
     border-radius: 32px;
-    opacity: 0.9;
+    opacity: 1;
   }
 
   .item__title {
