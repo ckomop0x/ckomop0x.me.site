@@ -9,25 +9,28 @@ import { ItemWrapper, PostTitle, StyledLink, PostContent } from './styles';
 
 import { getSrcSet } from 'utils/image';
 
-interface IPost {
+export interface IPostProps {
+  /**
+   * @id уникальный идентификатор поста
+   */
   id: string | null;
   excerpt: string | null;
   publicationDate: string;
-  title: string | null;
+  title: string;
   slug: string | null;
   category: poetryPageQuery_categories_edges_node;
-  image: string | null;
+  image: string;
   updateDate?: string;
 }
 
-const Post: React.FC<IPost> = ({
+const Post: React.FC<IPostProps> = ({
   publicationDate,
   title,
   slug,
   category,
   excerpt,
   image,
-}: any) => {
+}) => {
   const isWithImage = !!image;
 
   return (
@@ -56,7 +59,9 @@ const Post: React.FC<IPost> = ({
             )}
             <PostTitle>{title}</PostTitle>
             <PostContent>
-              {parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)}
+              {excerpt
+                ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
+                : 'В этом посте ещё нет контента'}
             </PostContent>
           </div>
         </div>
