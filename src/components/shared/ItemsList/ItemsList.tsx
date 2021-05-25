@@ -54,10 +54,10 @@ const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
               excerpt={excerpt}
               publicationDate={publicationDate}
               updateDate={updateDate}
-              title={title}
+              title={title || ''}
               slug={slug}
               category={categoryData}
-              image={image_url}
+              image={image_url || ''}
             />
           )
         );

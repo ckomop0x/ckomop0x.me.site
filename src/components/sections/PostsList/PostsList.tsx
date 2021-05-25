@@ -67,10 +67,10 @@ const PostsList: React.FC<IPostsList> = ({
                     id={strapiId}
                     excerpt={excerpt}
                     publicationDate={publicationDate}
-                    title={title}
+                    title={title || ''}
                     slug={slug}
                     category={categoryData}
-                    image={image_url}
+                    image={image_url || ''}
                   />
                 )
               );

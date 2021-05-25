@@ -20,15 +20,8 @@ interface IFeaturedPost {
 }
 
 const FeaturedPost: React.FC<IFeaturedPost> = ({ post, categories }) => {
-  const {
-    title,
-    excerpt,
-    published,
-    createdAt,
-    slug,
-    category,
-    image_url,
-  } = post;
+  const { title, excerpt, published, createdAt, slug, category, image_url } =
+    post;
   const formattedDate = moment(createdAt).format('DD.MM.YYYY');
   const categoryData = categories.filter(
     categoryItem => categoryItem.node.slug === category,
@@ -47,17 +40,9 @@ const FeaturedPost: React.FC<IFeaturedPost> = ({ post, categories }) => {
                 <div className="row">
                   <ItemImage
                     className="col-12 col-sm-12 col-md-7"
-                    background={image_url ? image_url : ''}
+                    background={image_url ?? ''}
                   >
-                    <div className="item-image"></div>
-                    {/* <img
-                  className="item-image lazyload"
-                  loading="lazy"
-                  data-src={`${image_url}?tr=w-1080,h-280,fo-top`}
-                  data-srcset={getSrcSet(image_url ? image_url : '')}
-                  data-sizes="(max-width: 600px) 480px, 600px"
-                  alt={title || undefined}
-                /> */}
+                    <div className="item-image" />
                   </ItemImage>
                   <ContentWrapper className="col-12 col-sm-12 col-md-5">
                     <h3 className="title">{title}</h3>

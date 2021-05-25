@@ -1,4 +1,4 @@
-import { Link } from 'gatsby';
+import Link from 'gatsby-link';
 import styled, { css } from 'styled-components';
 
 export const Content = styled.div`
