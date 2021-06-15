@@ -1,7 +1,4 @@
-import { graphql } from 'gatsby';
-import React from 'react';
-
-import { IndexPageQuery } from './__generated__/IndexPageQuery';
+// import { IndexPageQuery } from './__generated__/IndexPageQuery';
 
 import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPost from 'components/sections/FeaturedPost';
@@ -9,14 +6,15 @@ import Hero from 'components/sections/Hero';
 import PostsList from 'components/sections/PostsList';
 
 interface IIndexPage {
-  data: IndexPageQuery;
+  // data: IndexPageQuery;
+  data: any;
 }
 
-const IndexPage: React.FC<IIndexPage> = ({ data }) => {
-  const [featuredItem] = data?.featured.edges;
-  const poetryItems = data?.poetry.edges;
-  const blogItems = data?.blog.edges;
-  const categoriesItems = data?.categories.edges;
+export default function IndexPage({ data = [] }: IIndexPage) {
+  const [featuredItem] = data?.featured?.edges || [];
+  const poetryItems = data?.poetry?.edges;
+  const blogItems = data?.blog?.edges;
+  const categoriesItems = data?.categories?.edges;
 
   return (
     <MainPageLayout>
@@ -24,8 +22,10 @@ const IndexPage: React.FC<IIndexPage> = ({ data }) => {
         title="Добро пожаловать в мой персональный блог"
         subtitle="Здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
-      <FeaturedPost post={featuredItem.node} categories={categoriesItems} />
-      {blogItems?.length > 0 && (
+      {featuredItem?.node && (
+        <FeaturedPost post={featuredItem.node} categories={categoriesItems} />
+      )}
+      {blogItems?.length && (
         <PostsList
           items={blogItems}
           categories={categoriesItems}
@@ -44,46 +44,43 @@ const IndexPage: React.FC<IIndexPage> = ({ data }) => {
       )}
     </MainPageLayout>
   );
-};
-
-export const query = graphql`
-  query IndexPageQuery {
-    featured: allStrapiPosts(filter: { featured: { eq: true } }, limit: 1) {
-      edges {
-        node {
-          ...PostFields
-        }
-      }
-    }
-
-    poetry: allStrapiPosts(
-      filter: { category: { eq: "poetry" }, featured: { eq: false } }
-      sort: { fields: [createdAt], order: [DESC] }
-      limit: 3
-    ) {
-      edges {
-        node {
-          ...PostFields
-        }
-      }
-    }
-    blog: allStrapiPosts(
-      filter: { category: { eq: "blog" }, featured: { eq: false } }
-      sort: { fields: [createdAt], order: [DESC] }
-      limit: 3
-    ) {
-      edges {
-        node {
-          ...PostFields
-        }
-      }
-    }
-    categories: allStrapiCategories {
-      edges {
-        ...StrapiCategories
-      }
-    }
-  }
-`;
-
-export default IndexPage;
+}
+// export const query = graphql`
+//   query IndexPageQuery {
+//     featured: allStrapiPosts(filter: { featured: { eq: true } }, limit: 1) {
+//       edges {
+//         node {
+//           ...PostFields
+//         }
+//       }
+//     }
+//
+//     poetry: allStrapiPosts(
+//       filter: { category: { eq: "poetry" }, featured: { eq: false } }
+//       sort: { fields: [createdAt], order: [DESC] }
+//       limit: 3
+//     ) {
+//       edges {
+//         node {
+//           ...PostFields
+//         }
+//       }
+//     }
+//     blog: allStrapiPosts(
+//       filter: { category: { eq: "blog" }, featured: { eq: false } }
+//       sort: { fields: [createdAt], order: [DESC] }
+//       limit: 3
+//     ) {
+//       edges {
+//         node {
+//           ...PostFields
+//         }
+//       }
+//     }
+//     categories: allStrapiCategories {
+//       edges {
+//         ...StrapiCategories
+//       }
+//     }
+//   }
+// `;

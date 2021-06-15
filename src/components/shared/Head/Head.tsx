@@ -102,7 +102,7 @@ const Head: React.FC<IHead> = ({
     <link
       href="https://fonts.googleapis.com/css2?family=Lobster&text=ПавелКлочков&display=swap"
       rel="stylesheet"
-    ></link>
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
@@ -111,15 +111,15 @@ const Head: React.FC<IHead> = ({
     <link
       rel="icon"
       sizes="192x192"
-      href={require('../../../../static/images/android-icon-192x192.png')}
+      href={require('../../../../public/images/android-icon-192x192.png')}
     />
     <link
       rel="apple-touch-icon"
-      href={require('../../../../static/images/apple-icon-180x180.png')}
+      href={require('../../../../public/images/apple-icon-180x180.png')}
     />
     <link
       rel="mask-icon"
-      href={require('../../../../static/images/favicon-96x96.png')}
+      href={require('../../../../public/images/favicon-96x96.png')}
     />
     <title>{headTitle}</title>
   </Helmet>

@@ -1,6 +1,5 @@
 import parse from 'html-react-parser';
-import moment from 'moment';
-import React from 'react';
+// import moment from 'moment';
 
 import {
   ContentWrapper,
@@ -19,10 +18,11 @@ interface IFeaturedPost {
   categories: IndexPageQuery_categories_edges[];
 }
 
-const FeaturedPost: React.FC<IFeaturedPost> = ({ post, categories }) => {
+export default function FeaturedPost({ post, categories }: IFeaturedPost) {
   const { title, excerpt, published, createdAt, slug, category, image_url } =
     post;
-  const formattedDate = moment(createdAt).format('DD.MM.YYYY');
+  const formattedDate = '';
+  // moment(createdAt).format('DD.MM.YYYY');
   const categoryData = categories.filter(
     categoryItem => categoryItem.node.slug === category,
   )[0].node;
@@ -47,14 +47,14 @@ const FeaturedPost: React.FC<IFeaturedPost> = ({ post, categories }) => {
                   <ContentWrapper className="col-12 col-sm-12 col-md-5">
                     <h3 className="title">{title}</h3>
                     <p className="post-date">Опубликовано: {formattedDate}</p>
-                    {excerpt && category ? (
+                    {excerpt && category && (
                       <div className="post-text">
                         {excerptText}
-                        <LinkStyled to={`/${categoryData.slug}/${slug}`}>
-                          Читать далее...
+                        <LinkStyled href={`/${categoryData.slug}/${slug}`}>
+                          <a>Читать далее...</a>
                         </LinkStyled>
                       </div>
-                    ) : null}
+                    )}
                   </ContentWrapper>
                 </div>
               </article>
@@ -64,6 +64,4 @@ const FeaturedPost: React.FC<IFeaturedPost> = ({ post, categories }) => {
       )}
     </>
   );
-};
-
-export default FeaturedPost;
+}

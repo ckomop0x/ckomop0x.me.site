@@ -11,11 +11,10 @@
 .env.production
 
 node_modules
-.cache
 /webtime-studio/public/
 _materials
 /_materials/
-public
 /src/__generated__/
 __generated__
 /coverage
+.next

@@ -1,13 +1,9 @@
-import { graphql } from 'gatsby';
-import React from 'react';
-
-import PoetryLayout from '../components/layouts/PoetryLayout/PoetryLayout';
-
 import {
   blogPageQuery_blog,
   blogPageQuery_categories,
-} from './__generated__/blogPageQuery';
+} from '../__generated__/blogPageQuery';
 
+import PoetryLayout from 'components/layouts/PoetryLayout/PoetryLayout';
 import ItemsList from 'components/shared/ItemsList';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
@@ -18,7 +14,7 @@ export interface IPortfolioProps {
   };
 }
 
-const PoetryPage: React.FC<IPortfolioProps> = ({ data }) => {
+export default function PoetryPage({ data }: IPortfolioProps) {
   if (!data) {
     return null;
   }
@@ -44,27 +40,25 @@ const PoetryPage: React.FC<IPortfolioProps> = ({ data }) => {
       </div>
     </PoetryLayout>
   );
-};
+}
 
-export const query = graphql`
-  query blogPageQuery {
-    blog: allStrapiPosts(
-      filter: { category: { eq: "blog" } }
-      sort: { fields: [createdAt] }
-      limit: 100
-    ) {
-      edges {
-        node {
-          ...PostFields
-        }
-      }
-    }
-    categories: allStrapiCategories {
-      edges {
-        ...StrapiCategories
-      }
-    }
-  }
-`;
-
-export default PoetryPage;
+// export const query = graphql`
+//   query blogPageQuery {
+//     blog: allStrapiPosts(
+//       filter: { category: { eq: "blog" } }
+//       sort: { fields: [createdAt] }
+//       limit: 100
+//     ) {
+//       edges {
+//         node {
+//           ...PostFields
+//         }
+//       }
+//     }
+//     categories: allStrapiCategories {
+//       edges {
+//         ...StrapiCategories
+//       }
+//     }
+//   }
+// `;

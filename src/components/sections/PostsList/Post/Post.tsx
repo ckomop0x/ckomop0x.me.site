@@ -35,36 +35,38 @@ const Post: React.FC<IPostProps> = ({
 
   return (
     <ItemWrapper className="col-12 col-md-6 col-lg-4">
-      <StyledLink to={`/${category.slug}/${slug}`}>
-        <div className="row h-100">
-          <div className="post-content">
-            {isWithImage && (
-              <div>
-                <img
-                  className="item__image lazyload"
-                  loading="lazy"
-                  data-src={`${image}`}
-                  data-srcset={getSrcSet(image)}
-                  data-sizes="(max-width: 600px) 480px, 600px"
-                  alt={title}
-                />
-              </div>
-            )}
-            {publicationDate && (
-              <p className="item__date">
-                <b>Опубликовано:</b>
-                <br />
-                {publicationDate}
-              </p>
-            )}
-            <PostTitle>{title}</PostTitle>
-            <PostContent>
-              {excerpt
-                ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
-                : 'В этом посте ещё нет контента'}
-            </PostContent>
+      <StyledLink href={`/${category.slug}/${slug}`}>
+        <a>
+          <div className="row h-100">
+            <div className="post-content">
+              {isWithImage && (
+                <div>
+                  <img
+                    className="item__image lazyload"
+                    loading="lazy"
+                    data-src={`${image}`}
+                    data-srcset={getSrcSet(image)}
+                    data-sizes="(max-width: 600px) 480px, 600px"
+                    alt={title}
+                  />
+                </div>
+              )}
+              {publicationDate && (
+                <p className="item__date">
+                  <b>Опубликовано:</b>
+                  <br />
+                  {publicationDate}
+                </p>
+              )}
+              <PostTitle>{title}</PostTitle>
+              <PostContent>
+                {excerpt
+                  ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
+                  : 'В этом посте ещё нет контента'}
+              </PostContent>
+            </div>
           </div>
-        </div>
+        </a>
       </StyledLink>
     </ItemWrapper>
   );

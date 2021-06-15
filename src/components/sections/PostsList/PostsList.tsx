@@ -76,8 +76,8 @@ const PostsList: React.FC<IPostsList> = ({
               );
             })}
           </PostsListStyled>
-          <AllPostsLink to={postsCategoryLink}>
-            Перейти в {postsCategory.node.name}
+          <AllPostsLink href={postsCategoryLink}>
+            <a>Перейти в {postsCategory.node.name}</a>
           </AllPostsLink>
         </div>
       </div>

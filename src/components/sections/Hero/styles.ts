@@ -1,4 +1,4 @@
-import { Link } from 'gatsby';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export const MainSection = styled.section`
