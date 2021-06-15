@@ -1,9 +1,12 @@
-// import { IndexPageQuery } from './__generated__/IndexPageQuery';
+import { gql } from '@apollo/client';
+
+import { IndexPageQuery } from './__generated__/IndexPageQuery';
 
 import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPost from 'components/sections/FeaturedPost';
 import Hero from 'components/sections/Hero';
 import PostsList from 'components/sections/PostsList';
+import apolloClient from 'utils/api/apollo-client';
 
 interface IIndexPage {
   // data: IndexPageQuery;
@@ -11,7 +14,9 @@ interface IIndexPage {
 }
 
 export default function IndexPage({ data = [] }: IIndexPage) {
-  const [featuredItem] = data?.featured?.edges || [];
+  console.log('data', data);
+
+  const [featuredItem] = data?.featured;
   const poetryItems = data?.poetry?.edges;
   const blogItems = data?.blog?.edges;
   const categoriesItems = data?.categories?.edges;
@@ -22,8 +27,8 @@ export default function IndexPage({ data = [] }: IIndexPage) {
         title="Добро пожаловать в мой персональный блог"
         subtitle="Здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
-      {featuredItem?.node && (
-        <FeaturedPost post={featuredItem.node} categories={categoriesItems} />
+      {featuredItem && (
+        <FeaturedPost post={featuredItem} categories={categoriesItems} />
       )}
       {blogItems?.length && (
         <PostsList
@@ -45,6 +50,50 @@ export default function IndexPage({ data = [] }: IIndexPage) {
     </MainPageLayout>
   );
 }
+
+export async function getStaticProps() {
+  const { data } = await apolloClient.query({
+    query: gql`
+      query IndexPageQuery {
+        featured: posts(where: { featured: true }, limit: 1) {
+          ...PostFields
+        }
+        posts(limit: 3) {
+          category
+          image_url
+          slug
+          published
+          id
+          excerpt
+          createdAt
+          updatedAt
+          title
+          featured
+        }
+      }
+
+      fragment PostFields on Post {
+        category
+        image_url
+        slug
+        published
+        id
+        excerpt
+        createdAt
+        updatedAt
+        title
+        featured
+      }
+    `,
+  });
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
 // export const query = graphql`
 //   query IndexPageQuery {
 //     featured: allStrapiPosts(filter: { featured: { eq: true } }, limit: 1) {

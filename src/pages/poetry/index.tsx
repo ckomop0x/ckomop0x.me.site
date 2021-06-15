@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { poetryPageQuery as PoetryPageQuery } from '../__generated__/poetryPageQuery';
 
 import PoetryLayout from 'components/layouts/PoetryLayout';
@@ -10,10 +8,10 @@ export interface IPortfolioProps {
   data: PoetryPageQuery;
 }
 
-const PoetryPage: React.FC<IPortfolioProps> = ({ data }) => {
-  if (!data) {
-    return null;
-  }
+export default function PoetryPage({ data }: IPortfolioProps) {
+  // if (!data) {
+  //   return null;
+  // }
 
   const poetryItems = data?.poetry.edges;
   const categoriesItems = data?.categories.edges;
@@ -39,27 +37,25 @@ const PoetryPage: React.FC<IPortfolioProps> = ({ data }) => {
       </div>
     </PoetryLayout>
   );
-};
+}
 
-export const query = graphql`
-  query poetryPageQuery {
-    poetry: allStrapiPosts(
-      filter: { category: { eq: "poetry" } }
-      sort: { fields: [createdAt], order: [DESC] }
-      limit: 100
-    ) {
-      edges {
-        node {
-          ...PostFields
-        }
-      }
-    }
-    categories: allStrapiCategories {
-      edges {
-        ...StrapiCategories
-      }
-    }
-  }
-`;
-
-export default PoetryPage;
+// export const query = graphql`
+//   query poetryPageQuery {
+//     poetry: allStrapiPosts(
+//       filter: { category: { eq: "poetry" } }
+//       sort: { fields: [createdAt], order: [DESC] }
+//       limit: 100
+//     ) {
+//       edges {
+//         node {
+//           ...PostFields
+//         }
+//       }
+//     }
+//     categories: allStrapiCategories {
+//       edges {
+//         ...StrapiCategories
+//       }
+//     }
+//   }
+// `;

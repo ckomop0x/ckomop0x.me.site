@@ -41,17 +41,17 @@ const PoetryLayout: React.FC<IProjectsLayoutProps> = ({
   <>
     <GlobalStyle />
     <PoetryLayoutStyled>
-      <Header
-        headTitle={headTitle}
-        ogUrl={ogUrl}
-        ogImage={ogImage}
-        ogImageHeight={ogImageHeight}
-        ogImageWidth={ogImageWidth}
-        ogDescription={ogDescription}
-        ogLocale={ogLocale}
-        ogType={ogType}
-        twitterCard={twitterCard}
-      />
+      {/* <Header*/}
+      {/*  headTitle={headTitle}*/}
+      {/*  ogUrl={ogUrl}*/}
+      {/*  ogImage={ogImage}*/}
+      {/*  ogImageHeight={ogImageHeight}*/}
+      {/*  ogImageWidth={ogImageWidth}*/}
+      {/*  ogDescription={ogDescription}*/}
+      {/*  ogLocale={ogLocale}*/}
+      {/*  ogType={ogType}*/}
+      {/*  twitterCard={twitterCard}*/}
+      {/* />*/}
       <Nav inner={true} />
       <main>{children}</main>
       <Footer />

@@ -15,12 +15,12 @@ export interface IPortfolioProps {
 }
 
 export default function PoetryPage({ data }: IPortfolioProps) {
-  if (!data) {
-    return null;
-  }
+  // if (!data) {
+  //   return null;
+  // }
 
-  const blogItems = data?.blog.edges;
-  const categoriesItems = data?.categories.edges;
+  const blogItems = data?.blog?.edges;
+  const categoriesItems = data?.categories?.edges;
 
   return (
     <PoetryLayout

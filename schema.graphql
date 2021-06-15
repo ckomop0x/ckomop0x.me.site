@@ -2,2881 +2,947 @@
 
 schema {
   query: Query
+  mutation: Mutation
 }
 
-"Node Interface"
-interface Node {
-  children: [Node!]!
+union Morph = Category | CategoryAggregator | CategoryConnection | CategoryConnectionCreatedAt | CategoryConnectionId | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionUpdatedAt | CategoryConnection_id | CategoryGroupBy | ComponentPostRichText | I18NLocale | Post | PostAggregator | PostConnection | PostConnectionCategory | PostConnectionCreatedAt | PostConnectionDate | PostConnectionDescription | PostConnectionExcerpt | PostConnectionFeatured | PostConnectionId | PostConnectionImage | PostConnectionImage_url | PostConnectionLocale | PostConnectionPublished | PostConnectionPublished_at | PostConnectionSlug | PostConnectionTitle | PostConnectionUpdatedAt | PostConnection_id | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | createCategoryPayload | createPostPayload | createRolePayload | createUserPayload | deleteCategoryPayload | deleteFilePayload | deletePostPayload | deleteRolePayload | deleteUserPayload | updateCategoryPayload | updatePostPayload | updateRolePayload | updateUserPayload
+
+union PostContentDynamicZone = ComponentPostRichText
+
+type AdminUser {
+  firstname: String!
   id: ID!
-  internal: Internal!
-  parent: Node
+  lastname: String!
+  username: String
 }
 
-type Directory implements Node {
-  absolutePath: String!
-  accessTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  atime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  atimeMs: Float!
-  base: String!
-  birthTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  birthtime: Date @deprecated(reason : "Use `birthTime` instead")
-  birthtimeMs: Float @deprecated(reason : "Use `birthTime` instead")
-  blksize: Int
-  blocks: Int
-  changeTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  children: [Node!]!
-  ctime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  ctimeMs: Float!
-  dev: Int!
-  dir: String!
-  ext: String!
-  extension: String!
-  gid: Int!
+type Category {
+  _id: ID!
+  createdAt: DateTime!
   id: ID!
-  ino: Float!
-  internal: Internal!
-  mode: Int!
-  modifiedTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  mtime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  mtimeMs: Float!
-  name: String!
-  nlink: Int!
-  parent: Node
-  prettySize: String!
-  rdev: Int!
-  relativeDirectory: String!
-  relativePath: String!
-  root: String!
-  size: Int!
-  sourceInstanceName: String!
-  uid: Int!
+  name: String
+  slug: String!
+  updatedAt: DateTime!
 }
 
-type DirectoryConnection {
-  distinct(field: DirectoryFieldsEnum!): [String!]!
-  edges: [DirectoryEdge!]!
-  group(field: DirectoryFieldsEnum!, limit: Int, skip: Int): [DirectoryGroupConnection!]!
-  nodes: [Directory!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
+type CategoryAggregator {
+  count: Int
+  totalCount: Int
 }
 
-type DirectoryEdge {
-  next: Directory
-  node: Directory!
-  previous: Directory
+type CategoryConnection {
+  aggregate: CategoryAggregator
+  groupBy: CategoryGroupBy
+  values: [Category]
 }
 
-type DirectoryGroupConnection {
-  edges: [DirectoryEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [Directory!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
+type CategoryConnectionCreatedAt {
+  connection: CategoryConnection
+  key: DateTime
 }
 
-type File implements Node {
-  absolutePath: String!
-  accessTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  atime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  atimeMs: Float!
-  base: String!
-  birthTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  birthtime: Date @deprecated(reason : "Use `birthTime` instead")
-  birthtimeMs: Float @deprecated(reason : "Use `birthTime` instead")
-  blksize: Int
-  blocks: Int
-  changeTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  childImageSharp: ImageSharp
-  children: [Node!]!
-  ctime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  ctimeMs: Float!
-  dev: Int!
-  dir: String!
-  ext: String!
-  extension: String!
-  gid: Int!
+type CategoryConnectionId {
+  connection: CategoryConnection
+  key: ID
+}
+
+type CategoryConnectionName {
+  connection: CategoryConnection
+  key: String
+}
+
+type CategoryConnectionSlug {
+  connection: CategoryConnection
+  key: String
+}
+
+type CategoryConnectionUpdatedAt {
+  connection: CategoryConnection
+  key: DateTime
+}
+
+type CategoryConnection_id {
+  connection: CategoryConnection
+  key: ID
+}
+
+type CategoryGroupBy {
+  _id: [CategoryConnection_id]
+  createdAt: [CategoryConnectionCreatedAt]
+  id: [CategoryConnectionId]
+  name: [CategoryConnectionName]
+  slug: [CategoryConnectionSlug]
+  updatedAt: [CategoryConnectionUpdatedAt]
+}
+
+type ComponentPostRichText {
+  _id: ID!
   id: ID!
-  ino: Float!
-  internal: Internal!
-  mode: Int!
-  modifiedTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  mtime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date!
-  mtimeMs: Float!
-  name: String!
-  nlink: Int!
-  parent: Node
-  prettySize: String!
-  "Copy file to static directory and return public url to it"
-  publicURL: String
-  rdev: Int!
-  relativeDirectory: String!
-  relativePath: String!
-  root: String!
-  size: Int!
-  sourceInstanceName: String!
-  uid: Int!
+  rich_text: String
 }
 
-type FileConnection {
-  distinct(field: FileFieldsEnum!): [String!]!
-  edges: [FileEdge!]!
-  group(field: FileFieldsEnum!, limit: Int, skip: Int): [FileGroupConnection!]!
-  nodes: [File!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type FileEdge {
-  next: File
-  node: File!
-  previous: File
-}
-
-type FileGroupConnection {
-  edges: [FileEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [File!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type ImageSharp implements Node {
-  children: [Node!]!
-  fixed(background: String = "rgba(0,0,0,1)", base64Width: Int, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpFixed
-  fluid(
-    background: String = "rgba(0,0,0,1)",
-    base64Width: Int,
-    cropFocus: ImageCropFocus = ATTENTION,
-    duotone: DuotoneGradient,
-    fit: ImageFit = COVER,
-    grayscale: Boolean = false,
-    jpegProgressive: Boolean = true,
-    jpegQuality: Int,
-    maxHeight: Int,
-    maxWidth: Int,
-    pngCompressionSpeed: Int = 4,
-    pngQuality: Int,
-    quality: Int,
-    rotate: Int = 0,
-    sizes: String = "",
-    "A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]"
-    srcSetBreakpoints: [Int] = [],
-    toFormat: ImageFormat = AUTO,
-    toFormatBase64: ImageFormat = AUTO,
-    traceSVG: Potrace,
-    trim: Float = 0.0,
-    webpQuality: Int
-  ): ImageSharpFluid
-  gatsbyImageData(
-    "Background color applied to the wrapper. Also passed to sharp to use as a background when \"letterboxing\" an image to another aspect ratio."
-    background: String = "rgba(0,0,0,0)",
-    "Options for the low-resolution placeholder image. Set placeholder to \"BLURRED\" to use this"
-    blurredOptions: BlurredOptions,
-    """
-
-    The image formats to generate. Valid values are "AUTO" (meaning the same format as the source image), "JPG", "PNG" and "WEBP".
-    The default value is [AUTO, WEBP], and you should rarely need to change this. Take care if you specify JPG or PNG when you do
-    not know the formats of the source images, as this could lead to unwanted results such as converting JPEGs to PNGs. Specifying
-    both PNG and JPG is not supported and will be ignored.
-    """
-    formats: [ImageFormat] = [WEBP],
-    "If set, the height of the generated image. If omitted, it is calculated from the supplied width, matching the aspect ratio of the source image."
-    height: Int,
-    "Options to pass to sharp when generating JPG images."
-    jpgOptions: JPGOptions,
-    """
-
-    The layout for the image.
-    FIXED: A static image sized, that does not resize according to the screen width
-    FLUID: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
-    CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
-    """
-    layout: ImageLayout = FIXED,
-    """
-
-    If set, the generated image is a maximum of this height, cropping if necessary.
-    If the image layout is "constrained" then the image will be limited to this height.
-    If the aspect ratio of the image is different than the source, then the image will be cropped.
-    """
-    maxHeight: Int,
-    """
-
-    Maximum display width of generated files.
-    The actual largest image resolution will be this value multipled by the largest value in outputPixelDensities
-    This only applies when layout = FLUID or CONSTRAINED. For other layout types, use "width"
-    """
-    maxWidth: Int,
-    """
-
-    A list of image pixel densities to generate. It will never generate images larger than the source, and will always include a 1x image.
-    Default is [ 1, 2 ] for fixed images, meaning 1x, 2x, 3x, and [0.25, 0.5, 1, 2] for fluid. In this case, an image with a fluid layout and width = 400 would generate images at 100, 200, 400 and 800px wide
-    """
-    outputPixelDensities: [Float],
-    """
-
-    Format of generated placeholder image, displayed while the main image loads.
-    BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
-    DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
-    TRACED_SVG: a low-resolution traced SVG of the image.
-    NONE: no placeholder. Set "background" to use a fixed background color.
-    """
-    placeholder: ImagePlaceholder = BLURRED,
-    "Options to pass to sharp when generating PNG images."
-    pngOptions: PNGOptions,
-    "The default quality. This is overriden by any format-specific options"
-    quality: Int,
-    """
-
-    The "sizes" property, passed to the img tag. This describes the display size of the image.
-    This does not affect the generated images, but is used by the browser to decide which images to download. You can leave this blank for fixed images, or if the responsive image
-    container will be the full width of the screen. In these cases we will generate an appropriate value.
-    """
-    sizes: String = "",
-    "Options for traced placeholder SVGs. You also should set placeholder to \"SVG\"."
-    tracedSVGOptions: Potrace,
-    "Options to pass to sharp to control cropping and other image manipulations."
-    transformOptions: TransformOptions,
-    "Options to pass to sharp when generating WebP images."
-    webpOptions: WebPOptions,
-    """
-
-    The display width of the generated image.
-    The actual largest image resolution will be this value multipled by the largest value in outputPixelDensities
-    Ignored if layout = FLUID or CONSTRAINED, where you should use "maxWidth" instead.
-    """
-    width: Int
-  ): JSON!
+type I18NLocale {
+  _id: ID!
+  code: String
+  createdAt: DateTime!
   id: ID!
-  internal: Internal!
-  original: ImageSharpOriginal
-  parent: Node
-  resize(background: String = "rgba(0,0,0,1)", base64: Boolean = false, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionLevel: Int = 9, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = AUTO, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResize
-  resolutions(background: String = "rgba(0,0,0,1)", base64Width: Int, cropFocus: ImageCropFocus = ATTENTION, duotone: DuotoneGradient, fit: ImageFit = COVER, grayscale: Boolean = false, height: Int, jpegProgressive: Boolean = true, jpegQuality: Int, pngCompressionSpeed: Int = 4, pngQuality: Int, quality: Int, rotate: Int = 0, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, traceSVG: Potrace, trim: Float = 0.0, webpQuality: Int, width: Int): ImageSharpResolutions @deprecated(reason : "Resolutions was deprecated in Gatsby v2. It's been renamed to \"fixed\" https://example.com/write-docs-and-fix-this-example-link")
-  sizes(
-    background: String = "rgba(0,0,0,1)",
-    base64Width: Int,
-    cropFocus: ImageCropFocus = ATTENTION,
-    duotone: DuotoneGradient,
-    fit: ImageFit = COVER,
-    grayscale: Boolean = false,
-    jpegProgressive: Boolean = true,
-    jpegQuality: Int,
-    maxHeight: Int,
-    maxWidth: Int,
-    pngCompressionSpeed: Int = 4,
-    pngQuality: Int,
-    quality: Int,
-    rotate: Int = 0,
-    sizes: String = "",
-    "A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]"
-    srcSetBreakpoints: [Int] = [],
-    toFormat: ImageFormat = AUTO,
-    toFormatBase64: ImageFormat = AUTO,
-    traceSVG: Potrace,
-    trim: Float = 0.0,
-    webpQuality: Int
-  ): ImageSharpSizes @deprecated(reason : "Sizes was deprecated in Gatsby v2. It's been renamed to \"fluid\" https://example.com/write-docs-and-fix-this-example-link")
+  name: String
+  updatedAt: DateTime!
 }
 
-type ImageSharpConnection {
-  distinct(field: ImageSharpFieldsEnum!): [String!]!
-  edges: [ImageSharpEdge!]!
-  group(field: ImageSharpFieldsEnum!, limit: Int, skip: Int): [ImageSharpGroupConnection!]!
-  nodes: [ImageSharp!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
+type Mutation {
+  createCategory(input: createCategoryInput): createCategoryPayload
+  createPost(input: createPostInput): createPostPayload
+  createPostLocalization(input: updatePostInput!): Post!
+  "Create a new role"
+  createRole(input: createRoleInput): createRolePayload
+  "Create a new user"
+  createUser(input: createUserInput): createUserPayload
+  deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
+  "Delete one file"
+  deleteFile(input: deleteFileInput): deleteFilePayload
+  deletePost(input: deletePostInput): deletePostPayload
+  "Delete an existing role"
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+  "Delete an existing user"
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  multipleUpload(field: String, files: [Upload]!, ref: String, refId: ID, source: String): [UploadFile]!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
+  updateCategory(input: updateCategoryInput): updateCategoryPayload
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  updatePost(input: updatePostInput): updatePostPayload
+  "Update an existing role"
+  updateRole(input: updateRoleInput): updateRolePayload
+  "Update an existing user"
+  updateUser(input: updateUserInput): updateUserPayload
+  upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID, source: String): UploadFile!
 }
 
-type ImageSharpEdge {
-  next: ImageSharp
-  node: ImageSharp!
-  previous: ImageSharp
-}
-
-type ImageSharpFixed {
-  aspectRatio: Float
-  base64: String
-  height: Float!
-  originalName: String
-  src: String!
-  srcSet: String!
-  srcSetWebp: String
-  srcWebp: String
-  tracedSVG: String
-  width: Float!
-}
-
-type ImageSharpFluid {
-  aspectRatio: Float!
-  base64: String
-  originalImg: String
-  originalName: String
-  presentationHeight: Int!
-  presentationWidth: Int!
-  sizes: String!
-  src: String!
-  srcSet: String!
-  srcSetWebp: String
-  srcWebp: String
-  tracedSVG: String
-}
-
-type ImageSharpGroupConnection {
-  edges: [ImageSharpEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [ImageSharp!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type ImageSharpOriginal {
-  height: Float
-  src: String
-  width: Float
-}
-
-type ImageSharpResize {
-  aspectRatio: Float
-  height: Int
-  originalName: String
-  src: String
-  tracedSVG: String
-  width: Int
-}
-
-type ImageSharpResolutions {
-  aspectRatio: Float
-  base64: String
-  height: Float!
-  originalName: String
-  src: String!
-  srcSet: String!
-  srcSetWebp: String
-  srcWebp: String
-  tracedSVG: String
-  width: Float!
-}
-
-type ImageSharpSizes {
-  aspectRatio: Float!
-  base64: String
-  originalImg: String
-  originalName: String
-  presentationHeight: Int!
-  presentationWidth: Int!
-  sizes: String!
-  src: String!
-  srcSet: String!
-  srcSetWebp: String
-  srcWebp: String
-  tracedSVG: String
-}
-
-type Internal {
-  content: String
-  contentDigest: String!
+type Post {
+  _id: ID!
+  category: ENUM_POST_CATEGORY!
+  content: [PostContentDynamicZone]
+  createdAt: DateTime!
+  date: DateTime
   description: String
-  fieldOwners: [String]
-  ignoreType: Boolean
-  mediaType: String
-  owner: String!
-  type: String!
+  excerpt: String!
+  featured: Boolean
+  id: ID!
+  image: UploadFile
+  image_url: String
+  locale: String
+  localizations(limit: Int, sort: String, start: Int, where: JSON): [Post]
+  published: Boolean
+  published_at: DateTime
+  slug: String!
+  title: String
+  updatedAt: DateTime!
 }
 
-type PageInfo {
-  currentPage: Int!
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  itemCount: Int!
-  pageCount: Int!
-  perPage: Int
-  totalCount: Int!
+type PostAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PostConnection {
+  aggregate: PostAggregator
+  groupBy: PostGroupBy
+  values: [Post]
+}
+
+type PostConnectionCategory {
+  connection: PostConnection
+  key: String
+}
+
+type PostConnectionCreatedAt {
+  connection: PostConnection
+  key: DateTime
+}
+
+type PostConnectionDate {
+  connection: PostConnection
+  key: DateTime
+}
+
+type PostConnectionDescription {
+  connection: PostConnection
+  key: String
+}
+
+type PostConnectionExcerpt {
+  connection: PostConnection
+  key: String
+}
+
+type PostConnectionFeatured {
+  connection: PostConnection
+  key: Boolean
+}
+
+type PostConnectionId {
+  connection: PostConnection
+  key: ID
+}
+
+type PostConnectionImage {
+  connection: PostConnection
+  key: ID
+}
+
+type PostConnectionImage_url {
+  connection: PostConnection
+  key: String
+}
+
+type PostConnectionLocale {
+  connection: PostConnection
+  key: String
+}
+
+type PostConnectionPublished {
+  connection: PostConnection
+  key: Boolean
+}
+
+type PostConnectionPublished_at {
+  connection: PostConnection
+  key: DateTime
+}
+
+type PostConnectionSlug {
+  connection: PostConnection
+  key: String
+}
+
+type PostConnectionTitle {
+  connection: PostConnection
+  key: String
+}
+
+type PostConnectionUpdatedAt {
+  connection: PostConnection
+  key: DateTime
+}
+
+type PostConnection_id {
+  connection: PostConnection
+  key: ID
+}
+
+type PostGroupBy {
+  _id: [PostConnection_id]
+  category: [PostConnectionCategory]
+  createdAt: [PostConnectionCreatedAt]
+  date: [PostConnectionDate]
+  description: [PostConnectionDescription]
+  excerpt: [PostConnectionExcerpt]
+  featured: [PostConnectionFeatured]
+  id: [PostConnectionId]
+  image: [PostConnectionImage]
+  image_url: [PostConnectionImage_url]
+  locale: [PostConnectionLocale]
+  published: [PostConnectionPublished]
+  published_at: [PostConnectionPublished_at]
+  slug: [PostConnectionSlug]
+  title: [PostConnectionTitle]
+  updatedAt: [PostConnectionUpdatedAt]
 }
 
 type Query {
-  allDirectory(filter: DirectoryFilterInput, limit: Int, skip: Int, sort: DirectorySortInput): DirectoryConnection!
-  allFile(filter: FileFilterInput, limit: Int, skip: Int, sort: FileSortInput): FileConnection!
-  allImageSharp(filter: ImageSharpFilterInput, limit: Int, skip: Int, sort: ImageSharpSortInput): ImageSharpConnection!
-  allSite(filter: SiteFilterInput, limit: Int, skip: Int, sort: SiteSortInput): SiteConnection!
-  allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, limit: Int, skip: Int, sort: SiteBuildMetadataSortInput): SiteBuildMetadataConnection!
-  allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection!
-  allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
-  allStrapiCategories(filter: StrapiCategoriesFilterInput, limit: Int, skip: Int, sort: StrapiCategoriesSortInput): StrapiCategoriesConnection!
-  allStrapiPosts(filter: StrapiPostsFilterInput, limit: Int, skip: Int, sort: StrapiPostsSortInput): StrapiPostsConnection!
-  directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
-  file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
-  imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput, resolutions: ImageSharpResolutionsFilterInput, sizes: ImageSharpSizesFilterInput): ImageSharp
-  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
-  siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
-  sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
-  sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
-  strapiCategories(children: NodeFilterListInput, createdAt: DateQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, slug: StringQueryOperatorInput, strapiId: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiCategories
-  strapiPosts(category: StringQueryOperatorInput, children: NodeFilterListInput, content: StrapiPostsContentFilterListInput, createdAt: DateQueryOperatorInput, date: DateQueryOperatorInput, description: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, featured: BooleanQueryOperatorInput, id: StringQueryOperatorInput, image_url: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, published: BooleanQueryOperatorInput, slug: StringQueryOperatorInput, strapiId: StringQueryOperatorInput, title: StringQueryOperatorInput, updatedAt: DateQueryOperatorInput): StrapiPosts
+  categories(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Category]
+  categoriesConnection(limit: Int, sort: String, start: Int, where: JSON): CategoryConnection
+  category(id: ID!, publicationState: PublicationState): Category
+  files(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UploadFile]
+  filesConnection(limit: Int, sort: String, start: Int, where: JSON): UploadFileConnection
+  me: UsersPermissionsMe
+  post(id: ID!, publicationState: PublicationState): Post
+  posts(limit: Int, locale: String, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Post]
+  postsConnection(limit: Int, locale: String, sort: String, start: Int, where: JSON): PostConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+  "Retrieve all the existing roles. You can't apply filters on this query."
+  roles(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsUserConnection
 }
 
-type Site implements Node {
-  buildTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date
-  children: [Node!]!
-  host: String
+type UploadFile {
+  _id: ID!
+  alternativeText: String
+  caption: String
+  createdAt: DateTime!
+  ext: String
+  formats: JSON
+  hash: String!
+  height: Int
   id: ID!
-  internal: Internal!
-  parent: Node
-  pathPrefix: String
-  polyfill: Boolean
-  port: Int
-  siteMetadata: SiteSiteMetadata
-}
-
-type SiteBuildMetadata implements Node {
-  buildTime(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date
-  children: [Node!]!
-  id: ID!
-  internal: Internal!
-  parent: Node
-}
-
-type SiteBuildMetadataConnection {
-  distinct(field: SiteBuildMetadataFieldsEnum!): [String!]!
-  edges: [SiteBuildMetadataEdge!]!
-  group(field: SiteBuildMetadataFieldsEnum!, limit: Int, skip: Int): [SiteBuildMetadataGroupConnection!]!
-  nodes: [SiteBuildMetadata!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type SiteBuildMetadataEdge {
-  next: SiteBuildMetadata
-  node: SiteBuildMetadata!
-  previous: SiteBuildMetadata
-}
-
-type SiteBuildMetadataGroupConnection {
-  edges: [SiteBuildMetadataEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [SiteBuildMetadata!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type SiteConnection {
-  distinct(field: SiteFieldsEnum!): [String!]!
-  edges: [SiteEdge!]!
-  group(field: SiteFieldsEnum!, limit: Int, skip: Int): [SiteGroupConnection!]!
-  nodes: [Site!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type SiteEdge {
-  next: Site
-  node: Site!
-  previous: Site
-}
-
-type SiteGroupConnection {
-  edges: [SiteEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [Site!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type SitePage implements Node {
-  children: [Node!]!
-  component: String!
-  componentChunkName: String!
-  componentPath: String
-  context: SitePageContext
-  id: ID!
-  internal: Internal!
-  internalComponentName: String!
-  isCreatedByStatefulCreatePages: Boolean
-  matchPath: String
-  parent: Node
-  path: String!
-  pluginCreator: SitePlugin
-  pluginCreatorId: String
-}
-
-type SitePageConnection {
-  distinct(field: SitePageFieldsEnum!): [String!]!
-  edges: [SitePageEdge!]!
-  group(field: SitePageFieldsEnum!, limit: Int, skip: Int): [SitePageGroupConnection!]!
-  nodes: [SitePage!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type SitePageContext {
-  post: SitePageContextPost
-  slug: String
-}
-
-type SitePageContextPost {
-  node: SitePageContextPostNode
-}
-
-type SitePageContextPostNode {
-  category: String
-  createdAt: Date
-  excerpt: String
-  image_url: String
-  published: Boolean
-  slug: String
-  strapiId: String
-  title: String
-  updatedAt: Date
-}
-
-type SitePageEdge {
-  next: SitePage
-  node: SitePage!
-  previous: SitePage
-}
-
-type SitePageGroupConnection {
-  edges: [SitePageEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [SitePage!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type SitePlugin implements Node {
-  browserAPIs: [String]
-  children: [Node!]!
-  id: ID!
-  internal: Internal!
-  name: String
-  nodeAPIs: [String]
-  packageJson: SitePluginPackageJson
-  parent: Node
-  pluginFilepath: String
-  pluginOptions: SitePluginPluginOptions
-  resolve: String
-  ssrAPIs: [String]
-  version: String
-}
-
-type SitePluginConnection {
-  distinct(field: SitePluginFieldsEnum!): [String!]!
-  edges: [SitePluginEdge!]!
-  group(field: SitePluginFieldsEnum!, limit: Int, skip: Int): [SitePluginGroupConnection!]!
-  nodes: [SitePlugin!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type SitePluginEdge {
-  next: SitePlugin
-  node: SitePlugin!
-  previous: SitePlugin
-}
-
-type SitePluginGroupConnection {
-  edges: [SitePluginEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [SitePlugin!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type SitePluginPackageJson {
-  dependencies: [SitePluginPackageJsonDependencies]
-  description: String
-  devDependencies: [SitePluginPackageJsonDevDependencies]
-  keywords: [String]
-  license: String
-  main: String
-  name: String
-  peerDependencies: [SitePluginPackageJsonPeerDependencies]
-  version: String
-}
-
-type SitePluginPackageJsonDependencies {
-  name: String
-  version: String
-}
-
-type SitePluginPackageJsonDevDependencies {
-  name: String
-  version: String
-}
-
-type SitePluginPackageJsonPeerDependencies {
-  name: String
-  version: String
-}
-
-type SitePluginPluginOptions {
-  afterBody: Boolean
-  allowSyntheticDefaultImports: Boolean
-  apiURL: String
-  background_color: String
-  base64Width: Int
-  cache_busting_mode: String
-  contentTypes: [String]
-  createLinkInHead: Boolean
-  crossOrigin: String
-  defaultQuality: Int
-  defer: Boolean
-  description: String
-  display: String
-  displayName: Boolean
-  emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
-  emitSchema: SitePluginPluginOptionsEmitSchema
-  failOnError: Boolean
-  fileName: Boolean
-  icons: [SitePluginPluginOptionsIcons]
-  include_favicon: Boolean
-  lang: String
-  legacy: Boolean
-  minify: Boolean
-  name: String
-  output: String
-  path: String
-  pathCheck: Boolean
-  pure: Boolean
-  queryLimit: Int
-  short_name: String
-  start_url: String
-  stripMetadata: Boolean
-  theme_color: String
-  theme_color_in_head: Boolean
-  trackHash: Boolean
-  trackingId: Int
-  transpileTemplateLiterals: Boolean
-  webvisor: Boolean
-}
-
-type SitePluginPluginOptionsEmitPluginDocuments {
-  src___generated___gatsby_plugin_documents_graphql: Boolean
-}
-
-type SitePluginPluginOptionsEmitSchema {
-  src___generated___gatsby_introspection_json: Boolean
-}
-
-type SitePluginPluginOptionsIcons {
-  sizes: String
-  src: String
-  type: String
-}
-
-type SiteSiteMetadata {
-  author: SiteSiteMetadataAuthor
-  canonicalUrl: String
-  description: String
-  image: String
-  keywords: [String]
-  organization: SiteSiteMetadataOrganization
-  siteUrl: String
-  social: SiteSiteMetadataSocial
-  title: String
-  version: String
-}
-
-type SiteSiteMetadataAuthor {
-  minibio: String
-  name: String
-}
-
-type SiteSiteMetadataOrganization {
-  logo: String
-  name: String
-  url: String
-}
-
-type SiteSiteMetadataSocial {
-  fbAppID: String
-  twitter: String
-}
-
-type StrapiCategories implements Node {
-  children: [Node!]!
-  createdAt(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date
-  id: ID!
-  internal: Internal!
-  name: String
-  parent: Node
-  slug: String
-  strapiId: String
-  updatedAt(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date
-}
-
-type StrapiCategoriesConnection {
-  distinct(field: StrapiCategoriesFieldsEnum!): [String!]!
-  edges: [StrapiCategoriesEdge!]!
-  group(field: StrapiCategoriesFieldsEnum!, limit: Int, skip: Int): [StrapiCategoriesGroupConnection!]!
-  nodes: [StrapiCategories!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type StrapiCategoriesEdge {
-  next: StrapiCategories
-  node: StrapiCategories!
-  previous: StrapiCategories
-}
-
-type StrapiCategoriesGroupConnection {
-  edges: [StrapiCategoriesEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [StrapiCategories!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type StrapiPosts implements Node {
-  category: String
-  children: [Node!]!
-  content: [StrapiPostsContent]
-  createdAt(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date
-  date(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date
-  description: String
-  excerpt: String
-  featured: Boolean
-  id: ID!
-  image_url: String
-  internal: Internal!
-  parent: Node
-  published: Boolean
-  slug: String
-  strapiId: String
-  title: String
-  updatedAt(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date
-}
-
-type StrapiPostsConnection {
-  distinct(field: StrapiPostsFieldsEnum!): [String!]!
-  edges: [StrapiPostsEdge!]!
-  group(field: StrapiPostsFieldsEnum!, limit: Int, skip: Int): [StrapiPostsGroupConnection!]!
-  nodes: [StrapiPosts!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type StrapiPostsContent {
-  createdAt(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date
-  id: String
-  rich_text: String
-  updatedAt(
-    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
-    difference: String,
-    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
-    formatString: String,
-    "Returns a string generated with Moment.js' `fromNow` function"
-    fromNow: Boolean,
-    "Configures the locale Moment.js will use to format the date."
-    locale: String
-  ): Date
-}
-
-type StrapiPostsEdge {
-  next: StrapiPosts
-  node: StrapiPosts!
-  previous: StrapiPosts
-}
-
-type StrapiPostsGroupConnection {
-  edges: [StrapiPostsEdge!]!
-  field: String!
-  fieldValue: String
-  nodes: [StrapiPosts!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-enum DirectoryFieldsEnum {
-  absolutePath
-  accessTime
-  atime
-  atimeMs
-  base
-  birthTime
-  birthtime
-  birthtimeMs
-  blksize
-  blocks
-  changeTime
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  ctime
-  ctimeMs
-  dev
-  dir
-  ext
-  extension
-  gid
-  id
-  ino
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  mode
-  modifiedTime
-  mtime
-  mtimeMs
-  name
-  nlink
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-  prettySize
-  rdev
-  relativeDirectory
-  relativePath
-  root
-  size
-  sourceInstanceName
-  uid
-}
-
-enum FileFieldsEnum {
-  absolutePath
-  accessTime
-  atime
-  atimeMs
-  base
-  birthTime
-  birthtime
-  birthtimeMs
-  blksize
-  blocks
-  changeTime
-  childImageSharp___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___children___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fixed___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___original___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___original___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___original___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___parent___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resize___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resize___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resize___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___resolutions___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  childImageSharp___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  ctime
-  ctimeMs
-  dev
-  dir
-  ext
-  extension
-  gid
-  id
-  ino
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  mode
-  modifiedTime
-  mtime
-  mtimeMs
-  name
-  nlink
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-  prettySize
-  publicURL
-  rdev
-  relativeDirectory
-  relativePath
-  root
-  size
-  sourceInstanceName
-  uid
-}
-
-enum ImageCropFocus {
-  ATTENTION
-  CENTER
-  EAST
-  ENTROPY
-  NORTH
-  NORTHEAST
-  NORTHWEST
-  SOUTH
-  SOUTHEAST
-  SOUTHWEST
-  WEST
-}
-
-enum ImageFit {
-  CONTAIN
-  COVER
-  FILL
-  INSIDE
-  OUTSIDE
-}
-
-enum ImageFormat {
-  AUTO
-  JPG
-  NO_CHANGE
-  PNG
-  WEBP
-}
-
-enum ImageLayout {
-  CONSTRAINED
-  FIXED
-  FLUID
-}
-
-enum ImagePlaceholder {
-  BLURRED
-  DOMINANT_COLOR
-  NONE
-  TRACED_SVG
-}
-
-enum ImageSharpFieldsEnum {
-  children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fixed___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  gatsbyImageData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  original___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  original___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  original___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___children___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___children___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___content @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___contentDigest @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___description @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___fieldOwners @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___ignoreType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___mediaType @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___owner @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___type @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___parent___children @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___parent___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resize___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resize___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resize___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resize___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resize___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resize___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  resolutions___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___originalImg @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___originalName @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___presentationHeight @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___presentationWidth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___srcSetWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___srcWebp @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-  sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-}
-
-enum PotraceTurnPolicy {
-  TURNPOLICY_BLACK
-  TURNPOLICY_LEFT
-  TURNPOLICY_MAJORITY
-  TURNPOLICY_MINORITY
-  TURNPOLICY_RIGHT
-  TURNPOLICY_WHITE
-}
-
-enum SiteBuildMetadataFieldsEnum {
-  buildTime
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  id
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-}
-
-enum SiteFieldsEnum {
-  buildTime
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  host
-  id
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-  pathPrefix
-  polyfill
-  port
-  siteMetadata___author___minibio
-  siteMetadata___author___name
-  siteMetadata___canonicalUrl
-  siteMetadata___description
-  siteMetadata___image
-  siteMetadata___keywords
-  siteMetadata___organization___logo
-  siteMetadata___organization___name
-  siteMetadata___organization___url
-  siteMetadata___siteUrl
-  siteMetadata___social___fbAppID
-  siteMetadata___social___twitter
-  siteMetadata___title
-  siteMetadata___version
-}
-
-enum SitePageFieldsEnum {
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  component
-  componentChunkName
-  componentPath
-  context___post___node___category
-  context___post___node___createdAt
-  context___post___node___excerpt
-  context___post___node___image_url
-  context___post___node___published
-  context___post___node___slug
-  context___post___node___strapiId
-  context___post___node___title
-  context___post___node___updatedAt
-  context___slug
-  id
-  internalComponentName
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  isCreatedByStatefulCreatePages
-  matchPath
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-  path
-  pluginCreatorId
-  pluginCreator___browserAPIs
-  pluginCreator___children
-  pluginCreator___children___children
-  pluginCreator___children___children___children
-  pluginCreator___children___children___id
-  pluginCreator___children___id
-  pluginCreator___children___internal___content
-  pluginCreator___children___internal___contentDigest
-  pluginCreator___children___internal___description
-  pluginCreator___children___internal___fieldOwners
-  pluginCreator___children___internal___ignoreType
-  pluginCreator___children___internal___mediaType
-  pluginCreator___children___internal___owner
-  pluginCreator___children___internal___type
-  pluginCreator___children___parent___children
-  pluginCreator___children___parent___id
-  pluginCreator___id
-  pluginCreator___internal___content
-  pluginCreator___internal___contentDigest
-  pluginCreator___internal___description
-  pluginCreator___internal___fieldOwners
-  pluginCreator___internal___ignoreType
-  pluginCreator___internal___mediaType
-  pluginCreator___internal___owner
-  pluginCreator___internal___type
-  pluginCreator___name
-  pluginCreator___nodeAPIs
-  pluginCreator___packageJson___dependencies
-  pluginCreator___packageJson___dependencies___name
-  pluginCreator___packageJson___dependencies___version
-  pluginCreator___packageJson___description
-  pluginCreator___packageJson___devDependencies
-  pluginCreator___packageJson___devDependencies___name
-  pluginCreator___packageJson___devDependencies___version
-  pluginCreator___packageJson___keywords
-  pluginCreator___packageJson___license
-  pluginCreator___packageJson___main
-  pluginCreator___packageJson___name
-  pluginCreator___packageJson___peerDependencies
-  pluginCreator___packageJson___peerDependencies___name
-  pluginCreator___packageJson___peerDependencies___version
-  pluginCreator___packageJson___version
-  pluginCreator___parent___children
-  pluginCreator___parent___children___children
-  pluginCreator___parent___children___id
-  pluginCreator___parent___id
-  pluginCreator___parent___internal___content
-  pluginCreator___parent___internal___contentDigest
-  pluginCreator___parent___internal___description
-  pluginCreator___parent___internal___fieldOwners
-  pluginCreator___parent___internal___ignoreType
-  pluginCreator___parent___internal___mediaType
-  pluginCreator___parent___internal___owner
-  pluginCreator___parent___internal___type
-  pluginCreator___parent___parent___children
-  pluginCreator___parent___parent___id
-  pluginCreator___pluginFilepath
-  pluginCreator___pluginOptions___afterBody
-  pluginCreator___pluginOptions___allowSyntheticDefaultImports
-  pluginCreator___pluginOptions___apiURL
-  pluginCreator___pluginOptions___background_color
-  pluginCreator___pluginOptions___base64Width
-  pluginCreator___pluginOptions___cache_busting_mode
-  pluginCreator___pluginOptions___contentTypes
-  pluginCreator___pluginOptions___createLinkInHead
-  pluginCreator___pluginOptions___crossOrigin
-  pluginCreator___pluginOptions___defaultQuality
-  pluginCreator___pluginOptions___defer
-  pluginCreator___pluginOptions___description
-  pluginCreator___pluginOptions___display
-  pluginCreator___pluginOptions___displayName
-  pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
-  pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
-  pluginCreator___pluginOptions___failOnError
-  pluginCreator___pluginOptions___fileName
-  pluginCreator___pluginOptions___icons
-  pluginCreator___pluginOptions___icons___sizes
-  pluginCreator___pluginOptions___icons___src
-  pluginCreator___pluginOptions___icons___type
-  pluginCreator___pluginOptions___include_favicon
-  pluginCreator___pluginOptions___lang
-  pluginCreator___pluginOptions___legacy
-  pluginCreator___pluginOptions___minify
-  pluginCreator___pluginOptions___name
-  pluginCreator___pluginOptions___output
-  pluginCreator___pluginOptions___path
-  pluginCreator___pluginOptions___pathCheck
-  pluginCreator___pluginOptions___pure
-  pluginCreator___pluginOptions___queryLimit
-  pluginCreator___pluginOptions___short_name
-  pluginCreator___pluginOptions___start_url
-  pluginCreator___pluginOptions___stripMetadata
-  pluginCreator___pluginOptions___theme_color
-  pluginCreator___pluginOptions___theme_color_in_head
-  pluginCreator___pluginOptions___trackHash
-  pluginCreator___pluginOptions___trackingId
-  pluginCreator___pluginOptions___transpileTemplateLiterals
-  pluginCreator___pluginOptions___webvisor
-  pluginCreator___resolve
-  pluginCreator___ssrAPIs
-  pluginCreator___version
-}
-
-enum SitePluginFieldsEnum {
-  browserAPIs
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  id
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  name
-  nodeAPIs
-  packageJson___dependencies
-  packageJson___dependencies___name
-  packageJson___dependencies___version
-  packageJson___description
-  packageJson___devDependencies
-  packageJson___devDependencies___name
-  packageJson___devDependencies___version
-  packageJson___keywords
-  packageJson___license
-  packageJson___main
-  packageJson___name
-  packageJson___peerDependencies
-  packageJson___peerDependencies___name
-  packageJson___peerDependencies___version
-  packageJson___version
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-  pluginFilepath
-  pluginOptions___afterBody
-  pluginOptions___allowSyntheticDefaultImports
-  pluginOptions___apiURL
-  pluginOptions___background_color
-  pluginOptions___base64Width
-  pluginOptions___cache_busting_mode
-  pluginOptions___contentTypes
-  pluginOptions___createLinkInHead
-  pluginOptions___crossOrigin
-  pluginOptions___defaultQuality
-  pluginOptions___defer
-  pluginOptions___description
-  pluginOptions___display
-  pluginOptions___displayName
-  pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
-  pluginOptions___emitSchema___src___generated___gatsby_introspection_json
-  pluginOptions___failOnError
-  pluginOptions___fileName
-  pluginOptions___icons
-  pluginOptions___icons___sizes
-  pluginOptions___icons___src
-  pluginOptions___icons___type
-  pluginOptions___include_favicon
-  pluginOptions___lang
-  pluginOptions___legacy
-  pluginOptions___minify
-  pluginOptions___name
-  pluginOptions___output
-  pluginOptions___path
-  pluginOptions___pathCheck
-  pluginOptions___pure
-  pluginOptions___queryLimit
-  pluginOptions___short_name
-  pluginOptions___start_url
-  pluginOptions___stripMetadata
-  pluginOptions___theme_color
-  pluginOptions___theme_color_in_head
-  pluginOptions___trackHash
-  pluginOptions___trackingId
-  pluginOptions___transpileTemplateLiterals
-  pluginOptions___webvisor
-  resolve
-  ssrAPIs
-  version
-}
-
-enum SortOrderEnum {
-  ASC
-  DESC
-}
-
-enum StrapiCategoriesFieldsEnum {
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  createdAt
-  id
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  name
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-  slug
-  strapiId
-  updatedAt
-}
-
-enum StrapiPostsFieldsEnum {
-  category
-  children
-  children___children
-  children___children___children
-  children___children___children___children
-  children___children___children___id
-  children___children___id
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___children___parent___children
-  children___children___parent___id
-  children___id
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  children___parent___children
-  children___parent___children___children
-  children___parent___children___id
-  children___parent___id
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___parent___parent___children
-  children___parent___parent___id
-  content
-  content___createdAt
-  content___id
-  content___rich_text
-  content___updatedAt
-  createdAt
-  date
-  description
-  excerpt
-  featured
-  id
-  image_url
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  parent___children
-  parent___children___children
-  parent___children___children___children
-  parent___children___children___id
-  parent___children___id
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___children___parent___children
-  parent___children___parent___id
-  parent___id
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  parent___parent___children
-  parent___parent___children___children
-  parent___parent___children___id
-  parent___parent___id
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___parent___parent___children
-  parent___parent___parent___id
-  published
-  slug
-  strapiId
-  title
-  updatedAt
-}
-
-input BlurredOptions {
-  "Force the output format for the low-res preview. Default is to use the same format as the input. You should rarely need to change this"
-  toFormat: ImageFormat
-  "Width of the generated low-res preview. Default is 20px"
+  mime: String!
+  name: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(limit: Int, sort: String, start: Int, where: JSON): [Morph]
+  size: Float!
+  updatedAt: DateTime!
+  url: String!
   width: Int
 }
 
-input BooleanQueryOperatorInput {
-  eq: Boolean
-  in: [Boolean]
-  ne: Boolean
-  nin: [Boolean]
+type UploadFileAggregator {
+  avg: UploadFileAggregatorAvg
+  count: Int
+  max: UploadFileAggregatorMax
+  min: UploadFileAggregatorMin
+  sum: UploadFileAggregatorSum
+  totalCount: Int
 }
 
-input DateQueryOperatorInput {
-  eq: Date
-  gt: Date
-  gte: Date
-  in: [Date]
-  lt: Date
-  lte: Date
-  ne: Date
-  nin: [Date]
+type UploadFileAggregatorAvg {
+  height: Float
+  size: Float
+  width: Float
 }
 
-input DirectoryFilterInput {
-  absolutePath: StringQueryOperatorInput
-  accessTime: DateQueryOperatorInput
-  atime: DateQueryOperatorInput
-  atimeMs: FloatQueryOperatorInput
-  base: StringQueryOperatorInput
-  birthTime: DateQueryOperatorInput
-  birthtime: DateQueryOperatorInput
-  birthtimeMs: FloatQueryOperatorInput
-  blksize: IntQueryOperatorInput
-  blocks: IntQueryOperatorInput
-  changeTime: DateQueryOperatorInput
-  children: NodeFilterListInput
-  ctime: DateQueryOperatorInput
-  ctimeMs: FloatQueryOperatorInput
-  dev: IntQueryOperatorInput
-  dir: StringQueryOperatorInput
-  ext: StringQueryOperatorInput
-  extension: StringQueryOperatorInput
-  gid: IntQueryOperatorInput
-  id: StringQueryOperatorInput
-  ino: FloatQueryOperatorInput
-  internal: InternalFilterInput
-  mode: IntQueryOperatorInput
-  modifiedTime: DateQueryOperatorInput
-  mtime: DateQueryOperatorInput
-  mtimeMs: FloatQueryOperatorInput
-  name: StringQueryOperatorInput
-  nlink: IntQueryOperatorInput
-  parent: NodeFilterInput
-  prettySize: StringQueryOperatorInput
-  rdev: IntQueryOperatorInput
-  relativeDirectory: StringQueryOperatorInput
-  relativePath: StringQueryOperatorInput
-  root: StringQueryOperatorInput
-  size: IntQueryOperatorInput
-  sourceInstanceName: StringQueryOperatorInput
-  uid: IntQueryOperatorInput
+type UploadFileAggregatorMax {
+  height: Float
+  size: Float
+  width: Float
 }
 
-input DirectorySortInput {
-  fields: [DirectoryFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+type UploadFileAggregatorMin {
+  height: Float
+  size: Float
+  width: Float
 }
 
-input DuotoneGradient {
-  highlight: String!
-  opacity: Int
-  shadow: String!
+type UploadFileAggregatorSum {
+  height: Float
+  size: Float
+  width: Float
 }
 
-input FileFilterInput {
-  absolutePath: StringQueryOperatorInput
-  accessTime: DateQueryOperatorInput
-  atime: DateQueryOperatorInput
-  atimeMs: FloatQueryOperatorInput
-  base: StringQueryOperatorInput
-  birthTime: DateQueryOperatorInput
-  birthtime: DateQueryOperatorInput
-  birthtimeMs: FloatQueryOperatorInput
-  blksize: IntQueryOperatorInput
-  blocks: IntQueryOperatorInput
-  changeTime: DateQueryOperatorInput
-  childImageSharp: ImageSharpFilterInput
-  children: NodeFilterListInput
-  ctime: DateQueryOperatorInput
-  ctimeMs: FloatQueryOperatorInput
-  dev: IntQueryOperatorInput
-  dir: StringQueryOperatorInput
-  ext: StringQueryOperatorInput
-  extension: StringQueryOperatorInput
-  gid: IntQueryOperatorInput
-  id: StringQueryOperatorInput
-  ino: FloatQueryOperatorInput
-  internal: InternalFilterInput
-  mode: IntQueryOperatorInput
-  modifiedTime: DateQueryOperatorInput
-  mtime: DateQueryOperatorInput
-  mtimeMs: FloatQueryOperatorInput
-  name: StringQueryOperatorInput
-  nlink: IntQueryOperatorInput
-  parent: NodeFilterInput
-  prettySize: StringQueryOperatorInput
-  publicURL: StringQueryOperatorInput
-  rdev: IntQueryOperatorInput
-  relativeDirectory: StringQueryOperatorInput
-  relativePath: StringQueryOperatorInput
-  root: StringQueryOperatorInput
-  size: IntQueryOperatorInput
-  sourceInstanceName: StringQueryOperatorInput
-  uid: IntQueryOperatorInput
+type UploadFileConnection {
+  aggregate: UploadFileAggregator
+  groupBy: UploadFileGroupBy
+  values: [UploadFile]
 }
 
-input FileSortInput {
-  fields: [FileFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+type UploadFileConnectionAlternativeText {
+  connection: UploadFileConnection
+  key: String
 }
 
-input FloatQueryOperatorInput {
-  eq: Float
-  gt: Float
-  gte: Float
-  in: [Float]
-  lt: Float
-  lte: Float
-  ne: Float
-  nin: [Float]
+type UploadFileConnectionCaption {
+  connection: UploadFileConnection
+  key: String
 }
 
-input ImageSharpFilterInput {
-  children: NodeFilterListInput
-  fixed: ImageSharpFixedFilterInput
-  fluid: ImageSharpFluidFilterInput
-  gatsbyImageData: JSONQueryOperatorInput
-  id: StringQueryOperatorInput
-  internal: InternalFilterInput
-  original: ImageSharpOriginalFilterInput
-  parent: NodeFilterInput
-  resize: ImageSharpResizeFilterInput
-  resolutions: ImageSharpResolutionsFilterInput
-  sizes: ImageSharpSizesFilterInput
+type UploadFileConnectionCreatedAt {
+  connection: UploadFileConnection
+  key: DateTime
 }
 
-input ImageSharpFixedFilterInput {
-  aspectRatio: FloatQueryOperatorInput
-  base64: StringQueryOperatorInput
-  height: FloatQueryOperatorInput
-  originalName: StringQueryOperatorInput
-  src: StringQueryOperatorInput
-  srcSet: StringQueryOperatorInput
-  srcSetWebp: StringQueryOperatorInput
-  srcWebp: StringQueryOperatorInput
-  tracedSVG: StringQueryOperatorInput
-  width: FloatQueryOperatorInput
+type UploadFileConnectionExt {
+  connection: UploadFileConnection
+  key: String
 }
 
-input ImageSharpFluidFilterInput {
-  aspectRatio: FloatQueryOperatorInput
-  base64: StringQueryOperatorInput
-  originalImg: StringQueryOperatorInput
-  originalName: StringQueryOperatorInput
-  presentationHeight: IntQueryOperatorInput
-  presentationWidth: IntQueryOperatorInput
-  sizes: StringQueryOperatorInput
-  src: StringQueryOperatorInput
-  srcSet: StringQueryOperatorInput
-  srcSetWebp: StringQueryOperatorInput
-  srcWebp: StringQueryOperatorInput
-  tracedSVG: StringQueryOperatorInput
+type UploadFileConnectionFormats {
+  connection: UploadFileConnection
+  key: JSON
 }
 
-input ImageSharpOriginalFilterInput {
-  height: FloatQueryOperatorInput
-  src: StringQueryOperatorInput
-  width: FloatQueryOperatorInput
+type UploadFileConnectionHash {
+  connection: UploadFileConnection
+  key: String
 }
 
-input ImageSharpResizeFilterInput {
-  aspectRatio: FloatQueryOperatorInput
-  height: IntQueryOperatorInput
-  originalName: StringQueryOperatorInput
-  src: StringQueryOperatorInput
-  tracedSVG: StringQueryOperatorInput
-  width: IntQueryOperatorInput
+type UploadFileConnectionHeight {
+  connection: UploadFileConnection
+  key: Int
 }
 
-input ImageSharpResolutionsFilterInput {
-  aspectRatio: FloatQueryOperatorInput
-  base64: StringQueryOperatorInput
-  height: FloatQueryOperatorInput
-  originalName: StringQueryOperatorInput
-  src: StringQueryOperatorInput
-  srcSet: StringQueryOperatorInput
-  srcSetWebp: StringQueryOperatorInput
-  srcWebp: StringQueryOperatorInput
-  tracedSVG: StringQueryOperatorInput
-  width: FloatQueryOperatorInput
+type UploadFileConnectionId {
+  connection: UploadFileConnection
+  key: ID
 }
 
-input ImageSharpSizesFilterInput {
-  aspectRatio: FloatQueryOperatorInput
-  base64: StringQueryOperatorInput
-  originalImg: StringQueryOperatorInput
-  originalName: StringQueryOperatorInput
-  presentationHeight: IntQueryOperatorInput
-  presentationWidth: IntQueryOperatorInput
-  sizes: StringQueryOperatorInput
-  src: StringQueryOperatorInput
-  srcSet: StringQueryOperatorInput
-  srcSetWebp: StringQueryOperatorInput
-  srcWebp: StringQueryOperatorInput
-  tracedSVG: StringQueryOperatorInput
+type UploadFileConnectionMime {
+  connection: UploadFileConnection
+  key: String
 }
 
-input ImageSharpSortInput {
-  fields: [ImageSharpFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+type UploadFileConnectionName {
+  connection: UploadFileConnection
+  key: String
 }
 
-input IntQueryOperatorInput {
-  eq: Int
-  gt: Int
-  gte: Int
-  in: [Int]
-  lt: Int
-  lte: Int
-  ne: Int
-  nin: [Int]
+type UploadFileConnectionPreviewUrl {
+  connection: UploadFileConnection
+  key: String
 }
 
-input InternalFilterInput {
-  content: StringQueryOperatorInput
-  contentDigest: StringQueryOperatorInput
-  description: StringQueryOperatorInput
-  fieldOwners: StringQueryOperatorInput
-  ignoreType: BooleanQueryOperatorInput
-  mediaType: StringQueryOperatorInput
-  owner: StringQueryOperatorInput
-  type: StringQueryOperatorInput
+type UploadFileConnectionProvider {
+  connection: UploadFileConnection
+  key: String
 }
 
-input JPGOptions {
-  progressive: Boolean = true
-  quality: Int
+type UploadFileConnectionProvider_metadata {
+  connection: UploadFileConnection
+  key: JSON
 }
 
-input JSONQueryOperatorInput {
-  eq: JSON
-  glob: JSON
-  in: [JSON]
-  ne: JSON
-  nin: [JSON]
-  regex: JSON
+type UploadFileConnectionSize {
+  connection: UploadFileConnection
+  key: Float
 }
 
-input NodeFilterInput {
-  children: NodeFilterListInput
-  id: StringQueryOperatorInput
-  internal: InternalFilterInput
-  parent: NodeFilterInput
+type UploadFileConnectionUpdatedAt {
+  connection: UploadFileConnection
+  key: DateTime
 }
 
-input NodeFilterListInput {
-  elemMatch: NodeFilterInput
+type UploadFileConnectionUrl {
+  connection: UploadFileConnection
+  key: String
 }
 
-input PNGOptions {
-  compressionSpeed: Int = 4
-  quality: Int
+type UploadFileConnectionWidth {
+  connection: UploadFileConnection
+  key: Int
 }
 
-input Potrace {
-  alphaMax: Float
-  background: String
-  blackOnWhite: Boolean
-  color: String
-  optCurve: Boolean
-  optTolerance: Float
-  threshold: Int
-  turdSize: Float
-  turnPolicy: PotraceTurnPolicy
+type UploadFileConnection_id {
+  connection: UploadFileConnection
+  key: ID
 }
 
-input SiteBuildMetadataFilterInput {
-  buildTime: DateQueryOperatorInput
-  children: NodeFilterListInput
-  id: StringQueryOperatorInput
-  internal: InternalFilterInput
-  parent: NodeFilterInput
+type UploadFileGroupBy {
+  _id: [UploadFileConnection_id]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  createdAt: [UploadFileConnectionCreatedAt]
+  ext: [UploadFileConnectionExt]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  height: [UploadFileConnectionHeight]
+  id: [UploadFileConnectionId]
+  mime: [UploadFileConnectionMime]
+  name: [UploadFileConnectionName]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+  size: [UploadFileConnectionSize]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  url: [UploadFileConnectionUrl]
+  width: [UploadFileConnectionWidth]
 }
 
-input SiteBuildMetadataSortInput {
-  fields: [SiteBuildMetadataFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
 }
 
-input SiteFilterInput {
-  buildTime: DateQueryOperatorInput
-  children: NodeFilterListInput
-  host: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-  internal: InternalFilterInput
-  parent: NodeFilterInput
-  pathPrefix: StringQueryOperatorInput
-  polyfill: BooleanQueryOperatorInput
-  port: IntQueryOperatorInput
-  siteMetadata: SiteSiteMetadataFilterInput
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
 }
 
-input SitePageContextFilterInput {
-  post: SitePageContextPostFilterInput
-  slug: StringQueryOperatorInput
+type UsersPermissionsMe {
+  blocked: Boolean
+  confirmed: Boolean
+  email: String!
+  id: ID!
+  role: UsersPermissionsMeRole
+  username: String!
 }
 
-input SitePageContextPostFilterInput {
-  node: SitePageContextPostNodeFilterInput
+type UsersPermissionsMeRole {
+  description: String
+  id: ID!
+  name: String!
+  type: String
 }
 
-input SitePageContextPostNodeFilterInput {
-  category: StringQueryOperatorInput
-  createdAt: DateQueryOperatorInput
-  excerpt: StringQueryOperatorInput
-  image_url: StringQueryOperatorInput
-  published: BooleanQueryOperatorInput
-  slug: StringQueryOperatorInput
-  strapiId: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  updatedAt: DateQueryOperatorInput
+type UsersPermissionsPermission {
+  _id: ID!
+  action: String!
+  controller: String!
+  enabled: Boolean!
+  id: ID!
+  policy: String
+  role: UsersPermissionsRole
+  type: String!
 }
 
-input SitePageFilterInput {
-  children: NodeFilterListInput
-  component: StringQueryOperatorInput
-  componentChunkName: StringQueryOperatorInput
-  componentPath: StringQueryOperatorInput
-  context: SitePageContextFilterInput
-  id: StringQueryOperatorInput
-  internal: InternalFilterInput
-  internalComponentName: StringQueryOperatorInput
-  isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
-  matchPath: StringQueryOperatorInput
-  parent: NodeFilterInput
-  path: StringQueryOperatorInput
-  pluginCreator: SitePluginFilterInput
-  pluginCreatorId: StringQueryOperatorInput
+type UsersPermissionsRole {
+  _id: ID!
+  description: String
+  id: ID!
+  name: String!
+  permissions(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsPermission]
+  type: String
+  users(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
 }
 
-input SitePageSortInput {
-  fields: [SitePageFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
 }
 
-input SitePluginFilterInput {
-  browserAPIs: StringQueryOperatorInput
-  children: NodeFilterListInput
-  id: StringQueryOperatorInput
-  internal: InternalFilterInput
-  name: StringQueryOperatorInput
-  nodeAPIs: StringQueryOperatorInput
-  packageJson: SitePluginPackageJsonFilterInput
-  parent: NodeFilterInput
-  pluginFilepath: StringQueryOperatorInput
-  pluginOptions: SitePluginPluginOptionsFilterInput
-  resolve: StringQueryOperatorInput
-  ssrAPIs: StringQueryOperatorInput
-  version: StringQueryOperatorInput
+type UsersPermissionsRoleConnection {
+  aggregate: UsersPermissionsRoleAggregator
+  groupBy: UsersPermissionsRoleGroupBy
+  values: [UsersPermissionsRole]
 }
 
-input SitePluginPackageJsonDependenciesFilterInput {
-  name: StringQueryOperatorInput
-  version: StringQueryOperatorInput
+type UsersPermissionsRoleConnectionDescription {
+  connection: UsersPermissionsRoleConnection
+  key: String
 }
 
-input SitePluginPackageJsonDependenciesFilterListInput {
-  elemMatch: SitePluginPackageJsonDependenciesFilterInput
+type UsersPermissionsRoleConnectionId {
+  connection: UsersPermissionsRoleConnection
+  key: ID
 }
 
-input SitePluginPackageJsonDevDependenciesFilterInput {
-  name: StringQueryOperatorInput
-  version: StringQueryOperatorInput
+type UsersPermissionsRoleConnectionName {
+  connection: UsersPermissionsRoleConnection
+  key: String
 }
 
-input SitePluginPackageJsonDevDependenciesFilterListInput {
-  elemMatch: SitePluginPackageJsonDevDependenciesFilterInput
+type UsersPermissionsRoleConnectionType {
+  connection: UsersPermissionsRoleConnection
+  key: String
 }
 
-input SitePluginPackageJsonFilterInput {
-  dependencies: SitePluginPackageJsonDependenciesFilterListInput
-  description: StringQueryOperatorInput
-  devDependencies: SitePluginPackageJsonDevDependenciesFilterListInput
-  keywords: StringQueryOperatorInput
-  license: StringQueryOperatorInput
-  main: StringQueryOperatorInput
-  name: StringQueryOperatorInput
-  peerDependencies: SitePluginPackageJsonPeerDependenciesFilterListInput
-  version: StringQueryOperatorInput
+type UsersPermissionsRoleConnection_id {
+  connection: UsersPermissionsRoleConnection
+  key: ID
 }
 
-input SitePluginPackageJsonPeerDependenciesFilterInput {
-  name: StringQueryOperatorInput
-  version: StringQueryOperatorInput
+type UsersPermissionsRoleGroupBy {
+  _id: [UsersPermissionsRoleConnection_id]
+  description: [UsersPermissionsRoleConnectionDescription]
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  type: [UsersPermissionsRoleConnectionType]
 }
 
-input SitePluginPackageJsonPeerDependenciesFilterListInput {
-  elemMatch: SitePluginPackageJsonPeerDependenciesFilterInput
+type UsersPermissionsUser {
+  _id: ID!
+  blocked: Boolean
+  confirmed: Boolean
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  provider: String
+  role: UsersPermissionsRole
+  updatedAt: DateTime!
+  username: String!
 }
 
-input SitePluginPluginOptionsEmitPluginDocumentsFilterInput {
-  src___generated___gatsby_plugin_documents_graphql: BooleanQueryOperatorInput
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
 }
 
-input SitePluginPluginOptionsEmitSchemaFilterInput {
-  src___generated___gatsby_introspection_json: BooleanQueryOperatorInput
+type UsersPermissionsUserConnection {
+  aggregate: UsersPermissionsUserAggregator
+  groupBy: UsersPermissionsUserGroupBy
+  values: [UsersPermissionsUser]
 }
 
-input SitePluginPluginOptionsFilterInput {
-  afterBody: BooleanQueryOperatorInput
-  allowSyntheticDefaultImports: BooleanQueryOperatorInput
-  apiURL: StringQueryOperatorInput
-  background_color: StringQueryOperatorInput
-  base64Width: IntQueryOperatorInput
-  cache_busting_mode: StringQueryOperatorInput
-  contentTypes: StringQueryOperatorInput
-  createLinkInHead: BooleanQueryOperatorInput
-  crossOrigin: StringQueryOperatorInput
-  defaultQuality: IntQueryOperatorInput
-  defer: BooleanQueryOperatorInput
-  description: StringQueryOperatorInput
-  display: StringQueryOperatorInput
-  displayName: BooleanQueryOperatorInput
-  emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
-  emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
-  failOnError: BooleanQueryOperatorInput
-  fileName: BooleanQueryOperatorInput
-  icons: SitePluginPluginOptionsIconsFilterListInput
-  include_favicon: BooleanQueryOperatorInput
-  lang: StringQueryOperatorInput
-  legacy: BooleanQueryOperatorInput
-  minify: BooleanQueryOperatorInput
-  name: StringQueryOperatorInput
-  output: StringQueryOperatorInput
-  path: StringQueryOperatorInput
-  pathCheck: BooleanQueryOperatorInput
-  pure: BooleanQueryOperatorInput
-  queryLimit: IntQueryOperatorInput
-  short_name: StringQueryOperatorInput
-  start_url: StringQueryOperatorInput
-  stripMetadata: BooleanQueryOperatorInput
-  theme_color: StringQueryOperatorInput
-  theme_color_in_head: BooleanQueryOperatorInput
-  trackHash: BooleanQueryOperatorInput
-  trackingId: IntQueryOperatorInput
-  transpileTemplateLiterals: BooleanQueryOperatorInput
-  webvisor: BooleanQueryOperatorInput
+type UsersPermissionsUserConnectionBlocked {
+  connection: UsersPermissionsUserConnection
+  key: Boolean
 }
 
-input SitePluginPluginOptionsIconsFilterInput {
-  sizes: StringQueryOperatorInput
-  src: StringQueryOperatorInput
-  type: StringQueryOperatorInput
+type UsersPermissionsUserConnectionConfirmed {
+  connection: UsersPermissionsUserConnection
+  key: Boolean
 }
 
-input SitePluginPluginOptionsIconsFilterListInput {
-  elemMatch: SitePluginPluginOptionsIconsFilterInput
+type UsersPermissionsUserConnectionCreatedAt {
+  connection: UsersPermissionsUserConnection
+  key: DateTime
 }
 
-input SitePluginSortInput {
-  fields: [SitePluginFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+type UsersPermissionsUserConnectionEmail {
+  connection: UsersPermissionsUserConnection
+  key: String
 }
 
-input SiteSiteMetadataAuthorFilterInput {
-  minibio: StringQueryOperatorInput
-  name: StringQueryOperatorInput
+type UsersPermissionsUserConnectionId {
+  connection: UsersPermissionsUserConnection
+  key: ID
 }
 
-input SiteSiteMetadataFilterInput {
-  author: SiteSiteMetadataAuthorFilterInput
-  canonicalUrl: StringQueryOperatorInput
-  description: StringQueryOperatorInput
-  image: StringQueryOperatorInput
-  keywords: StringQueryOperatorInput
-  organization: SiteSiteMetadataOrganizationFilterInput
-  siteUrl: StringQueryOperatorInput
-  social: SiteSiteMetadataSocialFilterInput
-  title: StringQueryOperatorInput
-  version: StringQueryOperatorInput
+type UsersPermissionsUserConnectionProvider {
+  connection: UsersPermissionsUserConnection
+  key: String
 }
 
-input SiteSiteMetadataOrganizationFilterInput {
-  logo: StringQueryOperatorInput
-  name: StringQueryOperatorInput
-  url: StringQueryOperatorInput
+type UsersPermissionsUserConnectionRole {
+  connection: UsersPermissionsUserConnection
+  key: ID
 }
 
-input SiteSiteMetadataSocialFilterInput {
-  fbAppID: StringQueryOperatorInput
-  twitter: StringQueryOperatorInput
+type UsersPermissionsUserConnectionUpdatedAt {
+  connection: UsersPermissionsUserConnection
+  key: DateTime
 }
 
-input SiteSortInput {
-  fields: [SiteFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+type UsersPermissionsUserConnectionUsername {
+  connection: UsersPermissionsUserConnection
+  key: String
 }
 
-input StrapiCategoriesFilterInput {
-  children: NodeFilterListInput
-  createdAt: DateQueryOperatorInput
-  id: StringQueryOperatorInput
-  internal: InternalFilterInput
-  name: StringQueryOperatorInput
-  parent: NodeFilterInput
-  slug: StringQueryOperatorInput
-  strapiId: StringQueryOperatorInput
-  updatedAt: DateQueryOperatorInput
+type UsersPermissionsUserConnection_id {
+  connection: UsersPermissionsUserConnection
+  key: ID
 }
 
-input StrapiCategoriesSortInput {
-  fields: [StrapiCategoriesFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+type UsersPermissionsUserGroupBy {
+  _id: [UsersPermissionsUserConnection_id]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  createdAt: [UsersPermissionsUserConnectionCreatedAt]
+  email: [UsersPermissionsUserConnectionEmail]
+  id: [UsersPermissionsUserConnectionId]
+  provider: [UsersPermissionsUserConnectionProvider]
+  role: [UsersPermissionsUserConnectionRole]
+  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
+  username: [UsersPermissionsUserConnectionUsername]
 }
 
-input StrapiPostsContentFilterInput {
-  createdAt: DateQueryOperatorInput
-  id: StringQueryOperatorInput
-  rich_text: StringQueryOperatorInput
-  updatedAt: DateQueryOperatorInput
+type createCategoryPayload {
+  category: Category
 }
 
-input StrapiPostsContentFilterListInput {
-  elemMatch: StrapiPostsContentFilterInput
+type createPostPayload {
+  post: Post
 }
 
-input StrapiPostsFilterInput {
-  category: StringQueryOperatorInput
-  children: NodeFilterListInput
-  content: StrapiPostsContentFilterListInput
-  createdAt: DateQueryOperatorInput
-  date: DateQueryOperatorInput
-  description: StringQueryOperatorInput
-  excerpt: StringQueryOperatorInput
-  featured: BooleanQueryOperatorInput
-  id: StringQueryOperatorInput
-  image_url: StringQueryOperatorInput
-  internal: InternalFilterInput
-  parent: NodeFilterInput
-  published: BooleanQueryOperatorInput
-  slug: StringQueryOperatorInput
-  strapiId: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  updatedAt: DateQueryOperatorInput
+type createRolePayload {
+  role: UsersPermissionsRole
 }
 
-input StrapiPostsSortInput {
-  fields: [StrapiPostsFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+type createUserPayload {
+  user: UsersPermissionsUser
 }
 
-input StringQueryOperatorInput {
-  eq: String
-  glob: String
-  in: [String]
-  ne: String
-  nin: [String]
-  regex: String
+type deleteCategoryPayload {
+  category: Category
 }
 
-input TransformOptions {
-  cropFocus: ImageCropFocus = ATTENTION
-  duotone: DuotoneGradient
-  fit: ImageFit = COVER
-  grayscale: Boolean = false
-  rotate: Int = 0
-  trim: Float = 0.0
+type deleteFilePayload {
+  file: UploadFile
 }
 
-input WebPOptions {
-  quality: Int
+type deletePostPayload {
+  post: Post
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+type updateCategoryPayload {
+  category: Category
+}
+
+type updatePostPayload {
+  post: Post
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+enum ENUM_POST_CATEGORY {
+  blog
+  poetry
+  unsorted
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+input CategoryInput {
+  created_by: ID
+  name: String
+  slug: String!
+  updated_by: ID
+}
+
+input ComponentPostRichTextInput {
+  rich_text: String
+}
+
+input FileInfoInput {
+  alternativeText: String
+  caption: String
+  name: String
+}
+
+input FileInput {
+  alternativeText: String
+  caption: String
+  created_by: ID
+  ext: String
+  formats: JSON
+  hash: String!
+  height: Int
+  mime: String!
+  name: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  size: Float!
+  updated_by: ID
+  url: String!
+  width: Int
+}
+
+input InputID {
+  id: ID!
+}
+
+input LocaleInput {
+  code: String
+  created_by: ID
+  name: String
+  updated_by: ID
+}
+
+input PostInput {
+  category: ENUM_POST_CATEGORY
+  content: [PostContentDynamicZoneInput!]
+  created_by: ID
+  date: DateTime
+  description: String
+  excerpt: String!
+  featured: Boolean
+  image: ID
+  image_url: String
+  locale: String
+  localizations: [ID]
+  published: Boolean
+  published_at: DateTime
+  slug: String!
+  title: String
+  updated_by: ID
+}
+
+input RoleInput {
+  created_by: ID
+  description: String
+  name: String!
+  permissions: [ID]
+  type: String
+  updated_by: ID
+  users: [ID]
+}
+
+input UserInput {
+  blocked: Boolean
+  confirmationToken: String
+  confirmed: Boolean
+  created_by: ID
+  email: String!
+  password: String
+  provider: String
+  resetPasswordToken: String
+  role: ID
+  updated_by: ID
+  username: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+input UsersPermissionsRegisterInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+input createCategoryInput {
+  data: CategoryInput
+}
+
+input createPostInput {
+  data: PostInput
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+input deleteCategoryInput {
+  where: InputID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+input deletePostInput {
+  where: InputID
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+input editCategoryInput {
+  created_by: ID
+  name: String
+  slug: String
+  updated_by: ID
+}
+
+input editComponentPostRichTextInput {
+  id: ID
+  rich_text: String
+}
+
+input editFileInput {
+  alternativeText: String
+  caption: String
+  created_by: ID
+  ext: String
+  formats: JSON
+  hash: String
+  height: Int
+  mime: String
+  name: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  size: Float
+  updated_by: ID
+  url: String
+  width: Int
+}
+
+input editLocaleInput {
+  code: String
+  created_by: ID
+  name: String
+  updated_by: ID
+}
+
+input editPostInput {
+  category: ENUM_POST_CATEGORY
+  content: [PostContentDynamicZoneInput!]
+  created_by: ID
+  date: DateTime
+  description: String
+  excerpt: String
+  featured: Boolean
+  image: ID
+  image_url: String
+  locale: String
+  localizations: [ID]
+  published: Boolean
+  published_at: DateTime
+  slug: String
+  title: String
+  updated_by: ID
+}
+
+input editRoleInput {
+  created_by: ID
+  description: String
+  name: String
+  permissions: [ID]
+  type: String
+  updated_by: ID
+  users: [ID]
+}
+
+input editUserInput {
+  blocked: Boolean
+  confirmationToken: String
+  confirmed: Boolean
+  created_by: ID
+  email: String
+  password: String
+  provider: String
+  resetPasswordToken: String
+  role: ID
+  updated_by: ID
+  username: String
+}
+
+input updateCategoryInput {
+  data: editCategoryInput
+  where: InputID
+}
+
+input updatePostInput {
+  data: editPostInput
+  where: InputID
+}
+
+input updateRoleInput {
+  data: editRoleInput
+  where: InputID
+}
+
+input updateUserInput {
+  data: editUserInput
+  where: InputID
 }
 
 
-"A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
-scalar Date
+"Input type for dynamic zone content of Post"
+scalar PostContentDynamicZoneInput
 
 "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
 scalar JSON
+
+"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar DateTime
+
+"A time string with format: HH:mm:ss.SSS"
+scalar Time
+
+"A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar Date
+
+"The `Long` scalar type represents 52-bit integers"
+scalar Long
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload

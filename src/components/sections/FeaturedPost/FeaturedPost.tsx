@@ -18,14 +18,14 @@ interface IFeaturedPost {
   categories: IndexPageQuery_categories_edges[];
 }
 
-export default function FeaturedPost({ post, categories }: IFeaturedPost) {
+export default function FeaturedPost({ post, categories = [] }: IFeaturedPost) {
   const { title, excerpt, published, createdAt, slug, category, image_url } =
     post;
   const formattedDate = '';
   // moment(createdAt).format('DD.MM.YYYY');
   const categoryData = categories.filter(
     categoryItem => categoryItem.node.slug === category,
-  )[0].node;
+  )[0]?.node;
   const excerptText = excerpt
     ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
     : '';
@@ -50,7 +50,7 @@ export default function FeaturedPost({ post, categories }: IFeaturedPost) {
                     {excerpt && category && (
                       <div className="post-text">
                         {excerptText}
-                        <LinkStyled href={`/${categoryData.slug}/${slug}`}>
+                        <LinkStyled href={`/${categoryData?.slug}/${slug}`}>
                           <a>Читать далее...</a>
                         </LinkStyled>
                       </div>
