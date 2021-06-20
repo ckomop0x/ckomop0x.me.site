@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
 export const FeaturedPostWrapper = styled.section`
@@ -87,7 +86,7 @@ export const ContentWrapper = styled.div`
   }
 `;
 
-export const LinkStyled = styled(Link)`
+export const LinkStyled = styled.a`
   background-color: hsl(211, 100%, 40%);
   color: #fff;
   display: inline-block;
@@ -95,6 +94,8 @@ export const LinkStyled = styled(Link)`
   margin-top: 40px;
   box-shadow: 40px 10px 0 #b3710037, -40px -10px 0 #ffa20050, 0 0 10px #0000002e;
   transition: all 0.5s ease;
+  cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     text-decoration: none;

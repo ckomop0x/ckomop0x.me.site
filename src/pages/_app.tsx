@@ -5,6 +5,8 @@ import { ThemeProvider } from 'styled-components';
 
 import apolloClient from 'utils/api/apollo-client';
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 export default function WebtimeApp({
   Component,
   pageProps,

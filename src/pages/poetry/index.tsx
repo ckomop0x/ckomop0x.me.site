@@ -9,10 +9,6 @@ export interface IPortfolioProps {
 }
 
 export default function PoetryPage({ data }: IPortfolioProps) {
-  // if (!data) {
-  //   return null;
-  // }
-
   const poetryItems = data?.poetry.edges;
   const categoriesItems = data?.categories.edges;
 

@@ -1,5 +1,5 @@
+import Head from 'next/head';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 
 interface IHead {
   articleAuthor?: string;
@@ -21,7 +21,7 @@ interface IHead {
   googleSiteVerification?: string;
 }
 
-const Head: React.FC<IHead> = ({
+const SEO: React.FC<IHead> = ({
   articleAuthor = 'Pavel Klochkov @ckomop0x',
   headTitle = 'Ckomop0x.me | Персональный блог, стихи и путешествия',
   fbAppId = '',
@@ -40,14 +40,14 @@ const Head: React.FC<IHead> = ({
   yandexVerification = 'b117b164fd8573ac',
   googleSiteVerification = '',
 }) => (
-  <Helmet
-    bodyAttributes={{
-      class: 'light',
-    }}
-    htmlAttributes={{
-      class: 'light',
-      lang: 'ru',
-    }}
+  <Head
+  // bodyAttributes={{
+  //   class: 'light',
+  // }}
+  // htmlAttributes={{
+  //   class: 'light',
+  //   lang: 'ru',
+  // }}
   >
     <meta charSet="utf-8" />
     <meta
@@ -86,12 +86,6 @@ const Head: React.FC<IHead> = ({
     {/* <meta name="twitter:url" content={ogUrl} /> */}
     {/* <meta name="twitter:site" content={twitterSite} /> */}
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossOrigin="anonymous"
-    />
-    <link
       href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
       rel="stylesheet"
     />
@@ -122,7 +116,7 @@ const Head: React.FC<IHead> = ({
       href={require('../../../../public/images/favicon-96x96.png')}
     />
     <title>{headTitle}</title>
-  </Helmet>
+  </Head>
 );
 
-export default Head;
+export default SEO;

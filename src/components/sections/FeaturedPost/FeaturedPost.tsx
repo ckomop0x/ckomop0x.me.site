@@ -1,5 +1,5 @@
 import parse from 'html-react-parser';
-// import moment from 'moment';
+import Link from 'next/link';
 
 import {
   ContentWrapper,
@@ -8,24 +8,23 @@ import {
   ItemImage,
 } from './styles';
 
-import {
-  IndexPageQuery_featured_edges_node,
-  IndexPageQuery_categories_edges,
-} from 'pages/__generated__/IndexPageQuery';
+import formatDate from 'utils/dates/formatDate';
 
 interface IFeaturedPost {
-  post: IndexPageQuery_featured_edges_node;
-  categories: IndexPageQuery_categories_edges[];
+  post: any;
+  categories: any[];
 }
 
-export default function FeaturedPost({ post, categories = [] }: IFeaturedPost) {
-  const { title, excerpt, published, createdAt, slug, category, image_url } =
+export default function FeaturedPost({
+  post,
+  categories = [],
+}: IFeaturedPost): JSX.Element {
+  const { category, createdAt, excerpt, image_url, slug, title, published } =
     post;
-  const formattedDate = '';
-  // moment(createdAt).format('DD.MM.YYYY');
+  const publicationDate = formatDate(createdAt);
   const categoryData = categories.filter(
-    categoryItem => categoryItem.node.slug === category,
-  )[0]?.node;
+    categoryItem => categoryItem.slug === category,
+  )[0];
   const excerptText = excerpt
     ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
     : '';
@@ -46,13 +45,13 @@ export default function FeaturedPost({ post, categories = [] }: IFeaturedPost) {
                   </ItemImage>
                   <ContentWrapper className="col-12 col-sm-12 col-md-5">
                     <h3 className="title">{title}</h3>
-                    <p className="post-date">Опубликовано: {formattedDate}</p>
+                    <p className="post-date">Опубликовано: {publicationDate}</p>
                     {excerpt && category && (
                       <div className="post-text">
                         {excerptText}
-                        <LinkStyled href={`/${categoryData?.slug}/${slug}`}>
-                          <a>Читать далее...</a>
-                        </LinkStyled>
+                        <Link href={`/${categoryData?.slug}/${slug}`}>
+                          <LinkStyled>Читать далее...</LinkStyled>
+                        </Link>
                       </div>
                     )}
                   </ContentWrapper>

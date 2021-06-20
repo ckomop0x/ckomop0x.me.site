@@ -21,7 +21,9 @@ const DetailItem: React.FC<IDetailItem> = ({
   description,
   image,
 }) => {
-  const createdDate = format(new Date(createdAt), 'd MMMM yyyy', {
+  console.log('createdAt', createdAt);
+
+  const createdDate = format(new Date(createdAt ?? new Date()), 'd MMMM yyyy', {
     locale: ruLocale,
   });
 

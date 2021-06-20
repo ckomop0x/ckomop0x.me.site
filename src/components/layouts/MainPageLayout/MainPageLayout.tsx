@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Footer from 'components/shared/Footer';
-// import Header from 'components/shared/Head';
+import SEO from 'components/shared/SEO';
 import { GlobalStyle } from 'styles/GlobalStyle';
 
-const MainPageLayout: React.FC = ({ children }) => (
+const MainPageLayout: React.FC = ({ children }): JSX.Element => (
   <>
     <GlobalStyle />
-    {/* <Header />*/}
+    <SEO />
     {children}
     <Footer />
   </>

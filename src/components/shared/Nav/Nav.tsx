@@ -15,12 +15,17 @@ export interface INavProps {
   inner?: boolean;
 }
 
-export default function Nav({ inner }: INavProps) {
+export default function Nav({ inner }: INavProps): JSX.Element {
   return (
     <Navbar className={`container ${inner ? 'inner' : ''}`}>
       <Link href="/">
         <TopLogo>
-          <LogoImage src="/images/apple-icon.png" alt="Павел Клочков" />
+          <LogoImage
+            src="/images/apple-icon.png"
+            alt="Павел Клочков"
+            width={42}
+            height={42}
+          />
           <LogoTitle>Павел Клочков</LogoTitle>
         </TopLogo>
       </Link>

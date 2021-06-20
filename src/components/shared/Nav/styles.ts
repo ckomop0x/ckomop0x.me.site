@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 
 import { themePalette } from 'styles/colors';
@@ -22,12 +23,11 @@ export const LogoTitle = styled.span`
   user-select: none;
   display: inline-block;
   margin-top: 8px;
+  margin-left: 20px;
 `;
 
-export const LogoImage = styled.img`
+export const LogoImage = styled(Image)`
   border-radius: 50%;
-  width: 42px;
-  margin-right: 20px;
 `;
 
 export const TopMenu = styled.ul`
@@ -45,7 +45,7 @@ export const LinkStyled = styled.a`
   display: inline-block;
   margin-left: 20px;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
 
   &:hover {
     color: ${themePalette.textColorLight};
