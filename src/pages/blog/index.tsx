@@ -1,24 +1,15 @@
-import {
-  blogPageQuery_blog,
-  blogPageQuery_categories,
-} from '../__generated__/blogPageQuery';
-
 import PoetryLayout from 'components/layouts/PoetryLayout/PoetryLayout';
 import ItemsList from 'components/shared/ItemsList';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
 export interface IPortfolioProps {
   data: {
-    blog: blogPageQuery_blog;
-    categories: blogPageQuery_categories;
+    blog: any;
+    categories: any;
   };
 }
 
-export default function PoetryPage({ data }: IPortfolioProps) {
-  // if (!data) {
-  //   return null;
-  // }
-
+export default function PoetryPage({ data }: IPortfolioProps): JSX.Element {
   const blogItems = data?.blog?.edges;
   const categoriesItems = data?.categories?.edges;
 

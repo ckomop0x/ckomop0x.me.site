@@ -2,11 +2,6 @@ import { format } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
 import React from 'react';
 
-import {
-  IndexPageQuery_categories_edges,
-  IndexPageQuery_poetry_edges,
-} from '../../../pages/__generated__/IndexPageQuery';
-
 import Post from './Post';
 import { PostsListStyled, AllPostsLink } from './styles';
 
@@ -15,8 +10,8 @@ import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 interface IPostsList {
   blockTitle: string;
   blockSubtitle: string;
-  items: IndexPageQuery_poetry_edges[];
-  categories: IndexPageQuery_categories_edges[];
+  items: any[];
+  categories: any[];
 }
 
 const PostsList: React.FC<IPostsList> = ({

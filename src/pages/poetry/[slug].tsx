@@ -1,5 +1,3 @@
-import { gql } from '@apollo/client';
-
 import { DETAILS_PAGE_QUERY } from '../../queries/detailPageQuery';
 import { POSTS_PATH_QUERY } from '../../queries/postsPathQuery';
 
@@ -7,7 +5,20 @@ import ProjectsLayout from 'components/layouts/PoetryLayout';
 import DetailItemComponent from 'components/shared/DetailItem';
 import apolloClient from 'utils/api/apollo-client';
 
-export default function DetailItem({ data }: any): JSX.Element {
+interface IDetailItemProps {
+  data: {
+    image_url: string;
+    slug: string;
+    title: string;
+    updatedAt: Date;
+    createdAt: Date;
+    content: {
+      rich_text: string;
+    }[];
+  };
+}
+
+export default function DetailItem({ data }: IDetailItemProps): JSX.Element {
   const { content = [], createdAt, image_url, slug, title, updatedAt } = data;
 
   const socialImage = `${image_url}?tr=w-1080,h-280,fo-top`;
@@ -54,7 +65,7 @@ export async function getStaticPaths() {
 
   // console.log('getStaticPaths data', data);
 
-  const paths = data.posts.map(slugData => `/poetry/${slugData.slug}`);
+  const paths = data.posts.map((slugData: any) => `/poetry/${slugData.slug}`);
   console.log('getStaticPaths data', paths);
 
   return {

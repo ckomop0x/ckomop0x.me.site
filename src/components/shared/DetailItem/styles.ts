@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { TitleBlock } from 'styles/Typography';
 import { themePalette } from 'styles/colors';
 
 export const Title = styled.div`

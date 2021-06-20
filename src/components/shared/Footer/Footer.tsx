@@ -3,7 +3,7 @@ import projectConfig from '../../../../package.json';
 
 import { FooterWrapper } from './styles';
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   return (
     <FooterWrapper>
       <div className="container">

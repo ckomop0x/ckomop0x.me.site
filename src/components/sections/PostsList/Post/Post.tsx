@@ -3,8 +3,6 @@ import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import { poetryPageQuery_categories_edges_node } from '../../../../pages/__generated__/poetryPageQuery';
-
 import { ItemWrapper, PostTitle, StyledLink, PostContent } from './styles';
 
 import { getSrcSet } from 'utils/image';
@@ -18,7 +16,10 @@ export interface IPostProps {
   publicationDate: string;
   title: string;
   slug: string | null;
-  category: poetryPageQuery_categories_edges_node;
+  category: {
+    slug: string;
+    name: string;
+  };
   image: string;
   updateDate?: string;
 }

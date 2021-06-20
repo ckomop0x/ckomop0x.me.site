@@ -1,11 +1,9 @@
 import { gql } from '@apollo/client';
 
-import { IndexPageQuery } from './__generated__/IndexPageQuery';
-
 import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPost from 'components/sections/FeaturedPost';
 import Hero from 'components/sections/Hero';
-import PostsList from 'components/sections/PostsList';
+// import PostsList from 'components/sections/PostsList';
 import apolloClient from 'utils/api/apollo-client';
 
 interface IIndexPage {
@@ -17,16 +15,16 @@ interface IIndexPage {
 }
 
 export default function IndexPage({
-  blog,
+  // blog,
   featured,
-  poetry,
+  // poetry,
   categories,
-}: IIndexPage) {
+}: IIndexPage): JSX.Element {
   console.log('data', featured);
 
   const [featuredItem] = featured;
-  const poetryItems = poetry;
-  const blogItems = blog;
+  // const poetryItems = poetry;
+  // const blogItems = blog;
 
   return (
     <MainPageLayout>

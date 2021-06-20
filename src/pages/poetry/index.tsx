@@ -1,14 +1,12 @@
-import { poetryPageQuery as PoetryPageQuery } from '../__generated__/poetryPageQuery';
-
 import PoetryLayout from 'components/layouts/PoetryLayout';
 import ItemsList from 'components/shared/ItemsList';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
 export interface IPortfolioProps {
-  data: PoetryPageQuery;
+  data: any;
 }
 
-export default function PoetryPage({ data }: IPortfolioProps) {
+export default function PoetryPage({ data }: IPortfolioProps): JSX.Element {
   const poetryItems = data?.poetry.edges;
   const categoriesItems = data?.categories.edges;
 
