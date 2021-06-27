@@ -10,7 +10,7 @@ import {
 
 import formatDate from 'utils/dates/formatDate';
 
-interface IFeaturedPost {
+interface IFeaturedPostProps {
   post: any;
   categories: any[];
 }
@@ -18,7 +18,7 @@ interface IFeaturedPost {
 export default function FeaturedPost({
   post,
   categories = [],
-}: IFeaturedPost): JSX.Element {
+}: IFeaturedPostProps): JSX.Element {
   const { category, createdAt, excerpt, image_url, slug, title, published } =
     post;
   const publicationDate = formatDate(createdAt);

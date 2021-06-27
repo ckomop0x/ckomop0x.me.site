@@ -7,19 +7,19 @@ import { PostsListStyled, AllPostsLink } from './styles';
 
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
-interface IPostsList {
+interface IPostsListProps {
   blockTitle: string;
   blockSubtitle: string;
   items: any[];
   categories: any[];
 }
 
-const PostsList: React.FC<IPostsList> = ({
+const PostsList: React.FC<IPostsListProps> = ({
   blockTitle,
   blockSubtitle,
   items,
   categories,
-}) => {
+}): JSX.Element => {
   const postsCategoryLink = items[0].category ?? '';
   const [postsCategory] = categories.filter(
     (category: any) => category.slug === postsCategoryLink,

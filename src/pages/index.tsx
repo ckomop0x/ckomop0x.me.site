@@ -55,13 +55,14 @@ export async function getStaticProps(): Promise<any> {
   const { data } = await apolloClient.query({
     query: INDEX_PAGE_QUERY,
   });
+  const { featured, blogItems, poetryItems, categories } = data;
 
   return {
     props: {
-      featured: data.featured,
-      blogItems: data.blog,
-      poetryItems: data.poetry,
-      categories: data.categories,
+      featured,
+      blogItems,
+      poetryItems,
+      categories,
     },
   };
 }

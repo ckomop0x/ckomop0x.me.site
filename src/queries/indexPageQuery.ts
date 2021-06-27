@@ -5,10 +5,13 @@ export const INDEX_PAGE_QUERY = gql`
     featured: posts(where: { featured: true, published: true }, limit: 1) {
       ...PostFields
     }
-    blog: posts(where: { category: "blog", published: true }, limit: 3) {
+    blogItems: posts(where: { category: "blog", published: true }, limit: 3) {
       ...PostFields
     }
-    poetry: posts(where: { category: "poetry", published: true }, limit: 3) {
+    poetryItems: posts(
+      where: { category: "poetry", published: true }
+      limit: 3
+    ) {
       ...PostFields
     }
     categories {

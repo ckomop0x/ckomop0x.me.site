@@ -4,12 +4,15 @@ import { MainSection, Title, SubTitle } from './styles';
 
 import Nav from 'components/shared/Nav';
 
-export interface IMainSectionProps {
+export interface IHeroSectionProps {
   title: string;
   subtitle: string;
 }
 
-const Hero: React.FC<IMainSectionProps> = ({ title, subtitle }) => (
+const Hero: React.FC<IHeroSectionProps> = ({
+  title,
+  subtitle,
+}): JSX.Element => (
   <MainSection>
     <Nav />
     <div className="container main-section__text">
