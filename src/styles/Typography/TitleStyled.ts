@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { blue } from '../colors';
 
 export interface ITitleStyled {

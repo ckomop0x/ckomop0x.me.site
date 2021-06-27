@@ -1,5 +1,4 @@
 module.exports = {
-  preset: 'jest-preset-gatsby/typescript',
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
     '^.+\\.(js|jsx)$': '<rootDir>/jest-preprocess.js',
