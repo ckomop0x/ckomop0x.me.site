@@ -40,15 +40,7 @@ const SEO: React.FC<IHead> = ({
   yandexVerification = 'b117b164fd8573ac',
   googleSiteVerification = '',
 }) => (
-  <Head
-  // bodyAttributes={{
-  //   class: 'light',
-  // }}
-  // htmlAttributes={{
-  //   class: 'light',
-  //   lang: 'ru',
-  // }}
-  >
+  <Head>
     <meta charSet="utf-8" />
     <meta
       name="viewport"
@@ -102,19 +94,9 @@ const SEO: React.FC<IHead> = ({
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
     />
     {/* Icon and Social Icons */}
-    <link
-      rel="icon"
-      sizes="192x192"
-      href={require('../../../../public/images/android-icon-192x192.png')}
-    />
-    <link
-      rel="apple-touch-icon"
-      href={require('../../../../public/images/apple-icon-180x180.png')}
-    />
-    <link
-      rel="mask-icon"
-      href={require('../../../../public/images/favicon-96x96.png')}
-    />
+    <link rel="icon" sizes="192x192" href="/images/android-icon-192x192.png" />
+    <link rel="apple-touch-icon" href="/images/images/apple-icon-180x180.png" />
+    <link rel="mask-icon" href="/images/favicon-96x96.png" />
     <title>{headTitle}</title>
   </Head>
 );
