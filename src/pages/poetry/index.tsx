@@ -32,7 +32,7 @@ export default function PoetryPage({
   );
 }
 
-export async function getStaticProps(): any {
+export async function getStaticProps(): Promise<any> {
   const { data } = await apolloClient.query({
     query: CATEGORY_PAGE_QUERY,
     variables: {
