@@ -3,8 +3,8 @@ import React from 'react';
 import { PoetryLayoutStyled } from './styles';
 
 import Footer from 'components/shared/Footer';
-import Header from 'components/shared/Head';
 import Nav from 'components/shared/Nav';
+import SEO from 'components/shared/SEO';
 import { GlobalStyle } from 'styles/GlobalStyle';
 
 export interface IProjectsLayoutProps {
@@ -41,7 +41,7 @@ const PoetryLayout: React.FC<IProjectsLayoutProps> = ({
   <>
     <GlobalStyle />
     <PoetryLayoutStyled>
-      <Header
+      <SEO
         headTitle={headTitle}
         ogUrl={ogUrl}
         ogImage={ogImage}

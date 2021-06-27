@@ -1,5 +1,5 @@
+import Head from 'next/head';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 
 interface IHead {
   articleAuthor?: string;
@@ -21,7 +21,7 @@ interface IHead {
   googleSiteVerification?: string;
 }
 
-const Head: React.FC<IHead> = ({
+const SEO: React.FC<IHead> = ({
   articleAuthor = 'Pavel Klochkov @ckomop0x',
   headTitle = 'Ckomop0x.me | Персональный блог, стихи и путешествия',
   fbAppId = '',
@@ -40,15 +40,7 @@ const Head: React.FC<IHead> = ({
   yandexVerification = 'b117b164fd8573ac',
   googleSiteVerification = '',
 }) => (
-  <Helmet
-    bodyAttributes={{
-      class: 'light',
-    }}
-    htmlAttributes={{
-      class: 'light',
-      lang: 'ru',
-    }}
-  >
+  <Head>
     <meta charSet="utf-8" />
     <meta
       name="viewport"
@@ -86,12 +78,6 @@ const Head: React.FC<IHead> = ({
     {/* <meta name="twitter:url" content={ogUrl} /> */}
     {/* <meta name="twitter:site" content={twitterSite} /> */}
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossOrigin="anonymous"
-    />
-    <link
       href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
       rel="stylesheet"
     />
@@ -102,27 +88,17 @@ const Head: React.FC<IHead> = ({
     <link
       href="https://fonts.googleapis.com/css2?family=Lobster&text=ПавелКлочков&display=swap"
       rel="stylesheet"
-    ></link>
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
     />
     {/* Icon and Social Icons */}
-    <link
-      rel="icon"
-      sizes="192x192"
-      href={require('../../../../static/images/android-icon-192x192.png')}
-    />
-    <link
-      rel="apple-touch-icon"
-      href={require('../../../../static/images/apple-icon-180x180.png')}
-    />
-    <link
-      rel="mask-icon"
-      href={require('../../../../static/images/favicon-96x96.png')}
-    />
+    <link rel="icon" sizes="192x192" href="/images/android-icon-192x192.png" />
+    <link rel="apple-touch-icon" href="/images/images/apple-icon-180x180.png" />
+    <link rel="mask-icon" href="/images/favicon-96x96.png" />
     <title>{headTitle}</title>
-  </Helmet>
+  </Head>
 );
 
-export default Head;
+export default SEO;

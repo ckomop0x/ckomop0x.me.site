@@ -1,24 +1,46 @@
+import Link from 'next/link';
 import React from 'react';
 
-import { Navbar, TopLogo, LinkStyled, TopMenu } from './styles';
+import {
+  Navbar,
+  TopLogo,
+  LinkStyled,
+  TopMenu,
+  LogoImage,
+  LogoTitle,
+  TopMenuItem,
+} from './styles';
 
 export interface INavProps {
   inner?: boolean;
 }
 
-const Nav: React.FC<INavProps> = ({ inner }) => (
-  <Navbar className={`container ${inner ? 'inner' : ''}`}>
-    <TopLogo to="/">
-      <img src="/images/apple-icon.png" alt="Павел Клочков" />
-      <span>Павел Клочков</span>
-    </TopLogo>
-    <TopMenu>
-      <li>
-        <LinkStyled to="/blog/">Блог</LinkStyled>
-        <LinkStyled to="/poetry/">Стихи</LinkStyled>
-      </li>
-    </TopMenu>
-  </Navbar>
-);
-
-export default Nav;
+export default function Nav({ inner }: INavProps): JSX.Element {
+  return (
+    <Navbar className={`container ${inner ? 'inner' : ''}`}>
+      <Link href="/">
+        <TopLogo>
+          <LogoImage
+            src="/images/apple-icon.png"
+            alt="Павел Клочков"
+            width={42}
+            height={42}
+          />
+          <LogoTitle>Павел Клочков</LogoTitle>
+        </TopLogo>
+      </Link>
+      <TopMenu>
+        <TopMenuItem>
+          <Link href="/blog/">
+            <LinkStyled>Блог</LinkStyled>
+          </Link>
+        </TopMenuItem>
+        <TopMenuItem>
+          <Link href="/poetry/">
+            <LinkStyled>Стихи</LinkStyled>
+          </Link>
+        </TopMenuItem>
+      </TopMenu>
+    </Navbar>
+  );
+}

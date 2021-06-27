@@ -1,13 +1,15 @@
 {
-
   "compilerOptions": {
     "baseUrl": "src",
     "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "Node",
-    "lib": ["dom", "es2019"],
+    "lib": [
+      "dom",
+      "es2019"
+    ],
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -16,16 +18,33 @@
     "noEmit": true,
     "skipLibCheck": true,
     "paths": {
-      "components/*": ["components/*"],
-      "utils/*": ["utils/*"],
-      "styles/*": ["styles/*"]
+      "components/*": [
+        "components/*"
+      ],
+      "utils/*": [
+        "utils/*"
+      ],
+      "styles/*": [
+        "styles/*"
+      ]
     },
     "plugins": [
       {
         "name": "ts-graphql-plugin"
       }
     ],
-    "typeRoots": ["./types", "./node_modules/@types"]
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

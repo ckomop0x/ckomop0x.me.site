@@ -5,4 +5,4 @@ export const PoetryLayoutStyled = styled.div`
   display: flex;
   flex-direction: column;
   color: #a5a5a5;
-`
+`;

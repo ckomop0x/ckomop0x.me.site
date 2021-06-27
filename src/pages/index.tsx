@@ -1,22 +1,25 @@
-import { graphql } from 'gatsby';
-import React from 'react';
-
-import { IndexPageQuery } from './__generated__/IndexPageQuery';
+import { INDEX_PAGE_QUERY } from '../queries/indexPageQuery';
 
 import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPost from 'components/sections/FeaturedPost';
 import Hero from 'components/sections/Hero';
 import PostsList from 'components/sections/PostsList';
+import apolloClient from 'utils/api/apollo-client';
 
 interface IIndexPage {
-  data: IndexPageQuery;
+  blogItems: any;
+  featured: any;
+  poetryItems: any;
+  categories: any;
 }
 
-const IndexPage: React.FC<IIndexPage> = ({ data }) => {
-  const [featuredItem] = data?.featured.edges;
-  const poetryItems = data?.poetry.edges;
-  const blogItems = data?.blog.edges;
-  const categoriesItems = data?.categories.edges;
+export default function IndexPage({
+  blogItems,
+  featured,
+  poetryItems,
+  categories,
+}: IIndexPage): JSX.Element {
+  const [featuredItem] = featured;
 
   return (
     <MainPageLayout>
@@ -24,66 +27,42 @@ const IndexPage: React.FC<IIndexPage> = ({ data }) => {
         title="Добро пожаловать в мой персональный блог"
         subtitle="Здесь живут мои стихи, песни, путешествия, заметки и фотографий."
       />
-      <FeaturedPost post={featuredItem.node} categories={categoriesItems} />
-      {blogItems?.length > 0 && (
+      {featuredItem && (
+        <FeaturedPost post={featuredItem} categories={categories} />
+      )}
+      {blogItems?.length && (
         <PostsList
           items={blogItems}
-          categories={categoriesItems}
+          categories={categories}
           blockTitle="Статьи и публикации"
           blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
         />
       )}
 
-      {poetryItems?.length > 0 && (
+      {poetryItems?.length && (
         <PostsList
           items={poetryItems}
-          categories={categoriesItems}
+          categories={categories}
           blockTitle="Стихи и песни"
           blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
         />
       )}
     </MainPageLayout>
   );
-};
+}
 
-export const query = graphql`
-  query IndexPageQuery {
-    featured: allStrapiPosts(filter: { featured: { eq: true } }, limit: 1) {
-      edges {
-        node {
-          ...PostFields
-        }
-      }
-    }
+export async function getStaticProps(): Promise<any> {
+  const { data } = await apolloClient.query({
+    query: INDEX_PAGE_QUERY,
+  });
+  const { featured, blogItems, poetryItems, categories } = data;
 
-    poetry: allStrapiPosts(
-      filter: { category: { eq: "poetry" }, featured: { eq: false } }
-      sort: { fields: [createdAt], order: [DESC] }
-      limit: 3
-    ) {
-      edges {
-        node {
-          ...PostFields
-        }
-      }
-    }
-    blog: allStrapiPosts(
-      filter: { category: { eq: "blog" }, featured: { eq: false } }
-      sort: { fields: [createdAt], order: [DESC] }
-      limit: 3
-    ) {
-      edges {
-        node {
-          ...PostFields
-        }
-      }
-    }
-    categories: allStrapiCategories {
-      edges {
-        ...StrapiCategories
-      }
-    }
-  }
-`;
-
-export default IndexPage;
+  return {
+    props: {
+      featured,
+      blogItems,
+      poetryItems,
+      categories,
+    },
+  };
+}

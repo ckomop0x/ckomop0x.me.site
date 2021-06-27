@@ -1,11 +1,9 @@
-import parse from 'html-react-parser';
+// import parse from 'html-react-parser';
 import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import { poetryPageQuery_categories_edges_node } from '../../../../pages/__generated__/poetryPageQuery';
-
-import { ItemWrapper, PostTitle, StyledLink, PostContent } from './styles';
+import { ItemWrapper, PostTitle, StyledLink } from './styles';
 
 import { getSrcSet } from 'utils/image';
 
@@ -18,7 +16,10 @@ export interface IPostProps {
   publicationDate: string;
   title: string;
   slug: string | null;
-  category: poetryPageQuery_categories_edges_node;
+  category: {
+    slug: string;
+    name: string;
+  };
   image: string;
   updateDate?: string;
 }
@@ -28,43 +29,45 @@ const Post: React.FC<IPostProps> = ({
   title,
   slug,
   category,
-  excerpt,
+  // excerpt,
   image,
 }) => {
   const isWithImage = !!image;
 
   return (
     <ItemWrapper className="col-12 col-md-6 col-lg-4">
-      <StyledLink to={`/${category.slug}/${slug}`}>
-        <div className="row h-100">
-          <div className="post-content">
-            {isWithImage && (
-              <div>
-                <img
-                  className="item__image lazyload"
-                  loading="lazy"
-                  data-src={`${image}`}
-                  data-srcset={getSrcSet(image)}
-                  data-sizes="(max-width: 600px) 480px, 600px"
-                  alt={title}
-                />
-              </div>
-            )}
-            {publicationDate && (
-              <p className="item__date">
-                <b>Опубликовано:</b>
-                <br />
-                {publicationDate}
-              </p>
-            )}
-            <PostTitle>{title}</PostTitle>
-            <PostContent>
-              {excerpt
-                ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
-                : 'В этом посте ещё нет контента'}
-            </PostContent>
+      <StyledLink href={`/${category.slug}/${slug}`}>
+        <a>
+          <div className="row h-100">
+            <div className="post-content">
+              {isWithImage && (
+                <div>
+                  <img
+                    className="item__image lazyload"
+                    loading="lazy"
+                    data-src={`${image}`}
+                    data-srcset={getSrcSet(image)}
+                    data-sizes="(max-width: 600px) 480px, 600px"
+                    alt={title}
+                  />
+                </div>
+              )}
+              {publicationDate && (
+                <p className="item__date">
+                  <b>Опубликовано:</b>
+                  <br />
+                  {publicationDate}
+                </p>
+              )}
+              <PostTitle>{title}</PostTitle>
+              {/* <PostContent>*/}
+              {/*  {excerpt*/}
+              {/*    ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)*/}
+              {/*    : 'В этом посте ещё нет контента'}*/}
+              {/* </PostContent>*/}
+            </div>
           </div>
-        </div>
+        </a>
       </StyledLink>
     </ItemWrapper>
   );

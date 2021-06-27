@@ -1,6 +1,5 @@
 import parse from 'html-react-parser';
-import moment from 'moment';
-import React from 'react';
+import Link from 'next/link';
 
 import {
   ContentWrapper,
@@ -9,23 +8,23 @@ import {
   ItemImage,
 } from './styles';
 
-import {
-  IndexPageQuery_featured_edges_node,
-  IndexPageQuery_categories_edges,
-} from 'pages/__generated__/IndexPageQuery';
+import formatDate from 'utils/dates/formatDate';
 
-interface IFeaturedPost {
-  post: IndexPageQuery_featured_edges_node;
-  categories: IndexPageQuery_categories_edges[];
+interface IFeaturedPostProps {
+  post: any;
+  categories: any[];
 }
 
-const FeaturedPost: React.FC<IFeaturedPost> = ({ post, categories }) => {
-  const { title, excerpt, published, createdAt, slug, category, image_url } =
+export default function FeaturedPost({
+  post,
+  categories = [],
+}: IFeaturedPostProps): JSX.Element {
+  const { category, createdAt, excerpt, image_url, slug, title, published } =
     post;
-  const formattedDate = moment(createdAt).format('DD.MM.YYYY');
-  const categoryData = categories.filter(
-    categoryItem => categoryItem.node.slug === category,
-  )[0].node;
+  const publicationDate = formatDate(createdAt);
+  const [categoryData] = categories.filter(
+    categoryItem => categoryItem.slug === category,
+  );
   const excerptText = excerpt
     ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
     : '';
@@ -46,15 +45,15 @@ const FeaturedPost: React.FC<IFeaturedPost> = ({ post, categories }) => {
                   </ItemImage>
                   <ContentWrapper className="col-12 col-sm-12 col-md-5">
                     <h3 className="title">{title}</h3>
-                    <p className="post-date">Опубликовано: {formattedDate}</p>
-                    {excerpt && category ? (
+                    <p className="post-date">Опубликовано: {publicationDate}</p>
+                    {excerpt && category && (
                       <div className="post-text">
                         {excerptText}
-                        <LinkStyled to={`/${categoryData.slug}/${slug}`}>
-                          Читать далее...
-                        </LinkStyled>
+                        <Link href={`/${categoryData?.slug}/${slug}`}>
+                          <LinkStyled>Читать далее...</LinkStyled>
+                        </Link>
                       </div>
-                    ) : null}
+                    )}
                   </ContentWrapper>
                 </div>
               </article>
@@ -64,6 +63,4 @@ const FeaturedPost: React.FC<IFeaturedPost> = ({ post, categories }) => {
       )}
     </>
   );
-};
-
-export default FeaturedPost;
+}
