@@ -6,7 +6,7 @@ import ProjectsLayout from 'components/layouts/PoetryLayout';
 import DetailItemComponent from 'components/shared/DetailItem';
 import apolloClient from 'utils/api/apollo-client';
 
-export default function DetailItem({
+export default function BlogPostPage({
   detailedPost,
 }: IDetailPageProps): JSX.Element {
   const { content, createdAt, image_url, slug, title, updatedAt } =
@@ -15,7 +15,7 @@ export default function DetailItem({
   return (
     <ProjectsLayout
       headTitle={title}
-      ogUrl={`https://ckomop0x.me/poetry/${slug}/`}
+      ogUrl={`https://ckomop0x.me/blog/${slug}/`}
       ogImage={socialImage}
       ogDescription={title}
       twitterCard={title}
@@ -34,7 +34,7 @@ export default function DetailItem({
 export async function getStaticProps({ params }: any): Promise<any> {
   const { data } = await apolloClient.query({
     query: DETAILS_PAGE_QUERY,
-    variables: { category: 'poetry', slug: params.slug },
+    variables: { category: 'blog', slug: params.slug },
   });
   const [detailedPost] = data.posts;
 
@@ -50,10 +50,10 @@ export async function getStaticPaths(): Promise<any> {
   const { data } = await apolloClient.query({
     query: POSTS_PATH_QUERY,
     variables: {
-      category: 'poetry',
+      category: 'blog',
     },
   });
-  const paths = data.posts.map((slugData: any) => `/poetry/${slugData.slug}`);
+  const paths = data.posts.map((slugData: any) => `/blog/${slugData.slug}`);
 
   return {
     paths,

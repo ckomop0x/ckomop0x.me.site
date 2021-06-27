@@ -10,9 +10,9 @@ interface IItemsList {
 
 const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
   <div className="row">
-    {items.map(({ node }: any) => {
-      const {
-        strapiId,
+    {items.map(
+      ({
+        id,
         title,
         excerpt,
         published,
@@ -21,31 +21,31 @@ const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
         slug,
         category,
         image_url,
-      } = node;
+      }: any) => {
+        const publicationDate = formatDate(createdAt);
+        const updateDate = formatDate(updatedAt);
 
-      const publicationDate = formatDate(createdAt);
-      const updateDate = formatDate(updatedAt);
+        const [categoryData] = categories.filter(
+          (categoryItem: any) => categoryItem.slug === category,
+        );
 
-      const categoryData = categories.filter(
-        (categoryItem: any) => categoryItem.node.slug === category,
-      )[0].node;
-
-      return (
-        published && (
-          <Post
-            key={strapiId}
-            id={strapiId}
-            excerpt={excerpt}
-            publicationDate={publicationDate}
-            updateDate={updateDate}
-            title={title || ''}
-            slug={slug}
-            category={categoryData}
-            image={image_url || ''}
-          />
-        )
-      );
-    })}
+        return (
+          published && (
+            <Post
+              key={id}
+              id={id}
+              excerpt={excerpt}
+              publicationDate={publicationDate}
+              updateDate={updateDate}
+              title={title || ''}
+              slug={slug}
+              category={categoryData}
+              image={image_url || ''}
+            />
+          )
+        );
+      },
+    )}
   </div>
 );
 

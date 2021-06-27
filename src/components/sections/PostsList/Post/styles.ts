@@ -156,7 +156,6 @@ export const PostTitle = styled.h3`
   font-weight: 500;
   line-height: 1;
   margin-top: 0;
-  border-bottom: 1px solid #88808030;
   width: calc(100% - 40px);
   margin-left: 20px;
 `;

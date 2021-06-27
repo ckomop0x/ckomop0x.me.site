@@ -1,30 +1,29 @@
+import { CATEGORY_PAGE_QUERY } from '../../queries/categoryPageQuery';
+import { ICategoryPageProps } from '../../types/categoryPage';
+
 import PoetryLayout from 'components/layouts/PoetryLayout';
 import ItemsList from 'components/shared/ItemsList';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
+import apolloClient from 'utils/api/apollo-client';
 
-export interface IPortfolioProps {
-  data: any;
-}
-
-export default function PoetryPage({ data }: IPortfolioProps): JSX.Element {
-  const poetryItems = data?.poetry.edges;
-  const categoriesItems = data?.categories.edges;
-
+export default function PoetryPage({
+  items,
+  categories,
+}: ICategoryPageProps): JSX.Element {
   return (
     <PoetryLayout
-      headTitle="Ckomop0x.me | Мои стихи и песни"
+      headTitle="Ckomop0x.me | Стихи и песни"
       ogUrl="https://ckomop0x.me/poetry/"
-      ogDescription="Ckomop0x.me | Мои стихи и песни"
-      twitterCard="Мои стихи и песни написанные в разное время, в разных городах и странах"
+      ogDescription="Ckomop0x.me | Стихи и песни"
+      twitterCard="Стихи и песни написанные в разное время, в разных городах и странах"
     >
       <div className="container">
         <TitleBlock>Стихи и песни</TitleBlock>
         <SubtitleBlock>
-          Мои стихи и песни написанные в разное время, в разных городах и
-          странах
+          Стихи и песни написанные в разное время, в разных городах и странах
         </SubtitleBlock>
-        {poetryItems ? (
-          <ItemsList items={poetryItems} categories={categoriesItems} />
+        {items ? (
+          <ItemsList items={items} categories={categories} />
         ) : (
           'Здесь ещё ничего нет или что-то пошло не так. 😎'
         )}
@@ -33,23 +32,19 @@ export default function PoetryPage({ data }: IPortfolioProps): JSX.Element {
   );
 }
 
-// export const query = graphql`
-//   query poetryPageQuery {
-//     poetry: allStrapiPosts(
-//       filter: { category: { eq: "poetry" } }
-//       sort: { fields: [createdAt], order: [DESC] }
-//       limit: 100
-//     ) {
-//       edges {
-//         node {
-//           ...PostFields
-//         }
-//       }
-//     }
-//     categories: allStrapiCategories {
-//       edges {
-//         ...StrapiCategories
-//       }
-//     }
-//   }
-// `;
+export async function getStaticProps(): any {
+  const { data } = await apolloClient.query({
+    query: CATEGORY_PAGE_QUERY,
+    variables: {
+      category: 'poetry',
+      limit: 100,
+    },
+  });
+
+  return {
+    props: {
+      items: data.posts,
+      categories: data.categories,
+    },
+  };
+}

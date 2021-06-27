@@ -22,9 +22,9 @@ export default function FeaturedPost({
   const { category, createdAt, excerpt, image_url, slug, title, published } =
     post;
   const publicationDate = formatDate(createdAt);
-  const categoryData = categories.filter(
+  const [categoryData] = categories.filter(
     categoryItem => categoryItem.slug === category,
-  )[0];
+  );
   const excerptText = excerpt
     ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
     : '';

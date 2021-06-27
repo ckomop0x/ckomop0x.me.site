@@ -20,9 +20,9 @@ const PostsList: React.FC<IPostsList> = ({
   items,
   categories,
 }) => {
-  const postsCategoryLink = items[0].node.category ?? '';
+  const postsCategoryLink = items[0].category ?? '';
   const [postsCategory] = categories.filter(
-    (category: any) => category.node.slug === postsCategoryLink,
+    (category: any) => category.slug === postsCategoryLink,
   );
 
   return (
@@ -32,9 +32,9 @@ const PostsList: React.FC<IPostsList> = ({
         <SubtitleBlock>{blockSubtitle}</SubtitleBlock>
         <div className="text-center">
           <PostsListStyled className="row">
-            {items.map(({ node }: any) => {
-              const {
-                strapiId,
+            {items.map(
+              ({
+                id,
                 title,
                 excerpt,
                 published,
@@ -42,37 +42,37 @@ const PostsList: React.FC<IPostsList> = ({
                 slug,
                 category,
                 image_url,
-              } = node;
-              // const formattedDate = moment(createdAt).format('DD.MM.YYYY');
-              const publicationDate = format(
-                new Date(createdAt),
-                'dd MMMM yyyy',
-                {
-                  locale: ruLocale,
-                },
-              );
-              const categoryData = categories.filter(
-                (categoryItem: any) => categoryItem.node.slug === category,
-              )[0].node;
+              }: any) => {
+                const publicationDate = format(
+                  new Date(createdAt),
+                  'dd MMMM yyyy',
+                  {
+                    locale: ruLocale,
+                  },
+                );
+                const [categoryData] = categories.filter(
+                  (categoryItem: any) => categoryItem.slug === category,
+                );
 
-              return (
-                published && (
-                  <Post
-                    key={strapiId}
-                    id={strapiId}
-                    excerpt={excerpt}
-                    publicationDate={publicationDate}
-                    title={title || ''}
-                    slug={slug}
-                    category={categoryData}
-                    image={image_url || ''}
-                  />
-                )
-              );
-            })}
+                return (
+                  published && (
+                    <Post
+                      key={id}
+                      id={id}
+                      excerpt={excerpt}
+                      publicationDate={publicationDate}
+                      title={title || ''}
+                      slug={slug}
+                      category={categoryData}
+                      image={image_url || ''}
+                    />
+                  )
+                );
+              },
+            )}
           </PostsListStyled>
           <AllPostsLink href={postsCategoryLink}>
-            <a>Перейти в {postsCategory.node.name}</a>
+            <a>Перейти в {postsCategory.name}</a>
           </AllPostsLink>
         </div>
       </div>

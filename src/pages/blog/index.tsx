@@ -1,20 +1,17 @@
-import PoetryLayout from 'components/layouts/PoetryLayout/PoetryLayout';
+import { CATEGORY_PAGE_QUERY } from '../../queries/categoryPageQuery';
+import { ICategoryPageProps } from '../../types/categoryPage';
+
+import CategoryLayout from 'components/layouts/PoetryLayout/PoetryLayout';
 import ItemsList from 'components/shared/ItemsList';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
+import apolloClient from 'utils/api/apollo-client';
 
-export interface IPortfolioProps {
-  data: {
-    blog: any;
-    categories: any;
-  };
-}
-
-export default function PoetryPage({ data }: IPortfolioProps): JSX.Element {
-  const blogItems = data?.blog?.edges;
-  const categoriesItems = data?.categories?.edges;
-
+export default function PoetryPage({
+  items,
+  categories,
+}: ICategoryPageProps): JSX.Element {
   return (
-    <PoetryLayout
+    <CategoryLayout
       headTitle="Ckomop0x.me | Статьи и публикации"
       ogUrl="https://ckomop0x.me/poetry/"
       ogDescription="Ckomop0x.me | Статьи и публикации"
@@ -22,34 +19,30 @@ export default function PoetryPage({ data }: IPortfolioProps): JSX.Element {
     >
       <div className="container">
         <TitleBlock>Блог</TitleBlock>
-        <SubtitleBlock>Мои статьи и публикации на разные темы.</SubtitleBlock>
-        {blogItems ? (
-          <ItemsList items={blogItems} categories={categoriesItems} />
+        <SubtitleBlock>Статьи и публикации на разные темы.</SubtitleBlock>
+        {items ? (
+          <ItemsList items={items} categories={categories} />
         ) : (
           'Здесь ещё ничего нет или что-то пошло не так. 😎'
         )}
       </div>
-    </PoetryLayout>
+    </CategoryLayout>
   );
 }
 
-// export const query = graphql`
-//   query blogPageQuery {
-//     blog: allStrapiPosts(
-//       filter: { category: { eq: "blog" } }
-//       sort: { fields: [createdAt] }
-//       limit: 100
-//     ) {
-//       edges {
-//         node {
-//           ...PostFields
-//         }
-//       }
-//     }
-//     categories: allStrapiCategories {
-//       edges {
-//         ...StrapiCategories
-//       }
-//     }
-//   }
-// `;
+export async function getStaticProps(): Promise<any> {
+  const { data } = await apolloClient.query({
+    query: CATEGORY_PAGE_QUERY,
+    variables: {
+      category: 'blog',
+      limit: 100,
+    },
+  });
+
+  return {
+    props: {
+      items: data.posts,
+      categories: data.categories,
+    },
+  };
+}

@@ -1,9 +1,9 @@
-import parse from 'html-react-parser';
+// import parse from 'html-react-parser';
 import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import { ItemWrapper, PostTitle, StyledLink, PostContent } from './styles';
+import { ItemWrapper, PostTitle, StyledLink } from './styles';
 
 import { getSrcSet } from 'utils/image';
 
@@ -29,7 +29,7 @@ const Post: React.FC<IPostProps> = ({
   title,
   slug,
   category,
-  excerpt,
+  // excerpt,
   image,
 }) => {
   const isWithImage = !!image;
@@ -60,11 +60,11 @@ const Post: React.FC<IPostProps> = ({
                 </p>
               )}
               <PostTitle>{title}</PostTitle>
-              <PostContent>
-                {excerpt
-                  ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
-                  : 'В этом посте ещё нет контента'}
-              </PostContent>
+              {/* <PostContent>*/}
+              {/*  {excerpt*/}
+              {/*    ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)*/}
+              {/*    : 'В этом посте ещё нет контента'}*/}
+              {/* </PostContent>*/}
             </div>
           </div>
         </a>
