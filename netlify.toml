@@ -2,7 +2,5 @@
 package = "@netlify/plugin-sitemap"
 
 [build]
-publish = "public"
+publish = "out"
 
-[[plugins]]
-package = "netlify-plugin-gatsby-cache"
