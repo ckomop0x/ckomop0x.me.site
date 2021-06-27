@@ -16,12 +16,6 @@
     "build-storybook": "build-storybook",
     "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn check-ts && yarn test"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,csgis,md}": [
       "prettier --config ./.prettierrc --write"
