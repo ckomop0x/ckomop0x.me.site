@@ -13,7 +13,8 @@
     "check-ts": "tsc",
     "lint": "eslint \"./src/**/*.{ts,tsx,js}\" --fix",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
