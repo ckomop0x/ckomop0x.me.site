@@ -42,7 +42,6 @@ export async function getStaticProps({ params }: any): Promise<any> {
     props: {
       detailedPost,
     },
-    revalidate: 10,
   };
 }
 

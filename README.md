@@ -1,5 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b694641f-f653-4ac4-91e1-ee0a804cf727/deploy-status)](https://app.netlify.com/sites/webtime-studio/deploys)
-![Version](https://img.shields.io/badge/version-2.4.3-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-3.0.1-blue.svg?cacheSeconds=2592000)
 
 # Pavel Klochkov @ckomop0x blog website
 
@@ -10,9 +10,11 @@ My personal blog website. It uses Gatsby, Strapi, TypeScript, etc. and has many 
 ## How it works
 
 ### Backend
+
 I use Strapi as headless CMS. It's hosted on Heroku and connected to MongoDB on MongoDB atlas. It allows to have cloud-based infrastructure with a free-tier enough big for the personal blog.
 
 ### Frontend
+
 For client-side part I use Gatsby, which is hosted on Netlify. Each deploy it gets the newest data and even can be redeployed with updated data. It's possible with webhook trigger connected from Strapi to Netlify. For automatisation I've connected GitHub actions and strict deploy policy – only from master if test deploy and tests are ✅passing.
 
 ## Technologies
