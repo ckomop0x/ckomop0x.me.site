@@ -2,15 +2,24 @@ import { gql } from '@apollo/client';
 
 export const INDEX_PAGE_QUERY = gql`
   query IndexPageQuery {
-    featured: posts(where: { featured: true, published: true }, limit: 1) {
+    featured: posts(
+      where: { featured: true, published: true }
+      limit: 1
+      sort: "createdAt:desc"
+    ) {
       ...PostFields
     }
-    blogItems: posts(where: { category: "blog", published: true }, limit: 3) {
+    blogItems: posts(
+      where: { category: "blog", published: true }
+      limit: 3
+      sort: "createdAt:desc"
+    ) {
       ...PostFields
     }
     poetryItems: posts(
       where: { category: "poetry", published: true }
       limit: 3
+      sort: "createdAt:desc"
     ) {
       ...PostFields
     }
