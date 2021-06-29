@@ -2,7 +2,11 @@ import { gql } from '@apollo/client';
 
 export const CATEGORY_PAGE_QUERY = gql`
   query categotyPageQuery($category: String!, $limit: Int!) {
-    posts(where: { category: $category, published: true }, limit: $limit) {
+    posts(
+      where: { category: $category, published: true }
+      limit: $limit
+      sort: "createdAt:desc"
+    ) {
       ...PostFields
     }
     categories {
