@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Ckomop0x.me site",
   "author": "Pavel Klochkov, paul.klochkov@gmail.com",
   "license": "MIT",
@@ -14,7 +14,10 @@
     "lint": "eslint \"./src/**/*.{ts,tsx,js}\" --fix",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "graphql:get-schema": "dotenv cross-var rover graph introspect https://ckme-admin.herokuapp.com/graphql > schema.graphql",
+    "graphql:gen-types": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/queries/*.gql.ts' --tagName=gql --addTypename types",
+    "rover": "rover"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,csgis,md}": [
@@ -26,6 +29,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
+    "@apollo/rover": "^0.1.7",
     "babel-plugin-styled-components": "^1.13.1",
     "bootstrap": "^4.6.0",
     "date-fns": "^2.22.1",
@@ -52,7 +56,9 @@
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
+    "cross-var": "^1.1.0",
     "dotenv": "^10.0.0",
+    "dotenv-cli": "^4.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.30.0",

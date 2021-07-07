@@ -1,948 +1,805 @@
-# This file was generated based on ".graphqlconfig". Do not edit manually.
-
 schema {
   query: Query
   mutation: Mutation
 }
-
-union Morph = Category | CategoryAggregator | CategoryConnection | CategoryConnectionCreatedAt | CategoryConnectionId | CategoryConnectionName | CategoryConnectionSlug | CategoryConnectionUpdatedAt | CategoryConnection_id | CategoryGroupBy | ComponentPostRichText | I18NLocale | Post | PostAggregator | PostConnection | PostConnectionCategory | PostConnectionCreatedAt | PostConnectionDate | PostConnectionDescription | PostConnectionExcerpt | PostConnectionFeatured | PostConnectionId | PostConnectionImage | PostConnectionImage_url | PostConnectionLocale | PostConnectionPublished | PostConnectionPublished_at | PostConnectionSlug | PostConnectionTitle | PostConnectionUpdatedAt | PostConnection_id | PostGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreatedAt | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UploadFileConnectionSize | UploadFileConnectionUpdatedAt | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileConnection_id | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleConnection_id | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnection_id | UsersPermissionsUserGroupBy | createCategoryPayload | createPostPayload | createRolePayload | createUserPayload | deleteCategoryPayload | deleteFilePayload | deletePostPayload | deleteRolePayload | deleteUserPayload | updateCategoryPayload | updatePostPayload | updateRolePayload | updateUserPayload
-
-union PostContentDynamicZone = ComponentPostRichText
-
-type AdminUser {
-  firstname: String!
-  id: ID!
-  lastname: String!
-  username: String
-}
-
-type Category {
-  _id: ID!
-  createdAt: DateTime!
-  id: ID!
-  name: String
-  slug: String!
-  updatedAt: DateTime!
-}
-
-type CategoryAggregator {
-  count: Int
-  totalCount: Int
-}
-
-type CategoryConnection {
-  aggregate: CategoryAggregator
-  groupBy: CategoryGroupBy
-  values: [Category]
-}
-
-type CategoryConnectionCreatedAt {
-  connection: CategoryConnection
-  key: DateTime
-}
-
-type CategoryConnectionId {
-  connection: CategoryConnection
-  key: ID
-}
-
-type CategoryConnectionName {
-  connection: CategoryConnection
-  key: String
-}
-
-type CategoryConnectionSlug {
-  connection: CategoryConnection
-  key: String
-}
-
-type CategoryConnectionUpdatedAt {
-  connection: CategoryConnection
-  key: DateTime
-}
-
-type CategoryConnection_id {
-  connection: CategoryConnection
-  key: ID
-}
-
-type CategoryGroupBy {
-  _id: [CategoryConnection_id]
-  createdAt: [CategoryConnectionCreatedAt]
-  id: [CategoryConnectionId]
-  name: [CategoryConnectionName]
-  slug: [CategoryConnectionSlug]
-  updatedAt: [CategoryConnectionUpdatedAt]
-}
-
-type ComponentPostRichText {
-  _id: ID!
-  id: ID!
-  rich_text: String
-}
-
-type I18NLocale {
-  _id: ID!
-  code: String
-  createdAt: DateTime!
-  id: ID!
-  name: String
-  updatedAt: DateTime!
-}
-
-type Mutation {
-  createCategory(input: createCategoryInput): createCategoryPayload
-  createPost(input: createPostInput): createPostPayload
-  createPostLocalization(input: updatePostInput!): Post!
-  "Create a new role"
-  createRole(input: createRoleInput): createRolePayload
-  "Create a new user"
-  createUser(input: createUserInput): createUserPayload
-  deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
-  "Delete one file"
-  deleteFile(input: deleteFileInput): deleteFilePayload
-  deletePost(input: deletePostInput): deletePostPayload
-  "Delete an existing role"
-  deleteRole(input: deleteRoleInput): deleteRolePayload
-  "Delete an existing user"
-  deleteUser(input: deleteUserInput): deleteUserPayload
-  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
-  forgotPassword(email: String!): UserPermissionsPasswordPayload
-  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
-  multipleUpload(field: String, files: [Upload]!, ref: String, refId: ID, source: String): [UploadFile]!
-  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
-  resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-  updateCategory(input: updateCategoryInput): updateCategoryPayload
-  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
-  updatePost(input: updatePostInput): updatePostPayload
-  "Update an existing role"
-  updateRole(input: updateRoleInput): updateRolePayload
-  "Update an existing user"
-  updateUser(input: updateUserInput): updateUserPayload
-  upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID, source: String): UploadFile!
-}
-
-type Post {
-  _id: ID!
-  category: ENUM_POST_CATEGORY!
-  content: [PostContentDynamicZone]
-  createdAt: DateTime!
-  date: DateTime
-  description: String
-  excerpt: String!
-  featured: Boolean
-  id: ID!
-  image: UploadFile
-  image_url: String
-  locale: String
-  localizations(limit: Int, sort: String, start: Int, where: JSON): [Post]
-  published: Boolean
-  published_at: DateTime
-  slug: String!
-  title: String
-  updatedAt: DateTime!
-}
-
-type PostAggregator {
-  count: Int
-  totalCount: Int
-}
-
-type PostConnection {
-  aggregate: PostAggregator
-  groupBy: PostGroupBy
-  values: [Post]
-}
-
-type PostConnectionCategory {
-  connection: PostConnection
-  key: String
-}
-
-type PostConnectionCreatedAt {
-  connection: PostConnection
-  key: DateTime
-}
-
-type PostConnectionDate {
-  connection: PostConnection
-  key: DateTime
-}
-
-type PostConnectionDescription {
-  connection: PostConnection
-  key: String
-}
-
-type PostConnectionExcerpt {
-  connection: PostConnection
-  key: String
-}
-
-type PostConnectionFeatured {
-  connection: PostConnection
-  key: Boolean
-}
-
-type PostConnectionId {
-  connection: PostConnection
-  key: ID
-}
-
-type PostConnectionImage {
-  connection: PostConnection
-  key: ID
-}
-
-type PostConnectionImage_url {
-  connection: PostConnection
-  key: String
-}
-
-type PostConnectionLocale {
-  connection: PostConnection
-  key: String
-}
-
-type PostConnectionPublished {
-  connection: PostConnection
-  key: Boolean
-}
-
-type PostConnectionPublished_at {
-  connection: PostConnection
-  key: DateTime
-}
-
-type PostConnectionSlug {
-  connection: PostConnection
-  key: String
-}
-
-type PostConnectionTitle {
-  connection: PostConnection
-  key: String
-}
-
-type PostConnectionUpdatedAt {
-  connection: PostConnection
-  key: DateTime
-}
-
-type PostConnection_id {
-  connection: PostConnection
-  key: ID
-}
-
-type PostGroupBy {
-  _id: [PostConnection_id]
-  category: [PostConnectionCategory]
-  createdAt: [PostConnectionCreatedAt]
-  date: [PostConnectionDate]
-  description: [PostConnectionDescription]
-  excerpt: [PostConnectionExcerpt]
-  featured: [PostConnectionFeatured]
-  id: [PostConnectionId]
-  image: [PostConnectionImage]
-  image_url: [PostConnectionImage_url]
-  locale: [PostConnectionLocale]
-  published: [PostConnectionPublished]
-  published_at: [PostConnectionPublished_at]
-  slug: [PostConnectionSlug]
-  title: [PostConnectionTitle]
-  updatedAt: [PostConnectionUpdatedAt]
-}
-
-type Query {
-  categories(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Category]
-  categoriesConnection(limit: Int, sort: String, start: Int, where: JSON): CategoryConnection
-  category(id: ID!, publicationState: PublicationState): Category
-  files(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UploadFile]
-  filesConnection(limit: Int, sort: String, start: Int, where: JSON): UploadFileConnection
-  me: UsersPermissionsMe
-  post(id: ID!, publicationState: PublicationState): Post
-  posts(limit: Int, locale: String, publicationState: PublicationState, sort: String, start: Int, where: JSON): [Post]
-  postsConnection(limit: Int, locale: String, sort: String, start: Int, where: JSON): PostConnection
-  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
-  "Retrieve all the existing roles. You can't apply filters on this query."
-  roles(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsRole]
-  rolesConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsRoleConnection
-  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
-  users(limit: Int, publicationState: PublicationState, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
-  usersConnection(limit: Int, sort: String, start: Int, where: JSON): UsersPermissionsUserConnection
-}
-
-type UploadFile {
-  _id: ID!
-  alternativeText: String
-  caption: String
-  createdAt: DateTime!
-  ext: String
-  formats: JSON
-  hash: String!
-  height: Int
-  id: ID!
-  mime: String!
-  name: String!
-  previewUrl: String
-  provider: String!
-  provider_metadata: JSON
-  related(limit: Int, sort: String, start: Int, where: JSON): [Morph]
-  size: Float!
-  updatedAt: DateTime!
-  url: String!
-  width: Int
-}
-
-type UploadFileAggregator {
-  avg: UploadFileAggregatorAvg
-  count: Int
-  max: UploadFileAggregatorMax
-  min: UploadFileAggregatorMin
-  sum: UploadFileAggregatorSum
-  totalCount: Int
-}
-
-type UploadFileAggregatorAvg {
-  height: Float
-  size: Float
-  width: Float
-}
-
-type UploadFileAggregatorMax {
-  height: Float
-  size: Float
-  width: Float
-}
-
-type UploadFileAggregatorMin {
-  height: Float
-  size: Float
-  width: Float
-}
-
-type UploadFileAggregatorSum {
-  height: Float
-  size: Float
-  width: Float
-}
-
-type UploadFileConnection {
-  aggregate: UploadFileAggregator
-  groupBy: UploadFileGroupBy
-  values: [UploadFile]
-}
-
-type UploadFileConnectionAlternativeText {
-  connection: UploadFileConnection
-  key: String
-}
-
-type UploadFileConnectionCaption {
-  connection: UploadFileConnection
-  key: String
-}
-
-type UploadFileConnectionCreatedAt {
-  connection: UploadFileConnection
-  key: DateTime
-}
-
-type UploadFileConnectionExt {
-  connection: UploadFileConnection
-  key: String
-}
-
-type UploadFileConnectionFormats {
-  connection: UploadFileConnection
-  key: JSON
-}
-
-type UploadFileConnectionHash {
-  connection: UploadFileConnection
-  key: String
-}
-
-type UploadFileConnectionHeight {
-  connection: UploadFileConnection
-  key: Int
-}
-
-type UploadFileConnectionId {
-  connection: UploadFileConnection
-  key: ID
-}
-
-type UploadFileConnectionMime {
-  connection: UploadFileConnection
-  key: String
-}
-
-type UploadFileConnectionName {
-  connection: UploadFileConnection
-  key: String
-}
-
-type UploadFileConnectionPreviewUrl {
-  connection: UploadFileConnection
-  key: String
-}
-
-type UploadFileConnectionProvider {
-  connection: UploadFileConnection
-  key: String
-}
-
-type UploadFileConnectionProvider_metadata {
-  connection: UploadFileConnection
-  key: JSON
-}
-
-type UploadFileConnectionSize {
-  connection: UploadFileConnection
-  key: Float
-}
-
-type UploadFileConnectionUpdatedAt {
-  connection: UploadFileConnection
-  key: DateTime
-}
-
-type UploadFileConnectionUrl {
-  connection: UploadFileConnection
-  key: String
-}
-
-type UploadFileConnectionWidth {
-  connection: UploadFileConnection
-  key: Int
-}
-
-type UploadFileConnection_id {
-  connection: UploadFileConnection
-  key: ID
-}
-
-type UploadFileGroupBy {
-  _id: [UploadFileConnection_id]
-  alternativeText: [UploadFileConnectionAlternativeText]
-  caption: [UploadFileConnectionCaption]
-  createdAt: [UploadFileConnectionCreatedAt]
-  ext: [UploadFileConnectionExt]
-  formats: [UploadFileConnectionFormats]
-  hash: [UploadFileConnectionHash]
-  height: [UploadFileConnectionHeight]
-  id: [UploadFileConnectionId]
-  mime: [UploadFileConnectionMime]
-  name: [UploadFileConnectionName]
-  previewUrl: [UploadFileConnectionPreviewUrl]
-  provider: [UploadFileConnectionProvider]
-  provider_metadata: [UploadFileConnectionProvider_metadata]
-  size: [UploadFileConnectionSize]
-  updatedAt: [UploadFileConnectionUpdatedAt]
-  url: [UploadFileConnectionUrl]
-  width: [UploadFileConnectionWidth]
-}
-
-type UserPermissionsPasswordPayload {
-  ok: Boolean!
-}
-
-type UsersPermissionsLoginPayload {
-  jwt: String
-  user: UsersPermissionsMe!
-}
-
-type UsersPermissionsMe {
-  blocked: Boolean
-  confirmed: Boolean
-  email: String!
-  id: ID!
-  role: UsersPermissionsMeRole
-  username: String!
-}
-
-type UsersPermissionsMeRole {
-  description: String
-  id: ID!
-  name: String!
-  type: String
-}
-
-type UsersPermissionsPermission {
-  _id: ID!
-  action: String!
-  controller: String!
-  enabled: Boolean!
-  id: ID!
-  policy: String
-  role: UsersPermissionsRole
-  type: String!
-}
-
-type UsersPermissionsRole {
-  _id: ID!
-  description: String
-  id: ID!
-  name: String!
-  permissions(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsPermission]
-  type: String
-  users(limit: Int, sort: String, start: Int, where: JSON): [UsersPermissionsUser]
-}
-
-type UsersPermissionsRoleAggregator {
-  count: Int
-  totalCount: Int
-}
-
-type UsersPermissionsRoleConnection {
-  aggregate: UsersPermissionsRoleAggregator
-  groupBy: UsersPermissionsRoleGroupBy
-  values: [UsersPermissionsRole]
-}
-
-type UsersPermissionsRoleConnectionDescription {
-  connection: UsersPermissionsRoleConnection
-  key: String
-}
-
-type UsersPermissionsRoleConnectionId {
-  connection: UsersPermissionsRoleConnection
-  key: ID
-}
-
-type UsersPermissionsRoleConnectionName {
-  connection: UsersPermissionsRoleConnection
-  key: String
-}
-
-type UsersPermissionsRoleConnectionType {
-  connection: UsersPermissionsRoleConnection
-  key: String
-}
-
-type UsersPermissionsRoleConnection_id {
-  connection: UsersPermissionsRoleConnection
-  key: ID
-}
-
-type UsersPermissionsRoleGroupBy {
-  _id: [UsersPermissionsRoleConnection_id]
-  description: [UsersPermissionsRoleConnectionDescription]
-  id: [UsersPermissionsRoleConnectionId]
-  name: [UsersPermissionsRoleConnectionName]
-  type: [UsersPermissionsRoleConnectionType]
-}
-
-type UsersPermissionsUser {
-  _id: ID!
-  blocked: Boolean
-  confirmed: Boolean
-  createdAt: DateTime!
-  email: String!
-  id: ID!
-  provider: String
-  role: UsersPermissionsRole
-  updatedAt: DateTime!
-  username: String!
-}
-
-type UsersPermissionsUserAggregator {
-  count: Int
-  totalCount: Int
-}
-
-type UsersPermissionsUserConnection {
-  aggregate: UsersPermissionsUserAggregator
-  groupBy: UsersPermissionsUserGroupBy
-  values: [UsersPermissionsUser]
-}
-
-type UsersPermissionsUserConnectionBlocked {
-  connection: UsersPermissionsUserConnection
-  key: Boolean
-}
-
-type UsersPermissionsUserConnectionConfirmed {
-  connection: UsersPermissionsUserConnection
-  key: Boolean
-}
-
-type UsersPermissionsUserConnectionCreatedAt {
-  connection: UsersPermissionsUserConnection
-  key: DateTime
-}
-
-type UsersPermissionsUserConnectionEmail {
-  connection: UsersPermissionsUserConnection
-  key: String
-}
-
-type UsersPermissionsUserConnectionId {
-  connection: UsersPermissionsUserConnection
-  key: ID
-}
-
-type UsersPermissionsUserConnectionProvider {
-  connection: UsersPermissionsUserConnection
-  key: String
-}
-
-type UsersPermissionsUserConnectionRole {
-  connection: UsersPermissionsUserConnection
-  key: ID
-}
-
-type UsersPermissionsUserConnectionUpdatedAt {
-  connection: UsersPermissionsUserConnection
-  key: DateTime
-}
-
-type UsersPermissionsUserConnectionUsername {
-  connection: UsersPermissionsUserConnection
-  key: String
-}
-
-type UsersPermissionsUserConnection_id {
-  connection: UsersPermissionsUserConnection
-  key: ID
-}
-
-type UsersPermissionsUserGroupBy {
-  _id: [UsersPermissionsUserConnection_id]
-  blocked: [UsersPermissionsUserConnectionBlocked]
-  confirmed: [UsersPermissionsUserConnectionConfirmed]
-  createdAt: [UsersPermissionsUserConnectionCreatedAt]
-  email: [UsersPermissionsUserConnectionEmail]
-  id: [UsersPermissionsUserConnectionId]
-  provider: [UsersPermissionsUserConnectionProvider]
-  role: [UsersPermissionsUserConnectionRole]
-  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
-  username: [UsersPermissionsUserConnectionUsername]
-}
-
-type createCategoryPayload {
-  category: Category
-}
-
-type createPostPayload {
-  post: Post
-}
-
-type createRolePayload {
-  role: UsersPermissionsRole
-}
-
-type createUserPayload {
-  user: UsersPermissionsUser
-}
-
-type deleteCategoryPayload {
-  category: Category
-}
-
-type deleteFilePayload {
-  file: UploadFile
-}
-
-type deletePostPayload {
-  post: Post
-}
-
-type deleteRolePayload {
-  role: UsersPermissionsRole
-}
-
-type deleteUserPayload {
-  user: UsersPermissionsUser
-}
-
-type updateCategoryPayload {
-  category: Category
-}
-
-type updatePostPayload {
-  post: Post
-}
-
-type updateRolePayload {
-  role: UsersPermissionsRole
-}
-
-type updateUserPayload {
-  user: UsersPermissionsUser
-}
-
-enum ENUM_POST_CATEGORY {
-  blog
-  poetry
-  unsorted
-}
-
-enum PublicationState {
-  LIVE
-  PREVIEW
-}
-
-input CategoryInput {
-  created_by: ID
-  name: String
-  slug: String!
-  updated_by: ID
-}
-
-input ComponentPostRichTextInput {
-  rich_text: String
-}
-
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy on SCALAR
 input FileInfoInput {
-  alternativeText: String
-  caption: String
   name: String
-}
-
-input FileInput {
   alternativeText: String
   caption: String
-  created_by: ID
-  ext: String
-  formats: JSON
-  hash: String!
-  height: Int
-  mime: String!
-  name: String!
-  previewUrl: String
-  provider: String!
-  provider_metadata: JSON
-  related: [ID]
-  size: Float!
-  updated_by: ID
-  url: String!
-  width: Int
 }
-
-input InputID {
+type UsersPermissionsMe {
   id: ID!
-}
-
-input LocaleInput {
-  code: String
-  created_by: ID
-  name: String
-  updated_by: ID
-}
-
-input PostInput {
-  category: ENUM_POST_CATEGORY
-  content: [PostContentDynamicZoneInput!]
-  created_by: ID
-  date: DateTime
-  description: String
-  excerpt: String!
-  featured: Boolean
-  image: ID
-  image_url: String
-  locale: String
-  localizations: [ID]
-  published: Boolean
-  published_at: DateTime
-  slug: String!
-  title: String
-  updated_by: ID
-}
-
-input RoleInput {
-  created_by: ID
-  description: String
-  name: String!
-  permissions: [ID]
-  type: String
-  updated_by: ID
-  users: [ID]
-}
-
-input UserInput {
-  blocked: Boolean
-  confirmationToken: String
-  confirmed: Boolean
-  created_by: ID
-  email: String!
-  password: String
-  provider: String
-  resetPasswordToken: String
-  role: ID
-  updated_by: ID
   username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
 }
-
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
 input UsersPermissionsLoginInput {
   identifier: String!
   password: String!
   provider: String = "local"
 }
-
-input UsersPermissionsRegisterInput {
-  email: String!
-  password: String!
-  username: String!
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
 }
-
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+type Category {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  slug: String!
+}
+type CategoryConnection {
+  values: [Category]
+  groupBy: CategoryGroupBy
+  aggregate: CategoryAggregator
+}
+type CategoryAggregator {
+  count: Int
+  totalCount: Int
+}
+type CategoryGroupBy {
+  id: [CategoryConnectionId]
+  _id: [CategoryConnection_id]
+  createdAt: [CategoryConnectionCreatedAt]
+  updatedAt: [CategoryConnectionUpdatedAt]
+  name: [CategoryConnectionName]
+  slug: [CategoryConnectionSlug]
+}
+type CategoryConnectionId {
+  key: ID
+  connection: CategoryConnection
+}
+type CategoryConnection_id {
+  key: ID
+  connection: CategoryConnection
+}
+type CategoryConnectionCreatedAt {
+  key: DateTime
+  connection: CategoryConnection
+}
+type CategoryConnectionUpdatedAt {
+  key: DateTime
+  connection: CategoryConnection
+}
+type CategoryConnectionName {
+  key: String
+  connection: CategoryConnection
+}
+type CategoryConnectionSlug {
+  key: String
+  connection: CategoryConnection
+}
+input CategoryInput {
+  name: String
+  slug: String!
+  created_by: ID
+  updated_by: ID
+}
+input editCategoryInput {
+  name: String
+  slug: String
+  created_by: ID
+  updated_by: ID
+}
 input createCategoryInput {
   data: CategoryInput
 }
-
-input createPostInput {
-  data: PostInput
+type createCategoryPayload {
+  category: Category
 }
-
-input createRoleInput {
-  data: RoleInput
+input updateCategoryInput {
+  where: InputID
+  data: editCategoryInput
 }
-
-input createUserInput {
-  data: UserInput
+type updateCategoryPayload {
+  category: Category
 }
-
 input deleteCategoryInput {
   where: InputID
 }
-
-input deleteFileInput {
-  where: InputID
+type deleteCategoryPayload {
+  category: Category
 }
-
+enum ENUM_POST_CATEGORY {
+  poetry
+  blog
+  unsorted
+}
+union PostContentDynamicZone = ComponentPostRichText
+"""Input type for dynamic zone content of Post"""
+scalar PostContentDynamicZoneInput
+type Post {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  date: DateTime
+  excerpt: String!
+  image: UploadFile
+  description: String
+  published: Boolean
+  image_url: String
+  category: ENUM_POST_CATEGORY!
+  slug: String!
+  featured: Boolean
+  content: [PostContentDynamicZone]
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [Post]
+}
+type PostConnection {
+  values: [Post]
+  groupBy: PostGroupBy
+  aggregate: PostAggregator
+}
+type PostAggregator {
+  count: Int
+  totalCount: Int
+}
+type PostGroupBy {
+  id: [PostConnectionId]
+  _id: [PostConnection_id]
+  createdAt: [PostConnectionCreatedAt]
+  updatedAt: [PostConnectionUpdatedAt]
+  title: [PostConnectionTitle]
+  date: [PostConnectionDate]
+  excerpt: [PostConnectionExcerpt]
+  image: [PostConnectionImage]
+  description: [PostConnectionDescription]
+  published: [PostConnectionPublished]
+  image_url: [PostConnectionImage_url]
+  category: [PostConnectionCategory]
+  slug: [PostConnectionSlug]
+  featured: [PostConnectionFeatured]
+  locale: [PostConnectionLocale]
+  published_at: [PostConnectionPublished_at]
+}
+type PostConnectionId {
+  key: ID
+  connection: PostConnection
+}
+type PostConnection_id {
+  key: ID
+  connection: PostConnection
+}
+type PostConnectionCreatedAt {
+  key: DateTime
+  connection: PostConnection
+}
+type PostConnectionUpdatedAt {
+  key: DateTime
+  connection: PostConnection
+}
+type PostConnectionTitle {
+  key: String
+  connection: PostConnection
+}
+type PostConnectionDate {
+  key: DateTime
+  connection: PostConnection
+}
+type PostConnectionExcerpt {
+  key: String
+  connection: PostConnection
+}
+type PostConnectionImage {
+  key: ID
+  connection: PostConnection
+}
+type PostConnectionDescription {
+  key: String
+  connection: PostConnection
+}
+type PostConnectionPublished {
+  key: Boolean
+  connection: PostConnection
+}
+type PostConnectionImage_url {
+  key: String
+  connection: PostConnection
+}
+type PostConnectionCategory {
+  key: String
+  connection: PostConnection
+}
+type PostConnectionSlug {
+  key: String
+  connection: PostConnection
+}
+type PostConnectionFeatured {
+  key: Boolean
+  connection: PostConnection
+}
+type PostConnectionLocale {
+  key: String
+  connection: PostConnection
+}
+type PostConnectionPublished_at {
+  key: DateTime
+  connection: PostConnection
+}
+input PostInput {
+  title: String
+  date: DateTime
+  excerpt: String!
+  image: ID
+  description: String
+  published: Boolean
+  image_url: String
+  category: ENUM_POST_CATEGORY
+  slug: String!
+  featured: Boolean
+  content: [PostContentDynamicZoneInput!]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+input editPostInput {
+  title: String
+  date: DateTime
+  excerpt: String
+  image: ID
+  description: String
+  published: Boolean
+  image_url: String
+  category: ENUM_POST_CATEGORY
+  slug: String
+  featured: Boolean
+  content: [PostContentDynamicZoneInput!]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+input createPostInput {
+  data: PostInput
+}
+type createPostPayload {
+  post: Post
+}
+input updatePostInput {
+  where: InputID
+  data: editPostInput
+}
+type updatePostPayload {
+  post: Post
+}
 input deletePostInput {
   where: InputID
 }
-
-input deleteRoleInput {
-  where: InputID
+type deletePostPayload {
+  post: Post
 }
-
-input deleteUserInput {
-  where: InputID
-}
-
-input editCategoryInput {
-  created_by: ID
+type I18NLocale {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String
-  slug: String
+  code: String
+}
+input LocaleInput {
+  name: String
+  code: String
+  created_by: ID
   updated_by: ID
 }
-
-input editComponentPostRichTextInput {
-  id: ID
-  rich_text: String
+input editLocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
 }
-
-input editFileInput {
+type UploadFile {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
   alternativeText: String
   caption: String
-  created_by: ID
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
   ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+"""The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point)."""
+scalar Float
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  _id: [UploadFileConnection_id]
+  createdAt: [UploadFileConnectionCreatedAt]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+type UploadFileConnection_id {
+  key: ID
+  connection: UploadFileConnection
+}
+type UploadFileConnectionCreatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+type UploadFileConnectionUpdatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
   formats: JSON
   hash: String
-  height: Int
+  ext: String
   mime: String
-  name: String
+  size: Float
+  url: String
   previewUrl: String
   provider: String
   provider_metadata: JSON
   related: [ID]
-  size: Float
-  updated_by: ID
-  url: String
-  width: Int
-}
-
-input editLocaleInput {
-  code: String
   created_by: ID
-  name: String
   updated_by: ID
 }
-
-input editPostInput {
-  category: ENUM_POST_CATEGORY
-  content: [PostContentDynamicZoneInput!]
-  created_by: ID
-  date: DateTime
+input deleteFileInput {
+  where: InputID
+}
+type deleteFilePayload {
+  file: UploadFile
+}
+type UsersPermissionsPermission {
+  id: ID!
+  _id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+type UsersPermissionsRole {
+  id: ID!
+  _id: ID!
+  name: String!
   description: String
-  excerpt: String
-  featured: Boolean
-  image: ID
-  image_url: String
-  locale: String
-  localizations: [ID]
-  published: Boolean
-  published_at: DateTime
-  slug: String
-  title: String
-  updated_by: ID
-}
-
-input editRoleInput {
-  created_by: ID
-  description: String
-  name: String
-  permissions: [ID]
   type: String
-  updated_by: ID
-  users: [ID]
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
 }
-
-input editUserInput {
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  _id: [UsersPermissionsRoleConnection_id]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+type UsersPermissionsRoleConnection_id {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+input createRoleInput {
+  data: RoleInput
+}
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+input deleteRoleInput {
+  where: InputID
+}
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+type UsersPermissionsUser {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
   blocked: Boolean
+  role: UsersPermissionsRole
+}
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  _id: [UsersPermissionsUserConnection_id]
+  createdAt: [UsersPermissionsUserConnectionCreatedAt]
+  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+}
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+type UsersPermissionsUserConnection_id {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+type UsersPermissionsUserConnectionCreatedAt {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+type UsersPermissionsUserConnectionUpdatedAt {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
   confirmationToken: String
   confirmed: Boolean
-  created_by: ID
-  email: String
-  password: String
-  provider: String
-  resetPasswordToken: String
+  blocked: Boolean
   role: ID
+  created_by: ID
   updated_by: ID
+}
+input editUserInput {
   username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
 }
-
-input updateCategoryInput {
-  data: editCategoryInput
-  where: InputID
+input createUserInput {
+  data: UserInput
 }
-
-input updatePostInput {
-  data: editPostInput
-  where: InputID
+type createUserPayload {
+  user: UsersPermissionsUser
 }
-
-input updateRoleInput {
-  data: editRoleInput
-  where: InputID
-}
-
 input updateUserInput {
+  where: InputID
   data: editUserInput
+}
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+input deleteUserInput {
   where: InputID
 }
-
-
-"Input type for dynamic zone content of Post"
-scalar PostContentDynamicZoneInput
-
-"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+type ComponentPostRichText {
+  id: ID!
+  _id: ID!
+  rich_text: String
+}
+input ComponentPostRichTextInput {
+  rich_text: String
+}
+input editComponentPostRichTextInput {
+  id: ID
+  rich_text: String
+}
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnection_id | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | CategoryConnectionSlug | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnection_id | PostConnectionCreatedAt | PostConnectionUpdatedAt | PostConnectionTitle | PostConnectionDate | PostConnectionExcerpt | PostConnectionImage | PostConnectionDescription | PostConnectionPublished | PostConnectionImage_url | PostConnectionCategory | PostConnectionSlug | PostConnectionFeatured | PostConnectionLocale | PostConnectionPublished_at | createPostPayload | updatePostPayload | deletePostPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPostRichText
+input InputID {
+  id: ID!
+}
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+type Query {
+  category(id: ID!, publicationState: PublicationState): Category
+  categories(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Category]
+  categoriesConnection(sort: String, limit: Int, start: Int, where: JSON): CategoryConnection
+  post(id: ID!, publicationState: PublicationState): Post
+  posts(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [Post]
+  postsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): PostConnection
+  files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+  """Retrieve all the existing roles. You can't apply filters on this query."""
+  roles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+type Mutation {
+  createCategory(input: createCategoryInput): createCategoryPayload
+  updateCategory(input: updateCategoryInput): updateCategoryPayload
+  deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
+  createPost(input: createPostInput): createPostPayload
+  updatePost(input: updatePostInput): updatePostPayload
+  deletePost(input: deletePostInput): deletePostPayload
+  """Delete one file"""
+  deleteFile(input: deleteFileInput): deleteFilePayload
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  createPostLocalization(input: updatePostInput!): Post!
+  upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+"""The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."""
 scalar JSON
-
-"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+"""A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."""
 scalar DateTime
-
-"A time string with format: HH:mm:ss.SSS"
+"""A time string with format: HH:mm:ss.SSS"""
 scalar Time
-
-"A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+"""A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."""
 scalar Date
-
-"The `Long` scalar type represents 52-bit integers"
+"""The `Long` scalar type represents 52-bit integers"""
 scalar Long
-
-"The `Upload` scalar type represents a file upload."
+"""The `Upload` scalar type represents a file upload."""
 scalar Upload

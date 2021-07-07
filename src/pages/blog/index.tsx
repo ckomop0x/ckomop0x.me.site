@@ -1,4 +1,4 @@
-import { CATEGORY_PAGE_QUERY } from '../../queries/categoryPageQuery';
+import { CATEGORY_PAGE_QUERY } from '../../queries/categoryPageQuery.gql';
 import { ICategoryPageProps } from '../../types/categoryPage';
 
 import CategoryLayout from 'components/layouts/PoetryLayout/PoetryLayout';
