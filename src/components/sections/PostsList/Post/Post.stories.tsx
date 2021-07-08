@@ -19,6 +19,8 @@ Primary.args = {
   publicationDate: 'Завтра',
   slug: 'Анонс',
   category: {
+    __typename: 'Category',
+    id: '1',
     name: 'Стихи',
     slug: 'poetry',
   },

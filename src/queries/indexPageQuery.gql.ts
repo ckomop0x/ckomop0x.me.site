@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const INDEX_PAGE_QUERY = gql`
-  query IndexPageQuery {
+  query INDEX_PAGE_QUERY {
     featured: posts(
       where: { featured: true, published: true }
       limit: 1

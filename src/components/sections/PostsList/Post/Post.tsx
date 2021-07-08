@@ -3,6 +3,8 @@ import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
+import { INDEX_PAGE_QUERY_categories } from '../../../../queries/types/INDEX_PAGE_QUERY';
+
 import { ItemWrapper, PostTitle, StyledLink } from './styles';
 
 import { getSrcSet } from 'utils/image';
@@ -16,10 +18,7 @@ export interface IPostProps {
   publicationDate: string;
   title: string;
   slug: string | null;
-  category: {
-    slug: string;
-    name: string;
-  };
+  category: INDEX_PAGE_QUERY_categories;
   image: string;
   updateDate?: string;
 }

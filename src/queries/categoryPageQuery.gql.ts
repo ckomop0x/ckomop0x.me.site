@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const CATEGORY_PAGE_QUERY = gql`
-  query categotyPageQuery($category: String!, $limit: Int!) {
+  query CATEGORY_PAGE_QUERY($category: String!, $limit: Int!) {
     posts(
       where: { category: $category, published: true }
       limit: $limit

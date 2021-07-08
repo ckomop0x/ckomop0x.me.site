@@ -1,6 +1,8 @@
 import parse from 'html-react-parser';
 import Link from 'next/link';
 
+import { INDEX_PAGE_QUERY_categories } from '../../../queries/types/INDEX_PAGE_QUERY';
+
 import {
   ContentWrapper,
   FeaturedPostWrapper,
@@ -12,7 +14,7 @@ import formatDate from 'utils/dates/formatDate';
 
 interface IFeaturedPostProps {
   post: any;
-  categories: any[];
+  categories: INDEX_PAGE_QUERY_categories[];
 }
 
 export default function FeaturedPost({
