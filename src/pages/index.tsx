@@ -1,4 +1,10 @@
 import { INDEX_PAGE_QUERY } from '../queries/indexPageQuery.gql';
+import {
+  INDEX_PAGE_QUERY_blogItems,
+  INDEX_PAGE_QUERY_categories,
+  INDEX_PAGE_QUERY_featured,
+  INDEX_PAGE_QUERY_poetryItems,
+} from '../queries/types/INDEX_PAGE_QUERY';
 
 import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPost from 'components/sections/FeaturedPost';
@@ -7,10 +13,10 @@ import PostsList from 'components/sections/PostsList';
 import apolloClient from 'utils/api/apollo-client';
 
 interface IIndexPage {
-  blogItems: any;
-  featured: any;
-  poetryItems: any;
-  categories: any;
+  blogItems: INDEX_PAGE_QUERY_blogItems[];
+  featured: INDEX_PAGE_QUERY_featured[];
+  poetryItems: INDEX_PAGE_QUERY_poetryItems[];
+  categories: INDEX_PAGE_QUERY_categories[];
 }
 
 export default function IndexPage({
@@ -51,7 +57,9 @@ export default function IndexPage({
   );
 }
 
-export async function getStaticProps(): Promise<any> {
+export async function getStaticProps(): Promise<{
+  props: IIndexPage;
+}> {
   const { data } = await apolloClient.query({
     query: INDEX_PAGE_QUERY,
   });

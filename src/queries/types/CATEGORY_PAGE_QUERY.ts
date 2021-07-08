@@ -6,11 +6,10 @@
 import { ENUM_POST_CATEGORY } from './../../../types/globalTypes';
 
 // ====================================================
-// GraphQL query operation: categotyPageQuery
-// GraphQL query operation: categotyPageQuery
+// GraphQL query operation: CATEGORY_PAGE_QUERY
 // ====================================================
 
-export interface categotyPageQuery_posts {
+export interface CATEGORY_PAGE_QUERY_posts {
   __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
@@ -24,19 +23,19 @@ export interface categotyPageQuery_posts {
   featured: boolean | null;
 }
 
-export interface categotyPageQuery_categories {
+export interface CATEGORY_PAGE_QUERY_categories {
   __typename: 'Category';
   id: string;
   name: string | null;
   slug: string;
 }
 
-export interface categotyPageQuery {
-  posts: (categotyPageQuery_posts | null)[] | null;
-  categories: (categotyPageQuery_categories | null)[] | null;
+export interface CATEGORY_PAGE_QUERY {
+  posts: (CATEGORY_PAGE_QUERY_posts | null)[] | null;
+  categories: (CATEGORY_PAGE_QUERY_categories | null)[] | null;
 }
 
-export interface categotyPageQueryVariables {
+export interface CATEGORY_PAGE_QUERYVariables {
   category: string;
   limit: number;
 }

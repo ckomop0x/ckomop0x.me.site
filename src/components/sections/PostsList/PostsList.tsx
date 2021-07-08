@@ -2,6 +2,8 @@ import { format } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
 import React from 'react';
 
+import { INDEX_PAGE_QUERY_categories } from '../../../queries/types/INDEX_PAGE_QUERY';
+
 import Post from './Post';
 import { PostsListStyled, AllPostsLink } from './styles';
 
@@ -11,7 +13,7 @@ interface IPostsListProps {
   blockTitle: string;
   blockSubtitle: string;
   items: any[];
-  categories: any[];
+  categories: INDEX_PAGE_QUERY_categories[];
 }
 
 const PostsList: React.FC<IPostsListProps> = ({
