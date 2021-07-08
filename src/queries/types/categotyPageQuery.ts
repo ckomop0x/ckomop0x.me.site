@@ -7,6 +7,7 @@ import { ENUM_POST_CATEGORY } from './../../../types/globalTypes';
 
 // ====================================================
 // GraphQL query operation: categotyPageQuery
+// GraphQL query operation: categotyPageQuery
 // ====================================================
 
 export interface categotyPageQuery_posts {
