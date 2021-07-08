@@ -1,4 +1,4 @@
-import { INDEX_PAGE_QUERY } from '../queries/indexPageQuery';
+import { INDEX_PAGE_QUERY } from '../queries/indexPageQuery.gql';
 
 import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPost from 'components/sections/FeaturedPost';

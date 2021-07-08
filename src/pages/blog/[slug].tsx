@@ -1,5 +1,5 @@
-import { DETAILS_PAGE_QUERY } from '../../queries/detailPageQuery';
-import { POSTS_PATH_QUERY } from '../../queries/postsPathQuery';
+import { DETAILS_PAGE_QUERY } from '../../queries/detailPageQuery.gql';
+import { POSTS_PATH_QUERY } from '../../queries/postsPathQuery.gql';
 import { IDetailPageProps } from '../../types/detailPageProps';
 
 import ProjectsLayout from 'components/layouts/PoetryLayout';
