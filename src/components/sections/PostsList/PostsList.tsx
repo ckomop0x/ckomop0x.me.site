@@ -4,9 +4,9 @@ import React from 'react';
 
 import { INDEX_PAGE_QUERY_categories } from '../../../queries/types/INDEX_PAGE_QUERY';
 
-import Post from './Post';
 import { PostsListStyled, AllPostsLink } from './styles';
 
+import Post from 'components/shared/Post';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
 interface IPostsListProps {

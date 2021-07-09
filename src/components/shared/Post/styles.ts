@@ -46,29 +46,6 @@ export const ItemContent = styled.div`
   align-items: space-between;
 `;
 
-export const ItemTitle = styled.h3`
-  font-size: 28px;
-  text-align: left;
-  padding: 16px 0 0;
-  margin-bottom: 1rem;
-  font-weight: 500;
-  line-height: 1;
-  margin-top: 0;
-`;
-
-export const TextStyled = styled.div`
-  text-align: left;
-  line-height: 1.3;
-  padding: 0 20px;
-  font-family: Roboto, sans-serif;
-  font-weight: 400;
-
-  p {
-    color: #747474;
-    font-size: 14px;
-  }
-`;
-
 export const ItemWrapper = styled.article`
   padding: 0;
 
@@ -77,20 +54,18 @@ export const ItemWrapper = styled.article`
   }
 
   .post-content {
+    position: relative;
     margin: 32px;
     background-color: #f5f5f5c2;
     border-radius: 30px;
     width: 100%;
     box-shadow: 0 2px 3px #0000001c;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: column;
     transition: box-shadow 0.3s ease;
 
     &:hover {
-      box-shadow: 0 4px 6px #0000001c;
+      box-shadow: 0 8px 10px #0000001c;
     }
   }
 
@@ -99,17 +74,6 @@ export const ItemWrapper = styled.article`
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 0 2px 3px #00000022;
-  }
-
-  .item__date {
-    color: #747474;
-    text-align: center;
-    font-size: 13px;
-    padding: 8px 20px;
-    background: #fff;
-    width: 60%;
-    margin: -27px auto 0;
-    border-radius: 32px;
   }
 
   .item__title {
@@ -149,35 +113,48 @@ export const StyledLink = styled(Link)`
 `;
 
 export const PostTitle = styled.h3`
-  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 10;
+  font-size: 23px;
   text-align: center;
-  padding: 20px;
-  margin-bottom: 1rem;
+  min-height: 80px;
+  width: 100%;
+  padding: 0 100px 0 20px;
+  color: #513b34;
   font-weight: 500;
   line-height: 1;
-  margin-top: 0;
-  width: calc(100% - 40px);
-  margin-left: 20px;
+  border-radius: 0 0 20px 20px;
+  margin: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.87);
 `;
 
-export const PostContent = styled.div`
-  text-align: left;
-  line-height: 1.3;
-  padding: 0 20px;
-  font-family: sans-serif, sans-serif;
-  font-weight: 400;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const PostDate = styled.div`
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 20;
+  right: 0;
+  bottom: 0;
+  color: #747474;
+  text-align: center;
+  font-size: 13px;
+  height: 80px;
+  background: #fff;
+  width: 80px;
+  border-radius: 0 0 20px 0;
 
-  p {
-    text-align: center;
-    color: #747474;
-    font-size: 13px;
-    padding: 20px 0;
+  span {
+    display: block;
+    padding: 0;
+    margin: 0;
   }
-
-  .link {
-    text-align: center;
+  span:first-child {
+    display: block;
+    font-size: 22px;
+    padding: 4px 0 0 0;
+    color: #513b34;
   }
 `;

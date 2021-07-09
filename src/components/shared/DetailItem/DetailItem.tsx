@@ -5,7 +5,7 @@ import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import { Content, PoetryItemImage } from './styles';
+import { Content, DetailItemWrapper } from './styles';
 
 export interface IDetailItem {
   title: string | null;
@@ -21,18 +21,12 @@ const DetailItem: React.FC<IDetailItem> = ({
   description,
   image,
 }) => {
-  console.log('createdAt', createdAt);
-
   const createdDate = format(new Date(createdAt ?? new Date()), 'd MMMM yyyy', {
     locale: ruLocale,
   });
 
   return (
-    <div>
-      <PoetryItemImage
-        className="poetry-item__image lazyload"
-        image={image ?? ''}
-      />
+    <DetailItemWrapper className="lazyload" image={image}>
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-lg-12">
@@ -46,7 +40,7 @@ const DetailItem: React.FC<IDetailItem> = ({
           </div>
         </div>
       </div>
-    </div>
+    </DetailItemWrapper>
   );
 };
 

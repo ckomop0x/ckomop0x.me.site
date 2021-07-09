@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Post from 'components/sections/PostsList/Post';
+import Post from 'components/shared/Post';
 import formatDate from 'utils/dates/formatDate';
 
 interface IItemsList {
