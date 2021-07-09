@@ -1,5 +1,5 @@
 module.exports = {
-  ignorePatterns: ['.eslintrc.js', 'gatsby-browser.js', 'gatsby-config.js'],
+  ignorePatterns: ['.eslintrc.js'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',

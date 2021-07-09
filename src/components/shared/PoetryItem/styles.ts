@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { PoetryItemImage } from 'components/shared/DetailItem/styles';
 import { TitleBlock } from 'styles/Typography';
 import { themePalette } from 'styles/colors';
 
@@ -43,7 +44,7 @@ export const Content = styled.div`
 `;
 
 export const PoetryItemWrapper = styled.div`
-  .poetry-item__image {
+  ${PoetryItemImage} {
     background-size: cover;
     background-repeat: no-repeat;
     height: 480px;

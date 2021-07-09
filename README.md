@@ -46,8 +46,6 @@ types                   - custom TypeScript types
 .prettierignore         - files and folders ignored by prettier
 .prettierrc             - prettier settings
 apollo.config.js        - Apollo GraphQL cofig
-gatsby-config.js        - Gatsby config
-gatsby-node.js          - Gatsby SSR page-generation
 index.js                - hm why do we need this file?
 jest.config.js          - Jest config
 jest-preprocess.js      - Jest babel-config

@@ -2,17 +2,48 @@ import styled from 'styled-components';
 
 import { themePalette } from 'styles/colors';
 
+export const DetailItemWrapper = styled.div<{ image: string | null }>`
+  background-image: url(${({ image }) => image && `${image}?tr=h-960`});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #00000014;
+  }
+
+  @media (min-width: 700px) {
+    background-image: url(${({ image }) => image && `${image}?tr=w-900`});
+  }
+
+  @media (min-width: 1200px) {
+    background-image: url(${({ image }) => image && `${image}?tr=w-2000`});
+  }
+`;
+
 export const Title = styled.div`
   padding: 50px 0 50px;
   background-color: #292929;
 `;
 
 export const Content = styled.div`
-  max-width: 800px;
-  margin: -40px auto 40px;
+  max-width: 100%;
   padding: 20px;
-  background-color: #fcfbf8;
-  box-shadow: 0 2px 2px #0000001c;
+  background-color: rgba(252, 251, 248, 0.95);
+
+  @media (min-width: 800px) {
+    margin: 20px auto 40px;
+    max-width: 800px;
+    padding: 40px;
+    box-shadow: 0 3px 4px 3px #00000022;
+  }
 
   h1,
   h2,
@@ -20,6 +51,7 @@ export const Content = styled.div`
   h4,
   h6 {
     color: ${themePalette.primaryTitle};
+    text-align: center;
   }
 
   h1 {
@@ -38,6 +70,16 @@ export const Content = styled.div`
     line-height: 26px;
     margin: 0 0 20px;
     color: ${themePalette.primaryText};
+
+    @media (min-width: 800px) {
+      text-align: justify;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
   }
 
   cite {
@@ -47,6 +89,7 @@ export const Content = styled.div`
   }
 
   .poetry-item__date {
+    text-align: center;
     font-size: 14px;
     margin-bottom: 20px;
   }
@@ -82,7 +125,7 @@ export const PoetryItemImage = styled.div<IPoetryItemImage>`
   background-image: url(${({ image }) => image && `${image}?tr=h-960`});
   background-size: cover;
   background-repeat: no-repeat;
-  height: 240px;
+  //height: 240px;
   background-position: center;
   position: relative;
 
