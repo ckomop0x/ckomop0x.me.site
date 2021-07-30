@@ -18,7 +18,8 @@
     "gen": "yarn graphql:get-schema && yarn graphql:gen-types",
     "graphql:get-schema": "dotenv cross-var rover graph introspect https://ckme-admin.herokuapp.com/graphql > schema.graphql",
     "graphql:gen-types": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/queries/*.gql.ts' --tagName=gql --addTypename types",
-    "rover": "rover"
+    "rover": "rover",
+    "apollo": "apollo"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,csgis,md}": [
@@ -31,6 +32,7 @@
   "dependencies": {
     "@apollo/client": "^3.4.1",
     "@apollo/rover": "^0.1.9",
+    "apollo": "^2.33.4",
     "babel-plugin-styled-components": "^1.13.2",
     "bootstrap": "^4.6.0",
     "date-fns": "^2.23.0",
