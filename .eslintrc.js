@@ -1,5 +1,5 @@
 module.exports = {
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'next-env.d.ts'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
@@ -9,6 +9,14 @@ module.exports = {
     browser: true,
     es6: true,
   },
+  // overrides: [
+  //   {
+  //     files: ['*.ts', '*.tsx'], // Your TypeScript files extension
+  //     parserOptions: {
+  //       project: ['./tsconfig.json'], // Specify it only for TypeScript files
+  //     },
+  //   }
+  // ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {

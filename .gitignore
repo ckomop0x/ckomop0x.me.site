@@ -18,3 +18,4 @@ _materials
 __generated__
 /coverage
 .next
+storybook-static/
