@@ -1,15 +1,14 @@
-import { INDEX_PAGE_QUERY } from '../queries/indexPageQuery.gql';
+import MainPageLayout from 'components/layouts/MainPageLayout';
+import FeaturedPost from 'components/sections/FeaturedPost';
+import Hero from 'components/sections/Hero';
+import PostsList from 'components/sections/PostsList';
+import { INDEX_PAGE_QUERY } from 'queries/indexPageQuery.gql';
 import {
   INDEX_PAGE_QUERY_blogItems,
   INDEX_PAGE_QUERY_categories,
   INDEX_PAGE_QUERY_featured,
   INDEX_PAGE_QUERY_poetryItems,
-} from '../queries/types/INDEX_PAGE_QUERY';
-
-import MainPageLayout from 'components/layouts/MainPageLayout';
-import FeaturedPost from 'components/sections/FeaturedPost';
-import Hero from 'components/sections/Hero';
-import PostsList from 'components/sections/PostsList';
+} from 'queries/types/INDEX_PAGE_QUERY';
 import apolloClient from 'utils/api/apollo-client';
 
 interface IIndexPage {
