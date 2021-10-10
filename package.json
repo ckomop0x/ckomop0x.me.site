@@ -5,6 +5,7 @@
   "author": "Pavel Klochkov, paul.klochkov@gmail.com",
   "license": "MIT",
   "scripts": {
+    "predev": "yarn gen",
     "dev": "next dev -p 8000",
     "build": "next build",
     "start": "next start",
@@ -19,7 +20,8 @@
     "graphql:get-schema": "dotenv cross-var rover graph introspect https://ckme-admin.herokuapp.com/graphql > schema.graphql",
     "graphql:gen-types": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/queries/*.gql.ts' --tagName=gql --addTypename types",
     "rover": "rover",
-    "apollo": "apollo"
+    "apollo": "apollo",
+    "dotenv": "dotenv"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,csgis,md}": [
@@ -30,12 +32,12 @@
     ]
   },
   "dependencies": {
-    "@apollo/client": "^3.4.15",
+    "@apollo/client": "^3.4.16",
     "@apollo/rover": "^0.3.0",
     "apollo": "^2.33.6",
     "babel-plugin-styled-components": "^1.13.2",
     "bootstrap": "^4.6.0",
-    "date-fns": "^2.24.0",
+    "date-fns": "^2.25.0",
     "lazysizes": "^5.3.2",
     "next": "^11.1.2",
     "react": "^17.0.2",
@@ -43,7 +45,7 @@
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.15.8",
     "@storybook/addon-actions": "^6.3.9",
     "@storybook/addon-essentials": "^6.3.9",
     "@storybook/addon-links": "^6.3.9",
@@ -53,10 +55,10 @@
     "@types/graphql": "^14.5.0",
     "@types/jest": "^27.0.2",
     "@types/react-test-renderer": "^17.0.1",
-    "@types/styled-components": "^5.1.14",
-    "@typescript-eslint/eslint-plugin": "^4.32.0",
-    "@typescript-eslint/parser": "^4.32.0",
-    "babel-jest": "^27.2.4",
+    "@types/styled-components": "^5.1.15",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "babel-jest": "^27.2.5",
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "cross-var": "^1.1.0",
@@ -75,8 +77,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "html-react-parser": "^1.4.0",
     "husky": "^7.0.2",
-    "jest": "^27.2.4",
-    "lint-staged": "^11.1.2",
+    "jest": "^27.2.5",
+    "lint-staged": "^11.2.3",
     "prettier": "^2.4.1",
     "ts-graphql-plugin": "^2.1.4",
     "ts-jest": "^27.0.5",
