@@ -1,9 +1,9 @@
-import { DETAILS_PAGE_QUERY } from '../../queries/detailPageQuery.gql';
-import { POSTS_PATH_QUERY } from '../../queries/postsPathQuery.gql';
 import { IDetailPageProps } from '../../types/detailPageProps';
 
 import ProjectsLayout from 'components/layouts/PoetryLayout';
 import DetailItemComponent from 'components/shared/DetailItem';
+import { DETAILS_PAGE_QUERY } from 'queries/detailPageQuery.gql';
+import { POSTS_PATH_QUERY } from 'queries/postsPathQuery.gql';
 import apolloClient from 'utils/api/apollo-client';
 
 export default function BlogPostPage({
