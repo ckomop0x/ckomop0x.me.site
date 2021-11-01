@@ -19,3 +19,4 @@ __generated__
 /coverage
 .next
 storybook-static/
+tsconfig.tsbuildinfo
