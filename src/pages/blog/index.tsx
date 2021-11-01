@@ -1,8 +1,8 @@
-import { CATEGORY_PAGE_QUERY } from '../../queries/categoryPageQuery.gql';
 import { ICategoryPageProps } from '../../types/categoryPage';
 
 import CategoryLayout from 'components/layouts/PoetryLayout/PoetryLayout';
 import ItemsList from 'components/shared/ItemsList';
+import { CATEGORY_PAGE_QUERY } from 'queries/categoryPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 import apolloClient from 'utils/api/apollo-client';
 
