@@ -27,7 +27,8 @@
     ],
     "typeRoots": ["./types", "./node_modules/@types"],
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
