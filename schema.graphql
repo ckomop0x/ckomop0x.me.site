@@ -3,7 +3,7 @@ schema {
   mutation: Mutation
 }
 """Exposes a URL that specifies the behaviour of this scalar."""
-directive @specifiedBy on SCALAR
+directive @specifiedBy("""The URL that specifies the behaviour of this scalar.""" url: String!) on SCALAR
 input FileInfoInput {
   name: String
   alternativeText: String

@@ -102,7 +102,6 @@ module.exports = {
     // '@typescript-eslint/camelcase': 'warn',
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars-experimental': ['error'],
     '@typescript-eslint/member-ordering': 'error',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-empty-interface': 'error',
