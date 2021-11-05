@@ -1,11 +1,11 @@
 import './assets/bootstrap.min.css';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
     theme: {
-      brandTitle: 'Ckomop0x.me'
-    }
+      brandTitle: 'Ckomop0x.me',
+    },
   },
   controls: {
     matchers: {
@@ -13,4 +13,4 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};

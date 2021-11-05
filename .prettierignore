@@ -6,3 +6,6 @@ apollo.config.js
 schema.json
 src/types/
 public
+.next
+storybook-static/
+coverage/

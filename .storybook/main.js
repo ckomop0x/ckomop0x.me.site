@@ -1,15 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials"
-  ],
-  webpackFinal: async (config) => {
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  webpackFinal: async config => {
     return {
       ...config,
       resolve: {
@@ -26,11 +20,11 @@ module.exports = {
            * @see https://nextjs.org/docs/advanced-features/module-path-aliases
            * @see https://intellij-support.jetbrains.com/hc/en-us/community/posts/360003361399/comments/360002636080
            */
-          "components": path.resolve(__dirname, "../src/components"),
-          "utils": path.resolve(__dirname, "../src/utils"),
-          "styles": path.resolve(__dirname, "../src/styles")
+          components: path.resolve(__dirname, '../src/components'),
+          utils: path.resolve(__dirname, '../src/utils'),
+          styles: path.resolve(__dirname, '../src/styles'),
         },
       },
     };
   },
-}
+};
