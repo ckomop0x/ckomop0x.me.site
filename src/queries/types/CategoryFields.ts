@@ -10,6 +10,6 @@
 export interface CategoryFields {
   __typename: 'Category';
   id: string;
-  name: string | null;
+  title: string | null;
   slug: string;
 }

@@ -3,8 +3,8 @@ export interface IDetailPageProps {
     image_url: string;
     slug: string;
     title: string;
-    updatedAt: Date;
-    createdAt: Date;
+    updated_at: Date;
+    created_at: Date;
     content?: {
       rich_text: string;
     }[];

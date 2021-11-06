@@ -2,17 +2,19 @@ import { format } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
 import React from 'react';
 
-import { INDEX_PAGE_QUERY_categories } from '../../../queries/types/INDEX_PAGE_QUERY';
-
 import { PostsListStyled, AllPostsLink } from './styles';
 
 import Post from 'components/shared/Post';
+import {
+  INDEX_PAGE_QUERY_categories,
+  INDEX_PAGE_QUERY_poetryItems,
+} from 'queries/types/INDEX_PAGE_QUERY';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
 interface IPostsListProps {
   blockTitle: string;
   blockSubtitle: string;
-  items: any[];
+  items: INDEX_PAGE_QUERY_poetryItems[];
   categories: INDEX_PAGE_QUERY_categories[];
 }
 
@@ -24,7 +26,8 @@ const PostsList: React.FC<IPostsListProps> = ({
 }): JSX.Element => {
   const postsCategoryLink = items[0].category ?? '';
   const [postsCategory] = categories.filter(
-    (category: any) => category.slug === postsCategoryLink,
+    (category: INDEX_PAGE_QUERY_categories) =>
+      category.slug === postsCategoryLink,
   );
 
   return (
@@ -40,18 +43,14 @@ const PostsList: React.FC<IPostsListProps> = ({
                 title,
                 excerpt,
                 published,
-                createdAt,
+                date,
                 slug,
                 category,
                 image_url,
               }: any) => {
-                const publicationDate = format(
-                  new Date(createdAt),
-                  'dd MMMM yyyy',
-                  {
-                    locale: ruLocale,
-                  },
-                );
+                const publicationDate = format(new Date(date), 'dd MMMM yyyy', {
+                  locale: ruLocale,
+                });
                 const [categoryData] = categories.filter(
                   (categoryItem: any) => categoryItem.slug === category,
                 );
@@ -74,7 +73,7 @@ const PostsList: React.FC<IPostsListProps> = ({
             )}
           </PostsListStyled>
           <AllPostsLink href={postsCategoryLink}>
-            <a>Перейти в {postsCategory.name}</a>
+            <a>Перейти в {postsCategory.title}</a>
           </AllPostsLink>
         </div>
       </div>

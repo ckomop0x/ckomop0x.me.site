@@ -21,9 +21,9 @@ export default function FeaturedPost({
   post,
   categories = [],
 }: IFeaturedPostProps): JSX.Element {
-  const { category, createdAt, excerpt, image_url, slug, title, published } =
+  const { category, created_at, excerpt, image_url, slug, title, published } =
     post;
-  const publicationDate = formatDate(createdAt);
+  const publicationDate = formatDate(created_at);
   const [categoryData] = categories.filter(
     categoryItem => categoryItem.slug === category,
   );

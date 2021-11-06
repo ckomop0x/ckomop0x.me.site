@@ -11,11 +11,11 @@ const DetailItem: React.FC = ({ data }: any) => {
 
   const {
     content = [],
-    createdAt,
+    created_at,
     image_url,
     slug,
     title,
-    updatedAt,
+    updated_at,
   } = data.poetry;
 
   const socialImage = `${image_url}?tr=w-1080,h-280,fo-top`;
@@ -29,8 +29,8 @@ const DetailItem: React.FC = ({ data }: any) => {
     >
       <DetailItemComponent
         title={title}
-        createdAt={createdAt}
-        updatedAt={updatedAt}
+        created_at={created_at}
+        updated_at={updated_at}
         description={(content?.[0]?.rich_text as string) || ''}
         image={image_url}
       />

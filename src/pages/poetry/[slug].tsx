@@ -9,7 +9,7 @@ import apolloClient from 'utils/api/apollo-client';
 export default function DetailItem({
   detailedPost,
 }: IDetailPageProps): JSX.Element {
-  const { content, createdAt, image_url, slug, title, updatedAt } =
+  const { content, created_at, image_url, slug, title, updated_at } =
     detailedPost;
   const socialImage = `${image_url}?tr=w-1080,h-280,fo-top`;
   return (
@@ -22,8 +22,8 @@ export default function DetailItem({
     >
       <DetailItemComponent
         title={title}
-        createdAt={createdAt}
-        updatedAt={updatedAt}
+        created_at={created_at}
+        updated_at={updated_at}
         description={(content?.[0]?.rich_text as string) || ''}
         image={image_url}
       />

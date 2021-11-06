@@ -42,10 +42,9 @@ type UserPermissionsPasswordPayload {
 }
 type Category {
   id: ID!
-  _id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  name: String
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String
   slug: String!
 }
 type CategoryConnection {
@@ -59,29 +58,24 @@ type CategoryAggregator {
 }
 type CategoryGroupBy {
   id: [CategoryConnectionId]
-  _id: [CategoryConnection_id]
-  createdAt: [CategoryConnectionCreatedAt]
-  updatedAt: [CategoryConnectionUpdatedAt]
-  name: [CategoryConnectionName]
+  created_at: [CategoryConnectionCreated_at]
+  updated_at: [CategoryConnectionUpdated_at]
+  title: [CategoryConnectionTitle]
   slug: [CategoryConnectionSlug]
 }
 type CategoryConnectionId {
   key: ID
   connection: CategoryConnection
 }
-type CategoryConnection_id {
-  key: ID
-  connection: CategoryConnection
-}
-type CategoryConnectionCreatedAt {
+type CategoryConnectionCreated_at {
   key: DateTime
   connection: CategoryConnection
 }
-type CategoryConnectionUpdatedAt {
+type CategoryConnectionUpdated_at {
   key: DateTime
   connection: CategoryConnection
 }
-type CategoryConnectionName {
+type CategoryConnectionTitle {
   key: String
   connection: CategoryConnection
 }
@@ -90,13 +84,13 @@ type CategoryConnectionSlug {
   connection: CategoryConnection
 }
 input CategoryInput {
-  name: String
+  title: String
   slug: String!
   created_by: ID
   updated_by: ID
 }
 input editCategoryInput {
-  name: String
+  title: String
   slug: String
   created_by: ID
   updated_by: ID
@@ -130,9 +124,8 @@ union PostContentDynamicZone = ComponentPostRichText
 scalar PostContentDynamicZoneInput
 type Post {
   id: ID!
-  _id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  created_at: DateTime!
+  updated_at: DateTime!
   title: String
   date: DateTime
   excerpt: String!
@@ -159,9 +152,8 @@ type PostAggregator {
 }
 type PostGroupBy {
   id: [PostConnectionId]
-  _id: [PostConnection_id]
-  createdAt: [PostConnectionCreatedAt]
-  updatedAt: [PostConnectionUpdatedAt]
+  created_at: [PostConnectionCreated_at]
+  updated_at: [PostConnectionUpdated_at]
   title: [PostConnectionTitle]
   date: [PostConnectionDate]
   excerpt: [PostConnectionExcerpt]
@@ -179,15 +171,11 @@ type PostConnectionId {
   key: ID
   connection: PostConnection
 }
-type PostConnection_id {
-  key: ID
-  connection: PostConnection
-}
-type PostConnectionCreatedAt {
+type PostConnectionCreated_at {
   key: DateTime
   connection: PostConnection
 }
-type PostConnectionUpdatedAt {
+type PostConnectionUpdated_at {
   key: DateTime
   connection: PostConnection
 }
@@ -296,9 +284,8 @@ type deletePostPayload {
 }
 type I18NLocale {
   id: ID!
-  _id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  created_at: DateTime!
+  updated_at: DateTime!
   name: String
   code: String
 }
@@ -316,9 +303,8 @@ input editLocaleInput {
 }
 type UploadFile {
   id: ID!
-  _id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  created_at: DateTime!
+  updated_at: DateTime!
   name: String!
   alternativeText: String
   caption: String
@@ -372,9 +358,8 @@ type UploadFileAggregatorMax {
 }
 type UploadFileGroupBy {
   id: [UploadFileConnectionId]
-  _id: [UploadFileConnection_id]
-  createdAt: [UploadFileConnectionCreatedAt]
-  updatedAt: [UploadFileConnectionUpdatedAt]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
   name: [UploadFileConnectionName]
   alternativeText: [UploadFileConnectionAlternativeText]
   caption: [UploadFileConnectionCaption]
@@ -394,15 +379,11 @@ type UploadFileConnectionId {
   key: ID
   connection: UploadFileConnection
 }
-type UploadFileConnection_id {
-  key: ID
-  connection: UploadFileConnection
-}
-type UploadFileConnectionCreatedAt {
+type UploadFileConnectionCreated_at {
   key: DateTime
   connection: UploadFileConnection
 }
-type UploadFileConnectionUpdatedAt {
+type UploadFileConnectionUpdated_at {
   key: DateTime
   connection: UploadFileConnection
 }
@@ -508,7 +489,6 @@ type deleteFilePayload {
 }
 type UsersPermissionsPermission {
   id: ID!
-  _id: ID!
   type: String!
   controller: String!
   action: String!
@@ -518,7 +498,6 @@ type UsersPermissionsPermission {
 }
 type UsersPermissionsRole {
   id: ID!
-  _id: ID!
   name: String!
   description: String
   type: String
@@ -536,16 +515,11 @@ type UsersPermissionsRoleAggregator {
 }
 type UsersPermissionsRoleGroupBy {
   id: [UsersPermissionsRoleConnectionId]
-  _id: [UsersPermissionsRoleConnection_id]
   name: [UsersPermissionsRoleConnectionName]
   description: [UsersPermissionsRoleConnectionDescription]
   type: [UsersPermissionsRoleConnectionType]
 }
 type UsersPermissionsRoleConnectionId {
-  key: ID
-  connection: UsersPermissionsRoleConnection
-}
-type UsersPermissionsRoleConnection_id {
   key: ID
   connection: UsersPermissionsRoleConnection
 }
@@ -600,9 +574,8 @@ type deleteRolePayload {
 }
 type UsersPermissionsUser {
   id: ID!
-  _id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  created_at: DateTime!
+  updated_at: DateTime!
   username: String!
   email: String!
   provider: String
@@ -621,9 +594,8 @@ type UsersPermissionsUserAggregator {
 }
 type UsersPermissionsUserGroupBy {
   id: [UsersPermissionsUserConnectionId]
-  _id: [UsersPermissionsUserConnection_id]
-  createdAt: [UsersPermissionsUserConnectionCreatedAt]
-  updatedAt: [UsersPermissionsUserConnectionUpdatedAt]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
   username: [UsersPermissionsUserConnectionUsername]
   email: [UsersPermissionsUserConnectionEmail]
   provider: [UsersPermissionsUserConnectionProvider]
@@ -635,15 +607,11 @@ type UsersPermissionsUserConnectionId {
   key: ID
   connection: UsersPermissionsUserConnection
 }
-type UsersPermissionsUserConnection_id {
-  key: ID
-  connection: UsersPermissionsUserConnection
-}
-type UsersPermissionsUserConnectionCreatedAt {
+type UsersPermissionsUserConnectionCreated_at {
   key: DateTime
   connection: UsersPermissionsUserConnection
 }
-type UsersPermissionsUserConnectionUpdatedAt {
+type UsersPermissionsUserConnectionUpdated_at {
   key: DateTime
   connection: UsersPermissionsUserConnection
 }
@@ -718,7 +686,6 @@ type deleteUserPayload {
 }
 type ComponentPostRichText {
   id: ID!
-  _id: ID!
   rich_text: String
 }
 input ComponentPostRichTextInput {
@@ -728,7 +695,7 @@ input editComponentPostRichTextInput {
   id: ID
   rich_text: String
 }
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnection_id | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | CategoryConnectionSlug | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnection_id | PostConnectionCreatedAt | PostConnectionUpdatedAt | PostConnectionTitle | PostConnectionDate | PostConnectionExcerpt | PostConnectionImage | PostConnectionDescription | PostConnectionPublished | PostConnectionImage_url | PostConnectionCategory | PostConnectionSlug | PostConnectionFeatured | PostConnectionLocale | PostConnectionPublished_at | createPostPayload | updatePostPayload | deletePostPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPostRichText
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionTitle | CategoryConnectionSlug | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionDate | PostConnectionExcerpt | PostConnectionImage | PostConnectionDescription | PostConnectionPublished | PostConnectionImage_url | PostConnectionCategory | PostConnectionSlug | PostConnectionFeatured | PostConnectionLocale | PostConnectionPublished_at | createPostPayload | updatePostPayload | deletePostPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPostRichText
 input InputID {
   id: ID!
 }

@@ -17,8 +17,9 @@ export interface PostFields {
   published: boolean | null;
   id: string;
   excerpt: string;
-  createdAt: any;
-  updatedAt: any;
+  date: any | null;
+  created_at: any;
+  updated_at: any;
   title: string | null;
   featured: boolean | null;
 }

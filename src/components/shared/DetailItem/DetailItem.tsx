@@ -11,19 +11,23 @@ export interface IDetailItem {
   title: string | null;
   description: string;
   image: string | null;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 const DetailItem: React.FC<IDetailItem> = ({
-  createdAt,
+  created_at,
   title,
   description,
   image,
 }) => {
-  const createdDate = format(new Date(createdAt ?? new Date()), 'd MMMM yyyy', {
-    locale: ruLocale,
-  });
+  const createdDate = format(
+    new Date(created_at ?? new Date()),
+    'd MMMM yyyy',
+    {
+      locale: ruLocale,
+    },
+  );
 
   return (
     <DetailItemWrapper className="lazyload" image={image}>

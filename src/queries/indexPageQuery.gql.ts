@@ -5,21 +5,21 @@ export const INDEX_PAGE_QUERY = gql`
     featured: posts(
       where: { featured: true, published: true }
       limit: 1
-      sort: "createdAt:desc"
+      sort: "date:desc"
     ) {
       ...PostFields
     }
     blogItems: posts(
       where: { category: "blog", published: true }
       limit: 3
-      sort: "createdAt:desc"
+      sort: "date:desc"
     ) {
       ...PostFields
     }
     poetryItems: posts(
       where: { category: "poetry", published: true }
       limit: 3
-      sort: "createdAt:desc"
+      sort: "date:desc"
     ) {
       ...PostFields
     }
@@ -35,15 +35,16 @@ export const INDEX_PAGE_QUERY = gql`
     published
     id
     excerpt
-    createdAt
-    updatedAt
+    date
+    created_at
+    updated_at
     title
     featured
   }
 
   fragment CategoryFields on Category {
     id
-    name
+    title
     slug
   }
 `;

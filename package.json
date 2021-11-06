@@ -17,7 +17,7 @@
     "build-storybook": "build-storybook",
     "prepare": "husky install",
     "gen": "yarn graphql:get-schema && yarn graphql:gen-types",
-    "graphql:get-schema": "dotenv cross-var rover graph introspect https://ckme-admin.herokuapp.com/graphql > schema.graphql",
+    "graphql:get-schema": "dotenv cross-var rover graph introspect http://localhost:9024/graphql > schema.graphql",
     "graphql:gen-types": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/queries/*.gql.ts' --tagName=gql --addTypename types",
     "rover": "rover",
     "apollo": "apollo",

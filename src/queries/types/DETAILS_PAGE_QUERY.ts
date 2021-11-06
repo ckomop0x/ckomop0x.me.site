@@ -21,8 +21,8 @@ export interface DETAILS_PAGE_QUERY_posts {
   published: boolean | null;
   excerpt: string;
   content: (DETAILS_PAGE_QUERY_posts_content | null)[] | null;
-  createdAt: any;
-  updatedAt: any;
+  created_at: any;
+  updated_at: any;
   description: string | null;
 }
 

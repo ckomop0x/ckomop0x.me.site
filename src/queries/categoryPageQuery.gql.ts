@@ -5,7 +5,7 @@ export const CATEGORY_PAGE_QUERY = gql`
     posts(
       where: { category: $category, published: true }
       limit: $limit
-      sort: "createdAt:desc"
+      sort: "created_at:desc"
     ) {
       ...PostFields
     }
@@ -21,8 +21,8 @@ export const CATEGORY_PAGE_QUERY = gql`
     published
     id
     excerpt
-    createdAt
-    updatedAt
+    created_at
+    updated_at
     title
     featured
   }

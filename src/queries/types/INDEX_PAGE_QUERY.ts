@@ -17,8 +17,9 @@ export interface INDEX_PAGE_QUERY_featured {
   published: boolean | null;
   id: string;
   excerpt: string;
-  createdAt: any;
-  updatedAt: any;
+  date: any | null;
+  created_at: any;
+  updated_at: any;
   title: string | null;
   featured: boolean | null;
 }
@@ -31,8 +32,9 @@ export interface INDEX_PAGE_QUERY_blogItems {
   published: boolean | null;
   id: string;
   excerpt: string;
-  createdAt: any;
-  updatedAt: any;
+  date: any | null;
+  created_at: any;
+  updated_at: any;
   title: string | null;
   featured: boolean | null;
 }
@@ -45,8 +47,9 @@ export interface INDEX_PAGE_QUERY_poetryItems {
   published: boolean | null;
   id: string;
   excerpt: string;
-  createdAt: any;
-  updatedAt: any;
+  date: any | null;
+  created_at: any;
+  updated_at: any;
   title: string | null;
   featured: boolean | null;
 }
@@ -54,7 +57,7 @@ export interface INDEX_PAGE_QUERY_poetryItems {
 export interface INDEX_PAGE_QUERY_categories {
   __typename: 'Category';
   id: string;
-  name: string | null;
+  title: string | null;
   slug: string;
 }
 

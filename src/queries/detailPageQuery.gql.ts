@@ -19,8 +19,8 @@ export const DETAILS_PAGE_QUERY = gql`
           rich_text
         }
       }
-      createdAt
-      updatedAt
+      created_at
+      updated_at
       description
     }
   }

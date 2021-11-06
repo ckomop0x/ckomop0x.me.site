@@ -17,8 +17,9 @@ export interface CATEGORY_PAGE_QUERY_posts {
   published: boolean | null;
   id: string;
   excerpt: string;
-  createdAt: any;
-  updatedAt: any;
+  date: any | null;
+  created_at: any;
+  updated_at: any;
   title: string | null;
   featured: boolean | null;
 }
@@ -26,7 +27,7 @@ export interface CATEGORY_PAGE_QUERY_posts {
 export interface CATEGORY_PAGE_QUERY_categories {
   __typename: 'Category';
   id: string;
-  name: string | null;
+  title: string | null;
   slug: string;
 }
 
