@@ -1,11 +1,19 @@
-import ProjectsLayout from 'components/layouts/PoetryLayout';
+import getItemPath from '../../utils/queries/getItemPath';
+
+import ProjectsLayout from 'components/layouts/CategoryLayout';
 import DetailItemComponent from 'components/shared/DetailItem';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
-import { IDetailPageProps } from 'types/detailPageProps';
+import {
+  ICategory,
+  IDetailPageProps,
+  IGetStaticProps,
+  IGetStaticPropsResponse,
+  IGetStaticPathsResponse,
+} from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
-const CATEGORY = 'poetry';
+const CATEGORY: ICategory = 'poetry';
 
 export default function DetailItem({
   detailedPost,
@@ -13,6 +21,7 @@ export default function DetailItem({
   const { content, date, image_url, slug, title, updated_at } = detailedPost;
   const socialImage = `${image_url}?tr=w-1080,h-280,fo-top`;
   const ogUrl = `https://ckomop0x.me/${CATEGORY}/${slug}/`;
+  const description = (content?.[0]?.rich_text as string) || '';
 
   return (
     <ProjectsLayout
@@ -26,17 +35,19 @@ export default function DetailItem({
         title={title}
         date={date}
         updated_at={updated_at}
-        description={(content?.[0]?.rich_text as string) || ''}
+        description={description}
         image={image_url}
       />
     </ProjectsLayout>
   );
 }
 
-export async function getStaticProps({ params }: any): Promise<any> {
+export async function getStaticProps({
+  params,
+}: IGetStaticProps): Promise<IGetStaticPropsResponse> {
   const { data } = await apolloClient.query({
     query: detailsPageQuery,
-    variables: { category: 'poetry', slug: params.slug },
+    variables: { category: CATEGORY, slug: params.slug },
   });
   const [detailedPost] = data.posts;
 
@@ -47,14 +58,14 @@ export async function getStaticProps({ params }: any): Promise<any> {
   };
 }
 
-export async function getStaticPaths(): Promise<any> {
+export async function getStaticPaths(): Promise<IGetStaticPathsResponse> {
   const { data } = await apolloClient.query({
     query: postsPathQuery,
     variables: {
-      category: 'poetry',
+      category: CATEGORY,
     },
   });
-  const paths = data.posts.map((slugData: any) => `/poetry/${slugData.slug}`);
+  const paths = [...data.posts.map(getItemPath)];
 
   return {
     paths,

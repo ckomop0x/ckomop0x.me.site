@@ -1,13 +1,13 @@
-import React from 'react';
+import { ReactChild, ReactChildren } from 'react';
 
-import { PoetryLayoutStyled } from './styles';
+import { InnerPageLayoutWrapper } from './styles';
 
 import Footer from 'components/shared/Footer';
 import Nav from 'components/shared/Nav';
 import SEO from 'components/shared/SEO';
 import { GlobalStyle } from 'styles/GlobalStyle';
 
-export interface IProjectsLayoutProps {
+export interface IInnerPageLayoutProps {
   articleAuthor?: string;
   headTitle?: string | null;
   ogUrl?: string;
@@ -24,9 +24,10 @@ export interface IProjectsLayoutProps {
   author?: string;
   yandexVerification?: string;
   googleSiteVerification?: string;
+  children: any;
 }
 
-const PoetryLayout: React.FC<IProjectsLayoutProps> = ({
+export default function InnerPageLayout({
   children,
   headTitle,
   ogUrl,
@@ -37,26 +38,25 @@ const PoetryLayout: React.FC<IProjectsLayoutProps> = ({
   ogLocale,
   ogType,
   twitterCard,
-}) => (
-  <>
-    <GlobalStyle />
-    <PoetryLayoutStyled>
+}: IInnerPageLayoutProps) {
+  return (
+    <>
+      <GlobalStyle />
+      <InnerPageLayoutWrapper />
       <SEO
-        headTitle={headTitle}
-        ogUrl={ogUrl}
+        headTitle={`Ckomop0x.me | ${headTitle}`}
+        ogUrl={`https://ckomop0x.me/${ogUrl}/`}
+        ogDescription={`Ckomop0x.me | ${ogDescription}`}
         ogImage={ogImage}
         ogImageHeight={ogImageHeight}
         ogImageWidth={ogImageWidth}
-        ogDescription={ogDescription}
         ogLocale={ogLocale}
         ogType={ogType}
-        twitterCard={twitterCard}
+        twitterCard={`Ckomop0x.me | ${twitterCard}`}
       />
       <Nav inner={true} />
       <main>{children}</main>
       <Footer />
-    </PoetryLayoutStyled>
-  </>
-);
-
-export default PoetryLayout;
+    </>
+  );
+}

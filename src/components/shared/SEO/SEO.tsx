@@ -1,104 +1,134 @@
 import Head from 'next/head';
-import React from 'react';
+
+import siteConfig from '../../../config/site-config';
 
 interface IHead {
+  /* Primary meta settings */
+  author?: string;
   articleAuthor?: string;
   headTitle?: string | null;
+
+  /* Google and yandex metrika */
+  yandexVerification?: string;
+  googleSiteVerification?: string;
+
+  /* Facebook Open Graph */
   fbAppId?: string;
-  ogUrl?: string;
   ogImage?: string;
+  ogType?: string;
+  ogTitle?: string;
+  ogUrl?: string;
   ogImageWidth?: string;
   ogImageHeight?: string;
   ogDescription?: string | null;
   ogLocale?: string;
   ogSiteName?: string;
-  ogType?: string;
+
+  /* Twitter Open Graph */
   twitterCard?: string | null;
   twitterSite?: string;
   twitterCreator?: string;
-  author?: string;
-  yandexVerification?: string;
-  googleSiteVerification?: string;
+  twitterTitle?: string;
 }
 
-const SEO: React.FC<IHead> = ({
-  articleAuthor = 'Pavel Klochkov @ckomop0x',
-  headTitle = 'Ckomop0x.me | Персональный блог, стихи и путешествия',
-  fbAppId = '',
-  ogUrl = 'https://ckomop0x.me',
-  ogImage = 'https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg?tr=w-1200',
-  // ogImageHeight = '280',
-  // ogImageWidth = '1080',
-  ogDescription = 'Персональный блог, стихи и путешествия',
-  // ogLocale = 'ru_RU',
-  ogType = 'website',
-  // ogSiteName = 'Ckomop0x.me',
-  twitterCard = 'summary_large_image',
-  // twitterSite = '@ckomop0x',
-  twitterCreator = '@ckomop0x',
-  author = 'Pavel Klochkov @ckomop0x',
-  yandexVerification = 'b117b164fd8573ac',
-  googleSiteVerification = '',
-}) => (
-  <Head>
-    <meta charSet="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-    <meta name="author" content={author} />
-    <meta name="yandex-verification" content={yandexVerification} />
-    <meta name="google-site-verification" content={googleSiteVerification} />
-    <meta name="description" content={headTitle ?? ''} />
+export default function SEO({
+  /* Primary meta settings */
+  author,
+  articleAuthor,
+  headTitle,
 
-    {/* Facebook Open Graph */}
-    <meta property="fb:app_id" content={fbAppId} />
+  /* Google and yandex metrika */
+  yandexVerification,
+  googleSiteVerification,
 
-    <meta property="og:url" content={ogUrl} />
-    <meta property="og:type" content={ogType} />
-    <meta property="og:title" content={headTitle ?? ''} />
-    <meta property="og:description" content={ogDescription ?? ''} />
-    <meta property="og:image" content={ogImage} />
-    {/* <meta property="og:image:width" content={ogImageWidth} /> */}
-    {/* <meta property="og:image:height" content={ogImageHeight} /> */}
-    {/* <meta property="og:image:alt" content={headTitle} /> */}
+  /* Facebook Open Graph */
+  fbAppId,
+  ogImage,
+  ogTitle,
+  ogType,
+  ogUrl,
+  ogDescription,
 
-    {/* <meta property="og:site_name" content={ogSiteName} /> */}
-    {/* <meta property="og:locale" content={ogLocale} /> */}
-    <meta property="article:author" content={articleAuthor} />
+  /* Twitter Open Graph */
+  twitterCard,
+  twitterCreator,
+  twitterTitle,
+}: IHead) {
+  /* Primary meta settings */
+  const metaAuthor = author ?? siteConfig.author;
+  const metaArticleAuthor =
+    articleAuthor || metaAuthor || siteConfig.articleAuthor;
+  const metaDescription = headTitle ?? siteConfig.headTitle;
 
-    {/* Twitter Open Graph */}
-    <meta name="twitter:card" content={twitterCard ?? ''} />
-    <meta name="twitter:creator" content={twitterCreator ?? ''} />
-    <meta name="twitter:title" content={headTitle ?? ''} />
-    <meta name="twitter:description" content={ogDescription ?? ''} />
-    <meta name="twitter:image" content={ogImage} />
-    {/* <meta name="twitter:image:alt" content={headTitle} /> */}
+  /* Google and yandex metrika */
+  const metaYandexVerification =
+    yandexVerification ?? siteConfig.yandexVerification;
+  const metaGoogleSiteVerification =
+    googleSiteVerification ?? siteConfig.googleSiteVerification;
 
-    {/* <meta name="twitter:url" content={ogUrl} /> */}
-    {/* <meta name="twitter:site" content={twitterSite} /> */}
-    <link
-      href="https://fonts.googleapis.com/css?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Neucha&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lobster&text=ПавелКлочков&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
-    />
-    {/* Icon and Social Icons */}
-    <link rel="icon" sizes="192x192" href="/images/android-icon-192x192.png" />
-    <link rel="apple-touch-icon" href="/images/images/apple-icon-180x180.png" />
-    <link rel="mask-icon" href="/images/favicon-96x96.png" />
-    <title>{headTitle}</title>
-  </Head>
-);
+  /* Facebook Open Graph */
+  const metaFbAppId = fbAppId ?? siteConfig.fbAppId;
+  const metaOgImage = ogImage ?? siteConfig.ogImage;
+  const metaOgUrl = ogUrl ?? siteConfig.ogUrl;
+  const metaOgType = ogType ?? siteConfig.ogType;
+  const metaOgTitle = ogTitle ?? metaDescription;
+  const metaOgDescription = ogDescription ?? metaDescription;
+  const metaTwitterCard = twitterCard ?? 'summary_large_image';
+  const metaTwitterCreator = twitterCreator ?? '@ckomop0x';
+  const metaTwitterTitle = twitterTitle ?? metaOgTitle;
 
-export default SEO;
+  return (
+    <Head>
+      {/* Base HTML settings */}
+      <meta charSet="utf-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover"
+      />
+
+      {/* Primary meta settings */}
+      {metaAuthor && <meta name="author" content={metaAuthor} />}
+      {metaDescription && <meta name="description" content={metaDescription} />}
+
+      {/* Google and yandex metrika */}
+      {metaYandexVerification && (
+        <meta name="yandex-verification" content={metaYandexVerification} />
+      )}
+      {metaGoogleSiteVerification && (
+        <meta
+          name="google-site-verification"
+          content={metaGoogleSiteVerification}
+        />
+      )}
+
+      {/* Facebook Open Graph */}
+      {metaArticleAuthor && (
+        <meta property="article:author" content={metaArticleAuthor} />
+      )}
+      {metaFbAppId && <meta property="fb:app_id" content={metaFbAppId} />}
+      {metaOgImage && <meta property="og:image" content={metaOgImage} />}
+      {metaOgUrl && <meta property="og:url" content={metaOgUrl} />}
+      {metaOgType && <meta property="og:type" content={metaOgType} />}
+      {metaOgTitle && <meta property="og:title" content={metaOgTitle} />}
+      {metaOgDescription && (
+        <meta property="og:description" content={metaOgDescription} />
+      )}
+
+      {/* Twitter Open Graph */}
+      {metaTwitterCard && (
+        <meta name="twitter:card" content={metaTwitterCard} />
+      )}
+      {metaTwitterCreator && (
+        <meta name="twitter:creator" content={metaTwitterCreator} />
+      )}
+
+      {metaTwitterTitle && (
+        <meta name="twitter:title" content={metaTwitterTitle} />
+      )}
+      <meta name="twitter:description" content={ogDescription ?? ''} />
+      <meta name="twitter:image" content={ogImage} />
+
+      <title>{metaDescription}</title>
+    </Head>
+  );
+}

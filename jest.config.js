@@ -6,6 +6,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   // testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
   moduleNameMapper: {
+    '^config/(.*)': '<rootDir>/src/config/$1',
     '^components/(.*)': '<rootDir>/src/components/$1',
     '^utils/(.*)': '<rootDir>/src/utils/$1',
     '^styles/(.*)': '<rootDir>/src/styles/$1',

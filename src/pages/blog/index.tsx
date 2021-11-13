@@ -1,31 +1,30 @@
-import { ICategoryPageProps } from '../../types/categoryPage';
-
-import CategoryLayout from 'components/layouts/PoetryLayout/PoetryLayout';
+import CategoryLayout from 'components/layouts/CategoryLayout';
 import ItemsList from 'components/shared/ItemsList';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
+import { ICategory, ICategoryPageProps } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
-export default function PoetryPage({
+const CATEGORY: ICategory = 'blog';
+
+export default function BlogPage({
   items,
   categories,
 }: ICategoryPageProps): JSX.Element {
   return (
     <CategoryLayout
-      headTitle="Ckomop0x.me | Статьи и публикации"
-      ogUrl="https://ckomop0x.me/poetry/"
-      ogDescription="Ckomop0x.me | Статьи и публикации"
-      twitterCard="Ckomop0x.me | Статьи и публикации"
+      headTitle="Статьи и публикации"
+      ogUrl={CATEGORY}
+      ogDescription="Статьи и публикации"
+      twitterCard="Статьи и публикации"
     >
-      <div className="container">
-        <TitleBlock>Блог</TitleBlock>
-        <SubtitleBlock>Статьи и публикации на разные темы.</SubtitleBlock>
-        {items ? (
-          <ItemsList items={items} categories={categories} />
-        ) : (
-          'Здесь ещё ничего нет или что-то пошло не так. 😎'
-        )}
-      </div>
+      <TitleBlock>Блог</TitleBlock>
+      <SubtitleBlock>Статьи и публикации на разные темы.</SubtitleBlock>
+      {items ? (
+        <ItemsList items={items} categories={categories} />
+      ) : (
+        'Здесь ещё ничего нет или что-то пошло не так. 😎'
+      )}
     </CategoryLayout>
   );
 }

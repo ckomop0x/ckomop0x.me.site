@@ -1,16 +1,18 @@
-import { GetStaticProps } from 'next';
-
-import { PostsPathQuery_posts } from '../../queries/types/PostsPathQuery';
-import getPostsPaths from '../../utils/api/getPostsPaths';
-
-import ProjectsLayout from 'components/layouts/PoetryLayout';
+import CategoryItemLayout from 'components/layouts/CategoryItemLayout';
 import DetailItemComponent from 'components/shared/DetailItem';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
-import { IDetailPageProps } from 'types/detailPageProps';
+import {
+  ICategory,
+  IDetailPageProps,
+  IGetStaticPathsResponse,
+  IGetStaticProps,
+  IGetStaticPropsResponse,
+} from 'types';
 import apolloClient from 'utils/api/apollo-client';
+import getItemPath from 'utils/queries/getItemPath';
 
-const CATEGORY = 'blog';
+const CATEGORY: ICategory = 'blog';
 
 export default function BlogPostPage({
   detailedPost,
@@ -21,7 +23,7 @@ export default function BlogPostPage({
   const description = (content?.[0]?.rich_text as string) || '';
 
   return (
-    <ProjectsLayout
+    <CategoryItemLayout
       headTitle={title}
       ogUrl={ogUrl}
       ogImage={socialImage}
@@ -35,21 +37,13 @@ export default function BlogPostPage({
         description={description}
         image={image_url}
       />
-    </ProjectsLayout>
+    </CategoryItemLayout>
   );
 }
 
-interface IGetStaticProps {
-  params: {
-    slug: string;
-  };
-}
-
-export async function getStaticProps({ params }: IGetStaticProps): Promise<{
-  props: {
-    detailedPost: IDetailPageProps;
-  };
-}> {
+export async function getStaticProps({
+  params,
+}: IGetStaticProps): Promise<IGetStaticPropsResponse> {
   const { data } = await apolloClient.query({
     query: detailsPageQuery,
     variables: { category: CATEGORY, slug: params.slug },
@@ -63,17 +57,14 @@ export async function getStaticProps({ params }: IGetStaticProps): Promise<{
   };
 }
 
-export async function getStaticPaths(): Promise<{
-  paths: string[] | string;
-  fallback: boolean;
-}> {
+export async function getStaticPaths(): Promise<IGetStaticPathsResponse> {
   const { data } = await apolloClient.query({
     query: postsPathQuery,
     variables: {
       category: CATEGORY,
     },
   });
-  const paths = getPostsPaths({ posts: data.posts, category: CATEGORY });
+  const paths = [...data.posts.map(getItemPath)];
 
   return {
     paths,

@@ -4,19 +4,12 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
+    'plugin:@next/next/recommended',
   ],
   env: {
     browser: true,
     es6: true,
   },
-  // overrides: [
-  //   {
-  //     files: ['*.ts', '*.tsx'], // Your TypeScript files extension
-  //     parserOptions: {
-  //       project: ['./tsconfig.json'], // Specify it only for TypeScript files
-  //     },
-  //   }
-  // ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
