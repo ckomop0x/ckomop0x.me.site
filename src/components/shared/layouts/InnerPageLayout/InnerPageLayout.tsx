@@ -1,62 +1,59 @@
-import { ReactChild, ReactChildren } from 'react';
-
 import { InnerPageLayoutWrapper } from './styles';
 
-import Footer from 'components/shared/Footer';
 import Nav from 'components/shared/Nav';
-import SEO from 'components/shared/SEO';
-import { GlobalStyle } from 'styles/GlobalStyle';
+import BaseLayout, {
+  IBaseLayoutProps,
+} from 'components/shared/layouts/BaseLayout/BaseLayout';
 
-export interface IInnerPageLayoutProps {
-  articleAuthor?: string;
-  headTitle?: string | null;
-  ogUrl?: string;
-  ogImage?: string;
-  ogImageWidth?: string;
-  ogImageHeight?: string;
-  ogDescription?: string | null;
-  ogLocale?: string;
-  ogSiteName?: string;
-  ogType?: string;
-  twitterCard?: string | null;
-  twitterSite?: string;
-  twitterCreator?: string;
-  author?: string;
-  yandexVerification?: string;
-  googleSiteVerification?: string;
-  children: any;
-}
+export type IInnerPageLayoutProps = IBaseLayoutProps;
 
 export default function InnerPageLayout({
-  children,
+  /* Primary meta settings */
+  author,
+  articleAuthor,
   headTitle,
-  ogUrl,
+
+  /* Facebook Open Graph */
   ogImage,
-  ogImageHeight,
+  ogType,
+  ogTitle,
+  ogUrl,
   ogImageWidth,
+  ogImageHeight,
   ogDescription,
   ogLocale,
-  ogType,
+  ogSiteName,
+
+  /* Twitter Open Graph */
   twitterCard,
+  twitterSite,
+  twitterCreator,
+  twitterTitle,
+
+  children,
 }: IInnerPageLayoutProps) {
   return (
-    <>
-      <GlobalStyle />
-      <InnerPageLayoutWrapper />
-      <SEO
-        headTitle={`Ckomop0x.me | ${headTitle}`}
-        ogUrl={`https://ckomop0x.me/${ogUrl}/`}
-        ogDescription={`Ckomop0x.me | ${ogDescription}`}
-        ogImage={ogImage}
-        ogImageHeight={ogImageHeight}
-        ogImageWidth={ogImageWidth}
-        ogLocale={ogLocale}
-        ogType={ogType}
-        twitterCard={`Ckomop0x.me | ${twitterCard}`}
-      />
+    <BaseLayout
+      /* Primary meta settings */
+      author={author}
+      articleAuthor={articleAuthor}
+      headTitle={headTitle}
+      /* Facebook Open Graph */
+      ogImage={ogImage}
+      ogUrl={`https://ckomop0x.me/${ogUrl}/`}
+      ogDescription={ogDescription}
+      ogImageHeight={ogImageHeight}
+      ogImageWidth={ogImageWidth}
+      ogLocale={ogLocale}
+      ogType={ogType}
+      /* Twitter Open Graph */
+      twitterCard={twitterCard}
+      twitterTitle={twitterTitle}
+    >
       <Nav inner={true} />
-      <main>{children}</main>
-      <Footer />
-    </>
+      <main>
+        <InnerPageLayoutWrapper>{children}</InnerPageLayoutWrapper>
+      </main>
+    </BaseLayout>
   );
 }

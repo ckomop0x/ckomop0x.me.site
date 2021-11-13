@@ -58,7 +58,9 @@ export default function SEO({
   const metaAuthor = author ?? siteConfig.author;
   const metaArticleAuthor =
     articleAuthor || metaAuthor || siteConfig.articleAuthor;
-  const metaDescription = headTitle ?? siteConfig.headTitle;
+  const metaDescription = `${siteConfig.projectTitle} | ${
+    headTitle ?? siteConfig.headTitle
+  }`;
 
   /* Google and yandex metrika */
   const metaYandexVerification =

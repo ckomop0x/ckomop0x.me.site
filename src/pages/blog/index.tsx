@@ -1,4 +1,5 @@
-import CategoryLayout from 'components/layouts/CategoryLayout';
+import InnerPageLayout from '../../components/shared/layouts/InnerPageLayout';
+
 import ItemsList from 'components/shared/ItemsList';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
@@ -12,20 +13,22 @@ export default function BlogPage({
   categories,
 }: ICategoryPageProps): JSX.Element {
   return (
-    <CategoryLayout
+    <InnerPageLayout
       headTitle="Статьи и публикации"
       ogUrl={CATEGORY}
       ogDescription="Статьи и публикации"
       twitterCard="Статьи и публикации"
     >
-      <TitleBlock>Блог</TitleBlock>
-      <SubtitleBlock>Статьи и публикации на разные темы.</SubtitleBlock>
-      {items ? (
-        <ItemsList items={items} categories={categories} />
-      ) : (
-        'Здесь ещё ничего нет или что-то пошло не так. 😎'
-      )}
-    </CategoryLayout>
+      <div className="container">
+        <TitleBlock>Блог</TitleBlock>
+        <SubtitleBlock>Статьи и публикации на разные темы.</SubtitleBlock>
+        {items ? (
+          <ItemsList items={items} categories={categories} />
+        ) : (
+          'Здесь ещё ничего нет или что-то пошло не так. 😎'
+        )}
+      </div>
+    </InnerPageLayout>
   );
 }
 
