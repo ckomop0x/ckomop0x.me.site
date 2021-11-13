@@ -11,36 +11,55 @@ export const baseSettings = {
     process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? '',
 
   /* Facebook Open Graph */
+  fbAppId: process.env.NEXT_PUBLIC_FB_APP_ID ?? '',
   ogImage: process.env.NEXT_PUBLIC_OG_IMAGE ?? '',
   ogType: process.env.NEXT_PUBLIC_OG_TYPE ?? '',
   ogUrl: process.env.NEXT_PUBLIC_OG_URL ?? '',
-  fbAppId: process.env.NEXT_PUBLIC_FB_APP_ID ?? '',
+
+  /* Twitter Open Graph */
+  twitterCreator: process.env.NEXT_PUBLIC_TWITTER_CREATOR ?? '',
 };
 
 interface IGetSiteConfigProps {
+  /* Primary meta settings */
   author: string;
   articleAuthor: string;
   projectHeadTitle: string;
   projectTitle: string;
+
+  /* Google and yandex metrika */
+  yandexVerification: string;
+  googleSiteVerification: string;
+
+  /* Facebook Open Graph */
+  fbAppId: string;
   ogImage: string;
   ogType: string;
   ogUrl: string;
-  fbAppId: string;
-  yandexVerification: string;
-  googleSiteVerification: string;
+
+  /* Twitter Open Graph */
+  twitterCreator: string;
 }
 
 function getSiteConfig({
-  articleAuthor,
+  /* Primary meta settings */
   author,
-  fbAppId,
+  articleAuthor,
+  projectHeadTitle,
+  projectTitle,
+
+  /* Google and yandex metrika */
   googleSiteVerification,
+  yandexVerification,
+
+  /* Facebook Open Graph */
+  fbAppId,
   ogImage,
   ogType,
   ogUrl,
-  projectHeadTitle,
-  projectTitle,
-  yandexVerification,
+
+  /* Twitter Open Graph */
+  twitterCreator,
 }: IGetSiteConfigProps) {
   const headTitle = `${projectTitle} | ${projectHeadTitle}`;
 
@@ -61,6 +80,9 @@ function getSiteConfig({
     ogImage,
     ogType,
     ogUrl,
+
+    /* Twitter Open Graph */
+    twitterCreator,
   };
 }
 

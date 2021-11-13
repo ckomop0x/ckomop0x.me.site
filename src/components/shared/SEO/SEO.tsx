@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import siteConfig from '../../../config/site-config';
 
-interface IHead {
+export interface ISEOProps {
   /* Primary meta settings */
   author?: string;
   articleAuthor?: string;
@@ -53,7 +53,7 @@ export default function SEO({
   twitterCard,
   twitterCreator,
   twitterTitle,
-}: IHead) {
+}: ISEOProps) {
   /* Primary meta settings */
   const metaAuthor = author ?? siteConfig.author;
   const metaArticleAuthor =
@@ -74,7 +74,7 @@ export default function SEO({
   const metaOgTitle = ogTitle ?? metaDescription;
   const metaOgDescription = ogDescription ?? metaDescription;
   const metaTwitterCard = twitterCard ?? 'summary_large_image';
-  const metaTwitterCreator = twitterCreator ?? '@ckomop0x';
+  const metaTwitterCreator = twitterCreator ?? siteConfig.twitterCreator;
   const metaTwitterTitle = twitterTitle ?? metaOgTitle;
 
   return (
