@@ -1,7 +1,10 @@
 import parse from 'html-react-parser';
 import Link from 'next/link';
 
-import { INDEX_PAGE_QUERY_categories } from '../../../queries/types/INDEX_PAGE_QUERY';
+import {
+  indexPageQuery_categories,
+  indexPageQuery_featured,
+} from '../../../queries/types/indexPageQuery';
 
 import {
   ContentWrapper,
@@ -13,17 +16,16 @@ import {
 import formatDate from 'utils/dates/formatDate';
 
 interface IFeaturedPostProps {
-  post: any;
-  categories: INDEX_PAGE_QUERY_categories[];
+  post: indexPageQuery_featured;
+  categories: indexPageQuery_categories[];
 }
 
 export default function FeaturedPost({
   post,
   categories = [],
 }: IFeaturedPostProps): JSX.Element {
-  const { category, created_at, excerpt, image_url, slug, title, published } =
-    post;
-  const publicationDate = formatDate(created_at);
+  const { category, date, excerpt, image_url, slug, title, published } = post;
+  const publicationDate = formatDate(date);
   const [categoryData] = categories.filter(
     categoryItem => categoryItem.slug === category,
   );

@@ -4,7 +4,7 @@ export interface IDetailPageProps {
     slug: string;
     title: string;
     updated_at: Date;
-    created_at: Date;
+    date: Date;
     content?: {
       rich_text: string;
     }[];

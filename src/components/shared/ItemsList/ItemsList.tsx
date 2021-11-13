@@ -16,13 +16,13 @@ const ItemsList: React.FC<IItemsList> = ({ items, categories }) => (
         title,
         excerpt,
         published,
-        created_at,
+        date,
         updated_at,
         slug,
         category,
         image_url,
       }: any) => {
-        const publicationDate = formatDate(created_at);
+        const publicationDate = formatDate(date);
         const updateDate = formatDate(updated_at);
 
         const [categoryData] = categories.filter(

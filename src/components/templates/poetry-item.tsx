@@ -11,7 +11,7 @@ const DetailItem: React.FC = ({ data }: any) => {
 
   const {
     content = [],
-    created_at,
+    date,
     image_url,
     slug,
     title,
@@ -29,7 +29,7 @@ const DetailItem: React.FC = ({ data }: any) => {
     >
       <DetailItemComponent
         title={title}
-        created_at={created_at}
+        date={date}
         updated_at={updated_at}
         description={(content?.[0]?.rich_text as string) || ''}
         image={image_url}

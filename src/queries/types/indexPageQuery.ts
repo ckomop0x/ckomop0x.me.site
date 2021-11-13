@@ -6,10 +6,10 @@
 import { ENUM_POST_CATEGORY } from './../../../types/globalTypes';
 
 // ====================================================
-// GraphQL query operation: INDEX_PAGE_QUERY
+// GraphQL query operation: indexPageQuery
 // ====================================================
 
-export interface INDEX_PAGE_QUERY_featured {
+export interface indexPageQuery_featured {
   __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
@@ -18,13 +18,12 @@ export interface INDEX_PAGE_QUERY_featured {
   id: string;
   excerpt: string;
   date: any | null;
-  created_at: any;
   updated_at: any;
   title: string | null;
   featured: boolean | null;
 }
 
-export interface INDEX_PAGE_QUERY_blogItems {
+export interface indexPageQuery_blogItems {
   __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
@@ -33,13 +32,12 @@ export interface INDEX_PAGE_QUERY_blogItems {
   id: string;
   excerpt: string;
   date: any | null;
-  created_at: any;
   updated_at: any;
   title: string | null;
   featured: boolean | null;
 }
 
-export interface INDEX_PAGE_QUERY_poetryItems {
+export interface indexPageQuery_poetryItems {
   __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
@@ -48,22 +46,21 @@ export interface INDEX_PAGE_QUERY_poetryItems {
   id: string;
   excerpt: string;
   date: any | null;
-  created_at: any;
   updated_at: any;
   title: string | null;
   featured: boolean | null;
 }
 
-export interface INDEX_PAGE_QUERY_categories {
+export interface indexPageQuery_categories {
   __typename: 'Category';
   id: string;
   title: string | null;
   slug: string;
 }
 
-export interface INDEX_PAGE_QUERY {
-  featured: (INDEX_PAGE_QUERY_featured | null)[] | null;
-  blogItems: (INDEX_PAGE_QUERY_blogItems | null)[] | null;
-  poetryItems: (INDEX_PAGE_QUERY_poetryItems | null)[] | null;
-  categories: (INDEX_PAGE_QUERY_categories | null)[] | null;
+export interface indexPageQuery {
+  featured: (indexPageQuery_featured | null)[] | null;
+  blogItems: (indexPageQuery_blogItems | null)[] | null;
+  poetryItems: (indexPageQuery_poetryItems | null)[] | null;
+  categories: (indexPageQuery_categories | null)[] | null;
 }

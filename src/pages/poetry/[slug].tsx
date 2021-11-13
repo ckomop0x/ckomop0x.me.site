@@ -1,28 +1,30 @@
-import { IDetailPageProps } from '../../types/detailPageProps';
-
 import ProjectsLayout from 'components/layouts/PoetryLayout';
 import DetailItemComponent from 'components/shared/DetailItem';
-import { DETAILS_PAGE_QUERY } from 'queries/detailPageQuery.gql';
-import { POSTS_PATH_QUERY } from 'queries/postsPathQuery.gql';
+import { detailsPageQuery } from 'queries/detailPageQuery.gql';
+import { postsPathQuery } from 'queries/postsPathQuery.gql';
+import { IDetailPageProps } from 'types/detailPageProps';
 import apolloClient from 'utils/api/apollo-client';
+
+const CATEGORY = 'poetry';
 
 export default function DetailItem({
   detailedPost,
 }: IDetailPageProps): JSX.Element {
-  const { content, created_at, image_url, slug, title, updated_at } =
-    detailedPost;
+  const { content, date, image_url, slug, title, updated_at } = detailedPost;
   const socialImage = `${image_url}?tr=w-1080,h-280,fo-top`;
+  const ogUrl = `https://ckomop0x.me/${CATEGORY}/${slug}/`;
+
   return (
     <ProjectsLayout
       headTitle={title}
-      ogUrl={`https://ckomop0x.me/poetry/${slug}/`}
+      ogUrl={ogUrl}
       ogImage={socialImage}
       ogDescription={title}
       twitterCard={title}
     >
       <DetailItemComponent
         title={title}
-        created_at={created_at}
+        date={date}
         updated_at={updated_at}
         description={(content?.[0]?.rich_text as string) || ''}
         image={image_url}
@@ -33,7 +35,7 @@ export default function DetailItem({
 
 export async function getStaticProps({ params }: any): Promise<any> {
   const { data } = await apolloClient.query({
-    query: DETAILS_PAGE_QUERY,
+    query: detailsPageQuery,
     variables: { category: 'poetry', slug: params.slug },
   });
   const [detailedPost] = data.posts;
@@ -47,7 +49,7 @@ export async function getStaticProps({ params }: any): Promise<any> {
 
 export async function getStaticPaths(): Promise<any> {
   const { data } = await apolloClient.query({
-    query: POSTS_PATH_QUERY,
+    query: postsPathQuery,
     variables: {
       category: 'poetry',
     },

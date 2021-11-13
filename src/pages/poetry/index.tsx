@@ -1,9 +1,8 @@
-import { CATEGORY_PAGE_QUERY } from '../../queries/categoryPageQuery.gql';
-import { ICategoryPageProps } from '../../types/categoryPage';
-
 import PoetryLayout from 'components/layouts/PoetryLayout';
 import ItemsList from 'components/shared/ItemsList';
+import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
+import { ICategoryPageProps } from 'types/categoryPage';
 import apolloClient from 'utils/api/apollo-client';
 
 export default function PoetryPage({
@@ -33,8 +32,10 @@ export default function PoetryPage({
 }
 
 export async function getStaticProps(): Promise<any> {
-  const { data } = await apolloClient.query({
-    query: CATEGORY_PAGE_QUERY,
+  const {
+    data: { posts: items, categories },
+  } = await apolloClient.query({
+    query: categoryPageQuery,
     variables: {
       category: 'poetry',
       limit: 100,
@@ -43,8 +44,8 @@ export async function getStaticProps(): Promise<any> {
 
   return {
     props: {
-      items: data.posts,
-      categories: data.categories,
+      items,
+      categories,
     },
   };
 }

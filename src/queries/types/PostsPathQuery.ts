@@ -4,18 +4,18 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: POSTS_PATH_QUERY
+// GraphQL query operation: PostsPathQuery
 // ====================================================
 
-export interface POSTS_PATH_QUERY_posts {
+export interface PostsPathQuery_posts {
   __typename: 'Post';
   slug: string;
 }
 
-export interface POSTS_PATH_QUERY {
-  posts: (POSTS_PATH_QUERY_posts | null)[] | null;
+export interface PostsPathQuery {
+  posts: (PostsPathQuery_posts | null)[] | null;
 }
 
-export interface POSTS_PATH_QUERYVariables {
+export interface PostsPathQueryVariables {
   category: string;
 }

@@ -4,7 +4,7 @@ import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import { ItemWrapper, PostDate, PostTitle, StyledLink } from './styles';
 
-import { INDEX_PAGE_QUERY_categories } from 'queries/types/INDEX_PAGE_QUERY';
+import { indexPageQuery_categories } from 'queries/types/indexPageQuery';
 import { getSrcSet } from 'utils/image';
 
 export interface IPostProps {
@@ -13,7 +13,7 @@ export interface IPostProps {
   publicationDate: string;
   title: string;
   slug: string | null;
-  category: INDEX_PAGE_QUERY_categories;
+  category: indexPageQuery_categories;
   image: string;
   updateDate?: string;
 }
@@ -23,10 +23,9 @@ const Post: React.FC<IPostProps> = ({
   title,
   slug,
   category,
-  // excerpt,
   image,
 }) => {
-  const isWithImage = !!image;
+  const hasImage = !!image;
   const [publicationDay, publicationMonth, publicationYear] =
     publicationDate.split(' ');
 
@@ -36,7 +35,7 @@ const Post: React.FC<IPostProps> = ({
         <a>
           <div className="row h-100">
             <div className="post-content">
-              {isWithImage && (
+              {hasImage && (
                 <img
                   className="item__image lazyload"
                   loading="lazy"
