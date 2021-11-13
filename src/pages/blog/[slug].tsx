@@ -1,4 +1,5 @@
-import CategoryItemLayout from 'components/layouts/CategoryItemLayout';
+import InnerPageLayout from '../../components/shared/layouts/InnerPageLayout';
+
 import DetailItemComponent from 'components/shared/DetailItem';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
@@ -23,7 +24,7 @@ export default function BlogPostPage({
   const description = (content?.[0]?.rich_text as string) || '';
 
   return (
-    <CategoryItemLayout
+    <InnerPageLayout
       headTitle={title}
       ogUrl={ogUrl}
       ogImage={socialImage}
@@ -37,7 +38,7 @@ export default function BlogPostPage({
         description={description}
         image={image_url}
       />
-    </CategoryItemLayout>
+    </InnerPageLayout>
   );
 }
 

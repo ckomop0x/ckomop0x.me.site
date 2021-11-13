@@ -40,7 +40,7 @@ export default function InnerPageLayout({
       headTitle={headTitle}
       /* Facebook Open Graph */
       ogImage={ogImage}
-      ogUrl={`https://ckomop0x.me/${ogUrl}/`}
+      ogUrl={`https://ckomop0x.me/${ogUrl}`}
       ogDescription={ogDescription}
       ogImageHeight={ogImageHeight}
       ogImageWidth={ogImageWidth}

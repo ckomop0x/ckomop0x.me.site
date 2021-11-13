@@ -1,3 +1,4 @@
+import InnerPageLayout from '../../components/shared/layouts/InnerPageLayout';
 import getItemPath from '../../utils/queries/getItemPath';
 
 import ProjectsLayout from 'components/layouts/CategoryLayout';
@@ -20,11 +21,11 @@ export default function DetailItem({
 }: IDetailPageProps): JSX.Element {
   const { content, date, image_url, slug, title, updated_at } = detailedPost;
   const socialImage = `${image_url}?tr=w-1080,h-280,fo-top`;
-  const ogUrl = `https://ckomop0x.me/${CATEGORY}/${slug}/`;
+  const ogUrl = `${CATEGORY}/${slug}`;
   const description = (content?.[0]?.rich_text as string) || '';
 
   return (
-    <ProjectsLayout
+    <InnerPageLayout
       headTitle={title}
       ogUrl={ogUrl}
       ogImage={socialImage}
@@ -38,7 +39,7 @@ export default function DetailItem({
         description={description}
         image={image_url}
       />
-    </ProjectsLayout>
+    </InnerPageLayout>
   );
 }
 
