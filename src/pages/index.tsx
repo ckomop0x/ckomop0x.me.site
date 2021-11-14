@@ -2,12 +2,12 @@ import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPost from 'components/sections/FeaturedPost';
 import Hero from 'components/sections/Hero';
 import PostsList from 'components/sections/PostsList';
-import { indexPageQuery } from 'queries/indexPageQuery.gql';
+import { IndexPageQuery } from 'queries/indexPageQuery.gql';
 import {
-  indexPageQuery_blogItems,
-  indexPageQuery_categories,
-  indexPageQuery_featured,
-  indexPageQuery_poetryItems,
+  IndexPageQuery_blogItems,
+  IndexPageQuery_categories,
+  IndexPageQuery_featured,
+  IndexPageQuery_poetryItems,
 } from 'queries/types/indexPageQuery';
 import apolloClient from 'utils/api/apollo-client';
 
@@ -19,10 +19,10 @@ const mainPageData = {
 };
 
 interface IIndexPage {
-  blogItems: indexPageQuery_blogItems[];
-  featured: indexPageQuery_featured[];
-  poetryItems: indexPageQuery_poetryItems[];
-  categories: indexPageQuery_categories[];
+  blogItems: IndexPageQuery_blogItems[];
+  featured: IndexPageQuery_featured[];
+  poetryItems: IndexPageQuery_poetryItems[];
+  categories: IndexPageQuery_categories[];
 }
 
 export default function IndexPage({
@@ -68,7 +68,7 @@ export async function getStaticProps(): Promise<{
   props: IIndexPage;
 }> {
   const { data } = await apolloClient.query({
-    query: indexPageQuery,
+    query: IndexPageQuery,
   });
   const { featured, blogItems, poetryItems, categories } = data;
 

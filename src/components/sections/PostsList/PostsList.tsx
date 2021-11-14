@@ -6,16 +6,16 @@ import { PostsListStyled, AllPostsLink } from './styles';
 
 import Post from 'components/shared/Post';
 import {
-  indexPageQuery_categories,
-  indexPageQuery_poetryItems,
+  IndexPageQuery_categories,
+  IndexPageQuery_poetryItems,
 } from 'queries/types/indexPageQuery';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
 interface IPostsListProps {
   blockTitle: string;
   blockSubtitle: string;
-  items: indexPageQuery_poetryItems[];
-  categories: indexPageQuery_categories[];
+  items: IndexPageQuery_poetryItems[];
+  categories: IndexPageQuery_categories[];
 }
 
 const PostsList: React.FC<IPostsListProps> = ({
@@ -26,7 +26,7 @@ const PostsList: React.FC<IPostsListProps> = ({
 }): JSX.Element => {
   const postsCategoryLink = items[0].category ?? '';
   const [postsCategory] = categories.filter(
-    (category: indexPageQuery_categories) =>
+    (category: IndexPageQuery_categories) =>
       category.slug === postsCategoryLink,
   );
 

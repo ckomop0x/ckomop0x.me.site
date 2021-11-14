@@ -6,10 +6,10 @@
 import { ENUM_POST_CATEGORY } from './../../../types/globalTypes';
 
 // ====================================================
-// GraphQL query operation: indexPageQuery
+// GraphQL query operation: IndexPageQuery
 // ====================================================
 
-export interface indexPageQuery_featured {
+export interface IndexPageQuery_featured {
   __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
@@ -23,7 +23,7 @@ export interface indexPageQuery_featured {
   featured: boolean | null;
 }
 
-export interface indexPageQuery_blogItems {
+export interface IndexPageQuery_blogItems {
   __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
@@ -37,7 +37,7 @@ export interface indexPageQuery_blogItems {
   featured: boolean | null;
 }
 
-export interface indexPageQuery_poetryItems {
+export interface IndexPageQuery_poetryItems {
   __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
@@ -51,16 +51,16 @@ export interface indexPageQuery_poetryItems {
   featured: boolean | null;
 }
 
-export interface indexPageQuery_categories {
+export interface IndexPageQuery_categories {
   __typename: 'Category';
   id: string;
   title: string | null;
   slug: string;
 }
 
-export interface indexPageQuery {
-  featured: (indexPageQuery_featured | null)[] | null;
-  blogItems: (indexPageQuery_blogItems | null)[] | null;
-  poetryItems: (indexPageQuery_poetryItems | null)[] | null;
-  categories: (indexPageQuery_categories | null)[] | null;
+export interface IndexPageQuery {
+  featured: (IndexPageQuery_featured | null)[] | null;
+  blogItems: (IndexPageQuery_blogItems | null)[] | null;
+  poetryItems: (IndexPageQuery_poetryItems | null)[] | null;
+  categories: (IndexPageQuery_categories | null)[] | null;
 }

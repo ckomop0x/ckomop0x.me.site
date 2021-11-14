@@ -2,8 +2,8 @@ import parse from 'html-react-parser';
 import Link from 'next/link';
 
 import {
-  indexPageQuery_categories,
-  indexPageQuery_featured,
+  IndexPageQuery_categories,
+  IndexPageQuery_featured,
 } from '../../../queries/types/indexPageQuery';
 
 import {
@@ -16,8 +16,8 @@ import {
 import formatDate from 'utils/dates/formatDate';
 
 interface IFeaturedPostProps {
-  post: indexPageQuery_featured;
-  categories: indexPageQuery_categories[];
+  post: IndexPageQuery_featured;
+  categories: IndexPageQuery_categories[];
 }
 
 export default function FeaturedPost({

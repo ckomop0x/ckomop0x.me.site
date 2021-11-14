@@ -4,7 +4,7 @@ import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import { ItemWrapper, PostDate, PostTitle, StyledLink } from './styles';
 
-import { indexPageQuery_categories } from 'queries/types/indexPageQuery';
+import { IndexPageQuery_categories } from 'queries/types/indexPageQuery';
 import { getSrcSet } from 'utils/image';
 
 export interface IPostProps {
@@ -13,7 +13,7 @@ export interface IPostProps {
   publicationDate: string;
   title: string;
   slug: string | null;
-  category: indexPageQuery_categories;
+  category: IndexPageQuery_categories;
   image: string;
   updateDate?: string;
 }

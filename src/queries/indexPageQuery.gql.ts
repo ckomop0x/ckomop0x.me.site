@@ -6,7 +6,7 @@ import { postFieldsFragment } from 'queries/fragments/postFieldsFragment.gql';
 export const indexPageQuery = gql`
   ${postFieldsFragment}
   ${categoryFieldsFragment}
-  query indexPageQuery {
+  query IndexPageQuery {
     featured: posts(
       where: { featured: true, published: true }
       limit: 1
