@@ -2,20 +2,27 @@ import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPost from 'components/sections/FeaturedPost';
 import Hero from 'components/sections/Hero';
 import PostsList from 'components/sections/PostsList';
-import { INDEX_PAGE_QUERY } from 'queries/indexPageQuery.gql';
+import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
-  INDEX_PAGE_QUERY_blogItems,
-  INDEX_PAGE_QUERY_categories,
-  INDEX_PAGE_QUERY_featured,
-  INDEX_PAGE_QUERY_poetryItems,
-} from 'queries/types/INDEX_PAGE_QUERY';
+  IndexPageQuery_blogItems,
+  IndexPageQuery_categories,
+  IndexPageQuery_featured,
+  IndexPageQuery_poetryItems,
+} from 'queries/types/indexPageQuery';
 import apolloClient from 'utils/api/apollo-client';
 
+const mainPageData = {
+  title: 'Добро пожаловать в мой персональный блог',
+  subtitle: 'Здесь живут мои стихи, песни, путешествия, заметки и фотографий.',
+  backgroundImage:
+    'https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg',
+};
+
 interface IIndexPage {
-  blogItems: INDEX_PAGE_QUERY_blogItems[];
-  featured: INDEX_PAGE_QUERY_featured[];
-  poetryItems: INDEX_PAGE_QUERY_poetryItems[];
-  categories: INDEX_PAGE_QUERY_categories[];
+  blogItems: IndexPageQuery_blogItems[];
+  featured: IndexPageQuery_featured[];
+  poetryItems: IndexPageQuery_poetryItems[];
+  categories: IndexPageQuery_categories[];
 }
 
 export default function IndexPage({
@@ -29,8 +36,9 @@ export default function IndexPage({
   return (
     <MainPageLayout>
       <Hero
-        title="Добро пожаловать в мой персональный блог"
-        subtitle="Здесь живут мои стихи, песни, путешествия, заметки и фотографий."
+        title={mainPageData.title}
+        subtitle={mainPageData.subtitle}
+        backgroundImage={mainPageData.backgroundImage}
       />
       {featuredItem && (
         <FeaturedPost post={featuredItem} categories={categories} />
@@ -60,7 +68,7 @@ export async function getStaticProps(): Promise<{
   props: IIndexPage;
 }> {
   const { data } = await apolloClient.query({
-    query: INDEX_PAGE_QUERY,
+    query: indexPageQuery,
   });
   const { featured, blogItems, poetryItems, categories } = data;
 

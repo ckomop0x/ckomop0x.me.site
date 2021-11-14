@@ -11,17 +11,17 @@ export interface IDetailItem {
   title: string | null;
   description: string;
   image: string | null;
-  createdAt: Date;
-  updatedAt: Date;
+  date: Date;
+  updated_at: Date;
 }
 
 const DetailItem: React.FC<IDetailItem> = ({
-  createdAt,
+  date,
   title,
   description,
   image,
 }) => {
-  const createdDate = format(new Date(createdAt ?? new Date()), 'd MMMM yyyy', {
+  const postDate = format(new Date(date ?? new Date()), 'd MMMM yyyy', {
     locale: ruLocale,
   });
 
@@ -32,9 +32,7 @@ const DetailItem: React.FC<IDetailItem> = ({
           <div className="col-xs-12 col-lg-12">
             <Content>
               <h1>{title}</h1>
-              <div className="poetry-item__date">
-                Опубликовано: {createdDate}
-              </div>
+              <div className="poetry-item__date">Опубликовано: {postDate}</div>
               {description ? parse(description) : 'Почему-то здесь пусто.'}
             </Content>
           </div>

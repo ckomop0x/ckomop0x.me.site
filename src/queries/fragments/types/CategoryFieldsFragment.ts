@@ -4,12 +4,12 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: CategoryFields
+// GraphQL fragment: CategoryFieldsFragment
 // ====================================================
 
-export interface CategoryFields {
+export interface CategoryFieldsFragment {
   __typename: 'Category';
   id: string;
-  name: string | null;
+  title: string | null;
   slug: string;
 }

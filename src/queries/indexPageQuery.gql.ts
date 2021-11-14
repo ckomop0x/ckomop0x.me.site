@@ -1,49 +1,35 @@
 import { gql } from '@apollo/client';
 
-export const INDEX_PAGE_QUERY = gql`
-  query INDEX_PAGE_QUERY {
+import { categoryFieldsFragment } from 'queries/fragments/categoryFieldsFragment.gql';
+import { postFieldsFragment } from 'queries/fragments/postFieldsFragment.gql';
+
+export const indexPageQuery = gql`
+  ${postFieldsFragment}
+  ${categoryFieldsFragment}
+  query IndexPageQuery {
     featured: posts(
       where: { featured: true, published: true }
       limit: 1
-      sort: "createdAt:desc"
+      sort: "date:desc"
     ) {
-      ...PostFields
+      ...PostFieldsFragment
     }
     blogItems: posts(
-      where: { category: "blog", published: true }
+      where: { category: "blog", published: true, featured: false }
       limit: 3
-      sort: "createdAt:desc"
+      sort: "date:desc"
     ) {
-      ...PostFields
+      ...PostFieldsFragment
     }
     poetryItems: posts(
-      where: { category: "poetry", published: true }
+      where: { category: "poetry", published: true, featured: false }
       limit: 3
-      sort: "createdAt:desc"
+      sort: "date:desc"
     ) {
-      ...PostFields
+      ...PostFieldsFragment
     }
     categories {
-      ...CategoryFields
+      ...CategoryFieldsFragment
     }
-  }
-
-  fragment PostFields on Post {
-    category
-    image_url
-    slug
-    published
-    id
-    excerpt
-    createdAt
-    updatedAt
-    title
-    featured
-  }
-
-  fragment CategoryFields on Category {
-    id
-    name
-    slug
   }
 `;

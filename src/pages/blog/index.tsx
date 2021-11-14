@@ -1,48 +1,62 @@
-import { ICategoryPageProps } from '../../types/categoryPage';
-
-import CategoryLayout from 'components/layouts/PoetryLayout/PoetryLayout';
 import ItemsList from 'components/shared/ItemsList';
-import { CATEGORY_PAGE_QUERY } from 'queries/categoryPageQuery.gql';
+import InnerPageLayout from 'components/shared/layouts/InnerPageLayout';
+import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
+import {
+  CategoryPageQuery_categories,
+  CategoryPageQuery_posts,
+} from 'queries/types/CategoryPageQuery';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
+import { ICategory, ICategoryPageProps } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
-export default function PoetryPage({
+const CATEGORY: ICategory = 'blog';
+const TITLE = 'Статьи и публикации';
+const SUB_TITLE = 'Статьи и публикации на разные темы.';
+
+export default function BlogPage({
   items,
   categories,
 }: ICategoryPageProps): JSX.Element {
   return (
-    <CategoryLayout
-      headTitle="Ckomop0x.me | Статьи и публикации"
-      ogUrl="https://ckomop0x.me/poetry/"
-      ogDescription="Ckomop0x.me | Статьи и публикации"
-      twitterCard="Ckomop0x.me | Статьи и публикации"
+    <InnerPageLayout
+      headTitle={TITLE}
+      ogUrl={CATEGORY}
+      ogDescription={TITLE}
+      twitterCard={SUB_TITLE}
     >
       <div className="container">
-        <TitleBlock>Блог</TitleBlock>
-        <SubtitleBlock>Статьи и публикации на разные темы.</SubtitleBlock>
+        <TitleBlock>{TITLE}</TitleBlock>
+        <SubtitleBlock>{SUB_TITLE}</SubtitleBlock>
         {items ? (
           <ItemsList items={items} categories={categories} />
         ) : (
           'Здесь ещё ничего нет или что-то пошло не так. 😎'
         )}
       </div>
-    </CategoryLayout>
+    </InnerPageLayout>
   );
 }
 
-export async function getStaticProps(): Promise<any> {
-  const { data } = await apolloClient.query({
-    query: CATEGORY_PAGE_QUERY,
+export async function getStaticProps(): Promise<{
+  props: {
+    items: CategoryPageQuery_posts;
+    categories: CategoryPageQuery_categories;
+  };
+}> {
+  const {
+    data: { posts: items, categories },
+  } = await apolloClient.query({
+    query: categoryPageQuery,
     variables: {
-      category: 'blog',
+      category: CATEGORY,
       limit: 100,
     },
   });
 
   return {
     props: {
-      items: data.posts,
-      categories: data.categories,
+      items,
+      categories,
     },
   };
 }

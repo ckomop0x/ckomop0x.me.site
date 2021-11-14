@@ -7,10 +7,7 @@ import apolloClient from 'utils/api/apollo-client';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-export default function WebtimeApp({
-  Component,
-  pageProps,
-}: AppProps): JSX.Element {
+export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={{}}>

@@ -1,35 +1,22 @@
 import { gql } from '@apollo/client';
 
-export const CATEGORY_PAGE_QUERY = gql`
-  query CATEGORY_PAGE_QUERY($category: String!, $limit: Int!) {
+import { categoryFieldsFragment } from './fragments/categoryFieldsFragment.gql';
+import { postFieldsFragment } from './fragments/postFieldsFragment.gql';
+
+export const categoryPageQuery = gql`
+  ${postFieldsFragment}
+  ${categoryFieldsFragment}
+
+  query CategoryPageQuery($category: String!, $limit: Int!) {
     posts(
       where: { category: $category, published: true }
       limit: $limit
-      sort: "createdAt:desc"
+      sort: "date:desc"
     ) {
-      ...PostFields
+      ...PostFieldsFragment
     }
     categories {
-      ...CategoryFields
+      ...CategoryFieldsFragment
     }
-  }
-
-  fragment PostFields on Post {
-    category
-    image_url
-    slug
-    published
-    id
-    excerpt
-    createdAt
-    updatedAt
-    title
-    featured
-  }
-
-  fragment CategoryFields on Category {
-    id
-    name
-    slug
   }
 `;

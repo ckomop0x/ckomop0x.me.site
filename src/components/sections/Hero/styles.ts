@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const MainSection = styled.section`
+export const MainSection = styled.section<{
+  backgroundImage?: string;
+}>`
   height: 100vh;
   max-height: 100%;
   background: radial-gradient(ellipse at 80% 50%, #00000010, #00000080) 100% 50%,
-    url('https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg?tr=w-2000')
-      no-repeat;
+    url(${({ backgroundImage }) => `${backgroundImage}?tr=w-2000`}) no-repeat;
   background-size: cover;
   background-position: center;
   color: white;
@@ -23,7 +24,6 @@ export const MainSection = styled.section`
 `;
 
 export const Title = styled.h1`
-  /* margin-top: 100px; */
   font-family: Neucha, Roboto, Helvetica, Arial, sans-serif;
   font-weight: 700;
   line-height: 1.1;
@@ -33,7 +33,6 @@ export const Title = styled.h1`
 
   @media (min-width: 700px) {
     font-size: 48px;
-    /* margin-top: 280px; */
   }
 `;
 
@@ -52,10 +51,8 @@ export const StartButton = styled(Link)`
   line-height: 19px;
   font-size: 16px;
   white-space: nowrap;
-  /* background: linear-gradient(135deg, #e23c8e 0%, #a33188 80%); */
   background-size: 200px;
   background: #007bff;
-  /* border-radius: 35px; */
   border: 0;
   color: #e1e1e1;
   padding: 16px 32px;

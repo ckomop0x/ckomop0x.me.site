@@ -1,16 +1,10 @@
-import React from 'react';
+import BaseLayout from '../../shared/layouts/BaseLayout';
+import { IBaseLayoutProps } from '../../shared/layouts/BaseLayout/BaseLayout';
 
-import Footer from 'components/shared/Footer';
-import SEO from 'components/shared/SEO';
-import { GlobalStyle } from 'styles/GlobalStyle';
+type IMainPageLayoutProps = IBaseLayoutProps;
 
-const MainPageLayout: React.FC = ({ children }): JSX.Element => (
-  <>
-    <GlobalStyle />
-    <SEO />
-    {children}
-    <Footer />
-  </>
-);
-
-export default MainPageLayout;
+export default function MainPageLayout({
+  children,
+}: IMainPageLayoutProps): JSX.Element {
+  return <BaseLayout>{children}</BaseLayout>;
+}

@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const POSTS_PATH_QUERY = gql`
-  query POSTS_PATH_QUERY($category: String!) {
+export const postsPathQuery = gql`
+  query PostsPathQuery($category: String!) {
     posts(where: { category: $category }, limit: 20) {
       slug
     }

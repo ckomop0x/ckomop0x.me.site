@@ -4,15 +4,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: DETAILS_PAGE_QUERY
+// GraphQL query operation: DetailsPageQuery
 // ====================================================
 
-export interface DETAILS_PAGE_QUERY_posts_content {
+export interface DetailsPageQuery_posts_content {
   __typename: 'ComponentPostRichText';
   rich_text: string | null;
 }
 
-export interface DETAILS_PAGE_QUERY_posts {
+export interface DetailsPageQuery_posts {
   __typename: 'Post';
   id: string;
   title: string | null;
@@ -20,17 +20,17 @@ export interface DETAILS_PAGE_QUERY_posts {
   image_url: string | null;
   published: boolean | null;
   excerpt: string;
-  content: (DETAILS_PAGE_QUERY_posts_content | null)[] | null;
-  createdAt: any;
-  updatedAt: any;
+  content: (DetailsPageQuery_posts_content | null)[] | null;
+  date: any | null;
+  updated_at: any;
   description: string | null;
 }
 
-export interface DETAILS_PAGE_QUERY {
-  posts: (DETAILS_PAGE_QUERY_posts | null)[] | null;
+export interface DetailsPageQuery {
+  posts: (DetailsPageQuery_posts | null)[] | null;
 }
 
-export interface DETAILS_PAGE_QUERYVariables {
+export interface DetailsPageQueryVariables {
   slug: string;
   category: string;
 }

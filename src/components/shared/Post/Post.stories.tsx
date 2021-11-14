@@ -21,7 +21,7 @@ Primary.args = {
   category: {
     __typename: 'Category',
     id: '1',
-    name: 'Стихи',
+    title: 'Стихи',
     slug: 'poetry',
   },
   image:

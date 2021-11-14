@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const DETAILS_PAGE_QUERY = gql`
-  query DETAILS_PAGE_QUERY($slug: String!, $category: String!) {
+export const detailsPageQuery = gql`
+  query DetailsPageQuery($slug: String!, $category: String!) {
     posts(
       where: { slug: $slug, category: $category }
       limit: 1
@@ -19,8 +19,8 @@ export const DETAILS_PAGE_QUERY = gql`
           rich_text
         }
       }
-      createdAt
-      updatedAt
+      date
+      updated_at
       description
     }
   }
