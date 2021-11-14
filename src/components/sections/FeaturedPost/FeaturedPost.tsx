@@ -2,17 +2,16 @@ import parse from 'html-react-parser';
 import Link from 'next/link';
 
 import {
-  IndexPageQuery_categories,
-  IndexPageQuery_featured,
-} from '../../../queries/types/indexPageQuery';
-
-import {
   ContentWrapper,
   FeaturedPostWrapper,
   LinkStyled,
   ItemImage,
 } from './styles';
 
+import {
+  IndexPageQuery_categories,
+  IndexPageQuery_featured,
+} from 'queries/types/indexPageQuery';
 import formatDate from 'utils/dates/formatDate';
 
 interface IFeaturedPostProps {

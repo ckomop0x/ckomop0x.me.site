@@ -1,7 +1,5 @@
-import InnerPageLayout from '../../components/shared/layouts/InnerPageLayout';
-import getItemPath from '../../utils/queries/getItemPath';
-
 import DetailItemComponent from 'components/shared/DetailItem';
+import InnerPageLayout from 'components/shared/layouts/InnerPageLayout';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {
@@ -12,6 +10,7 @@ import {
   IGetStaticPathsResponse,
 } from 'types';
 import apolloClient from 'utils/api/apollo-client';
+import getItemPath from 'utils/queries/getItemPath';
 
 const CATEGORY: ICategory = 'poetry';
 
