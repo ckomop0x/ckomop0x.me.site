@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-import InnerPageLayout from '../components/shared/layouts/InnerPageLayout';
+import InnerPageLayout from 'components/shared/layouts/InnerPageLayout';
 
 export default function Page404(): JSX.Element {
   return (
