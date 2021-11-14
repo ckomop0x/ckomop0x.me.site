@@ -2,7 +2,7 @@ import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPost from 'components/sections/FeaturedPost';
 import Hero from 'components/sections/Hero';
 import PostsList from 'components/sections/PostsList';
-import { IndexPageQuery } from 'queries/indexPageQuery.gql';
+import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
   IndexPageQuery_blogItems,
   IndexPageQuery_categories,
@@ -68,7 +68,7 @@ export async function getStaticProps(): Promise<{
   props: IIndexPage;
 }> {
   const { data } = await apolloClient.query({
-    query: IndexPageQuery,
+    query: indexPageQuery,
   });
   const { featured, blogItems, poetryItems, categories } = data;
 
