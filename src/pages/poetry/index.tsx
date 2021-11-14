@@ -1,10 +1,12 @@
-import { ICategory } from '../../types';
-
-import CategoryLayout from 'components/layouts/CategoryLayout';
 import ItemsList from 'components/shared/ItemsList';
+import InnerPageLayout from 'components/shared/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
+import {
+  CategoryPageQuery_categories,
+  CategoryPageQuery_posts,
+} from 'queries/types/CategoryPageQuery';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
-import { ICategoryPageProps } from 'types';
+import { ICategory, ICategoryPageProps } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
 const CATEGORY: ICategory = 'poetry';
@@ -17,30 +19,37 @@ export default function PoetryPage({
   categories,
 }: ICategoryPageProps): JSX.Element {
   return (
-    <CategoryLayout
+    <InnerPageLayout
       headTitle={TITLE}
       ogUrl={CATEGORY}
       ogDescription={TITLE}
       twitterCard={SUB_TITLE}
     >
-      <TitleBlock>{TITLE}</TitleBlock>
-      <SubtitleBlock>{SUB_TITLE}</SubtitleBlock>
-      {items ? (
-        <ItemsList items={items} categories={categories} />
-      ) : (
-        'Здесь ещё ничего нет или что-то пошло не так. 😎'
-      )}
-    </CategoryLayout>
+      <div className="container">
+        <TitleBlock>{TITLE}</TitleBlock>
+        <SubtitleBlock>{SUB_TITLE}</SubtitleBlock>
+        {items ? (
+          <ItemsList items={items} categories={categories} />
+        ) : (
+          'Здесь ещё ничего нет или что-то пошло не так. 😎'
+        )}
+      </div>
+    </InnerPageLayout>
   );
 }
 
-export async function getStaticProps(): Promise<any> {
+export async function getStaticProps(): Promise<{
+  props: {
+    items: CategoryPageQuery_posts;
+    categories: CategoryPageQuery_categories;
+  };
+}> {
   const {
     data: { posts: items, categories },
   } = await apolloClient.query({
     query: categoryPageQuery,
     variables: {
-      category: 'poetry',
+      category: CATEGORY,
       limit: 100,
     },
   });

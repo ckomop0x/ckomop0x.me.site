@@ -1,7 +1,6 @@
 import InnerPageLayout from '../../components/shared/layouts/InnerPageLayout';
 import getItemPath from '../../utils/queries/getItemPath';
 
-import ProjectsLayout from 'components/layouts/CategoryLayout';
 import DetailItemComponent from 'components/shared/DetailItem';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';

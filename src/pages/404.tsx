@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
 
-import CategoryLayout from '../components/layouts/CategoryLayout/CategoryLayout';
+import InnerPageLayout from '../components/shared/layouts/InnerPageLayout';
 
 export default function Page404(): JSX.Element {
   return (
-    <CategoryLayout>
+    <InnerPageLayout>
       <div className="container text-center">
         <h1>404</h1>
         <h2>Страница не найдена</h2>
@@ -13,6 +13,6 @@ export default function Page404(): JSX.Element {
           <Link href="/">Вернуться на главную</Link>
         </p>
       </div>
-    </CategoryLayout>
+    </InnerPageLayout>
   );
 }
