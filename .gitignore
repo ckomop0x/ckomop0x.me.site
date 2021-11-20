@@ -20,3 +20,6 @@ __generated__
 .next
 storybook-static/
 tsconfig.tsbuildinfo
+
+# Local Netlify folder
+.netlify
