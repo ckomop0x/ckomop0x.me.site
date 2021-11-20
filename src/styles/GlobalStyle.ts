@@ -6,17 +6,18 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    color: $text-color;
+    color: #5d443c;
   }
 
   body,
   html {
     padding: 0;
     color: #999;
+    min-height: 100%;
   }
 
   body {
-    &.light {
+    .light {
       background-color: #f0ebde;
     }
   }

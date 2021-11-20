@@ -1,4 +1,4 @@
-import { InnerPageLayoutWrapper } from './styles';
+import styled from 'styled-components';
 
 import Nav from 'components/shared/Nav';
 import BaseLayout, {
@@ -50,10 +50,12 @@ export default function InnerPageLayout({
       twitterCard={twitterCard}
       twitterTitle={twitterTitle}
     >
-      <Nav inner={true} />
-      <main>
-        <InnerPageLayoutWrapper>{children}</InnerPageLayoutWrapper>
-      </main>
+      <Nav isInner={true} />
+      <InnerPageLayoutWrapper>{children}</InnerPageLayoutWrapper>
     </BaseLayout>
   );
 }
+
+export const InnerPageLayoutWrapper = styled.main`
+  color: #a5a5a5;
+`;

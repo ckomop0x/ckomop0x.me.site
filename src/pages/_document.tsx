@@ -43,7 +43,13 @@ export default class WebtimeDocument extends Document {
 
     return (
       <Html>
-        <Head>{styles}</Head>
+        <Head>
+          {styles}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Neucha&display=optional"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

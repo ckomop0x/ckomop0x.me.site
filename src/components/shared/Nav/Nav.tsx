@@ -1,46 +1,17 @@
-import Link from 'next/link';
-import React from 'react';
+import { Navbar } from './styles';
 
-import {
-  Navbar,
-  TopLogo,
-  LinkStyled,
-  TopMenu,
-  LogoImage,
-  LogoTitle,
-  TopMenuItem,
-} from './styles';
+import Logo from 'components/shared/Nav/Logo';
+import TopMenu from 'components/shared/Nav/TopMenu';
 
 export interface INavProps {
-  inner?: boolean;
+  isInner?: boolean;
 }
 
-export default function Nav({ inner }: INavProps): JSX.Element {
+export default function Nav({ isInner }: INavProps): JSX.Element {
   return (
-    <Navbar className={`container ${inner ? 'inner' : ''}`}>
-      <Link href="/">
-        <TopLogo>
-          <LogoImage
-            src="/images/apple-icon.png"
-            alt="Павел Клочков"
-            width={42}
-            height={42}
-          />
-          <LogoTitle>Павел Клочков</LogoTitle>
-        </TopLogo>
-      </Link>
-      <TopMenu>
-        <TopMenuItem>
-          <Link href="/blog/">
-            <LinkStyled>Блог</LinkStyled>
-          </Link>
-        </TopMenuItem>
-        <TopMenuItem>
-          <Link href="/poetry/">
-            <LinkStyled>Стихи</LinkStyled>
-          </Link>
-        </TopMenuItem>
-      </TopMenu>
+    <Navbar className="container" isInner={isInner}>
+      <Logo imgSrc="/images/apple-icon.png" title="Павел Клочков" linkSrc="/" />
+      <TopMenu />
     </Navbar>
   );
 }

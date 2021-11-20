@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { themePalette } from 'styles/colors';
 
@@ -8,6 +8,8 @@ export const DetailItemWrapper = styled.div<{ image: string | null }>`
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+  padding: 40px 0;
+  min-height: calc(100vh - 130px);
 
   &::after {
     position: absolute;
@@ -29,19 +31,20 @@ export const DetailItemWrapper = styled.div<{ image: string | null }>`
 `;
 
 export const Title = styled.div`
-  padding: 50px 0 50px;
+  padding: 40px 0 40px;
   background-color: #292929;
 `;
 
 export const Content = styled.div`
   max-width: 100%;
+  min-height: 100%;
   padding: 20px;
   background-color: rgba(252, 251, 248, 0.95);
 
   @media (min-width: 800px) {
-    margin: 20px auto 40px;
+    margin: 0 auto;
     max-width: 800px;
-    padding: 40px;
+    padding: 24px 40px;
     box-shadow: 0 3px 4px 3px #00000022;
   }
 
@@ -125,7 +128,6 @@ export const PoetryItemImage = styled.div<IPoetryItemImage>`
   background-image: url(${({ image }) => image && `${image}?tr=h-960`});
   background-size: cover;
   background-repeat: no-repeat;
-  //height: 240px;
   background-position: center;
   position: relative;
 
