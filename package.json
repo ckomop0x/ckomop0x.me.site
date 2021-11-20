@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --env=jsdom --ci --verbose --passWithNoTests",
-    "pretty": "prettier --check \"./**/*.{ts,tsx,js,jsx,json,md}\"",
+    "check-style": "prettier --check \"./**/*.{ts,tsx,js,jsx,json,md}\"",
     "check-ts": "tsc",
     "lint": "eslint \"./src/**/*.{ts,tsx,js}\" --fix",
     "storybook": "start-storybook -p 6006",
