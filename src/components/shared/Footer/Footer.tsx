@@ -25,6 +25,9 @@ export const FooterWrapper = styled.footer`
   box-sizing: border-box;
   height: 70px;
   padding: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const FooterCopyright = styled.p`
