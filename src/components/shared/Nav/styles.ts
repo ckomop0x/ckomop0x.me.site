@@ -1,44 +1,9 @@
-import Image from 'next/image';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
+import { LogoTitle, LogoWrapper } from 'components/shared/Nav/Logo/Logo';
+import { MenuItemWrapper } from 'components/shared/Nav/MenuItem/MenuItem';
+import { INavProps } from 'components/shared/Nav/Nav';
 import { themePalette } from 'styles/colors';
-
-export const TopLogo = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: none;
-    color: white;
-  }
-`;
-
-export const LogoTitle = styled.span`
-  font-family: Neucha, sans-serif;
-  text-transform: uppercase;
-  font-size: 16px;
-  color: white;
-  user-select: none;
-  display: inline-block;
-  margin-top: 8px;
-  margin-left: 20px;
-`;
-
-export const LogoImage = styled(Image)`
-  border-radius: 50%;
-`;
-
-export const TopMenu = styled.ul`
-  margin: 0;
-  display: flex;
-  align-items: center;
-`;
-
-export const TopMenuItem = styled.li`
-  list-style: none;
-`;
 
 export const LinkStyled = styled.a`
   color: ${themePalette.textColorLight};
@@ -52,23 +17,27 @@ export const LinkStyled = styled.a`
   }
 `;
 
-export const Navbar = styled.nav`
+export const Navbar = styled.nav<INavProps>`
   height: 60px;
   display: flex;
   justify-content: space-between;
   flex-grow: 0;
 
-  &.inner {
-    ${TopLogo} {
-      color: ${themePalette.primaryTitle};
-
-      ${LogoTitle} {
+  ${({ isInner }) =>
+    isInner &&
+    css`
+      ${LogoWrapper} {
         color: ${themePalette.primaryTitle};
-      }
-    }
 
-    ${LinkStyled} {
-      color: ${themePalette.primaryTitle};
-    }
-  }
+        ${LogoTitle} {
+          color: ${themePalette.primaryTitle};
+        }
+      }
+
+      ${MenuItemWrapper} {
+        ${LinkStyled} {
+          color: ${themePalette.primaryTitle};
+        }
+      }
+    `}
 `;

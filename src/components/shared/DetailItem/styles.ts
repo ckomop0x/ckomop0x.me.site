@@ -8,6 +8,7 @@ export const DetailItemWrapper = styled.div<{ image: string | null }>`
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+  outline: 2px solid red;
 
   &::after {
     position: absolute;
@@ -35,6 +36,7 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   max-width: 100%;
+  min-height: 100%;
   padding: 20px;
   background-color: rgba(252, 251, 248, 0.95);
 

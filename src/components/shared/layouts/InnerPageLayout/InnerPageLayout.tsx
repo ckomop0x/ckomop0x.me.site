@@ -50,7 +50,7 @@ export default function InnerPageLayout({
       twitterCard={twitterCard}
       twitterTitle={twitterTitle}
     >
-      <Nav inner={true} />
+      <Nav isInner={true} />
       <main>
         <InnerPageLayoutWrapper>{children}</InnerPageLayoutWrapper>
       </main>

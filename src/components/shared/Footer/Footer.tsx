@@ -1,21 +1,35 @@
-import { siteTitle } from '../../../../config/site';
+import styled from 'styled-components';
+
 import projectConfig from '../../../../package.json';
 
-import { FooterWrapper } from './styles';
+import { baseSettings } from 'config/site-config';
+import { themePalette } from 'styles/colors';
 
 export default function Footer(): JSX.Element {
+  const currentYear = new Date().getFullYear();
+
   return (
     <FooterWrapper>
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <p className="copyright">
-              &copy; 2019-{new Date().getFullYear()} {siteTitle}
-            </p>
-            <p className="version">v{projectConfig.version}</p>
-          </div>
-        </div>
-      </div>
+      <FooterCopyright>
+        &copy; 2019-{currentYear} {baseSettings.projectTitle}. v
+        {projectConfig.version}
+      </FooterCopyright>
     </FooterWrapper>
   );
 }
+
+export const FooterWrapper = styled.footer`
+  margin: auto 0;
+  background: hsla(38, 20%, 80%, 1);
+  color: ${themePalette.primaryTitle};
+  box-sizing: border-box;
+  height: 70px;
+  padding: 16px 0;
+`;
+
+export const FooterCopyright = styled.p`
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+`;
