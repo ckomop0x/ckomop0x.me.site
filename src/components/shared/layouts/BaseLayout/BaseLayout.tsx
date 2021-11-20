@@ -41,7 +41,7 @@ export default function BaseLayout({
   children,
 }: IBaseLayoutProps) {
   return (
-    <div className={className}>
+    <BaseLayoutWrapper>
       <GlobalStyle />
       <SEO
         /* Primary meta settings */
@@ -67,6 +67,10 @@ export default function BaseLayout({
       />
       {children}
       <Footer />
-    </div>
+    </BaseLayoutWrapper>
   );
 }
+
+export const BaseLayoutWrapper = styled.div`
+  min-height: 100vh;
+`;
