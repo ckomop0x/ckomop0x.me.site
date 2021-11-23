@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import Footer from 'components/shared/Footer';
-import Nav from 'components/shared/Nav';
 import SEO from 'components/shared/SEO';
 import { ISEOProps } from 'components/shared/SEO/SEO';
 import { GlobalStyle } from 'styles/GlobalStyle';
@@ -37,7 +36,6 @@ export default function BaseLayout({
   twitterTitle,
 
   /* Layout specific */
-  className,
   children,
 }: IBaseLayoutProps) {
   return (
