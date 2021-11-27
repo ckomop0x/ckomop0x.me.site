@@ -27,13 +27,16 @@
     "*.{ts,tsx,js,jsx,json,csgis,md}": [
       "prettier --config ./.prettierrc --write"
     ],
-    "*.{ts,tsx}": [
-      "eslint -c ./.eslintrc.js --fix"
-    ]
+    "*.{ts,tsx}": ["eslint -c ./.eslintrc.js --fix"]
   },
   "dependencies": {
     "@apollo/client": "^3.5.5",
     "@apollo/rover": "^0.4.0",
+    "@babel/core": "^7.16.0",
+    "@storybook/addon-actions": "^6.4.0",
+    "@storybook/addon-essentials": "^6.4.0",
+    "@storybook/addon-links": "^6.4.0",
+    "@storybook/react": "^6.4.0",
     "@types/enzyme": "^3.10.10",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/graphql": "^14.5.0",
@@ -63,11 +66,6 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@storybook/addon-actions": "^6.4.0",
-    "@storybook/addon-essentials": "^6.4.0",
-    "@storybook/addon-links": "^6.4.0",
-    "@storybook/react": "^6.4.0",
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
