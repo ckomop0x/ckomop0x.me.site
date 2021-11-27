@@ -47,12 +47,13 @@ const PostsList: React.FC<IPostsListProps> = ({
                 slug,
                 category,
                 image_url,
-              }: any) => {
+              }: IndexPageQuery_poetryItems) => {
                 const publicationDate = format(new Date(date), 'dd MMMM yyyy', {
                   locale: ruLocale,
                 });
                 const [categoryData] = categories.filter(
-                  (categoryItem: any) => categoryItem.slug === category,
+                  (categoryItem: IndexPageQuery_categories) =>
+                    categoryItem.slug === category,
                 );
 
                 return (

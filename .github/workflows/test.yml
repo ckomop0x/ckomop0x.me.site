@@ -17,8 +17,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
-        env:
-          NEXT_PUBLIC_GRAPHQL_URL: ${{secrets.NEXT_PUBLIC_GRAPHQL_URL}}
-      - run: yarn test
+      name: Install dependencies
+        run: yarn install --frozen-lockfile
+      name: Check if project build
+        run: yarn build
+          env:
+            NEXT_PUBLIC_GRAPHQL_URL: ${{secrets.NEXT_PUBLIC_GRAPHQL_URL}}
+      name: Run unit tests
+        run: yarn test
