@@ -5,7 +5,7 @@ import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import { ItemWrapper, PostDate, PostTitle, StyledLink } from './styles';
 
 import { IndexPageQuery_categories } from 'queries/types/indexPageQuery';
-import { getSrcSet } from 'utils/image';
+import getSrcSet from 'utils/image/getSrcSet';
 
 export interface IPostProps {
   id: string | null;
