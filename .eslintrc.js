@@ -5,6 +5,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:prettier/recommended',
     'plugin:@next/next/recommended',
+    'plugin:storybook/recommended',
   ],
   env: {
     browser: true,
