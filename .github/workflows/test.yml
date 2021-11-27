@@ -10,15 +10,15 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '14'
-      name: Install dependencies
-        run: yarn install --frozen-lockfile
-      name: Check if project build
-        run: yarn build
-          env:
-            NEXT_PUBLIC_GRAPHQL_URL: ${{secrets.NEXT_PUBLIC_GRAPHQL_URL}}
-      name: Run unit tests
-        run: yarn test
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    name: Install dependencies
+      run: yarn install --frozen-lockfile
+    name: Check if project build
+      run: yarn build
+        env:
+          NEXT_PUBLIC_GRAPHQL_URL: ${{secrets.NEXT_PUBLIC_GRAPHQL_URL}}
+    name: Run unit tests
+      run: yarn test
