@@ -1,14 +1,10 @@
 import { Story, Meta } from '@storybook/react';
-import React from 'react';
 
 import Post, { IPostProps } from './Post';
 
 export default {
   title: 'Components/Post',
   component: Post,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
 } as Meta;
 
 const Template: Story<IPostProps> = args => <Post {...args} />;
@@ -16,8 +12,10 @@ const Template: Story<IPostProps> = args => <Post {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   id: 'main',
-  publicationDate: 'Завтра',
+  publicationDate: '01 Ноября 2021',
+  updateDate: '02 Ноября 2021',
   slug: 'Анонс',
+  title: 'Стихотворение',
   category: {
     __typename: 'Category',
     id: '1',

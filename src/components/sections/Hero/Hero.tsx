@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { MainSection, Title, SubTitle } from './styles';
 
 import Nav from 'components/shared/Nav';
@@ -10,18 +8,18 @@ export interface IHeroSectionProps {
   backgroundImage?: string;
 }
 
-const Hero: React.FC<IHeroSectionProps> = ({
+export default function Hero({
   title,
   subtitle,
   backgroundImage,
-}): JSX.Element => (
-  <MainSection backgroundImage={backgroundImage}>
-    <Nav />
-    <div className="container main-section__text">
-      <Title>{title}</Title>
-      <SubTitle>{subtitle}</SubTitle>
-    </div>
-  </MainSection>
-);
-
-export default Hero;
+}: IHeroSectionProps): JSX.Element {
+  return (
+    <MainSection backgroundImage={backgroundImage}>
+      <Nav />
+      <div className="container main-section__text">
+        <Title>{title}</Title>
+        <SubTitle>{subtitle}</SubTitle>
+      </div>
+    </MainSection>
+  );
+}

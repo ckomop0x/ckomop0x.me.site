@@ -17,23 +17,22 @@ export const ItemImage = styled.div`
   overflow: hidden;
 
   ${({ background }: { background?: string }) =>
-    background
-      ? css`
-          .item-image--blurred {
-            filter: blur(10px);
-            position: absolute;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 1;
-            background-size: cover;
-            background-position: center;
-            background-image: url(${background}?tr=w-480);
-          }
-        `
-      : ''}
+    background &&
+    css`
+      .item-image--blurred {
+        filter: blur(10px);
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        background-size: cover;
+        background-position: center;
+        background-image: url(${background}?tr=w-480);
+      }
+    `}
 `;
 
 export const ItemContent = styled.div`
@@ -51,29 +50,6 @@ export const ItemWrapper = styled.article`
 
   a:hover {
     text-decoration: none;
-  }
-
-  .post-content {
-    position: relative;
-    margin: 32px;
-    background-color: #f5f5f5c2;
-    border-radius: 30px;
-    width: 100%;
-    box-shadow: 0 2px 3px #0000001c;
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.3s ease;
-
-    &:hover {
-      box-shadow: 0 8px 10px #0000001c;
-    }
-  }
-
-  .item__image {
-    width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 0 2px 3px #00000022;
   }
 
   .item__title {
@@ -130,31 +106,4 @@ export const PostTitle = styled.h3`
   margin: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.87);
-`;
-
-export const PostDate = styled.div`
-  position: absolute;
-  box-sizing: border-box;
-  z-index: 20;
-  right: 0;
-  bottom: 0;
-  color: #747474;
-  text-align: center;
-  font-size: 13px;
-  height: 80px;
-  background: #fff;
-  width: 80px;
-  border-radius: 0 0 20px 0;
-
-  span {
-    display: block;
-    padding: 0;
-    margin: 0;
-  }
-  span:first-child {
-    display: block;
-    font-size: 22px;
-    padding: 4px 0 0 0;
-    color: #513b34;
-  }
 `;
