@@ -18,7 +18,7 @@ jobs:
       run: yarn install --frozen-lockfile
     - name: Check if project build
       run: yarn build
-        env:
-          NEXT_PUBLIC_GRAPHQL_URL: ${{secrets.NEXT_PUBLIC_GRAPHQL_URL}}
+      env:
+        NEXT_PUBLIC_GRAPHQL_URL: ${{secrets.NEXT_PUBLIC_GRAPHQL_URL}}
     - name: Run unit tests
       run: yarn test
