@@ -14,26 +14,26 @@ export interface IPostProps {
   updateDate?: string;
 }
 
-const Post: React.FC<IPostProps> = ({
+export default function Post({
   publicationDate,
   title,
   slug,
   category,
   image,
-}) => (
-  <ItemWrapper className="col-12 col-md-6 col-lg-4">
-    <StyledLink href={`/${category.slug}/${slug}`}>
-      <a>
-        <div className="row h-100">
-          <PostContent
-            image={image}
-            title={title}
-            publicationDate={publicationDate}
-          />
-        </div>
-      </a>
-    </StyledLink>
-  </ItemWrapper>
-);
-
-export default Post;
+}: IPostProps) {
+  return (
+    <ItemWrapper className="col-12 col-md-6 col-lg-4">
+      <StyledLink href={`/${category.slug}/${slug}`}>
+        <a>
+          <div className="row h-100">
+            <PostContent
+              image={image}
+              title={title}
+              publicationDate={publicationDate}
+            />
+          </div>
+        </a>
+      </StyledLink>
+    </ItemWrapper>
+  );
+}

@@ -7,8 +7,6 @@ export interface ISectionTitleProps {
   className?: string;
 }
 
-const SectionTitle: React.FC<ISectionTitleProps> = ({ title, className }) => (
-  <SectionTitleStyled className={className}>{title}</SectionTitleStyled>
-);
-
-export default SectionTitle;
+export default function SectionTitle({ title, className }: ISectionTitleProps) {
+  return <SectionTitleStyled className={className}>{title}</SectionTitleStyled>;
+}
