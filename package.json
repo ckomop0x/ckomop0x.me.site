@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "Ckomop0x.me – personal blog by Pavel Klochkov",
   "author": "Pavel Klochkov, paul.klochkov@gmail.com",
   "license": "MIT",
@@ -27,7 +27,9 @@
     "*.{ts,tsx,js,jsx,json,csgis,md}": [
       "prettier --config ./.prettierrc --write"
     ],
-    "*.{ts,tsx}": ["eslint -c ./.eslintrc.js --fix"]
+    "*.{ts,tsx}": [
+      "eslint -c ./.eslintrc.js --fix"
+    ]
   },
   "dependencies": {
     "@apollo/client": "^3.5.5",

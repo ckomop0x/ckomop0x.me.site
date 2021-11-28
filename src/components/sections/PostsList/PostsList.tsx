@@ -1,6 +1,5 @@
 import { format } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
-import React from 'react';
 
 import { PostsListStyled, AllPostsLink } from './styles';
 
@@ -18,12 +17,12 @@ interface IPostsListProps {
   categories: IndexPageQuery_categories[];
 }
 
-const PostsList: React.FC<IPostsListProps> = ({
+export default function PostsList({
   blockTitle,
   blockSubtitle,
   items,
   categories,
-}): JSX.Element => {
+}: IPostsListProps): JSX.Element {
   const postsCategoryLink = items[0].category ?? '';
   const [postsCategory] = categories.filter(
     (category: IndexPageQuery_categories) =>
@@ -80,6 +79,4 @@ const PostsList: React.FC<IPostsListProps> = ({
       </div>
     </section>
   );
-};
-
-export default PostsList;
+}

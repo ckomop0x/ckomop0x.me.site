@@ -15,12 +15,12 @@ export interface IDetailItem {
   updated_at: Date;
 }
 
-const DetailItem: React.FC<IDetailItem> = ({
+export default function DetailItem({
   date,
   title,
   description,
   image,
-}) => {
+}: IDetailItem): JSX.Element {
   const postDate = format(new Date(date ?? new Date()), 'd MMMM yyyy', {
     locale: ruLocale,
   });
@@ -40,6 +40,4 @@ const DetailItem: React.FC<IDetailItem> = ({
       </div>
     </DetailItemWrapper>
   );
-};
-
-export default DetailItem;
+}

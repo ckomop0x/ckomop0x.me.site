@@ -9,11 +9,14 @@ import { Content, StyledTitleBlock, PoetryItemWrapper } from './styles';
 
 export interface IProjectProps {
   title: string;
-  poetryDate?: Date | undefined;
+  poetryDate?: any | Date | undefined;
   poetryItem: any;
 }
 
-const PoetryItem: React.FC<any> = ({ poetryItem, poetryDate }) => {
+export default function PoetryItem({
+  poetryItem,
+  poetryDate,
+}: IProjectProps): JSX.Element {
   const { image_url } = poetryItem;
   const parsedDate = parseDate(poetryDate, 'mm/dd/yyyy', new Date());
   const dateString = format(parsedDate, 'd MMMM yyyy', {
@@ -49,6 +52,4 @@ const PoetryItem: React.FC<any> = ({ poetryItem, poetryDate }) => {
       </div>
     </PoetryItemWrapper>
   );
-};
-
-export default PoetryItem;
+}
