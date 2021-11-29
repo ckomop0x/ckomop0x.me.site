@@ -1,7 +1,7 @@
 import MainPageLayout from 'components/layouts/MainPageLayout';
-import FeaturedPost from 'components/sections/FeaturedPost';
-import Hero from 'components/sections/Hero';
-import PostsList from 'components/sections/PostsList';
+import FeaturedPostSection from 'components/sections/FeaturedPostSection';
+import Hero from 'components/sections/HeroSection';
+import PostsList from 'components/sections/PostsListSection';
 import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
   IndexPageQuery_blogItems,
@@ -41,7 +41,7 @@ export default function IndexPage({
         backgroundImage={mainPageData.backgroundImage}
       />
       {featuredItem && (
-        <FeaturedPost post={featuredItem} categories={categories} />
+        <FeaturedPostSection post={featuredItem} categories={categories} />
       )}
       {blogItems?.length && (
         <PostsList
