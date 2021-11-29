@@ -1,4 +1,4 @@
-import { MainSection, Title, SubTitle } from './styles';
+import { HeroSectionWrapper, Title, SubTitle, HeroSectionText } from './styles';
 
 import Nav from 'components/shared/Nav';
 
@@ -8,18 +8,18 @@ export interface IHeroSectionProps {
   backgroundImage?: string;
 }
 
-export default function Hero({
+export default function HeroSection({
   title,
   subtitle,
   backgroundImage,
 }: IHeroSectionProps): JSX.Element {
   return (
-    <MainSection backgroundImage={backgroundImage}>
+    <HeroSectionWrapper backgroundImage={backgroundImage}>
       <Nav />
-      <div className="container main-section__text">
+      <HeroSectionText className="container">
         <Title>{title}</Title>
         <SubTitle>{subtitle}</SubTitle>
-      </div>
-    </MainSection>
+      </HeroSectionText>
+    </HeroSectionWrapper>
   );
 }

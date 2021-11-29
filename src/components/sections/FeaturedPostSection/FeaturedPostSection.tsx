@@ -14,16 +14,15 @@ import {
 } from 'queries/types/indexPageQuery';
 import formatDate from 'utils/dates/formatDate';
 
-interface IFeaturedPostProps {
+interface IFeaturedPostSectionProps {
   post: IndexPageQuery_featured;
   categories: IndexPageQuery_categories[];
 }
 
-export default function FeaturedPost({
-  post,
+export default function FeaturedPostSection({
+  post: { category, date, excerpt, image_url, slug, title, published },
   categories = [],
-}: IFeaturedPostProps): JSX.Element {
-  const { category, date, excerpt, image_url, slug, title, published } = post;
+}: IFeaturedPostSectionProps): JSX.Element {
   const publicationDate = formatDate(date);
   const [categoryData] = categories.filter(
     categoryItem => categoryItem.slug === category,
