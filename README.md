@@ -1,7 +1,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b694641f-f653-4ac4-91e1-ee0a804cf727/deploy-status)](https://app.netlify.com/sites/webtime-studio/deploys)
-![Version](https://img.shields.io/badge/version-3.1.8-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-4.0.7-blue.svg?cacheSeconds=2592000)
+[![codecov](https://codecov.io/gh/ckomop0x/ckomop0x.me.site.v2/branch/master/graph/badge.svg?token=ENO8W3HTIX)](https://codecov.io/gh/ckomop0x/ckomop0x.me.site.v2)
 
-# Pavel Klochkov @ckomop0x blog website
+# Ckomop0x.me blog website
 
 My personal blog website. It uses NextJS, Strapi, TypeScript, etc. and has many good optimisations under the hood.
 
@@ -11,21 +12,26 @@ My personal blog website. It uses NextJS, Strapi, TypeScript, etc. and has many 
 
 ### Backend
 
-I use Strapi as headless CMS. It's hosted on Heroku and connected to MongoDB on MongoDB atlas. It allows to have cloud-based infrastructure with a free-tier enough big for the personal blog.
+I use Strapi as headless CMS and gather data via GraphQL.
 
 ### Frontend
 
-For client-side part I use NextJS, which is hosted on Netlify. Each deploy it gets the newest data and even can be redeployed with updated data. It's possible with webhook trigger connected from Strapi to Netlify. For automatisation I've connected GitHub actions and strict deploy policy – only from master if test deploy and tests are ✅passing.
+For the client I use NextJS and Apollo, each deploy it gets the newest data via GraphqQL.
+TypeScript types are generated during deployment. They are based on schema and queries.
+
+For automatization, I use GitHub actions and Netlify deploy.
+Strict policies allows deploying to `prod` only from `master` and it's possible to push to
+`master` or merge PR only if tests are ✅passing and everything is `ok` with build/deploy
+to Netlify.
 
 ## Technologies
 
-- NextJS
+- NextJS (website)
 - TypeScript with automated types for data generation;
 - Styled Components
-- GraphQL
+- Apollo GraphQL
 - Prettier / Husky / Git-hooks
 - Eslint
-- Apollo
 - Lazy load images
 - Jest
 

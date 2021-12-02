@@ -1,3 +1,5 @@
+import { IItemPath } from 'utils/queries/getItemPath';
+
 export interface IGetStaticProps {
   params: {
     slug: string;
@@ -11,7 +13,7 @@ export interface IGetStaticPropsResponse {
 }
 
 export interface IGetStaticPathsResponse {
-  paths: string[] | string;
+  paths: IItemPath[] | string[] | string;
   fallback: boolean;
 }
 
