@@ -10,7 +10,7 @@ import {
   IGetStaticPropsResponse,
 } from 'types';
 import apolloClient from 'utils/api/apollo-client';
-import getItemPath from 'utils/queries/getItemPath';
+import getItemPath, { IItemPath } from 'utils/queries/getItemPath';
 
 const CATEGORY: ICategory = 'blog';
 
@@ -64,7 +64,7 @@ export async function getStaticPaths(): Promise<IGetStaticPathsResponse> {
       category: CATEGORY,
     },
   });
-  const paths = [...data.posts.map(getItemPath)];
+  const paths: IItemPath[] | string[] = [...data.posts.map(getItemPath)];
 
   return {
     paths,
