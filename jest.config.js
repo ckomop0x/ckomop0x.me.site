@@ -15,6 +15,7 @@ module.exports = {
   },
   testPathIgnorePatterns: ['node_modules', '.cache', 'index.ts'],
   transformIgnorePatterns: ['node_modules/(?!(gatsby)/)'],
+  testEnvironment: 'jsdom',
   globals: {
     'ts-jest': {
       tsconfig: 'tsconfig.test.json',
