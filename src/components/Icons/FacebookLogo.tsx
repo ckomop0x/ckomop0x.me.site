@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IIcon } from './types';
 
-const FacebookLogoIcon: React.FC<IIcon> = ({ title = 'WebUrlIcon' }) => (
+const FacebookLogoIcon: React.FC<IIcon> = ({ title = 'FacebookLogoIcon' }) => (
   <svg width={30} height={30} viewBox="0 0 30 30">
     <defs>
       <style>
