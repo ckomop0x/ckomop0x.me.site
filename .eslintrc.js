@@ -1,5 +1,11 @@
 module.exports = {
-  ignorePatterns: ['.eslintrc.js', 'next-env.d.ts'],
+  ignorePatterns: [
+    'jest-preprocess.js',
+    'jest.config.js',
+    '.eslintrc.js',
+    'loadershim.js',
+    'next-env.d.ts',
+  ],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
