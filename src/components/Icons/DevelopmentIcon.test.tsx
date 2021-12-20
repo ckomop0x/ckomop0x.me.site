@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react';
 
-import Development from './Development';
+import DevelopmentIcon from './DevelopmentIcon';
 
-describe('Development', () => {
+describe('DevelopmentIcon', () => {
   it('Should render default component', () => {
-    render(<Development />);
+    render(<DevelopmentIcon />);
     expect(screen.getByTitle('Development')).toBeTruthy();
   });
 
   it('Should render default component', () => {
-    render(<Development title="Custom Icon" titleId="Custom Icon ID" />);
+    render(<DevelopmentIcon title="Custom Icon" />);
     expect(screen.getByTitle('Custom Icon')).toBeTruthy();
   });
 });

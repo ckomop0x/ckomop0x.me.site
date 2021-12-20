@@ -1,11 +1,9 @@
-export default function Development({
+export default function DevelopmentIcon({
   title,
-  titleId = '',
   width = 800,
   height = 600,
 }: {
   title?: string;
-  titleId?: string;
   width?: number;
   height?: number;
 }) {
@@ -14,13 +12,9 @@ export default function Development({
       width={width}
       height={height}
       viewBox="0 0 800 600"
-      aria-labelledby={titleId}
+      aria-labelledby={title}
     >
-      {title ? (
-        <title id={titleId}>{title}</title>
-      ) : (
-        <title id={titleId}>Development</title>
-      )}
+      {title ? <title>{title}</title> : <title>Development</title>}
       <defs>
         <linearGradient
           x1="28.083%"
@@ -55,193 +49,85 @@ export default function Development({
           <stop stopColor="#4F008B" offset="59.36%" />
           <stop stopColor="#4C24B1" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="-.001%"
-          y1="50.016%"
-          x2="98.687%"
-          y2="50.016%"
-          id="prefix__e"
-        >
+        <linearGradient x1="-.001%" y1="50.016%" x2="98.687%" y2="50.016%">
           <stop stopColor="#B208AB" offset="0%" />
           <stop stopColor="#4E0D98" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="28.083%"
-          y1="10.427%"
-          x2="73.909%"
-          y2="82.99%"
-          id="prefix__f"
-        >
+        <linearGradient x1="28.083%" y1="10.427%" x2="73.909%" y2="82.99%">
           <stop stopColor="#270036" offset="0%" />
           <stop stopColor="#4F008B" offset="59.36%" />
           <stop stopColor="#4C24B1" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="28.083%"
-          y1="41.215%"
-          x2="73.909%"
-          y2="57.323%"
-          id="prefix__g"
-        >
+        <linearGradient x1="28.083%" y1="41.215%" x2="73.909%" y2="57.323%">
           <stop stopColor="#270036" offset="0%" />
           <stop stopColor="#4F008B" offset="59.36%" />
           <stop stopColor="#4C24B1" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".345%"
-          y1="49.997%"
-          x2="99.398%"
-          y2="49.997%"
-          id="prefix__h"
-        >
+        <linearGradient x1=".345%" y1="49.997%" x2="99.398%" y2="49.997%">
           <stop stopColor="#3F499C" offset="0%" />
           <stop stopColor="#C619BB" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".345%"
-          y1="49.997%"
-          x2="99.398%"
-          y2="49.997%"
-          id="prefix__i"
-        >
+        <linearGradient x1=".345%" y1="49.997%" x2="99.398%" y2="49.997%">
           <stop stopColor="#3F499C" offset="0%" />
           <stop stopColor="#C619BB" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".345%"
-          y1="49.997%"
-          x2="99.398%"
-          y2="49.997%"
-          id="prefix__j"
-        >
+        <linearGradient x1=".345%" y1="49.997%" x2="99.398%" y2="49.997%">
           <stop stopColor="#3F499C" offset="0%" />
           <stop stopColor="#C619BB" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".345%"
-          y1="49.997%"
-          x2="99.398%"
-          y2="49.997%"
-          id="prefix__k"
-        >
+        <linearGradient x1=".345%" y1="49.997%" x2="99.398%" y2="49.997%">
           <stop stopColor="#3F499C" offset="0%" />
           <stop stopColor="#C619BB" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".345%"
-          y1="49.997%"
-          x2="99.398%"
-          y2="49.997%"
-          id="prefix__l"
-        >
+        <linearGradient x1=".345%" y1="49.997%" x2="99.398%" y2="49.997%">
           <stop stopColor="#3F499C" offset="0%" />
           <stop stopColor="#C619BB" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".02%"
-          y1="50.01%"
-          x2="99.402%"
-          y2="50.01%"
-          id="prefix__m"
-        >
+        <linearGradient x1=".02%" y1="50.01%" x2="99.402%" y2="50.01%">
           <stop stopColor="#4D1AA6" offset="0%" />
           <stop stopColor="#E42D97" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".02%"
-          y1="50.01%"
-          x2="99.402%"
-          y2="50.01%"
-          id="prefix__n"
-        >
+        <linearGradient x1=".02%" y1="50.01%" x2="99.402%" y2="50.01%">
           <stop stopColor="#4D1AA6" offset="0%" />
           <stop stopColor="#E42D97" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".02%"
-          y1="50.01%"
-          x2="99.402%"
-          y2="50.01%"
-          id="prefix__o"
-        >
+        <linearGradient x1=".02%" y1="50.01%" x2="99.402%" y2="50.01%">
           <stop stopColor="#4D1AA6" offset="0%" />
           <stop stopColor="#E42D97" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".02%"
-          y1="50.01%"
-          x2="99.402%"
-          y2="50.01%"
-          id="prefix__p"
-        >
+        <linearGradient x1=".02%" y1="50.01%" x2="99.402%" y2="50.01%">
           <stop stopColor="#4D1AA6" offset="0%" />
           <stop stopColor="#E42D97" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".02%"
-          y1="50.01%"
-          x2="99.402%"
-          y2="50.01%"
-          id="prefix__q"
-        >
+        <linearGradient x1=".02%" y1="50.01%" x2="99.402%" y2="50.01%">
           <stop stopColor="#4D1AA6" offset="0%" />
           <stop stopColor="#E42D97" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="1.417%"
-          y1="50.005%"
-          x2="99.398%"
-          y2="50.005%"
-          id="prefix__r"
-        >
+        <linearGradient x1="1.417%" y1="50.005%" x2="99.398%" y2="50.005%">
           <stop stopColor="#B32AFF" offset="0%" />
           <stop stopColor="#4C24B1" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="1.417%"
-          y1="50.005%"
-          x2="99.398%"
-          y2="50.005%"
-          id="prefix__s"
-        >
+        <linearGradient x1="1.417%" y1="50.005%" x2="99.398%" y2="50.005%">
           <stop stopColor="#B32AFF" offset="0%" />
           <stop stopColor="#4C24B1" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="1.417%"
-          y1="50.005%"
-          x2="99.398%"
-          y2="50.005%"
-          id="prefix__t"
-        >
+        <linearGradient x1="1.417%" y1="50.005%" x2="99.398%" y2="50.005%">
           <stop stopColor="#B32AFF" offset="0%" />
           <stop stopColor="#4C24B1" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="1.417%"
-          y1="50.005%"
-          x2="99.398%"
-          y2="50.005%"
-          id="prefix__u"
-        >
+        <linearGradient x1="1.417%" y1="50.005%" x2="99.398%" y2="50.005%">
           <stop stopColor="#B32AFF" offset="0%" />
           <stop stopColor="#4C24B1" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="1.417%"
-          y1="50.005%"
-          x2="99.398%"
-          y2="50.005%"
-          id="prefix__v"
-        >
+        <linearGradient x1="1.417%" y1="50.005%" x2="99.398%" y2="50.005%">
           <stop stopColor="#B32AFF" offset="0%" />
           <stop stopColor="#4C24B1" offset="100%" />
         </linearGradient>
-        <linearGradient x1="0%" y1="50%" x2="100.001%" y2="50%" id="prefix__w">
+        <linearGradient x1="0%" y1="50%" x2="100.001%" y2="50%">
           <stop stopColor="#A1BAFF" offset="0%" />
           <stop stopColor="#FFF" offset="43.32%" />
         </linearGradient>
-        <linearGradient x1="0%" y1="50%" x2="99.999%" y2="50%" id="prefix__x">
+        <linearGradient x1="0%" y1="50%" x2="99.999%" y2="50%">
           <stop stopColor="#3133AB" offset="0%" />
           <stop stopColor="#2E38B0" offset="18.25%" />
           <stop stopColor="#2647BD" offset="40.69%" />
@@ -249,13 +135,7 @@ export default function Development({
           <stop stopColor="#0783F3" offset="91.37%" />
           <stop stopColor="#0090FF" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="49.994%"
-          y1="2.24%"
-          x2="49.994%"
-          y2="122.475%"
-          id="prefix__y"
-        >
+        <linearGradient x1="49.994%" y1="2.24%" x2="49.994%" y2="122.475%">
           <stop stopColor="#311341" offset="0%" />
           <stop stopColor="#3113C2" offset="22.99%" />
           <stop stopColor="#2F18C5" offset="34.79%" />
@@ -265,13 +145,7 @@ export default function Development({
           <stop stopColor="#008FFF" offset="99.78%" />
           <stop stopColor="#0090FF" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="0%"
-          y1="50.001%"
-          x2="100.002%"
-          y2="50.001%"
-          id="prefix__z"
-        >
+        <linearGradient x1="0%" y1="50.001%" x2="100.002%" y2="50.001%">
           <stop stopColor="#7633FF" offset="0%" />
           <stop stopColor="#7137FF" offset="15.85%" />
           <stop stopColor="#6243FF" offset="35.35%" />
@@ -279,56 +153,26 @@ export default function Development({
           <stop stopColor="#2672FF" offset="79.37%" />
           <stop stopColor="#0090FF" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".004%"
-          y1="50.003%"
-          x2="100.002%"
-          y2="50.003%"
-          id="prefix__A"
-        >
+        <linearGradient x1=".004%" y1="50.003%" x2="100.002%" y2="50.003%">
           <stop stopColor="#A1BAFF" offset="0%" />
           <stop stopColor="#FFF" offset="43.32%" />
         </linearGradient>
-        <linearGradient
-          x1="50.005%"
-          y1="5.222%"
-          x2="50.005%"
-          y2="92.197%"
-          id="prefix__B"
-        >
+        <linearGradient x1="50.005%" y1="5.222%" x2="50.005%" y2="92.197%">
           <stop stopColor="#A1BAFF" offset="0%" />
           <stop stopColor="#FFF" offset="43.32%" />
         </linearGradient>
-        <linearGradient
-          x1="49.952%"
-          y1=".201%"
-          x2="50.051%"
-          y2="102.771%"
-          id="prefix__C"
-        >
+        <linearGradient x1="49.952%" y1=".201%" x2="50.051%" y2="102.771%">
           <stop stopColor="#A1BAFF" offset="0%" />
           <stop stopColor="#FFF" offset="43.32%" />
         </linearGradient>
-        <linearGradient
-          x1="59.425%"
-          y1="3.105%"
-          x2="39.709%"
-          y2="101.123%"
-          id="prefix__D"
-        >
+        <linearGradient x1="59.425%" y1="3.105%" x2="39.709%" y2="101.123%">
           <stop stopColor="#88CFDA" offset="0%" />
           <stop stopColor="#89CFD9" offset=".834%" />
           <stop stopColor="#C8D9BB" offset="47.84%" />
           <stop stopColor="#F0DFA7" offset="82.18%" />
           <stop stopColor="#FFE1A0" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1=".018%"
-          y1="50.009%"
-          x2="100.007%"
-          y2="50.009%"
-          id="prefix__E"
-        >
+        <linearGradient x1=".018%" y1="50.009%" x2="100.007%" y2="50.009%">
           <stop stopColor="#7633FF" offset="0%" />
           <stop stopColor="#7137FF" offset="15.85%" />
           <stop stopColor="#6243FF" offset="35.35%" />
@@ -336,13 +180,7 @@ export default function Development({
           <stop stopColor="#2672FF" offset="79.37%" />
           <stop stopColor="#0090FF" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="-.003%"
-          y1="49.977%"
-          x2="99.985%"
-          y2="49.977%"
-          id="prefix__F"
-        >
+        <linearGradient x1="-.003%" y1="49.977%" x2="99.985%" y2="49.977%">
           <stop stopColor="#7633FF" offset="0%" />
           <stop stopColor="#7137FF" offset="15.85%" />
           <stop stopColor="#6243FF" offset="35.35%" />
@@ -350,23 +188,11 @@ export default function Development({
           <stop stopColor="#2672FF" offset="79.37%" />
           <stop stopColor="#0090FF" offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="50.003%"
-          y1="98.274%"
-          x2="50.003%"
-          y2="2.125%"
-          id="prefix__G"
-        >
+        <linearGradient x1="50.003%" y1="98.274%" x2="50.003%" y2="2.125%">
           <stop stopColor="#9311FF" offset="0%" />
           <stop stopColor="#330050" stopOpacity={0} offset="100%" />
         </linearGradient>
-        <linearGradient
-          x1="50.003%"
-          y1="98.274%"
-          x2="50.003%"
-          y2="2.125%"
-          id="prefix__H"
-        >
+        <linearGradient x1="50.003%" y1="98.274%" x2="50.003%" y2="2.125%">
           <stop stopColor="#9311FF" offset="0%" />
           <stop stopColor="#330050" stopOpacity={0} offset="100%" />
         </linearGradient>

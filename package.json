@@ -1,11 +1,12 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "4.0.8",
+  "version": "4.0.9",
   "description": "Ckomop0x.me – personal blog by Pavel Klochkov",
   "author": "Pavel Klochkov, paul.klochkov@gmail.com",
   "license": "MIT",
   "scripts": {
     "predev": "yarn gen",
+    "start:server": "cd ../ckomop0x.me.admin.site && yarn dev",
     "dev": "next dev -p 8000",
     "build": "next build",
     "start": "next start",
@@ -47,8 +48,8 @@
     "@types/jest": "^27.0.3",
     "@types/react-test-renderer": "^17.0.1",
     "@types/styled-components": "^5.1.18",
-    "@typescript-eslint/eslint-plugin": "^5.7.0",
-    "@typescript-eslint/parser": "^5.7.0",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
     "apollo": "^2.33.9",
     "babel-plugin-styled-components": "^2.0.2",
     "bootstrap": "^4.6.1",
@@ -70,6 +71,8 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.1.0",
+    "@netlify/plugin-sitemap": "^0.8.1",
     "babel-jest": "^27.4.5",
     "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
@@ -78,7 +81,7 @@
     "dotenv-cli": "^4.1.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
-    "eslint-plugin-storybook": "^0.5.3",
+    "eslint-plugin-storybook": "^0.5.5",
     "husky": "^7.0.4",
     "jest": "^27.4.5",
     "lint-staged": "^12.1.3",

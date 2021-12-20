@@ -1,13 +1,9 @@
 [build]
 command = "yarn build"
-publish = "out"
+publish = ".next"
 
 [[plugins]]
 package = "@netlify/plugin-nextjs"
 
 [[plugins]]
 package = "@netlify/plugin-sitemap"
-
-[context.production.environment]
-NEXT_SERVERLESS = "true"
-NODE_ENV = "production"
