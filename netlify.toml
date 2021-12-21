@@ -7,3 +7,6 @@ package = "@netlify/plugin-nextjs"
 
 [[plugins]]
 package = "@netlify/plugin-sitemap"
+
+[[plugins]]
+package = "@netlify/plugin-lighthouse"

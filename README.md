@@ -1,5 +1,4 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b694641f-f653-4ac4-91e1-ee0a804cf727/deploy-status)](https://app.netlify.com/sites/webtime-studio/deploys)
-![Version](https://img.shields.io/badge/version-4.0.7-blue.svg?cacheSeconds=2592000)
 [![codecov](https://codecov.io/gh/ckomop0x/ckomop0x.me.site.v2/branch/master/graph/badge.svg?token=ENO8W3HTIX)](https://codecov.io/gh/ckomop0x/ckomop0x.me.site.v2)
 
 # Ckomop0x.me blog website
