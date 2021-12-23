@@ -14,7 +14,7 @@ export default function Logo({
   title,
 }: LogoProps): JSX.Element {
   return (
-    <Link href={linkSrc}>
+    <Link href={linkSrc} passHref>
       <LogoWrapper>
         <LogoImage src={imgSrc} alt={title} width={42} height={42} />
         <LogoTitle>{title}</LogoTitle>

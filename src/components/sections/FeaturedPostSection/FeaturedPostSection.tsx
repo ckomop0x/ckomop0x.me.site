@@ -51,7 +51,7 @@ export default function FeaturedPostSection({
                     {excerpt && category && (
                       <div className="post-text">
                         {excerptText}
-                        <Link href={`/${categoryData?.slug}/${slug}`}>
+                        <Link href={`/${categoryData?.slug}/${slug}`} passHref>
                           <LinkStyled>Читать далее...</LinkStyled>
                         </Link>
                       </div>

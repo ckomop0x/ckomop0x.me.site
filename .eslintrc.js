@@ -12,6 +12,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:@next/next/recommended',
     'plugin:storybook/recommended',
+    'plugin:jsx-a11y/recommended',
   ],
   env: {
     browser: true,
