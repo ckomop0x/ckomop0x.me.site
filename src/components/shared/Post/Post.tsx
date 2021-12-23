@@ -23,8 +23,8 @@ export default function Post({
 }: IPostProps) {
   return (
     <ItemWrapper className="col-12 col-md-6 col-lg-4">
-      <StyledLink href={`/${category.slug}/${slug}`}>
-        <a>
+      <StyledLink href={`/${category.slug}/${slug}`} passHref>
+        <a href={`/${category.slug}/${slug}`}>
           <div className="row h-100">
             <PostContent
               image={image}

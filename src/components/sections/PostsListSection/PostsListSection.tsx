@@ -1,4 +1,8 @@
-import { AllPostsLink, PostsListSectionWrapper } from './styles';
+import {
+  AllPostsLink,
+  AllPostsLinkButton,
+  PostsListSectionWrapper,
+} from './styles';
 
 import PostsList from 'components/shared/PostsList';
 import {
@@ -34,7 +38,9 @@ export default function PostsListSection({
         <div className="text-center">
           <PostsList posts={items} categories={categories} />
           <AllPostsLink href={postsCategoryLink}>
-            <a>Перейти в {postsCategory.title}</a>
+            <AllPostsLinkButton>
+              Перейти в {postsCategory.title}
+            </AllPostsLinkButton>
           </AllPostsLink>
         </div>
       </div>

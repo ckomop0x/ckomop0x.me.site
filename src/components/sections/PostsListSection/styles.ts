@@ -12,6 +12,15 @@ export const AllPostsLink = styled(Link)`
   transition: all 0.5s ease;
 `;
 
+export const AllPostsLinkButton = styled.button`
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 2px 3px #0000001c;
+  border: 0;
+  background: #0063cc;
+  padding: 10px 20px;
+  color: white;
+`;
+
 export const PostsListSectionWrapper = styled.section`
   padding: 0 0 80px;
 `;

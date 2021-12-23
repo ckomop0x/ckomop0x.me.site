@@ -15,7 +15,7 @@ export default function MenuItem({
 }: MenuItemProps): JSX.Element {
   return (
     <MenuItemWrapper>
-      <Link href={linkSrc}>
+      <Link href={linkSrc} passHref>
         <LinkStyled>{title}</LinkStyled>
       </Link>
     </MenuItemWrapper>
