@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 
-import { IconProps } from 'components/icons/types';
+import { IconProps } from './types';
 
 const Development: FC<IconProps> = ({
   title,
