@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { themePalette } from 'styles/colors';
 
 export const DetailItemWrapper = styled.div<{ image: string | null }>`
-  background-image: url(${({ image }) => image && `${image}?tr=h-960`});
+  background-image: url(${({ image }) => `${image}?tr=h-960`});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -22,11 +22,11 @@ export const DetailItemWrapper = styled.div<{ image: string | null }>`
   }
 
   @media (min-width: 700px) {
-    background-image: url(${({ image }) => image && `${image}?tr=w-900`});
+    background-image: url(${({ image }) => `${image}?tr=w-900`});
   }
 
   @media (min-width: 1200px) {
-    background-image: url(${({ image }) => image && `${image}?tr=w-2000`});
+    background-image: url(${({ image }) => `${image}?tr=w-2000`});
   }
 `;
 
@@ -125,7 +125,7 @@ interface IPoetryItemImage {
 }
 
 export const PoetryItemImage = styled.div<IPoetryItemImage>`
-  background-image: url(${({ image }) => image && `${image}?tr=h-960`});
+  background-image: url(${({ image }) => `${image}?tr=h-960`});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -142,12 +142,12 @@ export const PoetryItemImage = styled.div<IPoetryItemImage>`
   }
 
   @media (min-width: 700px) {
-    background-image: url(${({ image }) => image && `${image}?tr=w-900`});
+    background-image: url(${({ image }) => `${image}?tr=w-900`});
     height: 320px;
   }
 
   @media (min-width: 1200px) {
-    background-image: url(${({ image }) => image && `${image}?tr=w-2000`});
+    background-image: url(${({ image }) => `${image}?tr=w-2000`});
     height: 480px;
   }
 `;
