@@ -2,11 +2,13 @@ import React from 'react';
 
 import { SectionTitleStyled } from './styles';
 
-export interface ISectionTitleProps {
+export interface SectionTitleProps {
   title: string;
   className?: string;
 }
 
-export default function SectionTitle({ title, className }: ISectionTitleProps) {
-  return <SectionTitleStyled className={className}>{title}</SectionTitleStyled>;
-}
+const SectionTitle = ({ title, className }: SectionTitleProps) => (
+  <SectionTitleStyled className={className}>{title}</SectionTitleStyled>
+);
+
+export default SectionTitle;

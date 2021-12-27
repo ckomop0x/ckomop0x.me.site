@@ -33,7 +33,6 @@ export default function BlogPostPage({
       <DetailItemComponent
         title={title}
         date={date}
-        updated_at={updated_at}
         description={description}
         image={image_url}
       />

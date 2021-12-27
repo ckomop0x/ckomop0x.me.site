@@ -18,12 +18,12 @@ interface IPostsListSectionProps {
   categories: IndexPageQuery_categories[];
 }
 
-export default function PostsListSection({
+const PostsListSection = ({
   blockTitle,
   blockSubtitle,
   items,
   categories,
-}: IPostsListSectionProps): JSX.Element {
+}: IPostsListSectionProps): JSX.Element => {
   const postsCategoryLink = items[0].category ?? '';
   const [postsCategory] = categories.filter(
     (category: IndexPageQuery_categories) =>
@@ -46,4 +46,6 @@ export default function PostsListSection({
       </div>
     </PostsListSectionWrapper>
   );
-}
+};
+
+export default PostsListSection;

@@ -5,7 +5,7 @@ import FacebookLogo from './FacebookLogo';
 describe('FacebookLogo', () => {
   it('Should render default component', () => {
     render(<FacebookLogo />);
-    expect(screen.getByTitle('FacebookLogoIcon')).toBeTruthy();
+    expect(screen.getByTitle('FacebookLogo')).toBeTruthy();
   });
 
   it('Should render default component', () => {

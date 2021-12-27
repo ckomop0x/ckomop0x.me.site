@@ -1,13 +1,6 @@
-import parse from 'html-react-parser';
-import Link from 'next/link';
+import { FeaturedPostWrapper, ItemImage } from './styles';
 
-import {
-  ContentWrapper,
-  FeaturedPostWrapper,
-  LinkStyled,
-  ItemImage,
-} from './styles';
-
+import FeaturedPostContent from 'components/sections/FeaturedPostSection/FeaturedPostContent';
 import {
   IndexPageQuery_categories,
   IndexPageQuery_featured,
@@ -19,17 +12,11 @@ interface IFeaturedPostSectionProps {
   categories: IndexPageQuery_categories[];
 }
 
-export default function FeaturedPostSection({
+const FeaturedPostSection = ({
   post: { category, date, excerpt, image_url, slug, title, published },
   categories = [],
-}: IFeaturedPostSectionProps): JSX.Element {
+}: IFeaturedPostSectionProps): JSX.Element => {
   const publicationDate = formatDate(date);
-  const [categoryData] = categories.filter(
-    categoryItem => categoryItem.slug === category,
-  );
-  const excerptText = excerpt
-    ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
-    : '';
 
   return (
     <>
@@ -45,18 +32,14 @@ export default function FeaturedPostSection({
                   >
                     <div className="item-image" />
                   </ItemImage>
-                  <ContentWrapper className="col-12 col-sm-12 col-md-5">
-                    <h3 className="title">{title}</h3>
-                    <p className="post-date">Опубликовано: {publicationDate}</p>
-                    {excerpt && category && (
-                      <div className="post-text">
-                        {excerptText}
-                        <Link href={`/${categoryData?.slug}/${slug}`} passHref>
-                          <LinkStyled>Читать далее...</LinkStyled>
-                        </Link>
-                      </div>
-                    )}
-                  </ContentWrapper>
+                  <FeaturedPostContent
+                    title={title ?? ''}
+                    publicationDate={publicationDate}
+                    excerpt={excerpt}
+                    category={category}
+                    categories={categories}
+                    slug={slug}
+                  />
                 </div>
               </article>
             </div>
@@ -65,4 +48,6 @@ export default function FeaturedPostSection({
       )}
     </>
   );
-}
+};
+
+export default FeaturedPostSection;

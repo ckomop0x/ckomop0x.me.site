@@ -1,10 +1,12 @@
+import { FC } from 'react';
+
 import BaseLayout from '../../shared/layouts/BaseLayout';
 import { IBaseLayoutProps } from '../../shared/layouts/BaseLayout/BaseLayout';
 
 type IMainPageLayoutProps = IBaseLayoutProps;
 
-export default function MainPageLayout({
+const MainPageLayout: FC<IMainPageLayoutProps> = ({
   children,
-}: IMainPageLayoutProps): JSX.Element {
-  return <BaseLayout>{children}</BaseLayout>;
-}
+}): JSX.Element => <BaseLayout>{children}</BaseLayout>;
+
+export default MainPageLayout;

@@ -1,6 +1,5 @@
-export interface IIcon {
+export interface IconProps {
   title?: string;
-  titleId?: string;
   className?: string;
   width?: string;
   height?: string;
