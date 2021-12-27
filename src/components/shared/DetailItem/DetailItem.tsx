@@ -7,12 +7,11 @@ import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import { Content, DetailItemWrapper } from './styles';
 
-export interface IDetailItem {
+export interface DetailItemProps {
   title: string | null;
   description: string;
   image: string | null;
   date: Date;
-  updated_at: Date;
 }
 
 export default function DetailItem({
@@ -20,8 +19,8 @@ export default function DetailItem({
   title,
   description,
   image,
-}: IDetailItem): JSX.Element {
-  const postDate = format(new Date(date ?? new Date()), 'd MMMM yyyy', {
+}: DetailItemProps): JSX.Element {
+  const postDate = format(new Date(date), 'd MMMM yyyy', {
     locale: ruLocale,
   });
 

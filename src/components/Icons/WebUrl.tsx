@@ -1,10 +1,9 @@
-import React from 'react';
+import { FC, memo } from 'react';
 
-import { IIcon } from './types';
+import { IconProps } from './types';
 
-const WebUrlIcon: React.FC<IIcon> = ({
-  title = 'WebUrlIcon',
-  titleId = 'WebUrlIcon',
+const WebUrl: FC<IconProps> = ({
+  title = 'WebUrl',
   width = 48,
   height = 48,
 }) => (
@@ -19,7 +18,7 @@ const WebUrlIcon: React.FC<IIcon> = ({
     enableBackground="new 0 0 48 48"
     className="icon-www hidden-xs"
   >
-    <title id={titleId}>{title}</title>
+    <title>{title}</title>
     <g>
       <path
         fill="#2196F3"
@@ -60,4 +59,4 @@ const WebUrlIcon: React.FC<IIcon> = ({
   </svg>
 );
 
-export default React.memo(WebUrlIcon);
+export default memo(WebUrl);

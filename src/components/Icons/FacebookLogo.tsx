@@ -1,9 +1,13 @@
-import React from 'react';
+import { FC, memo } from 'react';
 
-import { IIcon } from './types';
+import { IconProps } from './types';
 
-const FacebookLogoIcon: React.FC<IIcon> = ({ title = 'FacebookLogoIcon' }) => (
-  <svg width={30} height={30} viewBox="0 0 30 30">
+const FacebookLogo: FC<IconProps> = ({
+  title = 'FacebookLogoIcon',
+  width = 30,
+  height = 30,
+}): JSX.Element => (
+  <svg width={width} height={height} viewBox="0 0 30 30">
     <defs>
       <style>
         {`
@@ -25,4 +29,4 @@ const FacebookLogoIcon: React.FC<IIcon> = ({ title = 'FacebookLogoIcon' }) => (
   </svg>
 );
 
-export default React.memo(FacebookLogoIcon);
+export default memo(FacebookLogo);
