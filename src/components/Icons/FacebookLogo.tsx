@@ -3,7 +3,7 @@ import { FC, memo } from 'react';
 import { IconProps } from './types';
 
 const FacebookLogo: FC<IconProps> = ({
-  title = 'FacebookLogoIcon',
+  title = 'FacebookLogo',
   width = 30,
   height = 30,
 }): JSX.Element => (
