@@ -38,6 +38,7 @@ export const PostDateWrapper = styled.div`
     padding: 0;
     margin: 0;
   }
+
   span:first-child {
     display: block;
     font-size: 22px;

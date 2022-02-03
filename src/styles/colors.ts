@@ -24,7 +24,7 @@ export const themePalette = {
   primaryTitle: '#513b34',
   primaryText: '#5d443c',
 
-  // BackgroudColor
+  // BackgroundColor
   primaryBackground: '#f0ebde',
 
   // List border Color

@@ -17,7 +17,7 @@ const CATEGORY: ICategory = 'blog';
 export default function BlogPostPage({
   detailedPost,
 }: IDetailPageProps): JSX.Element {
-  const { content, image_url, slug, title, date, updated_at } = detailedPost;
+  const { content, image_url, slug, title, date } = detailedPost;
   const socialImage = `${image_url}?tr=w-1080,h-280,fo-top`;
   const ogUrl = `https://ckomop0x.me/${CATEGORY}/${slug}/`;
   const description = (content?.[0]?.rich_text as string) || '';
