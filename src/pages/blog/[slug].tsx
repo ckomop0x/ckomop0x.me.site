@@ -1,5 +1,5 @@
-import DetailItemComponent from 'components/shared/DetailItem';
-import InnerPageLayout from 'components/shared/layouts/InnerPageLayout';
+import DetailItemComponent from 'components/UI/DetailItem';
+import InnerPageLayout from 'components/UI/layouts/InnerPageLayout';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {

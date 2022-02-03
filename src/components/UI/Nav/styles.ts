@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import { LogoTitle, LogoWrapper } from 'components/shared/Nav/Logo/Logo';
-import { MenuItemWrapper } from 'components/shared/Nav/MenuItem/MenuItem';
-import { INavProps } from 'components/shared/Nav/Nav';
+import { LogoTitle, LogoWrapper } from 'components/UI/Nav/Logo/Logo';
+import { MenuItemWrapper } from 'components/UI/Nav/MenuItem/MenuItem';
+import { INavProps } from 'components/UI/Nav/Nav';
 import { themePalette } from 'styles/colors';
 
 export const LinkStyled = styled.a`

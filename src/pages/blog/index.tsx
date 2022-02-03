@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import ItemsList from 'components/shared/ItemsList';
-import InnerPageLayout from 'components/shared/layouts/InnerPageLayout';
+import ItemsList from 'components/UI/ItemsList';
+import InnerPageLayout from 'components/UI/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import {
   CategoryPageQuery_categories,

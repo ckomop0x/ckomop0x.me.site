@@ -1,4 +1,4 @@
-import Post from 'components/shared/Post';
+import Post from 'components/UI/Post';
 import formatDate from 'utils/dates/formatDate';
 
 interface IItemsList {

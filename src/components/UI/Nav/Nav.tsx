@@ -1,7 +1,7 @@
 import { Navbar } from './styles';
 
-import Logo from 'components/shared/Nav/Logo';
-import TopMenu from 'components/shared/Nav/TopMenu';
+import Logo from 'components/UI/Nav/Logo';
+import TopMenu from 'components/UI/Nav/TopMenu';
 
 export interface INavProps {
   isInner?: boolean;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { PoetryItemImage } from 'components/shared/DetailItem/styles';
+import { PoetryItemImage } from 'components/UI/DetailItem/styles';
 import { TitleBlock } from 'styles/Typography';
 import { themePalette } from 'styles/colors';
 

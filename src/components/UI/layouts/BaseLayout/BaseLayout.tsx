@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import Footer from 'components/shared/Footer';
-import SEO from 'components/shared/SEO';
-import { ISEOProps } from 'components/shared/SEO/SEO';
+import Footer from 'components/UI/Footer';
+import SEO from 'components/UI/SEO';
+import { ISEOProps } from 'components/UI/SEO/SEO';
 import { GlobalStyle } from 'styles/GlobalStyle';
 
 export interface IBaseLayoutProps extends ISEOProps {

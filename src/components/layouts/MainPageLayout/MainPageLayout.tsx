@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import BaseLayout from '../../shared/layouts/BaseLayout';
-import { IBaseLayoutProps } from '../../shared/layouts/BaseLayout/BaseLayout';
+import BaseLayout from '../../UI/layouts/BaseLayout';
+import { IBaseLayoutProps } from '../../UI/layouts/BaseLayout/BaseLayout';
 
 type IMainPageLayoutProps = IBaseLayoutProps;
 
