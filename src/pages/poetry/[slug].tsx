@@ -1,5 +1,5 @@
-import DetailItemComponent from 'components/shared/DetailItem';
-import InnerPageLayout from 'components/shared/layouts/InnerPageLayout';
+import DetailItemComponent from 'components/UI/DetailItem';
+import InnerPageLayout from 'components/UI/layouts/InnerPageLayout';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {
@@ -17,7 +17,7 @@ const CATEGORY: ICategory = 'poetry';
 export default function DetailItem({
   detailedPost,
 }: IDetailPageProps): JSX.Element {
-  const { content, date, image_url, slug, title, updated_at } = detailedPost;
+  const { content, date, image_url, slug, title } = detailedPost;
   const socialImage = `${image_url}?tr=w-1080,h-280,fo-top`;
   const ogUrl = `${CATEGORY}/${slug}`;
   const description = (content?.[0]?.rich_text as string) || '';

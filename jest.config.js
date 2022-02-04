@@ -4,7 +4,7 @@ module.exports = {
     '^.+\\.(js|jsx)$': '<rootDir>/jest-preprocess.js',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  // testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+  testMatch: ['**/src/**/?(*.)+(spec|test).[jt]s?(x)'],
   moduleNameMapper: {
     '^components/(.*)': '<rootDir>/src/components/$1',
     '^config/(.*)': '<rootDir>/src/config/$1',

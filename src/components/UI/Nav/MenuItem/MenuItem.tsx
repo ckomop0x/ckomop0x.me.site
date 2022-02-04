@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-import { LinkStyled } from 'components/shared/Nav/styles';
+import { LinkStyled } from 'components/UI/Nav/styles';
 
 interface MenuItemProps {
   linkSrc: string;

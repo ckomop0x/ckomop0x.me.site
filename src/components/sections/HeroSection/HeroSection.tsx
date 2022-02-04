@@ -1,6 +1,6 @@
 import { HeroSectionWrapper, Title, SubTitle, HeroSectionText } from './styles';
 
-import Nav from 'components/shared/Nav';
+import Nav from 'components/UI/Nav';
 
 export interface HeroSectionProps {
   title: string;

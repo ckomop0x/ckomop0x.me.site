@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import DetailItem, { DetailItemProps } from './DetailItem';
+import { DetailItemProps } from './DetailItem';
+
+import DetailItem from './index';
 
 describe('DetailItem', () => {
   const date = new Date('2021-12-12');

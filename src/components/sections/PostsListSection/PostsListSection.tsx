@@ -4,7 +4,7 @@ import {
   PostsListSectionWrapper,
 } from './styles';
 
-import PostsList from 'components/shared/PostsList';
+import PostsList from 'components/UI/PostsList';
 import {
   IndexPageQuery_categories,
   IndexPageQuery_poetryItems,

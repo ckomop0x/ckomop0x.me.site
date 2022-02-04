@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import PostDate from 'components/shared/Post/PostDate';
-import { PostTitle } from 'components/shared/Post/styles';
+import PostDate from 'components/UI/Post/PostDate';
+import { PostTitle } from 'components/UI/Post/styles';
 import getSrcSet from 'utils/image/getSrcSet';
 
 interface PostContentProps {

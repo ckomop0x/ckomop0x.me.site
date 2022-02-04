@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import Nav from 'components/shared/Nav';
+import Nav from 'components/UI/Nav';
 import BaseLayout, {
   IBaseLayoutProps,
-} from 'components/shared/layouts/BaseLayout/BaseLayout';
+} from 'components/UI/layouts/BaseLayout/BaseLayout';
 
 export type IInnerPageLayoutProps = IBaseLayoutProps;
 

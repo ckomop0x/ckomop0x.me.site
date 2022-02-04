@@ -1,5 +1,5 @@
-import ItemsList from 'components/shared/ItemsList';
-import InnerPageLayout from 'components/shared/layouts/InnerPageLayout';
+import ItemsList from 'components/UI/ItemsList';
+import InnerPageLayout from 'components/UI/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import {
   CategoryPageQuery_categories,
@@ -13,6 +13,7 @@ const CATEGORY: ICategory = 'poetry';
 const TITLE = 'Стихи и песни';
 const SUB_TITLE =
   'Стихи и песни написанные в разное время, в разных городах и странах';
+const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
 
 export default function PoetryPage({
   items,
@@ -31,7 +32,7 @@ export default function PoetryPage({
         {items ? (
           <ItemsList items={items} categories={categories} />
         ) : (
-          'Здесь ещё ничего нет или что-то пошло не так. 😎'
+          EMPTY_PAGE_MESSAGE
         )}
       </div>
     </InnerPageLayout>

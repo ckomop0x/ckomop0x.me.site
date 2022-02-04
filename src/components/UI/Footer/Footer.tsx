@@ -7,13 +7,11 @@ import { themePalette } from 'styles/colors';
 
 export default function Footer(): JSX.Element {
   const currentYear = new Date().getFullYear();
+  const footerText = `© ${currentYear} ${baseSettings.projectTitle}. v${projectConfig.version}`;
 
   return (
     <FooterWrapper>
-      <FooterCopyright>
-        &copy; 2019-{currentYear} {baseSettings.projectTitle}. v
-        {projectConfig.version}
-      </FooterCopyright>
+      <FooterCopyright>{footerText}</FooterCopyright>
     </FooterWrapper>
   );
 }

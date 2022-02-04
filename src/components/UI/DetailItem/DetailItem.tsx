@@ -1,11 +1,10 @@
-import { format } from 'date-fns';
-import ruLocale from 'date-fns/locale/ru';
 import parse from 'html-react-parser';
-import React from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import { Content, DetailItemWrapper } from './styles';
+
+import formatDate from 'utils/dates/formatDate';
 
 export interface DetailItemProps {
   title: string | null;
@@ -20,9 +19,7 @@ export default function DetailItem({
   description,
   image,
 }: DetailItemProps): JSX.Element {
-  const postDate = format(new Date(date), 'd MMMM yyyy', {
-    locale: ruLocale,
-  });
+  const postDate = formatDate(date);
 
   return (
     <DetailItemWrapper className="lazyload" image={image}>

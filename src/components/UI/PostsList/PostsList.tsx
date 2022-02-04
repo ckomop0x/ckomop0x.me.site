@@ -5,7 +5,7 @@ import { ENUM_POST_CATEGORY } from '../../../../types/globalTypes';
 
 import { PostsListWrapper } from './styles';
 
-import Post from 'components/shared/Post';
+import Post from 'components/UI/Post';
 import {
   IndexPageQuery_categories,
   IndexPageQuery_poetryItems,
