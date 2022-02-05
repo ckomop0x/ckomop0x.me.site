@@ -44,48 +44,6 @@ export const ItemImage = styled.div`
     `}
 `;
 
-export const ContentWrapper = styled.div`
-  position: relative;
-  padding: 0;
-  margin: 16px 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  background-color: whitesmoke;
-
-  .title {
-    font-size: 46px;
-    text-align: center;
-    padding: 32px 0 0;
-    margin-bottom: 1rem;
-    font-weight: 500;
-    line-height: 1;
-    margin-top: 0;
-  }
-
-  .post-date {
-    color: #747474;
-    text-align: center;
-    font-size: 12px;
-  }
-
-  .post-text {
-    text-align: center;
-    line-height: 1.5;
-    padding: 16px 0;
-    font-family: Roboto, sans-serif;
-    font-weight: 400;
-    color: #777;
-    font-size: 18px;
-
-    p {
-      color: #312420;
-    }
-  }
-`;
-
 export const LinkStyled = styled.a`
   background-color: hsl(211, 100%, 40%);
   color: #fff;
