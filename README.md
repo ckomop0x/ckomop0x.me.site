@@ -3,7 +3,7 @@
 
 # Ckomop0x.me blog website
 
-My personal blog website. It uses NextJS, Strapi, TypeScript, etc. and has many good optimisations under the hood.
+Personal blog website. It uses NextJS, Strapi, TypeScript, GraphQL etc. and has many good optimisations under the hood.
 
 **[https://ckomop0x.me](https://ckomop0x.me)**
 
