@@ -40,7 +40,7 @@ export default function IndexPage({
         subtitle={mainPageData.subtitle}
         backgroundImage={mainPageData.backgroundImage}
       />
-      {featuredItem && (
+      {featuredItem?.published && (
         <FeaturedPostSection post={featuredItem} categories={categories} />
       )}
       {blogItems?.length && (
