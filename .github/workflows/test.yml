@@ -17,11 +17,6 @@ jobs:
         cache: 'yarn'
     - name: Install dependencies
       run: yarn install --frozen-lockfile
-    - name: Check if project builds
-      run: yarn build
-      env:
-        HOST: ${{ secrets.HOST }}
-        NEXT_PUBLIC_GRAPHQL_URL: ${{secrets.NEXT_PUBLIC_GRAPHQL_URL}}
     - name: Run unit tests
       run: yarn test -- --coverage
     - name: Upload coverage to Codecov
