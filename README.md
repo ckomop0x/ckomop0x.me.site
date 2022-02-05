@@ -3,7 +3,7 @@
 
 # Ckomop0x.me blog website
 
-Personal blog website. It uses NextJS, Strapi, TypeScript, GraphQL etc. and has many good optimisations under the hood.
+Personal blog website. It uses NextJS, Strapi, TypeScript, GraphQL and other technologies. It has many good optimisations under the hood.
 
 **[https://ckomop0x.me](https://ckomop0x.me)**
 
@@ -20,7 +20,7 @@ TypeScript types are generated during deployment. They are based on schema and q
 
 For automatization, I use GitHub actions and Netlify deploy.
 Strict policies allows deploying to `prod` only from `master` and it's possible to push to
-`master` or merge PR only if tests are ✅passing and everything is `ok` with build/deploy
+`master` or merge PR only if tests are ✅ passing and everything is `ok` with build/deploy
 to Netlify.
 
 ## Technologies
