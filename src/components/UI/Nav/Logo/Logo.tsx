@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 interface LogoProps {
@@ -8,20 +9,20 @@ interface LogoProps {
   linkSrc: string;
 }
 
-export default function Logo({
-  imgSrc,
-  linkSrc,
-  title,
-}: LogoProps): JSX.Element {
-  return (
-    <Link href={linkSrc} passHref>
-      <LogoWrapper>
-        <LogoImage src={imgSrc} alt={title} width={42} height={42} />
-        <LogoTitle>{title}</LogoTitle>
-      </LogoWrapper>
-    </Link>
-  );
-}
+const Logo: FC<LogoProps> = ({ imgSrc, linkSrc, title }): JSX.Element => (
+  <Link href={linkSrc} passHref>
+    <LogoWrapper>
+      <LogoImage
+        src={imgSrc}
+        alt={title}
+        width={42}
+        height={42}
+        data-testid="logo-image"
+      />
+      <LogoTitle>{title}</LogoTitle>
+    </LogoWrapper>
+  </Link>
+);
 
 export const LogoWrapper = styled.a`
   display: flex;
@@ -49,3 +50,5 @@ export const LogoTitle = styled.span`
   margin-top: 8px;
   margin-left: 20px;
 `;
+
+export default Logo;
