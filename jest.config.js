@@ -21,6 +21,7 @@ module.exports = {
     },
   },
   setupFiles: ['<rootDir>/loadershim.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
   collectCoverage: true,
   coverageReporters: ['lcov', 'text', 'html'],
   collectCoverageFrom: [
