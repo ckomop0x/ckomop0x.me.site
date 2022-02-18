@@ -1,52 +1,45 @@
+import { NextPage } from 'next';
 import styled from 'styled-components';
 
 import ItemsList from 'components/UI/ItemsList';
 import InnerPageLayout from 'components/UI/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
-import {
-  CategoryPageQuery_categories,
-  CategoryPageQuery_posts,
-} from 'queries/types/CategoryPageQuery';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
-import { ICategory, ICategoryPageProps } from 'types';
+import { ICategory, CategoryPageProps } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
 const CATEGORY: ICategory = 'blog';
+const LIMIT = 100;
 const TITLE = 'Статьи и публикации';
 const SUB_TITLE = 'Статьи и публикации на разные темы.';
 const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
 
-export default function BlogPage({
+const BlogPage: NextPage<CategoryPageProps> = ({
   items,
   categories,
-}: ICategoryPageProps): JSX.Element {
-  return (
-    <InnerPageLayout
-      headTitle={TITLE}
-      ogUrl={CATEGORY}
-      ogDescription={TITLE}
-      twitterCard={SUB_TITLE}
-    >
-      <BlogPageWrapper>
-        <div className="container">
-          <TitleBlock>{TITLE}</TitleBlock>
-          <SubtitleBlock>{SUB_TITLE}</SubtitleBlock>
-          {items ? (
-            <ItemsList items={items} categories={categories} />
-          ) : (
-            { EMPTY_PAGE_MESSAGE }
-          )}
-        </div>
-      </BlogPageWrapper>
-    </InnerPageLayout>
-  );
-}
+}): JSX.Element => (
+  <InnerPageLayout
+    headTitle={TITLE}
+    ogUrl={CATEGORY}
+    ogDescription={TITLE}
+    twitterCard={SUB_TITLE}
+  >
+    <BlogPageWrapper>
+      <div className="container">
+        <TitleBlock>{TITLE}</TitleBlock>
+        <SubtitleBlock>{SUB_TITLE}</SubtitleBlock>
+        {items ? (
+          <ItemsList items={items} categories={categories} />
+        ) : (
+          EMPTY_PAGE_MESSAGE
+        )}
+      </div>
+    </BlogPageWrapper>
+  </InnerPageLayout>
+);
 
 export async function getStaticProps(): Promise<{
-  props: {
-    items: CategoryPageQuery_posts;
-    categories: CategoryPageQuery_categories;
-  };
+  props: CategoryPageProps;
 }> {
   const {
     data: { posts: items, categories },
@@ -54,7 +47,7 @@ export async function getStaticProps(): Promise<{
     query: categoryPageQuery,
     variables: {
       category: CATEGORY,
-      limit: 100,
+      limit: LIMIT,
     },
   });
 
@@ -70,3 +63,5 @@ export const BlogPageWrapper = styled.div`
   padding: 40px 0;
   min-height: calc(100vh - 130px);
 `;
+
+export default BlogPage;

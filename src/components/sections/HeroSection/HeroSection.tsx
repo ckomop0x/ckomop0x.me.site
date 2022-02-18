@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import { HeroSectionWrapper, Title, SubTitle, HeroSectionText } from './styles';
 
 import Nav from 'components/UI/Nav';
@@ -8,11 +10,11 @@ export interface HeroSectionProps {
   backgroundImage?: string;
 }
 
-const HeroSection = ({
+const HeroSection: FC<HeroSectionProps> = ({
   title,
   subtitle,
   backgroundImage,
-}: HeroSectionProps): JSX.Element => (
+}): JSX.Element => (
   <HeroSectionWrapper backgroundImage={backgroundImage}>
     <Nav />
     <HeroSectionText className="container">

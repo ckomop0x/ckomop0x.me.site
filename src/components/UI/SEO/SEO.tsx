@@ -1,8 +1,12 @@
 import Head from 'next/head';
+import { FC } from 'react';
 
 import siteConfig from '../../../config/site-config';
 
-export interface ISEOProps {
+import FacebookMeta from 'components/UI/SEO/FacebookMeta';
+import TwitterMeta from 'components/UI/SEO/TwitterMeta';
+
+export interface SEOProps {
   /* Primary meta settings */
   author?: string;
   articleAuthor?: string;
@@ -31,7 +35,7 @@ export interface ISEOProps {
   twitterTitle?: string;
 }
 
-export default function SEO({
+const SEO: FC<SEOProps> = ({
   /* Primary meta settings */
   author,
   articleAuthor,
@@ -53,7 +57,7 @@ export default function SEO({
   twitterCard,
   twitterCreator,
   twitterTitle,
-}: ISEOProps) {
+}): JSX.Element => {
   /* Primary meta settings */
   const metaAuthor = author ?? siteConfig.author;
   const metaArticleAuthor =
@@ -103,34 +107,29 @@ export default function SEO({
         />
       )}
 
-      {/* Facebook Open Graph */}
-      {metaArticleAuthor && (
-        <meta property="article:author" content={metaArticleAuthor} />
-      )}
-      {metaFbAppId && <meta property="fb:app_id" content={metaFbAppId} />}
-      {metaOgImage && <meta property="og:image" content={metaOgImage} />}
-      {metaOgUrl && <meta property="og:url" content={metaOgUrl} />}
-      {metaOgType && <meta property="og:type" content={metaOgType} />}
-      {metaOgTitle && <meta property="og:title" content={metaOgTitle} />}
-      {metaOgDescription && (
-        <meta property="og:description" content={metaOgDescription} />
-      )}
-
       {/* Twitter Open Graph */}
-      {metaTwitterCard && (
-        <meta name="twitter:card" content={metaTwitterCard} />
-      )}
-      {metaTwitterCreator && (
-        <meta name="twitter:creator" content={metaTwitterCreator} />
-      )}
+      <TwitterMeta
+        metaTwitterCard={metaTwitterCard}
+        metaTwitterCreator={metaTwitterCreator}
+        metaTwitterTitle={metaTwitterTitle}
+        metaOgDescription={metaOgDescription}
+        metaOgImage={metaOgImage}
+      />
 
-      {metaTwitterTitle && (
-        <meta name="twitter:title" content={metaTwitterTitle} />
-      )}
-      <meta name="twitter:description" content={ogDescription ?? ''} />
-      <meta name="twitter:image" content={ogImage} />
+      {/* Facebook Open Graph */}
+      <FacebookMeta
+        metaArticleAuthor={metaArticleAuthor}
+        metaFbAppId={metaFbAppId}
+        metaOgImage={metaOgImage}
+        metaOgUrl={metaOgUrl}
+        metaOgType={metaOgType}
+        metaOgTitle={metaOgTitle}
+        metaOgDescription={metaOgDescription}
+      />
 
       <title>{metaDescription}</title>
     </Head>
   );
-}
+};
+
+export default SEO;

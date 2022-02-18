@@ -1,12 +1,11 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 interface PostDateProps {
   publicationDate: string;
 }
 
-export default function PostDate({
-  publicationDate,
-}: PostDateProps): JSX.Element {
+const PostDate: FC<PostDateProps> = ({ publicationDate }): JSX.Element => {
   const [publicationDay, publicationMonth, publicationYear] =
     publicationDate.split(' ');
 
@@ -17,7 +16,7 @@ export default function PostDate({
       <span>{publicationYear}</span>
     </PostDateWrapper>
   );
-}
+};
 
 export const PostDateWrapper = styled.div`
   position: absolute;
@@ -46,3 +45,5 @@ export const PostDateWrapper = styled.div`
     color: #513b34;
   }
 `;
+
+export default PostDate;

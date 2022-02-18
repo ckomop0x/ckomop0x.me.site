@@ -18,7 +18,7 @@ const WebUrl: FC<IconProps> = ({
     enableBackground="new 0 0 48 48"
     className="icon-www hidden-xs"
   >
-    <title>{title}</title>
+    <title>{title ?? 'WebUrl'}</title>
     <g>
       <path
         fill="#2196F3"

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { blue } from '../colors';
 
-export interface ITitleStyled {
+export interface TitleStyledProps {
   centered?: boolean;
 }
 
@@ -12,5 +12,5 @@ export const TitleStyled = styled.h2`
   padding: 0 16px;
   font-family: 'Roboto', sans-serif;
 
-  ${({ centered }: ITitleStyled) => (centered ? 'text-align: center;' : '')}
+  ${({ centered }: TitleStyledProps) => (centered ? 'text-align: center;' : '')}
 `;

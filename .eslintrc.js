@@ -40,7 +40,21 @@ module.exports = {
     },
   },
   plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
+
   rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        printWidth: 80,
+        singleQuote: true,
+        tabWidth: 2,
+        useTabs: false,
+        arrowParens: 'avoid',
+        trailingComma: 'all',
+        endOfLine: 'lf',
+        semi: true,
+      },
+    ],
     'import/no-unresolved': 'warn',
     'import/no-unused-modules': 'error',
     'import/no-useless-path-segments': 'error',

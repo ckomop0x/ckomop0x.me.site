@@ -13,7 +13,7 @@ const Development: FC<IconProps> = ({
     viewBox="0 0 800 600"
     aria-labelledby={title}
   >
-    {title ? <title>{title}</title> : <title>Development</title>}
+    <title>{title ?? 'Development'}</title>
     <defs>
       <linearGradient
         x1="28.083%"
@@ -1797,4 +1797,4 @@ const Development: FC<IconProps> = ({
   </svg>
 );
 
-export default memo(Development);
+export default Development;

@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
 import BaseLayout from '../../UI/layouts/BaseLayout';
-import { IBaseLayoutProps } from '../../UI/layouts/BaseLayout/BaseLayout';
+import { BaseLayoutProps } from '../../UI/layouts/BaseLayout/BaseLayout';
 
-type IMainPageLayoutProps = IBaseLayoutProps;
+type MainPageLayoutProps = BaseLayoutProps;
 
-const MainPageLayout: FC<IMainPageLayoutProps> = ({
-  children,
-}): JSX.Element => <BaseLayout>{children}</BaseLayout>;
+const MainPageLayout: FC<MainPageLayoutProps> = ({ children }): JSX.Element => (
+  <BaseLayout>{children}</BaseLayout>
+);
 
 export default MainPageLayout;

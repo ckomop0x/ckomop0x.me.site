@@ -1,4 +1,5 @@
 import parse from 'html-react-parser';
+import { FC } from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
@@ -13,12 +14,12 @@ export interface DetailItemProps {
   date: Date;
 }
 
-export default function DetailItem({
+const DetailItem: FC<DetailItemProps> = ({
   date,
   title,
   description,
   image,
-}: DetailItemProps): JSX.Element {
+}: DetailItemProps): JSX.Element => {
   const postDate = formatDate(date);
 
   return (
@@ -36,4 +37,6 @@ export default function DetailItem({
       </div>
     </DetailItemWrapper>
   );
-}
+};
+
+export default DetailItem;

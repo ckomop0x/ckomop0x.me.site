@@ -1,13 +1,13 @@
 import { Story, Meta } from '@storybook/react';
 
-import Post, { IPostProps } from './Post';
+import Post, { PostProps } from './Post';
 
 export default {
   title: 'Components/Post',
   component: Post,
 } as Meta;
 
-const Template: Story<IPostProps> = args => <Post {...args} />;
+const Template: Story<PostProps> = args => <Post {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
