@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 import Footer from 'components/UI/Footer';
 import SEO from 'components/UI/SEO';
-import { ISEOProps } from 'components/UI/SEO/SEO';
+import { SEOProps } from 'components/UI/SEO/SEO';
 import { GlobalStyle } from 'styles/GlobalStyle';
 
-export interface BaseLayoutProps extends ISEOProps {
+export interface BaseLayoutProps extends SEOProps {
   children?: ReactNode | ReactNode[];
   className?: string;
 }
