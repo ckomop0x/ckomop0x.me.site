@@ -3,7 +3,7 @@ import { FC, memo } from 'react';
 import { IconProps } from './types';
 
 const Idea: FC<IconProps> = ({
-  title = 'Idea',
+  title,
   width = 100,
   height = 100,
   ...props

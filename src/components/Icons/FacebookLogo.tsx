@@ -3,7 +3,7 @@ import { FC, memo } from 'react';
 import { IconProps } from './types';
 
 const FacebookLogo: FC<IconProps> = ({
-  title = 'FacebookLogo',
+  title,
   width = 30,
   height = 30,
 }): JSX.Element => (
@@ -29,4 +29,4 @@ const FacebookLogo: FC<IconProps> = ({
   </svg>
 );
 
-export default memo(FacebookLogo);
+export default FacebookLogo;
