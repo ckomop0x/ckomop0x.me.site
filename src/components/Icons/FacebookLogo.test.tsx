@@ -5,11 +5,11 @@ import FacebookLogo from './FacebookLogo';
 describe('FacebookLogo', () => {
   it('Should render default component', () => {
     render(<FacebookLogo />);
-    expect(screen.getByTitle('FacebookLogo')).toBeTruthy();
+    expect(screen.getByTitle('Facebook Logo')).toBeTruthy();
   });
 
   it('Should render default component', () => {
-    render(<FacebookLogo title="Custom FacebookLogo" />);
-    expect(screen.getByTitle('Custom FacebookLogo')).toBeTruthy();
+    render(<FacebookLogo title="Custom Icon" />);
+    expect(screen.getByTitle('Custom Icon')).toBeTruthy();
   });
 });

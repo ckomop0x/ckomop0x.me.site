@@ -1,20 +1,31 @@
 import parse from 'html-react-parser';
 import Link from 'next/link';
+import { FC } from 'react';
 import styled from 'styled-components';
 
-import { FeaturedPostContentProps } from './types';
+import { ENUM_POST_CATEGORY } from '../../../../types/globalTypes';
 
 import { LinkStyled } from 'components/sections/FeaturedPostSection/styles';
+import { IndexPageQuery_categories } from 'queries/types/indexPageQuery';
 import formatDate from 'utils/dates/formatDate';
 
-const FeaturedPostContent = ({
+export interface FeaturedPostContentProps {
+  category: ENUM_POST_CATEGORY;
+  categories: IndexPageQuery_categories[];
+  title: string;
+  date: string;
+  excerpt: string;
+  slug: string;
+}
+
+const FeaturedPostContent: FC<FeaturedPostContentProps> = ({
   categories,
   category,
   title,
   date,
   excerpt,
   slug,
-}: FeaturedPostContentProps): JSX.Element => {
+}): JSX.Element => {
   const [categoryData] = categories.filter(
     categoryItem => categoryItem.slug === category,
   );

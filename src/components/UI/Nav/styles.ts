@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { LogoTitle, LogoWrapper } from 'components/UI/Nav/Logo/Logo';
 import { MenuItemWrapper } from 'components/UI/Nav/MenuItem/MenuItem';
-import { INavProps } from 'components/UI/Nav/Nav';
+import { NavProps } from 'components/UI/Nav/Nav';
 import { themePalette } from 'styles/colors';
 
 export const LinkStyled = styled.a`
@@ -17,7 +17,7 @@ export const LinkStyled = styled.a`
   }
 `;
 
-export const Navbar = styled.nav<INavProps>`
+export const Navbar = styled.nav<NavProps>`
   height: 60px;
   display: flex;
   justify-content: space-between;

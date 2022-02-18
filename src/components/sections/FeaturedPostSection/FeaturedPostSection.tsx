@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import { FeaturedPostWrapper, ItemImage } from './styles';
 
 import FeaturedPostContent from 'components/sections/FeaturedPostSection/FeaturedPostContent';
@@ -5,17 +7,16 @@ import {
   IndexPageQuery_categories,
   IndexPageQuery_featured,
 } from 'queries/types/indexPageQuery';
-import formatDate from 'utils/dates/formatDate';
 
-interface IFeaturedPostSectionProps {
+interface FeaturedPostSectionProps {
   post: IndexPageQuery_featured;
   categories: IndexPageQuery_categories[];
 }
 
-const FeaturedPostSection = ({
+const FeaturedPostSection: FC<FeaturedPostSectionProps> = ({
   post: { category, date, excerpt, image_url, slug, title },
   categories = [],
-}: IFeaturedPostSectionProps): JSX.Element => (
+}): JSX.Element => (
   <FeaturedPostWrapper>
     <div className="col-12">
       <div className="row">

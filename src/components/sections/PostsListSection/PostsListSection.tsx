@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import {
   AllPostsLink,
   AllPostsLinkButton,
@@ -11,19 +13,19 @@ import {
 } from 'queries/types/indexPageQuery';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
-interface IPostsListSectionProps {
+interface PostsListSectionProps {
   blockTitle: string;
   blockSubtitle: string;
   items: IndexPageQuery_poetryItems[];
   categories: IndexPageQuery_categories[];
 }
 
-const PostsListSection = ({
+const PostsListSection: FC<PostsListSectionProps> = ({
   blockTitle,
   blockSubtitle,
   items,
   categories,
-}: IPostsListSectionProps): JSX.Element => {
+}): JSX.Element => {
   const postsCategoryLink = items[0].category ?? '';
   const [postsCategory] = categories.filter(
     (category: IndexPageQuery_categories) =>

@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 import projectConfig from '../../../../package.json';
@@ -5,7 +6,7 @@ import projectConfig from '../../../../package.json';
 import { baseSettings } from 'config/site-config';
 import { themePalette } from 'styles/colors';
 
-export default function Footer(): JSX.Element {
+const Footer: FC = (): JSX.Element => {
   const currentYear = new Date().getFullYear();
   const footerText = `© ${currentYear} ${baseSettings.projectTitle}. v${projectConfig.version}`;
 
@@ -14,7 +15,7 @@ export default function Footer(): JSX.Element {
       <FooterCopyright>{footerText}</FooterCopyright>
     </FooterWrapper>
   );
-}
+};
 
 export const FooterWrapper = styled.footer`
   margin: auto 0;
@@ -34,3 +35,5 @@ export const FooterCopyright = styled.p`
   margin: 0;
   text-align: center;
 `;
+
+export default Footer;

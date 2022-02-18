@@ -1,3 +1,5 @@
+import { NextPage } from 'next';
+
 import MainPageLayout from 'components/layouts/MainPageLayout';
 import FeaturedPostSection from 'components/sections/FeaturedPostSection';
 import Hero from 'components/sections/HeroSection';
@@ -18,19 +20,19 @@ const mainPageData = {
     'https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg',
 };
 
-interface IIndexPage {
+interface IndexPageProps {
   blogItems: IndexPageQuery_blogItems[];
   featured: IndexPageQuery_featured[];
   poetryItems: IndexPageQuery_poetryItems[];
   categories: IndexPageQuery_categories[];
 }
 
-export default function IndexPage({
+const IndexPage: NextPage<IndexPageProps> = ({
   blogItems,
   featured,
   poetryItems,
   categories,
-}: IIndexPage): JSX.Element {
+}): JSX.Element => {
   const [featuredItem] = featured;
 
   return (
@@ -43,7 +45,7 @@ export default function IndexPage({
       {featuredItem?.published && (
         <FeaturedPostSection post={featuredItem} categories={categories} />
       )}
-      {blogItems?.length && (
+      {blogItems?.length > 0 && (
         <PostsList
           items={blogItems}
           categories={categories}
@@ -52,7 +54,7 @@ export default function IndexPage({
         />
       )}
 
-      {poetryItems?.length && (
+      {poetryItems?.length > 0 && (
         <PostsList
           items={poetryItems}
           categories={categories}
@@ -62,10 +64,10 @@ export default function IndexPage({
       )}
     </MainPageLayout>
   );
-}
+};
 
 export async function getStaticProps(): Promise<{
-  props: IIndexPage;
+  props: IndexPageProps;
 }> {
   const { data } = await apolloClient.query({
     query: indexPageQuery,
@@ -81,3 +83,5 @@ export async function getStaticProps(): Promise<{
     },
   };
 }
+
+export default IndexPage;

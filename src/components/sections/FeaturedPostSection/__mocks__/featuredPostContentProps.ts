@@ -1,5 +1,6 @@
 import { ENUM_POST_CATEGORY } from '../../../../../types/globalTypes';
-import { FeaturedPostContentProps } from '../types';
+
+import { FeaturedPostContentProps } from 'components/sections/FeaturedPostSection/FeaturedPostContent';
 
 export const featuredPostContentProps: FeaturedPostContentProps = {
   category: ENUM_POST_CATEGORY.poetry,

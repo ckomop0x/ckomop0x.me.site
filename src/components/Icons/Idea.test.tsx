@@ -9,7 +9,7 @@ describe('Idea', () => {
   });
 
   it('Should render default component', () => {
-    render(<Idea title="Custom Idea Icon" />);
-    expect(screen.getByTitle('Custom Idea Icon')).toBeTruthy();
+    render(<Idea title="Custom Icon" />);
+    expect(screen.getByTitle('Custom Icon')).toBeTruthy();
   });
 });

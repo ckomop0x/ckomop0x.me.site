@@ -1,3 +1,4 @@
+import { CategoryPageQuery_categories, CategoryPageQuery_posts } from 'queries/types/CategoryPageQuery';
 import { IItemPath } from 'utils/queries/getItemPath';
 
 export interface IGetStaticProps {
@@ -17,9 +18,9 @@ export interface IGetStaticPathsResponse {
   fallback: boolean;
 }
 
-export interface ICategoryPageProps {
-  items: any;
-  categories: any;
+export interface CategoryPageProps {
+  items: CategoryPageQuery_posts[];
+  categories: CategoryPageQuery_categories[];
 }
 
 export type ICategory = 'blog' | 'poetry';

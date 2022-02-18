@@ -2,11 +2,7 @@ import { FC, memo } from 'react';
 
 import { IconProps } from './types';
 
-const WebUrl: FC<IconProps> = ({
-  title = 'WebUrl',
-  width = 48,
-  height = 48,
-}) => (
+const WebUrl: FC<IconProps> = ({ title, width = 48, height = 48 }) => (
   <svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +14,7 @@ const WebUrl: FC<IconProps> = ({
     enableBackground="new 0 0 48 48"
     className="icon-www hidden-xs"
   >
-    <title>{title}</title>
+    <title>{title ?? 'WebUrl'}</title>
     <g>
       <path
         fill="#2196F3"
@@ -59,4 +55,4 @@ const WebUrl: FC<IconProps> = ({
   </svg>
 );
 
-export default memo(WebUrl);
+export default WebUrl;

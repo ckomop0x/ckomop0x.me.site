@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
@@ -12,30 +13,26 @@ interface PostContentProps {
   publicationDate?: string;
 }
 
-export default function PostContent({
+const PostContent: FC<PostContentProps> = ({
   image,
   publicationDate,
   title,
-}: PostContentProps) {
-  const hasImage = !!image;
-
-  return (
-    <PostContentWrapper>
-      {hasImage && (
-        <PostImage
-          className="lazyload"
-          loading="lazy"
-          data-src={`${image}`}
-          data-srcset={getSrcSet(image)}
-          data-sizes="(max-width: 600px) 480px, 600px"
-          alt={title}
-        />
-      )}
-      {publicationDate && <PostDate publicationDate={publicationDate} />}
-      <PostTitle>{title}</PostTitle>
-    </PostContentWrapper>
-  );
-}
+}) => (
+  <PostContentWrapper>
+    {!!image && (
+      <PostImage
+        className="lazyload"
+        loading="lazy"
+        data-src={`${image}`}
+        data-srcset={getSrcSet(image)}
+        data-sizes="(max-width: 600px) 480px, 600px"
+        alt={title}
+      />
+    )}
+    {publicationDate && <PostDate publicationDate={publicationDate} />}
+    <PostTitle>{title}</PostTitle>
+  </PostContentWrapper>
+);
 
 export const PostContentWrapper = styled.div`
   position: relative;
@@ -59,3 +56,5 @@ export const PostImage = styled.img`
   overflow: hidden;
   box-shadow: 0 0 2px 3px #00000022;
 `;
+
+export default PostContent;

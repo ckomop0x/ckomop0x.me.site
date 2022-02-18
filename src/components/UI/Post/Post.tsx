@@ -1,9 +1,11 @@
+import { FC } from 'react';
+
 import PostContent from './PostContent';
 import { ItemWrapper, StyledLink } from './styles';
 
 import { IndexPageQuery_categories } from 'queries/types/indexPageQuery';
 
-export interface IPostProps {
+export interface PostProps {
   id: string | null;
   excerpt: string | null;
   publicationDate: string;
@@ -14,26 +16,26 @@ export interface IPostProps {
   updateDate?: string;
 }
 
-export default function Post({
+const Post: FC<PostProps> = ({
   publicationDate,
   title,
   slug,
   category,
   image,
-}: IPostProps) {
-  return (
-    <ItemWrapper className="col-12 col-md-6 col-lg-4">
-      <StyledLink href={`/${category.slug}/${slug}`} passHref>
-        <a href={`/${category.slug}/${slug}`}>
-          <div className="row h-100">
-            <PostContent
-              image={image}
-              title={title}
-              publicationDate={publicationDate}
-            />
-          </div>
-        </a>
-      </StyledLink>
-    </ItemWrapper>
-  );
-}
+}): JSX.Element => (
+  <ItemWrapper className="col-12 col-md-6 col-lg-4">
+    <StyledLink href={`/${category.slug}/${slug}`} passHref>
+      <a href={`/${category.slug}/${slug}`}>
+        <div className="row h-100">
+          <PostContent
+            image={image}
+            title={title}
+            publicationDate={publicationDate}
+          />
+        </div>
+      </a>
+    </StyledLink>
+  </ItemWrapper>
+);
+
+export default Post;
