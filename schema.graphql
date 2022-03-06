@@ -321,8 +321,6 @@ type UploadFile {
   provider_metadata: JSON
   related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
 }
-"The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point)."
-scalar Float
 type UploadFileConnection {
   values: [UploadFile]
   groupBy: UploadFileGroupBy
