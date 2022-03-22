@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styled, { css } from 'styled-components';
+import styled, { css } from '@emotion/styled';
 
 export const Content = styled.div`
   display: flex;

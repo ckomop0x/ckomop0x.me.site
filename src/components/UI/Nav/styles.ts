@@ -1,4 +1,5 @@
-import styled, { css } from 'styled-components';
+import { css } from "@emotion/react";
+import styled  from '@emotion/styled';
 
 import { LogoTitle, LogoWrapper } from 'components/UI/Nav/Logo/Logo';
 import { MenuItemWrapper } from 'components/UI/Nav/MenuItem/MenuItem';

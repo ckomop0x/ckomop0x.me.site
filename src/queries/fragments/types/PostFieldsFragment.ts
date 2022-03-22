@@ -3,14 +3,14 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ENUM_POST_CATEGORY } from './../../../../types/globalTypes';
+import { ENUM_POST_CATEGORY } from "./../../../../types/globalTypes";
 
 // ====================================================
 // GraphQL fragment: PostFieldsFragment
 // ====================================================
 
 export interface PostFieldsFragment {
-  __typename: 'Post';
+  __typename: "Post";
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
   slug: string;

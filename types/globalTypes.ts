@@ -8,9 +8,9 @@
 //==============================================================
 
 export enum ENUM_POST_CATEGORY {
-  blog = 'blog',
-  poetry = 'poetry',
-  unsorted = 'unsorted',
+  blog = "blog",
+  poetry = "poetry",
+  unsorted = "unsorted",
 }
 
 //==============================================================

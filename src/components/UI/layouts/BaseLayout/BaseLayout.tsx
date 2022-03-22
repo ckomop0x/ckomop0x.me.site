@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 import Footer from 'components/UI/Footer';
 import SEO from 'components/UI/SEO';
@@ -39,7 +39,6 @@ const BaseLayout: FC<BaseLayoutProps> = ({
   children,
 }): JSX.Element => (
   <BaseLayoutWrapper>
-    <GlobalStyle />
     <SEO
       /* Primary meta settings */
       author={author}

@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface PostsPathQuery_posts {
-  __typename: 'Post';
+  __typename: "Post";
   slug: string;
 }
 
