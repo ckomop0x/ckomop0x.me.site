@@ -1,5 +1,5 @@
+import styled from '@emotion/styled';
 import { NextPage } from 'next';
-import styled from 'styled-components';
 
 import ItemsList from 'components/UI/ItemsList';
 import InnerPageLayout from 'components/UI/layouts/InnerPageLayout';

@@ -1,5 +1,5 @@
+import styled from '@emotion/styled';
 import { FC } from 'react';
-import styled from 'styled-components';
 
 import MenuItem from 'components/UI/Nav/MenuItem';
 

@@ -1,5 +1,5 @@
+import styled from '@emotion/styled';
 import Link from 'next/link';
-import styled from 'styled-components';
 
 export const AllPostsLink = styled(Link)`
   background-color: hsl(211, 100%, 40%);

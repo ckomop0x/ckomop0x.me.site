@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import parse from 'html-react-parser';
 import Link from 'next/link';
 import { FC } from 'react';
-import styled from 'styled-components';
 
 import { ENUM_POST_CATEGORY } from '../../../../types/globalTypes';
 

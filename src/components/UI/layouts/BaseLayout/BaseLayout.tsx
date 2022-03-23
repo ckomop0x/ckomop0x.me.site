@@ -1,10 +1,9 @@
+import styled from '@emotion/styled';
 import { FC, ReactNode } from 'react';
-import styled from 'styled-components';
 
 import Footer from 'components/UI/Footer';
 import SEO from 'components/UI/SEO';
 import { SEOProps } from 'components/UI/SEO/SEO';
-import { GlobalStyle } from 'styles/GlobalStyle';
 
 export interface BaseLayoutProps extends SEOProps {
   children?: ReactNode | ReactNode[];
@@ -39,7 +38,6 @@ const BaseLayout: FC<BaseLayoutProps> = ({
   children,
 }): JSX.Element => (
   <BaseLayoutWrapper>
-    <GlobalStyle />
     <SEO
       /* Primary meta settings */
       author={author}

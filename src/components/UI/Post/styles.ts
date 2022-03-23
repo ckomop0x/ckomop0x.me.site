@@ -1,12 +1,10 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import Link from 'next/link';
-import styled, { css } from 'styled-components';
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  @media (min-width: ${({ theme }) => theme.$SM}px) {
-    flex-direction: row;
-  }
 `;
 
 export const ItemImage = styled.div`
