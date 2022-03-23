@@ -3,14 +3,14 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ENUM_POST_CATEGORY } from "./../../../types/globalTypes";
+import { ENUM_POST_CATEGORY } from './../../../types/globalTypes';
 
 // ====================================================
 // GraphQL query operation: IndexPageQuery
 // ====================================================
 
 export interface IndexPageQuery_featured {
-  __typename: "Post";
+  __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
   slug: string;
@@ -24,7 +24,7 @@ export interface IndexPageQuery_featured {
 }
 
 export interface IndexPageQuery_blogItems {
-  __typename: "Post";
+  __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
   slug: string;
@@ -38,7 +38,7 @@ export interface IndexPageQuery_blogItems {
 }
 
 export interface IndexPageQuery_poetryItems {
-  __typename: "Post";
+  __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
   slug: string;
@@ -52,7 +52,7 @@ export interface IndexPageQuery_poetryItems {
 }
 
 export interface IndexPageQuery_categories {
-  __typename: "Category";
+  __typename: 'Category';
   id: string;
   title: string | null;
   slug: string;

@@ -36,8 +36,6 @@ export default class WebtimeDocument extends Document {
   // }
 
   render(): JSX.Element {
-
-
     return (
       <Html>
         <Head>

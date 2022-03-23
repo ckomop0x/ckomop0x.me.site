@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import Link from 'next/link';
 import { FC } from 'react';
-import styled from '@emotion/styled';
 
 import { LinkStyled } from 'components/UI/Nav/styles';
 

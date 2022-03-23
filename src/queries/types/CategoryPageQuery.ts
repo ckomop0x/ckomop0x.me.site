@@ -3,14 +3,14 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ENUM_POST_CATEGORY } from "./../../../types/globalTypes";
+import { ENUM_POST_CATEGORY } from './../../../types/globalTypes';
 
 // ====================================================
 // GraphQL query operation: CategoryPageQuery
 // ====================================================
 
 export interface CategoryPageQuery_posts {
-  __typename: "Post";
+  __typename: 'Post';
   category: ENUM_POST_CATEGORY;
   image_url: string | null;
   slug: string;
@@ -24,7 +24,7 @@ export interface CategoryPageQuery_posts {
 }
 
 export interface CategoryPageQuery_categories {
-  __typename: "Category";
+  __typename: 'Category';
   id: string;
   title: string | null;
   slug: string;

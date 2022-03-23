@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import styled from '@emotion/styled';
+import { FC } from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 

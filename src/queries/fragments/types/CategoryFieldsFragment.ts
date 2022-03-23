@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface CategoryFieldsFragment {
-  __typename: "Category";
+  __typename: 'Category';
   id: string;
   title: string | null;
   slug: string;

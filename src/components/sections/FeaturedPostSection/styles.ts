@@ -1,5 +1,5 @@
-import { css } from "@emotion/react";
-import styled  from '@emotion/styled';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 export const FeaturedPostWrapper = styled.section`
   min-height: 100vh;

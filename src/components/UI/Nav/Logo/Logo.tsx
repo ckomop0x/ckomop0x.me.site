@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import styled from '@emotion/styled';
 
 interface LogoProps {
   imgSrc: string;

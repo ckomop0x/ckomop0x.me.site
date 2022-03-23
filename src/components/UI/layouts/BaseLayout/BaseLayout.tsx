@@ -1,5 +1,5 @@
-import { FC, ReactNode } from 'react';
 import styled from '@emotion/styled';
+import { FC, ReactNode } from 'react';
 
 import Footer from 'components/UI/Footer';
 import SEO from 'components/UI/SEO';

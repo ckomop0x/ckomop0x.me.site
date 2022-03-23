@@ -8,12 +8,12 @@
 // ====================================================
 
 export interface DetailsPageQuery_posts_content {
-  __typename: "ComponentPostRichText";
+  __typename: 'ComponentPostRichText';
   rich_text: string | null;
 }
 
 export interface DetailsPageQuery_posts {
-  __typename: "Post";
+  __typename: 'Post';
   id: string;
   title: string | null;
   slug: string;
