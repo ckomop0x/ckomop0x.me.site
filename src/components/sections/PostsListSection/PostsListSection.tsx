@@ -1,10 +1,7 @@
+import { Button } from '@ckomop0x/bb';
 import { FC } from 'react';
 
-import {
-  AllPostsLink,
-  AllPostsLinkButton,
-  PostsListSectionWrapper,
-} from './styles';
+import { AllPostsLink, PostsListSectionWrapper } from './styles';
 
 import PostsList from 'components/UI/PostsList';
 import {
@@ -40,9 +37,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
         <div className="text-center">
           <PostsList posts={items} categories={categories} />
           <AllPostsLink href={postsCategoryLink}>
-            <AllPostsLinkButton>
-              Перейти в {postsCategory.title}
-            </AllPostsLinkButton>
+            <Button>Перейти в {postsCategory.title}</Button>
           </AllPostsLink>
         </div>
       </div>
