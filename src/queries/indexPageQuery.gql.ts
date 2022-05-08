@@ -7,22 +7,15 @@ export const indexPageQuery = gql`
   ${postFieldsFragment}
   ${categoryFieldsFragment}
   query IndexPageQuery {
-    featured: posts(
-      where: { featured: true, published: true }
-      limit: 1
-      sort: "date:desc"
-    ) {
-      ...PostFieldsFragment
-    }
     blogItems: posts(
-      where: { category: "blog", published: true, featured: false }
+      where: { category: "blog", published: true }
       limit: 3
       sort: "date:desc"
     ) {
       ...PostFieldsFragment
     }
     poetryItems: posts(
-      where: { category: "poetry", published: true, featured: false }
+      where: { category: "poetry", published: true }
       limit: 3
       sort: "date:desc"
     ) {
