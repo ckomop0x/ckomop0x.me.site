@@ -3,8 +3,10 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
 import 'bootstrap/dist/css/bootstrap.css';
+import { ThemeProvider } from 'theme-ui';
 
 import { globalStyles } from 'styles/GlobalStyle';
+import { theme } from 'theme/theme';
 import apolloClient from 'utils/api/apollo-client';
 
 const cache = createCache({ key: 'next' });
@@ -12,8 +14,10 @@ const cache = createCache({ key: 'next' });
 const App = ({ Component, pageProps }: AppProps): JSX.Element => (
   <ApolloProvider client={apolloClient}>
     <CacheProvider value={cache}>
-      {globalStyles}
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        {globalStyles}
+        <Component {...pageProps} />
+      </ThemeProvider>
     </CacheProvider>
   </ApolloProvider>
 );

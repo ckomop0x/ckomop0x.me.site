@@ -43,7 +43,7 @@ export const ItemContent = styled.div`
   align-items: space-between;
 `;
 
-export const ItemWrapper = styled.article`
+export const PostWrapper = styled.article`
   padding: 0;
 
   a:hover {

@@ -6,35 +6,9 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
+import { InitializeColorMode } from 'theme-ui';
 
 export default class WebtimeDocument extends Document {
-  // static async getInitialProps(
-  //   context: DocumentContext,
-  // ): Promise<DocumentInitialProps> {
-  //   const originalRenderPage = context.renderPage;
-  //
-  //   try {
-  //     context.renderPage = () =>
-  //       originalRenderPage({
-  //         enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
-  //       });
-  //
-  //     const initialProps = await Document.getInitialProps(context);
-  //
-  //     return {
-  //       ...initialProps,
-  //       styles: (
-  //         <>
-  //           {initialProps.styles}
-  //           {sheet.getStyleElement()}
-  //         </>
-  //       ),
-  //     };
-  //   } finally {
-  //     sheet.seal();
-  //   }
-  // }
-
   render(): JSX.Element {
     return (
       <Html>
@@ -45,6 +19,7 @@ export default class WebtimeDocument extends Document {
           />
         </Head>
         <body>
+          <InitializeColorMode />
           <Main />
           <NextScript />
           <script

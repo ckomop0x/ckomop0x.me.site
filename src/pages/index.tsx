@@ -22,49 +22,40 @@ const mainPageData = {
 
 interface IndexPageProps {
   blogItems: IndexPageQuery_blogItems[];
-  featured: IndexPageQuery_featured[];
   poetryItems: IndexPageQuery_poetryItems[];
   categories: IndexPageQuery_categories[];
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({
   blogItems,
-  featured,
   poetryItems,
   categories,
-}): JSX.Element => {
-  const [featuredItem] = featured;
-
-  return (
-    <MainPageLayout>
-      <Hero
-        title={mainPageData.title}
-        subtitle={mainPageData.subtitle}
-        backgroundImage={mainPageData.backgroundImage}
+}): JSX.Element => (
+  <MainPageLayout>
+    <Hero
+      title={mainPageData.title}
+      subtitle={mainPageData.subtitle}
+      backgroundImage={mainPageData.backgroundImage}
+    />
+    {blogItems?.length > 0 && (
+      <PostsList
+        items={blogItems}
+        categories={categories}
+        blockTitle="Статьи и публикации"
+        blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
       />
-      {featuredItem?.published && (
-        <FeaturedPostSection post={featuredItem} categories={categories} />
-      )}
-      {blogItems?.length > 0 && (
-        <PostsList
-          items={blogItems}
-          categories={categories}
-          blockTitle="Статьи и публикации"
-          blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
-        />
-      )}
+    )}
 
-      {poetryItems?.length > 0 && (
-        <PostsList
-          items={poetryItems}
-          categories={categories}
-          blockTitle="Стихи и песни"
-          blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
-        />
-      )}
-    </MainPageLayout>
-  );
-};
+    {poetryItems?.length > 0 && (
+      <PostsList
+        items={poetryItems}
+        categories={categories}
+        blockTitle="Стихи и песни"
+        blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
+      />
+    )}
+  </MainPageLayout>
+);
 
 export async function getStaticProps(): Promise<{
   props: IndexPageProps;
@@ -72,11 +63,10 @@ export async function getStaticProps(): Promise<{
   const { data } = await apolloClient.query({
     query: indexPageQuery,
   });
-  const { featured, blogItems, poetryItems, categories } = data;
+  const { blogItems, poetryItems, categories } = data;
 
   return {
     props: {
-      featured,
       blogItems,
       poetryItems,
       categories,

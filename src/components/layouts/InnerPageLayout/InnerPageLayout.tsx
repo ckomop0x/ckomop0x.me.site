@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 import { FC } from 'react';
 
+import BaseLayout, { BaseLayoutProps } from '../BaseLayout/BaseLayout';
+
 import Nav from 'components/UI/Nav';
-import BaseLayout, {
-  BaseLayoutProps,
-} from 'components/UI/layouts/BaseLayout/BaseLayout';
 
 export type InnerPageLayoutProps = BaseLayoutProps;
 

@@ -14,6 +14,7 @@ export const globalStyles = (
       body,
       html {
         padding: 0;
+        margin: 0;
         color: #999;
         min-height: 100%;
       }

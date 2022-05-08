@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import BaseLayout from '../../UI/layouts/BaseLayout';
-import { BaseLayoutProps } from '../../UI/layouts/BaseLayout/BaseLayout';
+import BaseLayout from '../BaseLayout';
+import { BaseLayoutProps } from '../BaseLayout/BaseLayout';
 
 type MainPageLayoutProps = BaseLayoutProps;
 

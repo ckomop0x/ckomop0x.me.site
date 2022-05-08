@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import PostContent from './PostContent';
-import { ItemWrapper, StyledLink } from './styles';
+import { PostWrapper, StyledLink } from './styles';
 
 import { IndexPageQuery_categories } from 'queries/types/indexPageQuery';
 
@@ -23,7 +23,7 @@ const Post: FC<PostProps> = ({
   category,
   image,
 }): JSX.Element => (
-  <ItemWrapper className="col-12 col-md-6 col-lg-4">
+  <PostWrapper className="col-12 col-md-6 col-lg-4">
     <StyledLink href={`/${category.slug}/${slug}`} passHref>
       <a href={`/${category.slug}/${slug}`}>
         <div className="row h-100">
@@ -35,7 +35,7 @@ const Post: FC<PostProps> = ({
         </div>
       </a>
     </StyledLink>
-  </ItemWrapper>
+  </PostWrapper>
 );
 
 export default Post;

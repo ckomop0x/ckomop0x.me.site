@@ -11,9 +11,9 @@ const PostDate: FC<PostDateProps> = ({ publicationDate }): JSX.Element => {
 
   return (
     <PostDateWrapper>
-      <span>{publicationDay}</span>
       <span>{publicationMonth}</span>
       <span>{publicationYear}</span>
+      <span>{publicationDay}</span>
     </PostDateWrapper>
   );
 };
@@ -38,7 +38,7 @@ export const PostDateWrapper = styled.div`
     margin: 0;
   }
 
-  span:first-child {
+  span:last-of-type {
     display: block;
     font-size: 22px;
     padding: 4px 0 0 0;
