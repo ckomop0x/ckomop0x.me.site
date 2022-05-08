@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { NextPage } from 'next';
 
 import ItemsList from 'components/UI/ItemsList';
-import InnerPageLayout from 'components/UI/layouts/InnerPageLayout';
+import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 import { ICategory, CategoryPageProps } from 'types';

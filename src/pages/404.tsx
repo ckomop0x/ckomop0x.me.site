@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
 
-import InnerPageLayout from 'components/UI/layouts/InnerPageLayout';
+import InnerPageLayout from 'components/layouts/InnerPageLayout';
 
 const Page404: NextPage = (): JSX.Element => (
   <InnerPageLayout>

@@ -1,8 +1,9 @@
-import { Button } from '@ckomop0x/bb';
 import { FC } from 'react';
+import { useThemeUI } from 'theme-ui';
 
 import { AllPostsLink, PostsListSectionWrapper } from './styles';
 
+import Button from 'components/UI/Button';
 import PostsList from 'components/UI/PostsList';
 import {
   IndexPageQuery_categories,
@@ -28,6 +29,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
     (category: IndexPageQuery_categories) =>
       category.slug === postsCategoryLink,
   );
+  const { theme } = useThemeUI();
 
   return (
     <PostsListSectionWrapper>
@@ -37,7 +39,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
         <div className="text-center">
           <PostsList posts={items} categories={categories} />
           <AllPostsLink href={postsCategoryLink}>
-            <Button>Перейти в {postsCategory.title}</Button>
+            <Button variant="primary">Перейти в {postsCategory.title}</Button>
           </AllPostsLink>
         </div>
       </div>

@@ -2,13 +2,20 @@ schema {
   query: Query
   mutation: Mutation
 }
-"Exposes a URL that specifies the behaviour of this scalar."
-directive @specifiedBy("The URL that specifies the behaviour of this scalar." url: String!) on SCALAR
-input FileInfoInput {
-  name: String
-  alternativeText: String
-  caption: String
-}
+"Input type for dynamic zone content of Post"
+scalar PostContentDynamicZoneInput
+"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
+scalar JSON
+"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar DateTime
+"A time string with format: HH:mm:ss.SSS"
+scalar Time
+"A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar Date
+"The `Long` scalar type represents 52-bit integers"
+scalar Long
+"The `Upload` scalar type represents a file upload."
+scalar Upload
 type UsersPermissionsMe {
   id: ID!
   username: String!
@@ -22,16 +29,6 @@ type UsersPermissionsMeRole {
   name: String!
   description: String
   type: String
-}
-input UsersPermissionsRegisterInput {
-  username: String!
-  email: String!
-  password: String!
-}
-input UsersPermissionsLoginInput {
-  identifier: String!
-  password: String!
-  provider: String = "local"
 }
 type UsersPermissionsLoginPayload {
   jwt: String
@@ -83,45 +80,15 @@ type CategoryConnectionSlug {
   key: String
   connection: CategoryConnection
 }
-input CategoryInput {
-  title: String
-  slug: String!
-  created_by: ID
-  updated_by: ID
-}
-input editCategoryInput {
-  title: String
-  slug: String
-  created_by: ID
-  updated_by: ID
-}
-input createCategoryInput {
-  data: CategoryInput
-}
 type createCategoryPayload {
   category: Category
-}
-input updateCategoryInput {
-  where: InputID
-  data: editCategoryInput
 }
 type updateCategoryPayload {
   category: Category
 }
-input deleteCategoryInput {
-  where: InputID
-}
 type deleteCategoryPayload {
   category: Category
 }
-enum ENUM_POST_CATEGORY {
-  poetry
-  blog
-  unsorted
-}
-union PostContentDynamicZone = ComponentPostRichText
-"Input type for dynamic zone content of Post"
-scalar PostContentDynamicZoneInput
 type Post {
   id: ID!
   created_at: DateTime!
@@ -227,57 +194,11 @@ type PostConnectionPublished_at {
   key: DateTime
   connection: PostConnection
 }
-input PostInput {
-  title: String
-  date: DateTime
-  excerpt: String!
-  image: ID
-  description: String
-  published: Boolean
-  image_url: String
-  category: ENUM_POST_CATEGORY
-  slug: String!
-  featured: Boolean
-  content: [PostContentDynamicZoneInput!]
-  localizations: [ID]
-  locale: String
-  published_at: DateTime
-  created_by: ID
-  updated_by: ID
-}
-input editPostInput {
-  title: String
-  date: DateTime
-  excerpt: String
-  image: ID
-  description: String
-  published: Boolean
-  image_url: String
-  category: ENUM_POST_CATEGORY
-  slug: String
-  featured: Boolean
-  content: [PostContentDynamicZoneInput!]
-  localizations: [ID]
-  locale: String
-  published_at: DateTime
-  created_by: ID
-  updated_by: ID
-}
-input createPostInput {
-  data: PostInput
-}
 type createPostPayload {
   post: Post
 }
-input updatePostInput {
-  where: InputID
-  data: editPostInput
-}
 type updatePostPayload {
   post: Post
-}
-input deletePostInput {
-  where: InputID
 }
 type deletePostPayload {
   post: Post
@@ -288,18 +209,6 @@ type I18NLocale {
   updated_at: DateTime!
   name: String
   code: String
-}
-input LocaleInput {
-  name: String
-  code: String
-  created_by: ID
-  updated_by: ID
-}
-input editLocaleInput {
-  name: String
-  code: String
-  created_by: ID
-  updated_by: ID
 }
 type UploadFile {
   id: ID!
@@ -441,47 +350,6 @@ type UploadFileConnectionProvider_metadata {
   key: JSON
   connection: UploadFileConnection
 }
-input FileInput {
-  name: String!
-  alternativeText: String
-  caption: String
-  width: Int
-  height: Int
-  formats: JSON
-  hash: String!
-  ext: String
-  mime: String!
-  size: Float!
-  url: String!
-  previewUrl: String
-  provider: String!
-  provider_metadata: JSON
-  related: [ID]
-  created_by: ID
-  updated_by: ID
-}
-input editFileInput {
-  name: String
-  alternativeText: String
-  caption: String
-  width: Int
-  height: Int
-  formats: JSON
-  hash: String
-  ext: String
-  mime: String
-  size: Float
-  url: String
-  previewUrl: String
-  provider: String
-  provider_metadata: JSON
-  related: [ID]
-  created_by: ID
-  updated_by: ID
-}
-input deleteFileInput {
-  where: InputID
-}
 type deleteFilePayload {
   file: UploadFile
 }
@@ -533,39 +401,11 @@ type UsersPermissionsRoleConnectionType {
   key: String
   connection: UsersPermissionsRoleConnection
 }
-input RoleInput {
-  name: String!
-  description: String
-  type: String
-  permissions: [ID]
-  users: [ID]
-  created_by: ID
-  updated_by: ID
-}
-input editRoleInput {
-  name: String
-  description: String
-  type: String
-  permissions: [ID]
-  users: [ID]
-  created_by: ID
-  updated_by: ID
-}
-input createRoleInput {
-  data: RoleInput
-}
 type createRolePayload {
   role: UsersPermissionsRole
 }
-input updateRoleInput {
-  where: InputID
-  data: editRoleInput
-}
 type updateRolePayload {
   role: UsersPermissionsRole
-}
-input deleteRoleInput {
-  where: InputID
 }
 type deleteRolePayload {
   role: UsersPermissionsRole
@@ -637,47 +477,11 @@ type UsersPermissionsUserConnectionRole {
   key: ID
   connection: UsersPermissionsUserConnection
 }
-input UserInput {
-  username: String!
-  email: String!
-  provider: String
-  password: String
-  resetPasswordToken: String
-  confirmationToken: String
-  confirmed: Boolean
-  blocked: Boolean
-  role: ID
-  created_by: ID
-  updated_by: ID
-}
-input editUserInput {
-  username: String
-  email: String
-  provider: String
-  password: String
-  resetPasswordToken: String
-  confirmationToken: String
-  confirmed: Boolean
-  blocked: Boolean
-  role: ID
-  created_by: ID
-  updated_by: ID
-}
-input createUserInput {
-  data: UserInput
-}
 type createUserPayload {
   user: UsersPermissionsUser
 }
-input updateUserInput {
-  where: InputID
-  data: editUserInput
-}
 type updateUserPayload {
   user: UsersPermissionsUser
-}
-input deleteUserInput {
-  where: InputID
 }
 type deleteUserPayload {
   user: UsersPermissionsUser
@@ -685,21 +489,6 @@ type deleteUserPayload {
 type ComponentPostRichText {
   id: ID!
   rich_text: String
-}
-input ComponentPostRichTextInput {
-  rich_text: String
-}
-input editComponentPostRichTextInput {
-  id: ID
-  rich_text: String
-}
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionTitle | CategoryConnectionSlug | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionDate | PostConnectionExcerpt | PostConnectionImage | PostConnectionDescription | PostConnectionPublished | PostConnectionImage_url | PostConnectionCategory | PostConnectionSlug | PostConnectionFeatured | PostConnectionLocale | PostConnectionPublished_at | createPostPayload | updatePostPayload | deletePostPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPostRichText
-input InputID {
-  id: ID!
-}
-enum PublicationState {
-  LIVE
-  PREVIEW
 }
 type AdminUser {
   id: ID!
@@ -756,15 +545,226 @@ type Mutation {
   resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 }
-"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
-scalar JSON
-"A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
-scalar DateTime
-"A time string with format: HH:mm:ss.SSS"
-scalar Time
-"A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
-scalar Date
-"The `Long` scalar type represents 52-bit integers"
-scalar Long
-"The `Upload` scalar type represents a file upload."
-scalar Upload
+union PostContentDynamicZone = ComponentPostRichText
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionTitle | CategoryConnectionSlug | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionDate | PostConnectionExcerpt | PostConnectionImage | PostConnectionDescription | PostConnectionPublished | PostConnectionImage_url | PostConnectionCategory | PostConnectionSlug | PostConnectionFeatured | PostConnectionLocale | PostConnectionPublished_at | createPostPayload | updatePostPayload | deletePostPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentPostRichText
+enum ENUM_POST_CATEGORY {
+  poetry
+  blog
+  unsorted
+}
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+input CategoryInput {
+  title: String
+  slug: String!
+  created_by: ID
+  updated_by: ID
+}
+input editCategoryInput {
+  title: String
+  slug: String
+  created_by: ID
+  updated_by: ID
+}
+input createCategoryInput {
+  data: CategoryInput
+}
+input updateCategoryInput {
+  where: InputID
+  data: editCategoryInput
+}
+input deleteCategoryInput {
+  where: InputID
+}
+input PostInput {
+  title: String
+  date: DateTime
+  excerpt: String!
+  image: ID
+  description: String
+  published: Boolean
+  image_url: String
+  category: ENUM_POST_CATEGORY
+  slug: String!
+  featured: Boolean
+  content: [PostContentDynamicZoneInput!]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+input editPostInput {
+  title: String
+  date: DateTime
+  excerpt: String
+  image: ID
+  description: String
+  published: Boolean
+  image_url: String
+  category: ENUM_POST_CATEGORY
+  slug: String
+  featured: Boolean
+  content: [PostContentDynamicZoneInput!]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+input createPostInput {
+  data: PostInput
+}
+input updatePostInput {
+  where: InputID
+  data: editPostInput
+}
+input deletePostInput {
+  where: InputID
+}
+input LocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+input editLocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+input deleteFileInput {
+  where: InputID
+}
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+input createRoleInput {
+  data: RoleInput
+}
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+input deleteRoleInput {
+  where: InputID
+}
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+input createUserInput {
+  data: UserInput
+}
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+input deleteUserInput {
+  where: InputID
+}
+input ComponentPostRichTextInput {
+  rich_text: String
+}
+input editComponentPostRichTextInput {
+  id: ID
+  rich_text: String
+}
+input InputID {
+  id: ID!
+}
+"Exposes a URL that specifies the behaviour of this scalar."
+directive @specifiedBy("The URL that specifies the behaviour of this scalar." url: String!) on SCALAR

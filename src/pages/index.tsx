@@ -42,9 +42,6 @@ const IndexPage: NextPage<IndexPageProps> = ({
         subtitle={mainPageData.subtitle}
         backgroundImage={mainPageData.backgroundImage}
       />
-      {featuredItem?.published && (
-        <FeaturedPostSection post={featuredItem} categories={categories} />
-      )}
       {blogItems?.length > 0 && (
         <PostsList
           items={blogItems}
