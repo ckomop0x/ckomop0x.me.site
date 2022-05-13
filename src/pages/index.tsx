@@ -1,14 +1,12 @@
 import { NextPage } from 'next';
 
 import MainPageLayout from 'components/layouts/MainPageLayout';
-import FeaturedPostSection from 'components/sections/FeaturedPostSection';
 import Hero from 'components/sections/HeroSection';
 import PostsList from 'components/sections/PostsListSection';
 import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
   IndexPageQuery_blogItems,
   IndexPageQuery_categories,
-  IndexPageQuery_featured,
   IndexPageQuery_poetryItems,
 } from 'queries/types/indexPageQuery';
 import apolloClient from 'utils/api/apollo-client';
