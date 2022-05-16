@@ -3,15 +3,12 @@ import parse from 'html-react-parser';
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { ENUM_POST_CATEGORY } from '../../../../types/globalTypes';
-
 import { LinkStyled } from 'components/sections/FeaturedPostSection/styles';
-import { IndexPageQuery_categories } from 'queries/types/indexPageQuery';
 import formatDate from 'utils/dates/formatDate';
 
 export interface FeaturedPostContentProps {
-  category: ENUM_POST_CATEGORY;
-  categories: IndexPageQuery_categories[];
+  category: any;
+  categories: any;
   title: string;
   date: string;
   excerpt: string;
@@ -26,9 +23,6 @@ const FeaturedPostContent: FC<FeaturedPostContentProps> = ({
   excerpt,
   slug,
 }): JSX.Element => {
-  const [categoryData] = categories.filter(
-    categoryItem => categoryItem.slug === category,
-  );
   const excerptText = excerpt
     ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
     : '';
@@ -41,7 +35,7 @@ const FeaturedPostContent: FC<FeaturedPostContentProps> = ({
       {excerptText && (
         <PostContent>
           {excerptText}
-          <Link href={`/${categoryData.slug}/${slug}`} passHref>
+          <Link href={`/${''}/${slug}`} passHref>
             <LinkStyled>Читать далее...</LinkStyled>
           </Link>
         </PostContent>

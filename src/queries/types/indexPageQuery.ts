@@ -9,8 +9,8 @@
 
 export interface IndexPageQuery_blogItems_data_attributes_category_data_attributes {
   __typename: 'Category';
-  Title: string;
-  Slug: string;
+  title: string;
+  slug: string;
 }
 
 export interface IndexPageQuery_blogItems_data_attributes_category_data {
@@ -54,8 +54,8 @@ export interface IndexPageQuery_blogItems {
 
 export interface IndexPageQuery_poetryItems_data_attributes_category_data_attributes {
   __typename: 'Category';
-  Title: string;
-  Slug: string;
+  title: string;
+  slug: string;
 }
 
 export interface IndexPageQuery_poetryItems_data_attributes_category_data {
@@ -97,7 +97,24 @@ export interface IndexPageQuery_poetryItems {
   data: IndexPageQuery_poetryItems_data[];
 }
 
+export interface IndexPageQuery_categoryInfo_data_attributes {
+  __typename: 'Category';
+  title: string;
+  slug: string;
+}
+
+export interface IndexPageQuery_categoryInfo_data {
+  __typename: 'CategoryEntity';
+  attributes: IndexPageQuery_categoryInfo_data_attributes | null;
+}
+
+export interface IndexPageQuery_categoryInfo {
+  __typename: 'CategoryEntityResponseCollection';
+  data: IndexPageQuery_categoryInfo_data[];
+}
+
 export interface IndexPageQuery {
   blogItems: IndexPageQuery_blogItems | null;
   poetryItems: IndexPageQuery_poetryItems | null;
+  categoryInfo: IndexPageQuery_categoryInfo | null;
 }

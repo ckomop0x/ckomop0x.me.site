@@ -4,8 +4,8 @@ export const categoryFieldsFragment = gql`
   fragment CategoryFragment on CategoryEntityResponse {
     data {
       attributes {
-        Title
-        Slug
+        title
+        slug
       }
     }
   }

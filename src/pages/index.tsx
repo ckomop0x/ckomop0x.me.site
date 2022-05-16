@@ -2,12 +2,13 @@ import { NextPage } from 'next';
 
 import MainPageLayout from 'components/layouts/MainPageLayout';
 import Hero from 'components/sections/HeroSection';
-import PostsList from 'components/sections/PostsListSection';
+import PostsListSection from 'components/sections/PostsListSection';
 import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
   IndexPageQuery_blogItems,
-  IndexPageQuery_categories,
+  IndexPageQuery_blogItems_data,
   IndexPageQuery_poetryItems,
+  IndexPageQuery_poetryItems_data,
 } from 'queries/types/indexPageQuery';
 import apolloClient from 'utils/api/apollo-client';
 
@@ -19,15 +20,13 @@ const mainPageData = {
 };
 
 interface IndexPageProps {
-  blogItems: IndexPageQuery_blogItems[];
-  poetryItems: IndexPageQuery_poetryItems[];
-  categories: IndexPageQuery_categories[];
+  blogItems: IndexPageQuery_blogItems_data[];
+  poetryItems: IndexPageQuery_poetryItems_data[];
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({
   blogItems,
   poetryItems,
-  categories,
 }): JSX.Element => (
   <MainPageLayout>
     <Hero
@@ -36,18 +35,18 @@ const IndexPage: NextPage<IndexPageProps> = ({
       backgroundImage={mainPageData.backgroundImage}
     />
     {blogItems?.length > 0 && (
-      <PostsList
-        items={blogItems}
-        categories={categories}
+      <PostsListSection
+        posts={blogItems}
+        categoryInfo={blogItems[0].attributes?.category?.data?.attributes}
         blockTitle="Статьи и публикации"
         blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
       />
     )}
 
     {poetryItems?.length > 0 && (
-      <PostsList
-        items={poetryItems}
-        categories={categories}
+      <PostsListSection
+        posts={poetryItems}
+        categoryInfo={poetryItems[0].attributes?.category?.data?.attributes}
         blockTitle="Стихи и песни"
         blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
       />
@@ -61,13 +60,12 @@ export async function getStaticProps(): Promise<{
   const { data } = await apolloClient.query({
     query: indexPageQuery,
   });
-  const { blogItems, poetryItems, categories } = data;
+  const { blogItems, poetryItems } = data;
 
   return {
     props: {
-      blogItems,
-      poetryItems,
-      categories,
+      blogItems: blogItems.data,
+      poetryItems: poetryItems.data,
     },
   };
 }

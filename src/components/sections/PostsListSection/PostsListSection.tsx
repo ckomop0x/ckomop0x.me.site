@@ -5,30 +5,25 @@ import { AllPostsLink, PostsListSectionWrapper } from './styles';
 
 import Button from 'components/UI/Button';
 import PostsList from 'components/UI/PostsList';
-import {
-  IndexPageQuery_categories,
-  IndexPageQuery_poetryItems,
-} from 'queries/types/indexPageQuery';
+import { IndexPageQuery_poetryItems_data } from 'queries/types/indexPageQuery';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
 interface PostsListSectionProps {
   blockTitle: string;
   blockSubtitle: string;
-  items: IndexPageQuery_poetryItems[];
-  categories: IndexPageQuery_categories[];
+  posts: IndexPageQuery_poetryItems_data[];
+  categoryInfo?: {
+    title: string;
+    slug: string;
+  } | null;
 }
 
 const PostsListSection: FC<PostsListSectionProps> = ({
   blockTitle,
   blockSubtitle,
-  items,
-  categories,
+  posts,
+  categoryInfo,
 }): JSX.Element => {
-  const postsCategoryLink = items[0].category ?? '';
-  const [postsCategory] = categories.filter(
-    (category: IndexPageQuery_categories) =>
-      category.slug === postsCategoryLink,
-  );
   const { theme } = useThemeUI();
 
   return (
@@ -37,9 +32,11 @@ const PostsListSection: FC<PostsListSectionProps> = ({
         <TitleBlock>{blockTitle}</TitleBlock>
         <SubtitleBlock>{blockSubtitle}</SubtitleBlock>
         <div className="text-center">
-          <PostsList posts={items} categories={categories} />
-          <AllPostsLink href={postsCategoryLink}>
-            <Button variant="primary">Перейти в {postsCategory.title}</Button>
+          <PostsList posts={posts} />
+          <AllPostsLink href={categoryInfo?.slug || ''}>
+            <Button variant="primary">
+              Перейти в {categoryInfo?.title || ''}
+            </Button>
           </AllPostsLink>
         </div>
       </div>

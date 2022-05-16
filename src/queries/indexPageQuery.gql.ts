@@ -7,7 +7,7 @@ export const indexPageQuery = gql`
   query IndexPageQuery {
     blogItems: posts(
       locale: "ru"
-      filters: { category: { Slug: { eq: "blog" } } }
+      filters: { category: { slug: { eq: "blog" } } }
       sort: "date:desc"
       publicationState: LIVE
       pagination: { limit: 3 }
@@ -16,7 +16,7 @@ export const indexPageQuery = gql`
     }
     poetryItems: posts(
       locale: "ru"
-      filters: { category: { Slug: { eq: "poetry" } } }
+      filters: { category: { slug: { eq: "poetry" } } }
       sort: "date:desc"
       publicationState: LIVE
       pagination: { limit: 3 }

@@ -9,8 +9,8 @@
 
 export interface PostFieldsFragment_data_attributes_category_data_attributes {
   __typename: 'Category';
-  Title: string;
-  Slug: string;
+  title: string;
+  slug: string;
 }
 
 export interface PostFieldsFragment_data_attributes_category_data {
