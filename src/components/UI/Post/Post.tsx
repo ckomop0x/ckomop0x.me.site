@@ -3,15 +3,16 @@ import { FC } from 'react';
 import PostContent from './PostContent';
 import { PostWrapper, StyledLink } from './styles';
 
-import { IndexPageQuery_categories } from 'queries/types/indexPageQuery';
-
 export interface PostProps {
   id: string | null;
   excerpt: string | null;
   publicationDate: string;
   title: string;
   slug: string | null;
-  category: IndexPageQuery_categories;
+  category: {
+    title: string;
+    slug: string;
+  };
   image: string;
   updateDate?: string;
 }
