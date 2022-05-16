@@ -9,7 +9,7 @@ export interface PostProps {
   publicationDate: string;
   title: string;
   slug: string | null;
-  category: {
+  category?: {
     title: string;
     slug: string;
   };
@@ -25,8 +25,8 @@ const Post: FC<PostProps> = ({
   image,
 }): JSX.Element => (
   <PostWrapper className="col-12 col-md-6 col-lg-4">
-    <StyledLink href={`/${category.slug}/${slug}`} passHref>
-      <a href={`/${category.slug}/${slug}`}>
+    <StyledLink href={`/${category?.slug || ''}/${slug}`} passHref>
+      <a href={`/${category?.slug || ''}/${slug}`}>
         <div className="row h-100">
           <PostContent
             image={image}

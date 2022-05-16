@@ -17,8 +17,6 @@ Primary.args = {
   slug: 'Анонс',
   title: 'Стихотворение',
   category: {
-    __typename: 'Category',
-    id: '1',
     title: 'Стихи',
     slug: 'poetry',
   },
