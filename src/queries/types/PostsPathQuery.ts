@@ -7,15 +7,26 @@
 // GraphQL query operation: PostsPathQuery
 // ====================================================
 
-export interface PostsPathQuery_posts {
+export interface PostsPathQuery_posts_data_attributes {
   __typename: 'Post';
   slug: string;
 }
 
+export interface PostsPathQuery_posts_data {
+  __typename: 'PostEntity';
+  attributes: PostsPathQuery_posts_data_attributes | null;
+}
+
+export interface PostsPathQuery_posts {
+  __typename: 'PostEntityResponseCollection';
+  data: PostsPathQuery_posts_data[];
+}
+
 export interface PostsPathQuery {
-  posts: (PostsPathQuery_posts | null)[] | null;
+  posts: PostsPathQuery_posts | null;
 }
 
 export interface PostsPathQueryVariables {
   category: string;
+  locale: any;
 }

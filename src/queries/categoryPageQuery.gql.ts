@@ -8,15 +8,14 @@ export const categoryPageQuery = gql`
   ${categoryFieldsFragment}
 
   query CategoryPageQuery($category: String!, $limit: Int!) {
-    posts(
-      where: { category: $category, published: true }
-      limit: $limit
+    blogItems: posts(
+      locale: "ru"
+      filters: { category: { Slug: { eq: $category } } }
       sort: "date:desc"
+      publicationState: LIVE
+      pagination: { limit: $limit }
     ) {
       ...PostFieldsFragment
-    }
-    categories {
-      ...CategoryFieldsFragment
     }
   }
 `;

@@ -29,7 +29,7 @@ module.exports = {
   },
   settings: {
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+      '@typescript-eslint/parser': ['.ts', '.tsx', '.js', '.jsx'],
     },
     'import/resolver': {
       typescript: {},
