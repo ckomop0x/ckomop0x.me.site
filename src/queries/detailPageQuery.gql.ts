@@ -1,15 +1,20 @@
 import { gql } from '@apollo/client';
 
+import { categoryFieldsFragment } from 'queries/fragments/categoryFieldsFragment.gql';
+
 export const detailsPageQuery = gql`
-  query DetailsPageQuery($slug: String!, $category: String!) {
+  ${categoryFieldsFragment}
+  query DetailsPageQuery($category: String!, $slug: String!) {
     posts(
       filters: { slug: { eq: $slug }, category: { slug: { eq: $category } } }
-      pagination: { limit: 100 }
       publicationState: LIVE
     ) {
       data {
         id
         attributes {
+          category {
+            ...CategoryFragment
+          }
           date
           updatedAt
           excerpt
@@ -23,6 +28,11 @@ export const detailsPageQuery = gql`
             ... on ComponentContentRichText {
               __typename
               description
+            }
+            ... on ComponentContentImage {
+              __typename
+              title
+              url
             }
           }
         }

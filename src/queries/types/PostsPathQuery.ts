@@ -29,4 +29,5 @@ export interface PostsPathQuery {
 export interface PostsPathQueryVariables {
   category: string;
   locale: any;
+  limit: number;
 }

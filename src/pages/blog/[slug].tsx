@@ -4,7 +4,7 @@ import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {
   ICategory,
-  IDetailPageProps,
+  DetailPageType,
   IGetStaticPathsResponse,
   IGetStaticProps,
   IGetStaticPropsResponse,
@@ -14,13 +14,27 @@ import getItemPath, { IItemPath } from 'utils/queries/getItemPath';
 
 const CATEGORY: ICategory = 'blog';
 
-export default function BlogPostPage({
-  detailedPost,
-}: IDetailPageProps): JSX.Element {
-  const { content, image_url, slug, title, date } = detailedPost;
-  const socialImage = `${image_url}?tr=w-1080,h-280,fo-top`;
+interface BlogPostPageProps {
+  post: DetailPageType;
+}
+
+export default function BlogPostPage({ post }: BlogPostPageProps): JSX.Element {
+  if (!post?.attributes) {
+    return (
+      <InnerPageLayout
+        headTitle={'Пост не найден'}
+        ogUrl={''}
+        ogImage={''}
+        ogDescription={''}
+        twitterCard={''}
+      ></InnerPageLayout>
+    );
+  }
+
+  const { Content, PostImage, slug, title, date } = post?.attributes;
+  const socialImage = `${PostImage?.url}?tr=w-1080,h-280,fo-top`;
   const ogUrl = `https://ckomop0x.me/${CATEGORY}/${slug}/`;
-  const description = (content?.[0]?.rich_text as string) || '';
+  const description = (Content?.[0]?.description as string) || '';
 
   return (
     <InnerPageLayout
@@ -34,7 +48,7 @@ export default function BlogPostPage({
         title={title}
         date={date}
         description={description}
-        image={image_url}
+        image={PostImage.url}
       />
     </InnerPageLayout>
   );
@@ -47,11 +61,11 @@ export async function getStaticProps({
     query: detailsPageQuery,
     variables: { category: CATEGORY, slug: params.slug },
   });
-  const [detailedPost] = data.posts;
+  const [post] = data.posts.data;
 
   return {
     props: {
-      detailedPost,
+      post,
     },
   };
 }
@@ -61,9 +75,11 @@ export async function getStaticPaths(): Promise<IGetStaticPathsResponse> {
     query: postsPathQuery,
     variables: {
       category: CATEGORY,
+      limit: 100,
+      locale: 'ru',
     },
   });
-  const paths: IItemPath[] | string[] = [...data.posts.map(getItemPath)];
+  const paths: IItemPath[] | string[] = [...data.posts.data.map(getItemPath)];
 
   return {
     paths,

@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 
-import ItemsList from 'components/UI/ItemsList';
 import PostsList from 'components/UI/PostsList';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';

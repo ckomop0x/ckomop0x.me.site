@@ -1,7 +1,7 @@
 import parse from 'html-react-parser';
 import { FC } from 'react';
-import 'lazysizes';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+// import 'lazysizes';
+// import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import { Content, DetailItemWrapper } from './styles';
 
@@ -23,7 +23,7 @@ const DetailItem: FC<DetailItemProps> = ({
   const postDate = formatDate(date);
 
   return (
-    <DetailItemWrapper className="lazyload" image={image}>
+    <DetailItemWrapper image={image}>
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-lg-12">
