@@ -4,7 +4,7 @@ export const postsPathQuery = gql`
   query PostsPathQuery($category: String!, $locale: I18NLocaleCode!) {
     posts(
       locale: $locale
-      filters: { category: { Slug: { eq: $category } } }
+      filters: { category: { slug: { eq: $category } } }
       pagination: { limit: 100 }
     ) {
       data {

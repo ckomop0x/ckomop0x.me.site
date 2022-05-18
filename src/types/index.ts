@@ -1,4 +1,5 @@
-import { CategoryPageQuery_categories, CategoryPageQuery_posts } from 'queries/types/CategoryPageQuery';
+import { CategoryPageQuery_posts, CategoryPageQuery_posts_data } from 'queries/types/CategoryPageQuery';
+import { IndexPageQuery_blogItems_data, IndexPageQuery_poetryItems_data } from 'queries/types/indexPageQuery';
 import { IItemPath } from 'utils/queries/getItemPath';
 
 export interface IGetStaticProps {
@@ -18,9 +19,13 @@ export interface IGetStaticPathsResponse {
   fallback: boolean;
 }
 
+export type PostsType =
+  IndexPageQuery_blogItems_data[]
+  | IndexPageQuery_poetryItems_data[]
+  | CategoryPageQuery_posts_data[];
+
 export interface CategoryPageProps {
-  items: CategoryPageQuery_posts[];
-  categories: CategoryPageQuery_categories[];
+  posts: PostsType;
 }
 
 export type ICategory = 'blog' | 'poetry';

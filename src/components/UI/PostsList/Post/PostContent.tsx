@@ -3,8 +3,8 @@ import { FC } from 'react';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import PostDate from 'components/UI/Post/PostDate';
-import { PostTitle } from 'components/UI/Post/styles';
+import PostDate from 'components/UI/PostsList/Post/PostDate';
+import { PostTitle } from 'components/UI/PostsList/Post/styles';
 import getSrcSet from 'utils/image/getSrcSet';
 
 interface PostContentProps {

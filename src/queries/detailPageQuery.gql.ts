@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 export const detailsPageQuery = gql`
   query DetailsPageQuery($slug: String!, $category: String!) {
     posts(
-      filters: { slug: { eq: $slug }, category: { Slug: { eq: $category } } }
+      filters: { slug: { eq: $slug }, category: { slug: { eq: $category } } }
       pagination: { limit: 100 }
       publicationState: LIVE
     ) {

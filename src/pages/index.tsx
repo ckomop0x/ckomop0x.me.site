@@ -5,9 +5,7 @@ import Hero from 'components/sections/HeroSection';
 import PostsListSection from 'components/sections/PostsListSection';
 import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
-  IndexPageQuery_blogItems,
   IndexPageQuery_blogItems_data,
-  IndexPageQuery_poetryItems,
   IndexPageQuery_poetryItems_data,
 } from 'queries/types/indexPageQuery';
 import apolloClient from 'utils/api/apollo-client';

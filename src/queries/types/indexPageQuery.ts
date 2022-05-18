@@ -97,24 +97,7 @@ export interface IndexPageQuery_poetryItems {
   data: IndexPageQuery_poetryItems_data[];
 }
 
-export interface IndexPageQuery_categoryInfo_data_attributes {
-  __typename: 'Category';
-  title: string;
-  slug: string;
-}
-
-export interface IndexPageQuery_categoryInfo_data {
-  __typename: 'CategoryEntity';
-  attributes: IndexPageQuery_categoryInfo_data_attributes | null;
-}
-
-export interface IndexPageQuery_categoryInfo {
-  __typename: 'CategoryEntityResponseCollection';
-  data: IndexPageQuery_categoryInfo_data[];
-}
-
 export interface IndexPageQuery {
   blogItems: IndexPageQuery_blogItems | null;
   poetryItems: IndexPageQuery_poetryItems | null;
-  categoryInfo: IndexPageQuery_categoryInfo | null;
 }

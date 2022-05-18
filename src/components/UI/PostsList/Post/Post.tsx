@@ -3,21 +3,9 @@ import { FC } from 'react';
 import PostContent from './PostContent';
 import { PostWrapper, StyledLink } from './styles';
 
-export interface PostProps {
-  id: string | null;
-  excerpt: string | null;
-  publicationDate: string;
-  title: string;
-  slug: string | null;
-  category?: {
-    title: string;
-    slug: string;
-  };
-  image: string;
-  updateDate?: string;
-}
+import { PostInterface } from 'components/UI/PostsList/types';
 
-const Post: FC<PostProps> = ({
+const Post: FC<PostInterface> = ({
   publicationDate,
   title,
   slug,

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import Post from 'components/UI/Post';
+import Post from 'components/UI/PostsList/Post';
 import { CategoryPageProps } from 'types/index';
 import formatDate from 'utils/dates/formatDate';
 

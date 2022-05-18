@@ -4,11 +4,16 @@ import { FC } from 'react';
 
 import { PostsListWrapper } from './styles';
 
-import Post from 'components/UI/Post';
-import { IndexPageQuery_poetryItems_data } from 'queries/types/indexPageQuery';
+import Post from 'components/UI/PostsList/Post';
+import { CategoryPageQuery_posts } from 'queries/types/CategoryPageQuery';
+import {
+  IndexPageQuery_blogItems_data,
+  IndexPageQuery_poetryItems_data,
+} from 'queries/types/indexPageQuery';
+import { PostsType } from 'types/index';
 
 interface PostsListProps {
-  posts: IndexPageQuery_poetryItems_data[];
+  posts: PostsType;
 }
 
 const PostsList: FC<PostsListProps> = ({ posts }): JSX.Element => {
@@ -17,22 +22,33 @@ const PostsList: FC<PostsListProps> = ({ posts }): JSX.Element => {
       locale: ruLocale,
     });
 
-  console.log('posts', posts);
-
   return (
     <PostsListWrapper className="row">
-      {posts.map(({ id, attributes }) => (
-        <Post
-          key={id}
-          id={id}
-          excerpt={attributes?.excerpt || ''}
-          publicationDate={getPublicationDate(attributes?.date || '')}
-          title={attributes?.title || ''}
-          slug={attributes?.slug || ''}
-          category={attributes?.category?.data?.attributes}
-          image={attributes?.PostImage?.url || ''}
-        />
-      ))}
+      {posts.map(({ id, attributes }) => {
+        if (attributes) {
+          const {
+            excerpt = '',
+            date = '',
+            title = '',
+            slug = '',
+            category,
+            PostImage,
+          } = attributes;
+          return (
+            <Post
+              key={id}
+              id={id}
+              excerpt={excerpt}
+              publicationDate={getPublicationDate(date)}
+              title={title}
+              slug={slug}
+              category={category?.data?.attributes}
+              image={PostImage?.url || ''}
+            />
+          );
+        }
+        return null;
+      })}
     </PostsListWrapper>
   );
 };
