@@ -30,9 +30,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
       <div className="text-center">
         <PostsList posts={posts} />
         <AllPostsLink href={categoryInfo?.slug || ''}>
-          <Button variant="primary">
-            Перейти в {categoryInfo?.title || ''}
-          </Button>
+          <Button>Перейти в {categoryInfo?.title || ''}</Button>
         </AllPostsLink>
       </div>
     </div>

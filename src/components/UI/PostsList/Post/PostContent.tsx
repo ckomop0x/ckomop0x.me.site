@@ -20,9 +20,9 @@ const PostContent: FC<PostContentProps> = ({
     {!!image && (
       <PostImage
         loading="lazy"
-        data-src={`${image}`}
-        data-srcset={getSrcSet(image)}
-        data-sizes="(max-width: 600px) 480px, 600px"
+        src={`${image}`}
+        srcSet={getSrcSet(image)}
+        sizes="(max-width: 600px) 480px, 600px"
         alt={title}
       />
     )}
