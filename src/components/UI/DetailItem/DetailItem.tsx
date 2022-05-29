@@ -1,4 +1,3 @@
-import parse from 'html-react-parser';
 import { FC, ReactNode } from 'react';
 
 import { Content, DetailItemWrapper } from './styles';

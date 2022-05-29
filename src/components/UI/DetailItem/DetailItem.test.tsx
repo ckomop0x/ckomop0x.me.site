@@ -8,14 +8,14 @@ describe('DetailItem', () => {
   const date = new Date('2021-12-12');
   const title = 'Detail Test Item';
   const image = 'test-image.webp';
-  const description = '<div>Some description content</div>';
+  const children = '<div>Some description content</div>';
 
   it('Should render default component', () => {
     const detailItemProps: DetailItemProps = {
       title,
-      description,
-      date,
       image,
+      date,
+      children,
     };
 
     render(<DetailItem {...detailItemProps} />);
@@ -25,9 +25,9 @@ describe('DetailItem', () => {
   it('Should render component without description', () => {
     const detailItemProps: DetailItemProps = {
       title,
-      description: '',
-      date,
       image,
+      date,
+      children,
     };
 
     render(<DetailItem {...detailItemProps} />);

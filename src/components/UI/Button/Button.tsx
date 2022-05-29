@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
-import React, { FC, ForwardedRef, forwardRef } from 'react';
+import React, { FC, ForwardedRef, forwardRef, ReactNode } from 'react';
 
-interface ButtonProps {
+export interface ButtonProps {
   onClick?: () => void;
+  children: ReactNode | string;
 }
 
 const Button: FC<ButtonProps> = forwardRef((props, ref) => {
