@@ -8,29 +8,29 @@
 // ====================================================
 
 export interface CategoryPageQuery_posts_data_attributes_category_data_attributes {
-  __typename: 'Category';
+  __typename: "Category";
   title: string;
   slug: string;
 }
 
 export interface CategoryPageQuery_posts_data_attributes_category_data {
-  __typename: 'CategoryEntity';
+  __typename: "CategoryEntity";
   attributes: CategoryPageQuery_posts_data_attributes_category_data_attributes | null;
 }
 
 export interface CategoryPageQuery_posts_data_attributes_category {
-  __typename: 'CategoryEntityResponse';
+  __typename: "CategoryEntityResponse";
   data: CategoryPageQuery_posts_data_attributes_category_data | null;
 }
 
 export interface CategoryPageQuery_posts_data_attributes_PostImage {
-  __typename: 'ComponentContentImage';
+  __typename: "ComponentContentImage";
   title: string;
   url: string | null;
 }
 
 export interface CategoryPageQuery_posts_data_attributes {
-  __typename: 'Post';
+  __typename: "Post";
   date: any;
   updatedAt: any | null;
   excerpt: string;
@@ -42,13 +42,13 @@ export interface CategoryPageQuery_posts_data_attributes {
 }
 
 export interface CategoryPageQuery_posts_data {
-  __typename: 'PostEntity';
+  __typename: "PostEntity";
   id: string | null;
   attributes: CategoryPageQuery_posts_data_attributes | null;
 }
 
 export interface CategoryPageQuery_posts {
-  __typename: 'PostEntityResponseCollection';
+  __typename: "PostEntityResponseCollection";
   data: CategoryPageQuery_posts_data[];
 }
 

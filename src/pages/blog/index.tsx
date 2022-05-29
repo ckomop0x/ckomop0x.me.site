@@ -5,10 +5,10 @@ import PostsList from 'components/UI/PostsList';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
-import { ICategory, CategoryPageProps } from 'types';
+import { CategoryInterface, CategoryPageProps } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
-const CATEGORY: ICategory = 'blog';
+const CATEGORY: CategoryInterface = 'blog';
 const LIMIT = 100;
 const TITLE = 'Статьи и публикации';
 const SUB_TITLE = 'Статьи и публикации на разные темы.';

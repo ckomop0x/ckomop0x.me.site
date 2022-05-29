@@ -1,19 +1,21 @@
 import styled from '@emotion/styled';
 import React, { FC } from 'react';
-import {
-  Button as ThemeUiButton,
-  ButtonProps as ThemeUiButtonProps,
-} from 'theme-ui';
 
-export type ButtonProps = ThemeUiButtonProps;
+interface ButtonProps {
+  onClick?: () => void;
+}
 
-const Button: FC<ButtonProps> = ({ onClick, children, ...props }) => (
-  <ButtonWrapper onClick={onClick} {...props}>
-    {children}
-  </ButtonWrapper>
-);
+const Button: FC<ButtonProps> = (props, ref) => {
+  const { onClick, children, ...rest } = props;
 
-export const ButtonWrapper = styled(ThemeUiButton)`
+  return (
+    <ButtonWrapper onClick={onClick} ref={ref} {...rest}>
+      {children}
+    </ButtonWrapper>
+  );
+};
+
+export const ButtonWrapper = styled.button`
   transition: box-shadow 0.3s ease;
   box-shadow: 0 2px 3px #0000001c;
   border: 0;

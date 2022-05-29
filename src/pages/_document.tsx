@@ -6,7 +6,6 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
-import { InitializeColorMode } from 'theme-ui';
 
 export default class WebtimeDocument extends Document {
   render(): JSX.Element {
@@ -19,7 +18,6 @@ export default class WebtimeDocument extends Document {
           />
         </Head>
         <body>
-          <InitializeColorMode />
           <Main />
           <NextScript />
           <script

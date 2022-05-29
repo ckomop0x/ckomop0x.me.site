@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { useThemeUI } from 'theme-ui';
 
 import { AllPostsLink, PostsListSectionWrapper } from './styles';
 
@@ -23,25 +22,21 @@ const PostsListSection: FC<PostsListSectionProps> = ({
   blockSubtitle,
   posts,
   categoryInfo,
-}): JSX.Element => {
-  const { theme } = useThemeUI();
-
-  return (
-    <PostsListSectionWrapper>
-      <div className="container">
-        <TitleBlock>{blockTitle}</TitleBlock>
-        <SubtitleBlock>{blockSubtitle}</SubtitleBlock>
-        <div className="text-center">
-          <PostsList posts={posts} />
-          <AllPostsLink href={categoryInfo?.slug || ''}>
-            <Button variant="primary">
-              Перейти в {categoryInfo?.title || ''}
-            </Button>
-          </AllPostsLink>
-        </div>
+}): JSX.Element => (
+  <PostsListSectionWrapper>
+    <div className="container">
+      <TitleBlock>{blockTitle}</TitleBlock>
+      <SubtitleBlock>{blockSubtitle}</SubtitleBlock>
+      <div className="text-center">
+        <PostsList posts={posts} />
+        <AllPostsLink href={categoryInfo?.slug || ''}>
+          <Button variant="primary">
+            Перейти в {categoryInfo?.title || ''}
+          </Button>
+        </AllPostsLink>
       </div>
-    </PostsListSectionWrapper>
-  );
-};
+    </div>
+  </PostsListSectionWrapper>
+);
 
 export default PostsListSection;

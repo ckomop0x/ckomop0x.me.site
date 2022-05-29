@@ -4,10 +4,10 @@ import PostsList from 'components/UI/PostsList';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
-import { CategoryPageProps, ICategory } from 'types';
+import { CategoryPageProps, CategoryInterface } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
-const CATEGORY: ICategory = 'poetry';
+const CATEGORY: CategoryInterface = 'poetry';
 const LIMIT = 100;
 const TITLE = 'Стихи и песни';
 const SUB_TITLE =

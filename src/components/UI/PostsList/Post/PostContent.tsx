@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 import { FC } from 'react';
-import 'lazysizes';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
 import PostDate from 'components/UI/PostsList/Post/PostDate';
 import { PostTitle } from 'components/UI/PostsList/Post/styles';
@@ -21,7 +19,6 @@ const PostContent: FC<PostContentProps> = ({
   <PostContentWrapper>
     {!!image && (
       <PostImage
-        className="lazyload"
         loading="lazy"
         data-src={`${image}`}
         data-srcset={getSrcSet(image)}
