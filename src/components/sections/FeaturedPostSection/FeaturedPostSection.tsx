@@ -28,8 +28,6 @@ const FeaturedPostSection: FC<FeaturedPostSectionProps> = ({
               title={title ?? ''}
               date={date}
               excerpt={excerpt}
-              category={category}
-              categories={categories}
               slug={slug}
             />
           </div>
