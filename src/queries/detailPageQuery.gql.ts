@@ -1,27 +1,42 @@
 import { gql } from '@apollo/client';
 
+import { categoryFieldsFragment } from 'queries/fragments/categoryFieldsFragment.gql';
+
 export const detailsPageQuery = gql`
-  query DetailsPageQuery($slug: String!, $category: String!) {
+  ${categoryFieldsFragment}
+  query DetailsPageQuery($category: String!, $slug: String!) {
     posts(
-      where: { slug: $slug, category: $category }
-      limit: 1
+      filters: { slug: { eq: $slug }, category: { slug: { eq: $category } } }
       publicationState: LIVE
     ) {
-      id
-      title
-      slug
-      image_url
-      published
-      excerpt
-      content {
-        ... on ComponentPostRichText {
-          __typename
-          rich_text
+      data {
+        id
+        attributes {
+          category {
+            ...CategoryFragment
+          }
+          date
+          updatedAt
+          excerpt
+          title
+          slug
+          PostImage {
+            url
+            title
+          }
+          Content {
+            ... on ComponentContentRichText {
+              __typename
+              description
+            }
+            ... on ComponentContentImage {
+              __typename
+              title
+              url
+            }
+          }
         }
       }
-      date
-      updated_at
-      description
     }
   }
 `;

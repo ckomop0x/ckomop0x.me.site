@@ -9,14 +9,13 @@ export const categoryPageQuery = gql`
 
   query CategoryPageQuery($category: String!, $limit: Int!) {
     posts(
-      where: { category: $category, published: true }
-      limit: $limit
+      locale: "ru"
+      filters: { category: { slug: { eq: $category } } }
       sort: "date:desc"
+      publicationState: LIVE
+      pagination: { limit: $limit }
     ) {
       ...PostFieldsFragment
-    }
-    categories {
-      ...CategoryFieldsFragment
     }
   }
 `;

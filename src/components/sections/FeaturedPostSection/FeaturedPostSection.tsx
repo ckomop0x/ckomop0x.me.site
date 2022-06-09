@@ -3,14 +3,10 @@ import { FC } from 'react';
 import { FeaturedPostWrapper, ItemImage } from './styles';
 
 import FeaturedPostContent from 'components/sections/FeaturedPostSection/FeaturedPostContent';
-import {
-  IndexPageQuery_categories,
-  IndexPageQuery_featured,
-} from 'queries/types/indexPageQuery';
 
 interface FeaturedPostSectionProps {
-  post: IndexPageQuery_featured;
-  categories: IndexPageQuery_categories[];
+  post: any;
+  categories: any[];
 }
 
 const FeaturedPostSection: FC<FeaturedPostSectionProps> = ({
@@ -32,8 +28,6 @@ const FeaturedPostSection: FC<FeaturedPostSectionProps> = ({
               title={title ?? ''}
               date={date}
               excerpt={excerpt}
-              category={category}
-              categories={categories}
               slug={slug}
             />
           </div>

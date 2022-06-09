@@ -1,23 +1,20 @@
 import styled from '@emotion/styled';
 import { NextPage } from 'next';
 
-import ItemsList from 'components/UI/ItemsList';
+import PostsList from 'components/UI/PostsList';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
-import { ICategory, CategoryPageProps } from 'types';
+import { CategoryInterface, CategoryPageProps } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
-const CATEGORY: ICategory = 'blog';
+const CATEGORY: CategoryInterface = 'blog';
 const LIMIT = 100;
 const TITLE = 'Статьи и публикации';
 const SUB_TITLE = 'Статьи и публикации на разные темы.';
 const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
 
-const BlogPage: NextPage<CategoryPageProps> = ({
-  items,
-  categories,
-}): JSX.Element => (
+const BlogPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
   <InnerPageLayout
     headTitle={TITLE}
     ogUrl={CATEGORY}
@@ -28,11 +25,7 @@ const BlogPage: NextPage<CategoryPageProps> = ({
       <div className="container">
         <TitleBlock>{TITLE}</TitleBlock>
         <SubtitleBlock>{SUB_TITLE}</SubtitleBlock>
-        {items ? (
-          <ItemsList items={items} categories={categories} />
-        ) : (
-          EMPTY_PAGE_MESSAGE
-        )}
+        {posts ? <PostsList posts={posts} /> : EMPTY_PAGE_MESSAGE}
       </div>
     </BlogPageWrapper>
   </InnerPageLayout>
@@ -42,7 +35,7 @@ export async function getStaticProps(): Promise<{
   props: CategoryPageProps;
 }> {
   const {
-    data: { posts: items, categories },
+    data: { posts },
   } = await apolloClient.query({
     query: categoryPageQuery,
     variables: {
@@ -53,8 +46,7 @@ export async function getStaticProps(): Promise<{
 
   return {
     props: {
-      items,
-      categories,
+      posts: posts.data,
     },
   };
 }

@@ -1,9 +1,8 @@
 import { ApolloProvider } from '@apollo/client';
 import createCache from '@emotion/cache';
-import { CacheProvider } from '@emotion/react';
+import { CacheProvider, ThemeProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
 import 'bootstrap/dist/css/bootstrap.css';
-import { ThemeProvider } from 'theme-ui';
 
 import { globalStyles } from 'styles/GlobalStyle';
 import { theme } from 'theme/theme';

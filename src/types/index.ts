@@ -1,4 +1,6 @@
-import { CategoryPageQuery_categories, CategoryPageQuery_posts } from 'queries/types/CategoryPageQuery';
+import { CategoryPageQuery_posts_data } from 'queries/types/CategoryPageQuery';
+import { DetailsPageQuery_posts_data } from 'queries/types/DetailsPageQuery';
+import { IndexPageQuery_blogItems_data, IndexPageQuery_poetryItems_data } from 'queries/types/indexPageQuery';
 import { IItemPath } from 'utils/queries/getItemPath';
 
 export interface IGetStaticProps {
@@ -9,7 +11,7 @@ export interface IGetStaticProps {
 
 export interface IGetStaticPropsResponse {
   props: {
-    detailedPost: IDetailPageProps;
+    post: DetailPageType;
   };
 }
 
@@ -18,22 +20,15 @@ export interface IGetStaticPathsResponse {
   fallback: boolean;
 }
 
+export type PostsType =
+  IndexPageQuery_blogItems_data[]
+  | IndexPageQuery_poetryItems_data[]
+  | CategoryPageQuery_posts_data[];
+
 export interface CategoryPageProps {
-  items: CategoryPageQuery_posts[];
-  categories: CategoryPageQuery_categories[];
+  posts: PostsType;
 }
 
-export type ICategory = 'blog' | 'poetry';
+export type CategoryInterface = 'blog' | 'poetry';
 
-export interface IDetailPageProps {
-  detailedPost: {
-    image_url: string;
-    slug: string;
-    title: string;
-    updated_at: Date;
-    date: Date;
-    content?: {
-      rich_text: string;
-    }[];
-  };
-}
+export type DetailPageType = DetailsPageQuery_posts_data;

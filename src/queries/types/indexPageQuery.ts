@@ -3,64 +3,101 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ENUM_POST_CATEGORY } from './../../../types/globalTypes';
-
 // ====================================================
 // GraphQL query operation: IndexPageQuery
 // ====================================================
 
-export interface IndexPageQuery_featured {
-  __typename: 'Post';
-  category: ENUM_POST_CATEGORY;
-  image_url: string | null;
+export interface IndexPageQuery_blogItems_data_attributes_category_data_attributes {
+  __typename: "Category";
+  title: string;
   slug: string;
-  published: boolean | null;
-  id: string;
+}
+
+export interface IndexPageQuery_blogItems_data_attributes_category_data {
+  __typename: "CategoryEntity";
+  attributes: IndexPageQuery_blogItems_data_attributes_category_data_attributes | null;
+}
+
+export interface IndexPageQuery_blogItems_data_attributes_category {
+  __typename: "CategoryEntityResponse";
+  data: IndexPageQuery_blogItems_data_attributes_category_data | null;
+}
+
+export interface IndexPageQuery_blogItems_data_attributes_PostImage {
+  __typename: "ComponentContentImage";
+  title: string;
+  url: string | null;
+}
+
+export interface IndexPageQuery_blogItems_data_attributes {
+  __typename: "Post";
+  date: any;
+  updatedAt: any | null;
   excerpt: string;
-  date: any | null;
-  updated_at: any;
-  title: string | null;
   featured: boolean | null;
+  title: string;
+  slug: string;
+  category: IndexPageQuery_blogItems_data_attributes_category | null;
+  PostImage: IndexPageQuery_blogItems_data_attributes_PostImage | null;
+}
+
+export interface IndexPageQuery_blogItems_data {
+  __typename: "PostEntity";
+  id: string | null;
+  attributes: IndexPageQuery_blogItems_data_attributes | null;
 }
 
 export interface IndexPageQuery_blogItems {
-  __typename: 'Post';
-  category: ENUM_POST_CATEGORY;
-  image_url: string | null;
+  __typename: "PostEntityResponseCollection";
+  data: IndexPageQuery_blogItems_data[];
+}
+
+export interface IndexPageQuery_poetryItems_data_attributes_category_data_attributes {
+  __typename: "Category";
+  title: string;
   slug: string;
-  published: boolean | null;
-  id: string;
+}
+
+export interface IndexPageQuery_poetryItems_data_attributes_category_data {
+  __typename: "CategoryEntity";
+  attributes: IndexPageQuery_poetryItems_data_attributes_category_data_attributes | null;
+}
+
+export interface IndexPageQuery_poetryItems_data_attributes_category {
+  __typename: "CategoryEntityResponse";
+  data: IndexPageQuery_poetryItems_data_attributes_category_data | null;
+}
+
+export interface IndexPageQuery_poetryItems_data_attributes_PostImage {
+  __typename: "ComponentContentImage";
+  title: string;
+  url: string | null;
+}
+
+export interface IndexPageQuery_poetryItems_data_attributes {
+  __typename: "Post";
+  date: any;
+  updatedAt: any | null;
   excerpt: string;
-  date: any | null;
-  updated_at: any;
-  title: string | null;
   featured: boolean | null;
+  title: string;
+  slug: string;
+  category: IndexPageQuery_poetryItems_data_attributes_category | null;
+  PostImage: IndexPageQuery_poetryItems_data_attributes_PostImage | null;
+}
+
+export interface IndexPageQuery_poetryItems_data {
+  __typename: "PostEntity";
+  id: string | null;
+  attributes: IndexPageQuery_poetryItems_data_attributes | null;
 }
 
 export interface IndexPageQuery_poetryItems {
-  __typename: 'Post';
-  category: ENUM_POST_CATEGORY;
-  image_url: string | null;
-  slug: string;
-  published: boolean | null;
-  id: string;
-  excerpt: string;
-  date: any | null;
-  updated_at: any;
-  title: string | null;
-  featured: boolean | null;
-}
-
-export interface IndexPageQuery_categories {
-  __typename: 'Category';
-  id: string;
-  title: string | null;
-  slug: string;
+  __typename: "PostEntityResponseCollection";
+  data: IndexPageQuery_poetryItems_data[];
 }
 
 export interface IndexPageQuery {
-  featured: (IndexPageQuery_featured | null)[] | null;
-  blogItems: (IndexPageQuery_blogItems | null)[] | null;
-  poetryItems: (IndexPageQuery_poetryItems | null)[] | null;
-  categories: (IndexPageQuery_categories | null)[] | null;
+  blogItems: IndexPageQuery_blogItems | null;
+  poetryItems: IndexPageQuery_poetryItems | null;
 }

@@ -2,33 +2,21 @@ import { format } from 'date-fns';
 import ruLocale from 'date-fns/locale/ru';
 import { FC } from 'react';
 
-import { ENUM_POST_CATEGORY } from '../../../../types/globalTypes';
-
 import { PostsListWrapper } from './styles';
 
-import Post from 'components/UI/Post';
+import Post from 'components/UI/PostsList/Post';
+import { CategoryPageQuery_posts } from 'queries/types/CategoryPageQuery';
 import {
-  IndexPageQuery_categories,
-  IndexPageQuery_poetryItems,
+  IndexPageQuery_blogItems_data,
+  IndexPageQuery_poetryItems_data,
 } from 'queries/types/indexPageQuery';
+import { PostsType } from 'types/index';
 
 interface PostsListProps {
-  posts: IndexPageQuery_poetryItems[];
-  categories: IndexPageQuery_categories[];
+  posts: PostsType;
 }
 
-const getCategoryData = (
-  categories: IndexPageQuery_categories[],
-  category: ENUM_POST_CATEGORY,
-) => {
-  const [categoryData] = categories.filter(
-    (categoryItem: IndexPageQuery_categories) => categoryItem.slug === category,
-  );
-
-  return categoryData;
-};
-
-const PostsList: FC<PostsListProps> = ({ posts, categories }): JSX.Element => {
+const PostsList: FC<PostsListProps> = ({ posts }): JSX.Element => {
   const getPublicationDate = (date: string): string =>
     format(new Date(date), 'dd MMMM yyyy', {
       locale: ruLocale,
@@ -36,21 +24,31 @@ const PostsList: FC<PostsListProps> = ({ posts, categories }): JSX.Element => {
 
   return (
     <PostsListWrapper className="row">
-      {posts.map(
-        ({ id, title, excerpt, published, date, slug, category, image_url }) =>
-          published && (
+      {posts.map(({ id, attributes }) => {
+        if (attributes) {
+          const {
+            excerpt = '',
+            date = '',
+            title = '',
+            slug = '',
+            category,
+            PostImage,
+          } = attributes;
+          return (
             <Post
               key={id}
               id={id}
               excerpt={excerpt}
               publicationDate={getPublicationDate(date)}
-              title={title || ''}
+              title={title}
               slug={slug}
-              category={getCategoryData(categories, category)}
-              image={image_url || ''}
+              category={category?.data?.attributes}
+              image={PostImage?.url || ''}
             />
-          ),
-      )}
+          );
+        }
+        return null;
+      })}
     </PostsListWrapper>
   );
 };

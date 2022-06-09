@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 import { FC } from 'react';
-import 'lazysizes';
-import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-import PostDate from 'components/UI/Post/PostDate';
-import { PostTitle } from 'components/UI/Post/styles';
+import PostDate from 'components/UI/PostsList/Post/PostDate';
+import { PostTitle } from 'components/UI/PostsList/Post/styles';
 import getSrcSet from 'utils/image/getSrcSet';
 
 interface PostContentProps {
@@ -21,11 +19,10 @@ const PostContent: FC<PostContentProps> = ({
   <PostContentWrapper>
     {!!image && (
       <PostImage
-        className="lazyload"
         loading="lazy"
-        data-src={`${image}`}
-        data-srcset={getSrcSet(image)}
-        data-sizes="(max-width: 600px) 480px, 600px"
+        src={`${image}`}
+        srcSet={getSrcSet(image)}
+        sizes="(max-width: 600px) 480px, 600px"
         alt={title}
       />
     )}
@@ -46,7 +43,7 @@ export const PostContentWrapper = styled.div`
   transition: box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow: 0 8px 10px #0000001c;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.11);
   }
 `;
 

@@ -7,7 +7,6 @@
     "lib": ["dom", "es2019"],
     "allowJs": true,
     "jsx": "preserve",
-    "jsxImportSource": "theme-ui",
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
