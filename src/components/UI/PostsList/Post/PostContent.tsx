@@ -43,7 +43,7 @@ export const PostContentWrapper = styled.div`
   transition: box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow: 0 8px 10px #0000001c;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.11);
   }
 `;
 

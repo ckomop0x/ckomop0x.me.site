@@ -7,8 +7,6 @@ import { LinkStyled } from 'components/sections/FeaturedPostSection/styles';
 import formatDate from 'utils/dates/formatDate';
 
 export interface FeaturedPostContentProps {
-  category: any;
-  categories: any;
   title: string;
   date: string;
   excerpt: string;
@@ -16,8 +14,6 @@ export interface FeaturedPostContentProps {
 }
 
 const FeaturedPostContent: FC<FeaturedPostContentProps> = ({
-  categories,
-  category,
   title,
   date,
   excerpt,
