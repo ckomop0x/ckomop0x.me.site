@@ -21,16 +21,4 @@ describe('DetailItem', () => {
     render(<DetailItem {...detailItemProps} />);
     expect(screen.getByText(title).textContent).toBe(title);
   });
-
-  it('Should render component without description', () => {
-    const detailItemProps: DetailItemProps = {
-      title,
-      image,
-      date,
-      children,
-    };
-
-    render(<DetailItem {...detailItemProps} />);
-    expect(screen.getByText('Почему-то здесь пусто.').textContent).toBeTruthy();
-  });
 });
