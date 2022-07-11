@@ -4,7 +4,7 @@ import { AllPostsLink, PostsListSectionWrapper } from './styles';
 
 import Button from 'components/UI/Button';
 import PostsList from 'components/UI/PostsList';
-import { IndexPageQuery_poetryItems_data } from 'queries/types/indexPageQuery';
+import { IndexPageQuery_poetryItems_data } from 'queries/types/IndexPageQuery';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
 interface PostsListSectionProps {

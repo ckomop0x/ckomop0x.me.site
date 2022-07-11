@@ -7,7 +7,7 @@ import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
   IndexPageQuery_blogItems_data,
   IndexPageQuery_poetryItems_data,
-} from 'queries/types/indexPageQuery';
+} from 'queries/types/IndexPageQuery';
 import apolloClient from 'utils/api/apollo-client';
 
 const mainPageData = {
