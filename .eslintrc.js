@@ -1,11 +1,5 @@
 module.exports = {
-  ignorePatterns: [
-    'jest-preprocess.js',
-    'jest.config.js',
-    '.eslintrc.js',
-    'loadershim.js',
-    'next-env.d.ts',
-  ],
+  plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
@@ -14,6 +8,14 @@ module.exports = {
     'plugin:storybook/recommended',
     'plugin:jsx-a11y/recommended',
   ],
+  ignorePatterns: [
+    'jest-preprocess.js',
+    'jest.config.js',
+    '.eslintrc.js',
+    'loadershim.js',
+    'next-env.d.ts',
+  ],
+
   env: {
     browser: true,
     es6: true,
@@ -39,7 +41,6 @@ module.exports = {
       version: 'detect',
     },
   },
-  plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
 
   rules: {
     'prettier/prettier': [
@@ -85,7 +86,6 @@ module.exports = {
     '@typescript-eslint/adjacent-overload-signatures': 'error',
     '@typescript-eslint/array-type': 'error',
     '@typescript-eslint/ban-types': 'error',
-    // '@typescript-eslint/class-name-casing': 'error',
     '@typescript-eslint/class-name-casing': 'off',
     '@typescript-eslint/consistent-type-assertions': 'error',
     '@typescript-eslint/consistent-type-definitions': 'error',
@@ -97,7 +97,6 @@ module.exports = {
       },
     ],
     '@typescript-eslint/indent': 'off',
-    // '@typescript-eslint/interface-name-prefix': ['error', 'always'],
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/member-delimiter-style': [
       'error',
@@ -112,9 +111,7 @@ module.exports = {
         },
       },
     ],
-    // '@typescript-eslint/ban-ts-ignore': 'warn',
     '@typescript-eslint/ban-ts-ignore': 'off',
-    // '@typescript-eslint/camelcase': 'warn',
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/member-ordering': 'error',
