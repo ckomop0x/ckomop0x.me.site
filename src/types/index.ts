@@ -1,6 +1,6 @@
 import { CategoryPageQuery_posts_data } from 'queries/types/CategoryPageQuery';
 import { DetailsPageQuery_posts_data } from 'queries/types/DetailsPageQuery';
-import { IndexPageQuery_blogItems_data, IndexPageQuery_poetryItems_data } from 'queries/types/indexPageQuery';
+import { IndexPageQuery_blogItems_data, IndexPageQuery_poetryItems_data } from 'queries/types/IndexPageQuery';
 import { IItemPath } from 'utils/queries/getItemPath';
 
 export interface IGetStaticProps {

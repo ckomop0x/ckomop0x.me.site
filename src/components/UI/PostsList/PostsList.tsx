@@ -5,11 +5,6 @@ import { FC } from 'react';
 import { PostsListWrapper } from './styles';
 
 import Post from 'components/UI/PostsList/Post';
-import { CategoryPageQuery_posts } from 'queries/types/CategoryPageQuery';
-import {
-  IndexPageQuery_blogItems_data,
-  IndexPageQuery_poetryItems_data,
-} from 'queries/types/indexPageQuery';
 import { PostsType } from 'types/index';
 
 interface PostsListProps {

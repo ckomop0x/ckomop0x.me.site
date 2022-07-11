@@ -433,6 +433,13 @@ input JSONFilterInput {
   notIn: [JSON]
   between: [JSON]
 }
+input ComponentContentImageFiltersInput {
+  title: StringFilterInput
+  url: StringFilterInput
+  and: [ComponentContentImageFiltersInput]
+  or: [ComponentContentImageFiltersInput]
+  not: ComponentContentImageFiltersInput
+}
 input ComponentContentImageInput {
   id: ID
   title: String
@@ -463,6 +470,7 @@ input PostFiltersInput {
   title: StringFilterInput
   slug: StringFilterInput
   category: CategoryFiltersInput
+  PostImage: ComponentContentImageFiltersInput
   excerpt: StringFilterInput
   date: DateTimeFilterInput
   featured: BooleanFilterInput
