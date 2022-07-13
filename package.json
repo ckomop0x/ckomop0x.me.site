@@ -69,7 +69,7 @@
   },
   "devDependencies": {
     "@netlify/plugin-lighthouse": "^3.0.1",
-    "@netlify/plugin-nextjs": "^4.12.0",
+    "@netlify/plugin-nextjs": "^4.12.2",
     "@netlify/plugin-sitemap": "^0.8.1",
     "babel-jest": "^28.1.2",
     "babel-loader": "^8.2.5",
