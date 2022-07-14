@@ -7,6 +7,12 @@ on:
       - master
 
 jobs:
+  wake-up-heroku-admin:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Wake up https://ck-adm.herokuapp.com/
+      run: |
+        curl -X GET "https://ck-adm.herokuapp.com/"
   lint:
     runs-on: ubuntu-latest
     steps:
