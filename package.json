@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "6.0.6",
+  "version": "6.0.7",
   "description": "Ckomop0x.me – personal blog by Pavel Klochkov",
   "author": "Pavel Klochkov, paul.klochkov@gmail.com",
   "license": "MIT",
@@ -63,7 +63,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "html-react-parser": "^3.0.1",
     "jest-environment-jsdom": "^28.1.3",
-    "next": "^12.2.2",
+    "next": "^12.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
