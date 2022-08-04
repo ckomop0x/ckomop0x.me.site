@@ -1,9 +1,23 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "6.0.7",
-  "description": "Ckomop0x.me – personal blog by Pavel Klochkov",
-  "author": "Pavel Klochkov, paul.klochkov@gmail.com",
+  "version": "6.0.8",
+  "description": "Pavel Klochkov personal blog — ckomop0x.me",
+  "keywords": [
+    "nextjs",
+    "graphql",
+    "strapi",
+    "emotion"
+  ],
+  "author": {
+    "name": "Pavel Klochkov",
+    "email": "paul.klochkov@gmail.com"
+  },
   "license": "MIT",
+  "homepage": "https://ckomop0x.me",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckomop0x/ckomop0x.me.site.v2"
+  },
   "scripts": {
     "predev": "yarn gen",
     "start:server": "cd ../ckomop0x.me.admin.site && yarn dev",
@@ -39,10 +53,10 @@
     "@emotion/babel-plugin": "^11.10.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@storybook/addon-actions": "^6.5.9",
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
-    "@storybook/react": "^6.5.9",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/react": "^6.5.10",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@types/jest": "^28.1.6",
