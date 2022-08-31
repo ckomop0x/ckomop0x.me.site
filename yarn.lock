@@ -2356,10 +2356,10 @@
     lighthouse "^9.6.3"
     puppeteer "^15.0.0"
 
-"@netlify/plugin-nextjs@^4.18.1":
-  version "4.18.1"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-nextjs/-/plugin-nextjs-4.18.1.tgz#d3acf3e78d6006bdde279a36860b419d1e44bfa9"
-  integrity sha512-MZrFbC3DHCNpRh49QfmWeuLgnhEjj7stXd1OdODibTR0cMOO43cscFTv1BahJX/784+UYqXcRp1eNLr2EfoUJA==
+"@netlify/plugin-nextjs@^4.21.1":
+  version "4.21.1"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-nextjs/-/plugin-nextjs-4.21.1.tgz#877e6c75e917b5393df586cc95c6e07182ed2e04"
+  integrity sha512-2edJaL2JpHasYWhUHL3qElikMA1yKuqlwghns/7Hsj26DEjgiasHtESXyu9MT84Phvd3LZlTQyt56B+gp9PvaQ==
   dependencies:
     "@netlify/esbuild" "0.14.25"
     "@netlify/functions" "^1.2.0"
