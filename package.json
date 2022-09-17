@@ -54,7 +54,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.4",
     "@storybook/addon-actions": "^6.5.10",
-    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-links": "^6.5.10",
     "@storybook/react": "^6.5.10",
     "@testing-library/jest-dom": "^5.16.5",
