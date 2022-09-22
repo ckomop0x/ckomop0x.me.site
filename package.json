@@ -82,7 +82,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@netlify/plugin-lighthouse": "^3.2.1",
+    "@netlify/plugin-lighthouse": "^3.4.1",
     "@netlify/plugin-nextjs": "^4.21.1",
     "@netlify/plugin-sitemap": "^0.8.1",
     "babel-jest": "^29.0.3",
