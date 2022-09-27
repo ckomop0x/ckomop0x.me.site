@@ -7,26 +7,26 @@ on:
       - master
 
 jobs:
-  wake-up-heroku-admin:
+  wake-up-render-admin:
     runs-on: ubuntu-latest
     steps:
-    - name: Wake up https://ck-adm.herokuapp.com/
-      run: |
-        curl -X GET "https://ck-adm.herokuapp.com/"
+      - name: Wake up https://ckme-admin.onrender.com
+        run: |
+          curl -X GET "https://ckme-admin.onrender.com/"
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-        cache: 'yarn'
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
-    - name: Run unit tests
-      run: yarn test -- --coverage
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
-      with:
-        name: codecov-umbrella
-        fail_ci_if_error: false
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "yarn"
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Run unit tests
+        run: yarn test -- --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          name: codecov-umbrella
+          fail_ci_if_error: false
