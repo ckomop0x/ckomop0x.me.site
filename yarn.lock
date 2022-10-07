@@ -2271,10 +2271,10 @@
     ufo "^0.8.0"
     unstorage "^0.2.8"
 
-"@netlify/plugin-lighthouse@^3.7.1":
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-lighthouse/-/plugin-lighthouse-3.7.1.tgz#eba852eb48baeae6c4bff960ac6c84ee32e39462"
-  integrity sha512-4QHI3YUYawv8DlF3eiXogn50uzUNjbWdhZYcgWRPCbMlzv0FHhiMTZ/20IPTYm1IntIyKyZGyatjK3U6OslZBQ==
+"@netlify/plugin-lighthouse@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-lighthouse/-/plugin-lighthouse-4.0.0.tgz#bdc6d7090bdafd867ca5d2da1ea34e8a2d1f7732"
+  integrity sha512-euQh4TlfeQewa9cEa8BIRj4ipxzlPKki78lCHkjtz52GVjWluH4K6hICcBBtI02ngYtmp2PVVveB60hoCOxDng==
   dependencies:
     chalk "^4.1.0"
     chrome-launcher "^0.15.0"
@@ -7901,12 +7901,7 @@ dotenv-expand@^8.0.1:
   resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-8.0.3.tgz#29016757455bcc748469c83a19b36aaf2b83dd6e"
   integrity sha512-SErOMvge0ZUyWd5B0NXMQlDkN+8r+HhVUsxgOO7IoPDOdDRD2JjExpN6y3KnFR66jsJMwSn1pqIivhU5rcJiNg==
 
-dotenv@^16.0.0:
-  version "16.0.2"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.2.tgz#0b0f8652c016a3858ef795024508cddc4bffc5bf"
-  integrity sha512-JvpYKUmzQhYoIFgK2MOnF3bciIZoItIIoryihy0rIA+H4Jy0FmgyKYAHCTN98P5ybGSJcIFbh6QKeJdtZd1qhA==
-
-dotenv@^16.0.3:
+dotenv@^16.0.0, dotenv@^16.0.3:
   version "16.0.3"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
   integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
