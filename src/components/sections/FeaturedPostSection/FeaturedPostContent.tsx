@@ -31,7 +31,7 @@ const FeaturedPostContent: FC<FeaturedPostContentProps> = ({
       {excerptText && (
         <PostContent>
           {excerptText}
-          <Link href={`/${''}/${slug}`} passHref>
+          <Link href={`/${''}/${slug}`} passHref legacyBehavior>
             <LinkStyled>Читать далее...</LinkStyled>
           </Link>
         </PostContent>

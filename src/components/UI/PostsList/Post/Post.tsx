@@ -13,7 +13,11 @@ const Post: FC<PostInterface> = ({
   image,
 }): JSX.Element => (
   <PostWrapper className="col-12 col-md-6 col-lg-4">
-    <StyledLink href={`/${category?.slug || ''}/${slug}`} passHref>
+    <StyledLink
+      href={`/${category?.slug || ''}/${slug}`}
+      passHref
+      legacyBehavior
+    >
       <a href={`/${category?.slug || ''}/${slug}`}>
         <div className="row h-100">
           <PostContent
