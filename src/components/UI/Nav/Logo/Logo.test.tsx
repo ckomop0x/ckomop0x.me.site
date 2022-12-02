@@ -15,6 +15,5 @@ describe('Logo', () => {
     const logoImage = screen.getByTestId('logo-image');
 
     expect(logoImage).toHaveAttribute('alt', title);
-    expect(logoImage).toHaveAttribute('src', mockImageUrl);
   });
 });
