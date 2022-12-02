@@ -11,7 +11,7 @@ interface MenuItemProps {
 
 const MenuItem: FC<MenuItemProps> = ({ linkSrc, children }): JSX.Element => (
   <MenuItemWrapper>
-    <Link href={linkSrc} passHref>
+    <Link href={linkSrc} passHref legacyBehavior>
       <LinkStyled>{children}</LinkStyled>
     </Link>
   </MenuItemWrapper>

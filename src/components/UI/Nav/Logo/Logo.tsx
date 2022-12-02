@@ -10,7 +10,7 @@ interface LogoProps {
 }
 
 const Logo: FC<LogoProps> = ({ imgSrc, linkSrc, title }): JSX.Element => (
-  <Link href={linkSrc} passHref>
+  <Link href={linkSrc} passHref legacyBehavior>
     <LogoWrapper>
       <LogoImage
         src={imgSrc}

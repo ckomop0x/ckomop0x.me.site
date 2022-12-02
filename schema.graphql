@@ -33,59 +33,6 @@ type ComponentContentRichText {
   id: ID!
   description: String
 }
-type Category {
-  title: String!
-  slug: String!
-  posts(filters: PostFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): PostRelationResponseCollection
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-  localizations(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): CategoryRelationResponseCollection
-  locale: String
-}
-type CategoryEntity {
-  id: ID
-  attributes: Category
-}
-type CategoryEntityResponse {
-  data: CategoryEntity
-}
-type CategoryEntityResponseCollection {
-  data: [CategoryEntity!]!
-  meta: ResponseCollectionMeta!
-}
-type CategoryRelationResponseCollection {
-  data: [CategoryEntity!]!
-}
-type Post {
-  title: String!
-  slug: String!
-  category: CategoryEntityResponse
-  Content: [PostContentDynamicZone]
-  PostImage: ComponentContentImage
-  excerpt: String!
-  date: DateTime!
-  featured: Boolean
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-  localizations(filters: PostFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): PostRelationResponseCollection
-  locale: String
-}
-type PostEntity {
-  id: ID
-  attributes: Post
-}
-type PostEntityResponse {
-  data: PostEntity
-}
-type PostEntityResponseCollection {
-  data: [PostEntity!]!
-  meta: ResponseCollectionMeta!
-}
-type PostRelationResponseCollection {
-  data: [PostEntity!]!
-}
 type UploadFile {
   name: String!
   alternativeText: String
@@ -115,6 +62,33 @@ type UploadFileEntityResponse {
 type UploadFileEntityResponseCollection {
   data: [UploadFileEntity!]!
   meta: ResponseCollectionMeta!
+}
+type UploadFileRelationResponseCollection {
+  data: [UploadFileEntity!]!
+}
+type UploadFolder {
+  name: String!
+  pathId: Int!
+  parent: UploadFolderEntityResponse
+  children(filters: UploadFolderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFolderRelationResponseCollection
+  files(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
+  path: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+type UploadFolderEntity {
+  id: ID
+  attributes: UploadFolder
+}
+type UploadFolderEntityResponse {
+  data: UploadFolderEntity
+}
+type UploadFolderEntityResponseCollection {
+  data: [UploadFolderEntity!]!
+  meta: ResponseCollectionMeta!
+}
+type UploadFolderRelationResponseCollection {
+  data: [UploadFolderEntity!]!
 }
 type I18NLocale {
   name: String
@@ -190,6 +164,59 @@ type UsersPermissionsUserEntityResponseCollection {
 type UsersPermissionsUserRelationResponseCollection {
   data: [UsersPermissionsUserEntity!]!
 }
+type Category {
+  title: String!
+  slug: String!
+  posts(filters: PostFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): PostRelationResponseCollection
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+  localizations(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): CategoryRelationResponseCollection
+  locale: String
+}
+type CategoryEntity {
+  id: ID
+  attributes: Category
+}
+type CategoryEntityResponse {
+  data: CategoryEntity
+}
+type CategoryEntityResponseCollection {
+  data: [CategoryEntity!]!
+  meta: ResponseCollectionMeta!
+}
+type CategoryRelationResponseCollection {
+  data: [CategoryEntity!]!
+}
+type Post {
+  title: String!
+  slug: String!
+  category: CategoryEntityResponse
+  Content: [PostContentDynamicZone]
+  PostImage: ComponentContentImage
+  excerpt: String!
+  date: DateTime!
+  featured: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+  localizations(filters: PostFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): PostRelationResponseCollection
+  locale: String
+}
+type PostEntity {
+  id: ID
+  attributes: Post
+}
+type PostEntityResponse {
+  data: PostEntity
+}
+type PostEntityResponseCollection {
+  data: [PostEntity!]!
+  meta: ResponseCollectionMeta!
+}
+type PostRelationResponseCollection {
+  data: [PostEntity!]!
+}
 type UsersPermissionsMe {
   id: ID!
   username: String!
@@ -221,30 +248,35 @@ type UsersPermissionsDeleteRolePayload {
   ok: Boolean!
 }
 type Query {
-  category(id: ID, locale: I18NLocaleCode): CategoryEntityResponse
-  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE, locale: I18NLocaleCode): CategoryEntityResponseCollection
-  post(id: ID, locale: I18NLocaleCode): PostEntityResponse
-  posts(filters: PostFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE, locale: I18NLocaleCode): PostEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
   uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileEntityResponseCollection
+  uploadFolder(id: ID): UploadFolderEntityResponse
+  uploadFolders(filters: UploadFolderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFolderEntityResponseCollection
   i18NLocale(id: ID): I18NLocaleEntityResponse
   i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
   usersPermissionsRole(id: ID): UsersPermissionsRoleEntityResponse
   usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsRoleEntityResponseCollection
   usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
   usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
+  category(id: ID, locale: I18NLocaleCode): CategoryEntityResponse
+  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE, locale: I18NLocaleCode): CategoryEntityResponseCollection
+  post(id: ID, locale: I18NLocaleCode): PostEntityResponse
+  posts(filters: PostFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE, locale: I18NLocaleCode): PostEntityResponseCollection
   me: UsersPermissionsMe
 }
 type Mutation {
+  createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
+  updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
+  deleteUploadFile(id: ID!): UploadFileEntityResponse
+  createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
+  updateUploadFolder(id: ID!, data: UploadFolderInput!): UploadFolderEntityResponse
+  deleteUploadFolder(id: ID!): UploadFolderEntityResponse
   createCategory(data: CategoryInput!, locale: I18NLocaleCode): CategoryEntityResponse
   updateCategory(id: ID!, data: CategoryInput!, locale: I18NLocaleCode): CategoryEntityResponse
   deleteCategory(id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
   createPost(data: PostInput!, locale: I18NLocaleCode): PostEntityResponse
   updatePost(id: ID!, data: PostInput!, locale: I18NLocaleCode): PostEntityResponse
   deletePost(id: ID!, locale: I18NLocaleCode): PostEntityResponse
-  createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
-  updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
-  deleteUploadFile(id: ID!): UploadFileEntityResponse
   upload(refId: ID, ref: String, field: String, info: FileInfoInput, file: Upload!): UploadFileEntityResponse!
   multipleUpload(refId: ID, ref: String, field: String, files: [Upload]!): [UploadFileEntityResponse]!
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
@@ -270,11 +302,13 @@ type Mutation {
   forgotPassword(email: String!): UsersPermissionsPasswordPayload
   "Reset user password. Confirm with a code (resetToken from forgotPassword)"
   resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  "Change user password. Confirm with the current password."
+  changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
   "Confirm an email users email address"
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 }
 union PostContentDynamicZone = ComponentContentImage | ComponentContentRichText | Error
-union GenericMorph = ComponentContentImage | ComponentContentRichText | Category | Post | UploadFile | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = ComponentContentImage | ComponentContentRichText | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Category | Post
 enum PublicationState {
   LIVE
   PREVIEW
@@ -284,6 +318,7 @@ input IDFilterInput {
   or: [ID]
   not: IDFilterInput
   eq: ID
+  eqi: ID
   ne: ID
   startsWith: ID
   endsWith: ID
@@ -306,6 +341,7 @@ input BooleanFilterInput {
   or: [Boolean]
   not: BooleanFilterInput
   eq: Boolean
+  eqi: Boolean
   ne: Boolean
   startsWith: Boolean
   endsWith: Boolean
@@ -328,6 +364,7 @@ input StringFilterInput {
   or: [String]
   not: StringFilterInput
   eq: String
+  eqi: String
   ne: String
   startsWith: String
   endsWith: String
@@ -350,6 +387,7 @@ input IntFilterInput {
   or: [Int]
   not: IntFilterInput
   eq: Int
+  eqi: Int
   ne: Int
   startsWith: Int
   endsWith: Int
@@ -372,6 +410,7 @@ input FloatFilterInput {
   or: [Float]
   not: FloatFilterInput
   eq: Float
+  eqi: Float
   ne: Float
   startsWith: Float
   endsWith: Float
@@ -394,6 +433,7 @@ input DateTimeFilterInput {
   or: [DateTime]
   not: DateTimeFilterInput
   eq: DateTime
+  eqi: DateTime
   ne: DateTime
   startsWith: DateTime
   endsWith: DateTime
@@ -416,6 +456,7 @@ input JSONFilterInput {
   or: [JSON]
   not: JSONFilterInput
   eq: JSON
+  eqi: JSON
   ne: JSON
   startsWith: JSON
   endsWith: JSON
@@ -445,55 +486,6 @@ input ComponentContentImageInput {
   title: String
   url: String
 }
-input CategoryFiltersInput {
-  id: IDFilterInput
-  title: StringFilterInput
-  slug: StringFilterInput
-  posts: PostFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  localizations: CategoryFiltersInput
-  locale: StringFilterInput
-  and: [CategoryFiltersInput]
-  or: [CategoryFiltersInput]
-  not: CategoryFiltersInput
-}
-input CategoryInput {
-  title: String
-  slug: String
-  posts: [ID]
-  publishedAt: DateTime
-}
-input PostFiltersInput {
-  id: IDFilterInput
-  title: StringFilterInput
-  slug: StringFilterInput
-  category: CategoryFiltersInput
-  PostImage: ComponentContentImageFiltersInput
-  excerpt: StringFilterInput
-  date: DateTimeFilterInput
-  featured: BooleanFilterInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  localizations: PostFiltersInput
-  locale: StringFilterInput
-  and: [PostFiltersInput]
-  or: [PostFiltersInput]
-  not: PostFiltersInput
-}
-input PostInput {
-  title: String
-  slug: String
-  category: ID
-  Content: [PostContentDynamicZoneInput!]
-  PostImage: ComponentContentImageInput
-  excerpt: String
-  date: DateTime
-  featured: Boolean
-  publishedAt: DateTime
-}
 input UploadFileFiltersInput {
   id: IDFilterInput
   name: StringFilterInput
@@ -510,6 +502,8 @@ input UploadFileFiltersInput {
   previewUrl: StringFilterInput
   provider: StringFilterInput
   provider_metadata: JSONFilterInput
+  folder: UploadFolderFiltersInput
+  folderPath: StringFilterInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UploadFileFiltersInput]
@@ -531,6 +525,30 @@ input UploadFileInput {
   previewUrl: String
   provider: String
   provider_metadata: JSON
+  folder: ID
+  folderPath: String
+}
+input UploadFolderFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  pathId: IntFilterInput
+  parent: UploadFolderFiltersInput
+  children: UploadFolderFiltersInput
+  files: UploadFileFiltersInput
+  path: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  and: [UploadFolderFiltersInput]
+  or: [UploadFolderFiltersInput]
+  not: UploadFolderFiltersInput
+}
+input UploadFolderInput {
+  name: String
+  pathId: Int
+  parent: ID
+  children: [ID]
+  files: [ID]
+  path: String
 }
 input I18NLocaleFiltersInput {
   id: IDFilterInput
@@ -599,6 +617,55 @@ input UsersPermissionsUserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
+}
+input CategoryFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  slug: StringFilterInput
+  posts: PostFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  localizations: CategoryFiltersInput
+  locale: StringFilterInput
+  and: [CategoryFiltersInput]
+  or: [CategoryFiltersInput]
+  not: CategoryFiltersInput
+}
+input CategoryInput {
+  title: String
+  slug: String
+  posts: [ID]
+  publishedAt: DateTime
+}
+input PostFiltersInput {
+  id: IDFilterInput
+  title: StringFilterInput
+  slug: StringFilterInput
+  category: CategoryFiltersInput
+  PostImage: ComponentContentImageFiltersInput
+  excerpt: StringFilterInput
+  date: DateTimeFilterInput
+  featured: BooleanFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  localizations: PostFiltersInput
+  locale: StringFilterInput
+  and: [PostFiltersInput]
+  or: [PostFiltersInput]
+  not: PostFiltersInput
+}
+input PostInput {
+  title: String
+  slug: String
+  category: ID
+  Content: [PostContentDynamicZoneInput!]
+  PostImage: ComponentContentImageInput
+  excerpt: String
+  date: DateTime
+  featured: Boolean
+  publishedAt: DateTime
 }
 input FileInfoInput {
   name: String
