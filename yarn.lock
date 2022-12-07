@@ -2291,10 +2291,10 @@
     lighthouse "^9.6.3"
     puppeteer "^18.0.0"
 
-"@netlify/plugin-nextjs@^4.29.2":
-  version "4.29.2"
-  resolved "https://registry.yarnpkg.com/@netlify/plugin-nextjs/-/plugin-nextjs-4.29.2.tgz#b59e484d12ccc50c54282dd49fcfe27cc692e7d0"
-  integrity sha512-Sxaf+eITuDEMUOQ5ySMMDibwi3KmLgbQ5gLVDFuOnm/YDe9l3cHTwJf0Sn4BkvDPTaz6p0kkxAHo2ANt91qwuA==
+"@netlify/plugin-nextjs@^4.29.3":
+  version "4.29.3"
+  resolved "https://registry.yarnpkg.com/@netlify/plugin-nextjs/-/plugin-nextjs-4.29.3.tgz#56dedce863440a2ca9f11679bfe3865a42abab8a"
+  integrity sha512-zsv8NZ6OF4oFJM1NTtn1FSyE2GT/Qa3HqrcUxMWeLpA4IwNesQ21h3/7u0C69LlHCoNlGFSFWADya4B3Mv8D2A==
   dependencies:
     "@netlify/esbuild" "0.14.39"
     "@netlify/functions" "^1.3.0"
@@ -9028,12 +9028,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.14.8:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
-  integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
-
-follow-redirects@^1.15.2:
+follow-redirects@^1.14.8, follow-redirects@^1.15.2:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
