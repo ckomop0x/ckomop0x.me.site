@@ -41,7 +41,7 @@ export const LogoImage = styled(Image)`
 `;
 
 export const LogoTitle = styled.span`
-  font-family: Neucha, sans-serif;
+  font-family: var(--font-secondary), sans-serif;
   text-transform: uppercase;
   font-size: 16px;
   color: white;
