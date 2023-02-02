@@ -50,6 +50,7 @@ const PoetryPostPage: FC<PoetryPostPageProps> = ({ post }): JSX.Element => {
         title={title}
         date={date}
         image={PostImage?.url ?? ''}
+        postType="poetry"
       >
         {Content
           ? Content?.map(

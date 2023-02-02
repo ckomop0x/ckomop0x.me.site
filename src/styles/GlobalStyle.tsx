@@ -32,7 +32,7 @@ export const globalStyles = (
       h5,
       h6 {
         color: #312420;
-        font-family: Neucha, Ubuntu, Helvetica, Arial, sans-serif;
+        font-family: var(--font-secondary), Ubuntu, Helvetica, Arial, sans-serif;
       }
 
       .content-section {

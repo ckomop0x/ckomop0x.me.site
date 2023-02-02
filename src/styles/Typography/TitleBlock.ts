@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const TitleBlock = styled.h2`
   margin-top: 80px;
   margin-bottom: 40px;
-  font-family: Neucha, Roboto, sans-serif;
+  font-family: var(--font-secondary), Roboto, sans-serif;
   text-align: center;
   font-size: 52px;
   font-weight: 500;
