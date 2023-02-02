@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { themePalette } from 'styles/colors';
@@ -25,97 +26,101 @@ export const Title = styled.div`
   background-color: #292929;
 `;
 
-export const Content = styled.div`
-  max-width: 100%;
-  min-height: 100%;
-  padding: 20px;
-  background-color: rgba(252, 251, 248, 0.95);
+interface ContentInterface {
+  postType?: PostType;
+}
 
-  @media (min-width: 800px) {
-    margin: 0 auto;
-    max-width: 800px;
-    padding: 24px 40px;
-    box-shadow: 0 3px 4px 3px #00000022;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h6 {
-    color: ${themePalette.primaryTitle};
-    text-align: center;
-  }
-
-  h1 {
-    font-size: 30px;
-  }
-
-  h2 {
-    padding: 32px 0 20px;
-    font-size: 26px;
-    font-weight: 700;
-  }
-
-  p {
-    font-family: Roboto, sans-serif;
-    font-size: 16px;
-    line-height: 26px;
-    margin: 0 0 20px;
-    color: ${themePalette.primaryText};
+export const Content = styled.div(
+  ({ postType }: ContentInterface) => css`
+    max-width: 100%;
+    min-height: 100%;
+    padding: 20px;
+    background-color: rgba(252, 251, 248, 0.95);
 
     @media (min-width: 800px) {
-      text-align: justify;
-    }
-
-    img {
-      display: block;
       margin: 0 auto;
-      max-width: 100%;
+      max-width: 800px;
+      padding: 24px 40px;
+      box-shadow: 0 3px 4px 3px #00000022;
     }
-  }
 
-  blockquote,
-  cite {
-    position: relative;
-    margin: 10px 0 10px 40px;
-    color: ${themePalette.primaryText};
-    font-style: italic;
-
-    &:before {
-      content: '';
-      position: absolute;
-      left: -24px;
-      top: 0;
-      border-left: 4px solid #7c7c7c78;
-      height: 100%;
+    h1,
+    h2,
+    h3,
+    h4,
+    h6 {
+      color: ${themePalette.primaryTitle};
+      text-align: center;
     }
-  }
 
-  .poetry-item__date {
-    text-align: center;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
+    h1 {
+      font-size: 30px;
+    }
 
-  ul {
-    margin: 0 0 20px;
+    h2 {
+      padding: 32px 0 20px;
+      font-size: 26px;
+      font-weight: 700;
+    }
 
-    li {
-      position: relative;
+    p {
+      font-family: Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 26px;
+      margin: 0 0 20px;
       color: ${themePalette.primaryText};
-      list-style: none;
-      margin-bottom: 20px;
+      text-align: justify;
+      ${postType === 'poetry' && 'text-align: center;'}
 
-      &::before {
+      img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+    }
+
+    blockquote,
+    cite {
+      position: relative;
+      margin: 10px 0 10px 40px;
+      color: ${themePalette.primaryText};
+      font-style: italic;
+
+      &:before {
         content: '';
         position: absolute;
-        left: -20px;
-        width: 4px;
+        left: -24px;
         top: 0;
-        border-left: 4px solid ${themePalette.listBorder};
+        border-left: 4px solid #7c7c7c78;
         height: 100%;
       }
     }
-  }
-`;
+
+    .poetry-item__date {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      margin: 0 0 20px;
+
+      li {
+        position: relative;
+        color: ${themePalette.primaryText};
+        list-style: none;
+        margin-bottom: 20px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -20px;
+          width: 4px;
+          top: 0;
+          border-left: 4px solid ${themePalette.listBorder};
+          height: 100%;
+        }
+      }
+    }
+  `,
+);
