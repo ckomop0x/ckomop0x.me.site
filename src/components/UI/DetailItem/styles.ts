@@ -11,16 +11,6 @@ export const DetailItemWrapper = styled.div<{ image: string | null }>`
   padding: 40px 0;
   min-height: calc(100vh - 130px);
 
-  &::after {
-    position: absolute;
-    content: '';
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #00000014;
-  }
-
   @media (min-width: 700px) {
     background-image: url(${({ image }) => `${image}?tr=w-900`});
   }
@@ -85,10 +75,21 @@ export const Content = styled.div`
     }
   }
 
+  blockquote,
   cite {
-    display: inline-block;
-    margin: 0 0 20px;
+    position: relative;
+    margin: 10px 0 10px 40px;
     color: ${themePalette.primaryText};
+    font-style: italic;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 0;
+      border-left: 4px solid #7c7c7c78;
+      height: 100%;
+    }
   }
 
   .poetry-item__date {
