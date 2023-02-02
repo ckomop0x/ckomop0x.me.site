@@ -4,7 +4,7 @@ import { Content, DetailItemWrapper } from './styles';
 
 import formatDate from 'utils/dates/formatDate';
 
-type PostType = 'blog' | 'poetry';
+export type PostType = 'blog' | 'poetry';
 
 export interface DetailItemProps {
   title: string | null;
