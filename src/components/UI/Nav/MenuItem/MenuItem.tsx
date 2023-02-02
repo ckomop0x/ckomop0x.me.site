@@ -1,15 +1,17 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import { LinkStyled } from 'components/UI/Nav/styles';
 
 interface MenuItemProps {
   linkSrc: string;
-  children: string;
 }
 
-const MenuItem: FC<MenuItemProps> = ({ linkSrc, children }): JSX.Element => (
+const MenuItem: FC<PropsWithChildren<MenuItemProps>> = ({
+  linkSrc,
+  children,
+}): JSX.Element => (
   <MenuItemWrapper>
     <Link href={linkSrc} passHref legacyBehavior>
       <LinkStyled>{children}</LinkStyled>
