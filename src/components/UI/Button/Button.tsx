@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { FC, ForwardedRef, forwardRef, ReactNode } from 'react';
+import { FC, ForwardedRef, forwardRef, ReactNode } from 'react';
 
 export interface ButtonProps {
   onClick?: () => void;

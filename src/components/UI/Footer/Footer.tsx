@@ -6,7 +6,7 @@ import projectConfig from '../../../../package.json';
 import { baseSettings } from 'config/site-config';
 import { themePalette } from 'styles/colors';
 
-const Footer: FC = (): JSX.Element => {
+const Footer: FC = () => {
   const currentYear = new Date().getFullYear();
   const footerText = `© ${currentYear} ${baseSettings.projectTitle}. v${projectConfig.version}`;
 
