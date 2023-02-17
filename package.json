@@ -52,7 +52,7 @@
     "@babel/core": "^7.20.12",
     "@emotion/babel-plugin": "^11.10.5",
     "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.5",
+    "@emotion/styled": "^11.10.6",
     "@next/font": "^13.1.6",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
