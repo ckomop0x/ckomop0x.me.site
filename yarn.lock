@@ -42,10 +42,10 @@
     apollo-graphql "^0.9.3"
     lodash.xorby "^4.7.0"
 
-"@apollo/rover@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@apollo/rover/-/rover-0.11.1.tgz#612f4b803e0cdf2c8eaf434a2600c09e53798887"
-  integrity sha512-NfD+8kVscEmKqGp9WgqdCpUpLMJUw6458wsyB2JNebDk1GWBph5PRcxSDwe1ySSPoOvTek/GZWlaV8uKsQHNNg==
+"@apollo/rover@^0.12.1":
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@apollo/rover/-/rover-0.12.1.tgz#19f15188bc3167948c1b88cbef32daf7509fbbf2"
+  integrity sha512-p2itlpDkFMCm8eD1/ijhHXeixvSApK0QlZBMhbBCati68dgmXSCE7ZGQO/OSaIMvEPKnfJo0UvnHk9BLezr3xQ==
   dependencies:
     axios-proxy-builder "^0.1.1"
     binary-install "^1.0.6"
