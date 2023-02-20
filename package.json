@@ -47,7 +47,7 @@
     ]
   },
   "dependencies": {
-    "@apollo/client": "^3.7.8",
+    "@apollo/client": "^3.7.9",
     "@apollo/rover": "^0.11.1",
     "@babel/core": "^7.20.12",
     "@emotion/babel-plugin": "^11.10.5",
