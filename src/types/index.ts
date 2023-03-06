@@ -1,6 +1,7 @@
 import { CategoryPageQuery_posts_data } from 'queries/types/CategoryPageQuery';
 import { DetailsPageQuery_posts_data } from 'queries/types/DetailsPageQuery';
 import { IndexPageQuery_blogItems_data, IndexPageQuery_poetryItems_data } from 'queries/types/IndexPageQuery';
+import { PostEntity, PostEntityResponseCollection } from 'queries/types/graphql';
 import { IItemPath } from 'utils/queries/getItemPath';
 
 export interface IGetStaticProps {
@@ -20,10 +21,7 @@ export interface IGetStaticPathsResponse {
   fallback: boolean;
 }
 
-export type PostsType =
-  IndexPageQuery_blogItems_data[]
-  | IndexPageQuery_poetryItems_data[]
-  | CategoryPageQuery_posts_data[];
+export type PostsType = PostEntity[];
 
 export interface CategoryPageProps {
   posts: PostsType;

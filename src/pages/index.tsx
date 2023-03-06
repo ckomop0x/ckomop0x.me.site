@@ -1,3 +1,4 @@
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { NextPage } from 'next';
 
 import MainPageLayout from 'components/layouts/MainPageLayout';
@@ -5,9 +6,10 @@ import Hero from 'components/sections/HeroSection';
 import PostsListSection from 'components/sections/PostsListSection';
 import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
-  IndexPageQuery_blogItems_data,
-  IndexPageQuery_poetryItems_data,
-} from 'queries/types/IndexPageQuery';
+  IndexPageQueryQuery,
+  IndexPageQueryQueryVariables,
+  PostEntityResponseCollection,
+} from 'queries/types/graphql';
 import apolloClient from 'utils/api/apollo-client';
 
 const mainPageData = {
@@ -18,8 +20,8 @@ const mainPageData = {
 };
 
 interface IndexPageProps {
-  blogItems: IndexPageQuery_blogItems_data[];
-  poetryItems: IndexPageQuery_poetryItems_data[];
+  blogItems: PostEntityResponseCollection;
+  poetryItems: PostEntityResponseCollection;
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({
@@ -32,19 +34,21 @@ const IndexPage: NextPage<IndexPageProps> = ({
       subtitle={mainPageData.subtitle}
       backgroundImage={mainPageData.backgroundImage}
     />
-    {blogItems?.length > 0 && (
+    {blogItems?.data?.length > 0 && (
       <PostsListSection
-        posts={blogItems}
-        categoryInfo={blogItems[0].attributes?.category?.data?.attributes}
+        posts={blogItems.data}
+        categoryInfo={blogItems.data[0].attributes?.category?.data?.attributes}
         blockTitle="Статьи и публикации"
         blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
       />
     )}
 
-    {poetryItems?.length > 0 && (
+    {poetryItems?.data?.length > 0 && (
       <PostsListSection
-        posts={poetryItems}
-        categoryInfo={poetryItems[0].attributes?.category?.data?.attributes}
+        posts={poetryItems.data}
+        categoryInfo={
+          poetryItems.data[0].attributes?.category?.data?.attributes
+        }
         blockTitle="Стихи и песни"
         blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
       />
@@ -52,18 +56,18 @@ const IndexPage: NextPage<IndexPageProps> = ({
   </MainPageLayout>
 );
 
-export async function getStaticProps(): Promise<{
-  props: IndexPageProps;
-}> {
-  const { data } = await apolloClient.query({
+export async function getStaticProps() {
+  const { data } = await apolloClient.query<
+    DocumentNode<IndexPageQueryQuery, IndexPageQueryQueryVariables>
+  >({
     query: indexPageQuery,
   });
-  const { blogItems, poetryItems } = data;
+  const { blogItems, poetryItems } = data as IndexPageQueryQuery;
 
   return {
     props: {
-      blogItems: blogItems.data,
-      poetryItems: poetryItems.data,
+      blogItems,
+      poetryItems,
     },
   };
 }

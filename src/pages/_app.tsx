@@ -1,8 +1,8 @@
 import { ApolloProvider } from '@apollo/client';
 import createCache from '@emotion/cache';
 import { CacheProvider, ThemeProvider } from '@emotion/react';
-import { Neucha } from '@next/font/google';
 import { AppProps } from 'next/app';
+import { Neucha } from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import { globalStyles } from 'styles/GlobalStyle';

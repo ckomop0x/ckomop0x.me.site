@@ -14,6 +14,7 @@ module.exports = {
     '.eslintrc.js',
     'loadershim.js',
     'next-env.d.ts',
+    'src/queries/types/*.ts',
   ],
 
   env: {
