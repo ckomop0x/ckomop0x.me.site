@@ -167,7 +167,6 @@ type UsersPermissionsUserRelationResponseCollection {
 type Category {
   title: String!
   slug: String!
-  posts(filters: PostFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE): PostRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -622,7 +621,6 @@ input CategoryFiltersInput {
   id: IDFilterInput
   title: StringFilterInput
   slug: StringFilterInput
-  posts: PostFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   publishedAt: DateTimeFilterInput
@@ -635,7 +633,6 @@ input CategoryFiltersInput {
 input CategoryInput {
   title: String
   slug: String
-  posts: [ID]
   publishedAt: DateTime
 }
 input PostFiltersInput {

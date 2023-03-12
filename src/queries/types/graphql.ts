@@ -58,7 +58,6 @@ export type Category = {
   createdAt?: Maybe<Scalars['DateTime']>;
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<CategoryRelationResponseCollection>;
-  posts?: Maybe<PostRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   slug: Scalars['String'];
   title: Scalars['String'];
@@ -67,13 +66,6 @@ export type Category = {
 
 export type CategoryLocalizationsArgs = {
   filters?: InputMaybe<CategoryFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type CategoryPostsArgs = {
-  filters?: InputMaybe<PostFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
@@ -104,7 +96,6 @@ export type CategoryFiltersInput = {
   localizations?: InputMaybe<CategoryFiltersInput>;
   not?: InputMaybe<CategoryFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
-  posts?: InputMaybe<PostFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   slug?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
@@ -112,7 +103,6 @@ export type CategoryFiltersInput = {
 };
 
 export type CategoryInput = {
-  posts?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   slug?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
