@@ -10,8 +10,7 @@ interface FeaturedPostSectionProps {
 }
 
 const FeaturedPostSection: FC<FeaturedPostSectionProps> = ({
-  post: { category, date, excerpt, image_url, slug, title },
-  categories = [],
+  post: { date, excerpt, image_url = '', slug, title = '' },
 }): JSX.Element => (
   <FeaturedPostWrapper>
     <div className="col-12">
@@ -20,12 +19,12 @@ const FeaturedPostSection: FC<FeaturedPostSectionProps> = ({
           <div className="row">
             <ItemImage
               className="col-12 col-sm-12 col-md-7"
-              background={image_url ?? ''}
+              background={image_url}
             >
               <div className="item-image" />
             </ItemImage>
             <FeaturedPostContent
-              title={title ?? ''}
+              title={title}
               date={date}
               excerpt={excerpt}
               slug={slug}

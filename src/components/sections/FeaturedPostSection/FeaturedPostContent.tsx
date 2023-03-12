@@ -18,7 +18,7 @@ const FeaturedPostContent: FC<FeaturedPostContentProps> = ({
   date,
   excerpt,
   slug,
-}): JSX.Element => {
+}) => {
   const excerptText = excerpt
     ? parse(`<p>${excerpt.split('\n').join('</br>')}</p>`)
     : '';
@@ -31,7 +31,7 @@ const FeaturedPostContent: FC<FeaturedPostContentProps> = ({
       {excerptText && (
         <PostContent>
           {excerptText}
-          <Link href={`/${''}/${slug}`} passHref legacyBehavior>
+          <Link href={`/${slug}`} passHref legacyBehavior>
             <LinkStyled>Читать далее...</LinkStyled>
           </Link>
         </PostContent>

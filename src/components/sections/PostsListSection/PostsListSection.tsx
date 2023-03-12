@@ -4,17 +4,15 @@ import { AllPostsLink, PostsListSectionWrapper } from './styles';
 
 import Button from 'components/UI/Button';
 import PostsList from 'components/UI/PostsList';
-import { IndexPageQuery_poetryItems_data } from 'queries/types/IndexPageQuery';
+import { CategoryInfo } from 'components/UI/PostsList/types';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
+import { PostsType } from 'types/index';
 
 interface PostsListSectionProps {
   blockTitle: string;
   blockSubtitle: string;
-  posts: IndexPageQuery_poetryItems_data[];
-  categoryInfo?: {
-    title: string;
-    slug: string;
-  } | null;
+  posts: PostsType;
+  categoryInfo?: CategoryInfo | null;
 }
 
 const PostsListSection: FC<PostsListSectionProps> = ({
@@ -22,7 +20,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
   blockSubtitle,
   posts,
   categoryInfo,
-}): JSX.Element => (
+}) => (
   <PostsListSectionWrapper>
     <div className="container">
       <TitleBlock>{blockTitle}</TitleBlock>

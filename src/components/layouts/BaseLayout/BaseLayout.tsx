@@ -1,16 +1,15 @@
 import styled from '@emotion/styled';
-import { FC, ReactNode } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import Footer from 'components/UI/Footer';
 import SEO from 'components/UI/SEO';
 import { SEOProps } from 'components/UI/SEO/SEO';
 
 export interface BaseLayoutProps extends SEOProps {
-  children?: ReactNode | ReactNode[];
   className?: string;
 }
 
-const BaseLayout: FC<BaseLayoutProps> = ({
+const BaseLayout: FC<PropsWithChildren<BaseLayoutProps>> = ({
   /* Primary meta settings */
   author,
   articleAuthor,

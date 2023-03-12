@@ -5,8 +5,8 @@ const nextConfig = {
   experimental: {
     fontLoaders: [
       {
-        loader: "@next/font/google",
-        options: { subsets: ["latin", "cyrillic"] },
+        loader: 'next/font/google',
+        options: { subsets: ['latin', 'cyrillic'] },
       },
     ],
   },

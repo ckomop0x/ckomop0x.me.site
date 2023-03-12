@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "6.3.1",
+  "version": "6.4.0",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -31,12 +31,12 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "gen": "yarn graphql:get-schema && yarn graphql:gen-types",
+    "gen": "yarn graphql:get-schema && yarn codegen",
     "graphql:get-schema": "dotenv cross-var rover graph introspect %NEXT_PUBLIC_GRAPHQL_URL_LOCAL% > schema.graphql",
     "graphql:gen-types": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/queries/**/*.gql.ts' --tagName=gql --addTypename types",
     "rover": "rover",
-    "apollo": "apollo",
-    "dotenv": "dotenv"
+    "dotenv": "dotenv",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,csgis,md}": [
@@ -48,12 +48,11 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
-    "@apollo/rover": "^0.12.2",
+    "@apollo/rover": "^0.13.0",
     "@babel/core": "^7.21.0",
     "@emotion/babel-plugin": "^11.10.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@next/font": "^13.2.4",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
@@ -64,7 +63,6 @@
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
-    "apollo": "^2.34.0",
     "babel-plugin-styled-components": "^2.0.7",
     "bootstrap": "^4.6.2",
     "date-fns": "^2.29.3",
@@ -76,6 +74,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "graphql": "^16.6.0",
     "html-react-parser": "^3.0.12",
     "jest-environment-jsdom": "^29.5.0",
     "next": "^13.2.4",
@@ -84,6 +83,9 @@
     "react-markdown": "^8.0.5"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "3.2.2",
+    "@graphql-codegen/client-preset": "2.1.1",
+    "@graphql-codegen/introspection": "3.0.1",
     "@netlify/plugin-lighthouse": "^4.0.7",
     "@netlify/plugin-nextjs": "^4.31.0",
     "@netlify/plugin-sitemap": "^0.8.1",
