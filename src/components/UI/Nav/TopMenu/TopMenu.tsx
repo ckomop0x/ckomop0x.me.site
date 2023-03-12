@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
 import { FC } from 'react';
 
 import MenuItem from 'components/UI/Nav/MenuItem';
+import { TopMenuWrapper } from 'components/UI/Nav/TopMenu/styles';
 
 const TopMenu: FC = () => (
   <TopMenuWrapper>
@@ -9,11 +9,5 @@ const TopMenu: FC = () => (
     <MenuItem linkSrc="/poetry/">Стихи</MenuItem>
   </TopMenuWrapper>
 );
-
-const TopMenuWrapper = styled.ul`
-  margin: 0;
-  display: flex;
-  align-items: center;
-`;
 
 export default TopMenu;

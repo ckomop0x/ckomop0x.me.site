@@ -20,7 +20,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
   blockSubtitle,
   posts,
   categoryInfo,
-}): JSX.Element => (
+}) => (
   <PostsListSectionWrapper>
     <div className="container">
       <TitleBlock>{blockTitle}</TitleBlock>
