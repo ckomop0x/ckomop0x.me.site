@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import BaseLayout, { BaseLayoutProps } from '../BaseLayout/BaseLayout';
 
@@ -7,7 +7,7 @@ import Nav from 'components/UI/Nav';
 
 export type InnerPageLayoutProps = BaseLayoutProps;
 
-const InnerPageLayout: FC<InnerPageLayoutProps> = ({
+const InnerPageLayout: FC<PropsWithChildren<InnerPageLayoutProps>> = ({
   /* Primary meta settings */
   author,
   articleAuthor,

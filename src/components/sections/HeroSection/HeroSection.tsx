@@ -14,7 +14,7 @@ const HeroSection: FC<HeroSectionProps> = ({
   title,
   subtitle,
   backgroundImage,
-}): JSX.Element => (
+}) => (
   <HeroSectionWrapper backgroundImage={backgroundImage}>
     <Nav />
     <HeroSectionText className="container">
