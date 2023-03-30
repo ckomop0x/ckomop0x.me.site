@@ -15773,10 +15773,10 @@ ts-dedent@^2.0.0, ts-dedent@^2.2.0:
   resolved "https://registry.yarnpkg.com/ts-dedent/-/ts-dedent-2.2.0.tgz#39e4bd297cd036292ae2394eb3412be63f563bb5"
   integrity sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==
 
-ts-graphql-plugin@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ts-graphql-plugin/-/ts-graphql-plugin-3.0.0.tgz#2de0f638e2517376612cbfd73a5fa2bd66b71190"
-  integrity sha512-KfidZkOVzNV7ThiPYsh8Cks+bd221AH2dcrPp+q47owhVdx+wSLhhBHH3avyhvwY2+w5L5YXOTM33DL7QJzznQ==
+ts-graphql-plugin@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/ts-graphql-plugin/-/ts-graphql-plugin-3.0.1.tgz#28de25d9b01ce6ae8deec026a12b45aef8f81900"
+  integrity sha512-zR5XYG7W6wA3aNCbW4ZkQ6Ea3D/wwTC20I4SElkXS6ZOHKTBB65yED2LskNma2o7aNE6oA9B4YlPZiRA3DX6cQ==
   dependencies:
     graphql-language-service-interface "^2.10.2"
     graphql-language-service-types "^1.8.7"
