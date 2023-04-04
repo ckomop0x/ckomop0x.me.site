@@ -83,7 +83,7 @@
     "react-markdown": "^8.0.6"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "3.2.2",
+    "@graphql-codegen/cli": "3.3.0",
     "@graphql-codegen/client-preset": "2.1.1",
     "@graphql-codegen/introspection": "3.0.1",
     "@netlify/plugin-lighthouse": "^4.0.7",
