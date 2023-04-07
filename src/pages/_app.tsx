@@ -10,6 +10,7 @@ import apolloClient from 'utils/api/apollo-client';
 
 const cache = createCache({ key: 'next' });
 const neucha = Neucha({
+  subsets: ['cyrillic', 'latin'],
   weight: '400',
   variable: '--font-secondary',
 });
