@@ -87,7 +87,7 @@
     "@graphql-codegen/client-preset": "3.0.0",
     "@graphql-codegen/introspection": "3.0.1",
     "@netlify/plugin-lighthouse": "^4.0.7",
-    "@netlify/plugin-nextjs": "^4.33.0",
+    "@netlify/plugin-nextjs": "^4.34.0",
     "@netlify/plugin-sitemap": "^0.8.1",
     "@storybook/nextjs": "^7.0.2",
     "babel-jest": "^29.5.0",
