@@ -89,7 +89,7 @@
     "@netlify/plugin-lighthouse": "^4.0.7",
     "@netlify/plugin-nextjs": "^4.34.0",
     "@netlify/plugin-sitemap": "^0.8.1",
-    "@storybook/nextjs": "^7.0.2",
+    "@storybook/nextjs": "^7.0.4",
     "babel-jest": "^29.5.0",
     "babel-loader": "^9.1.2",
     "cross-env": "^7.0.3",
