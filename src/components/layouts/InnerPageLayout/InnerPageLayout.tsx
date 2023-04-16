@@ -3,7 +3,7 @@ import { FC, PropsWithChildren } from 'react';
 
 import BaseLayout, { BaseLayoutProps } from '../BaseLayout/BaseLayout';
 
-import Nav from 'components/UI/Nav';
+import Nav from 'components/ui/Nav';
 
 export type InnerPageLayoutProps = BaseLayoutProps;
 

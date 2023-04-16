@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { FC } from 'react';
 
-import PostDate from 'components/UI/PostsList/Post/PostDate';
-import { PostTitle } from 'components/UI/PostsList/Post/styles';
+import PostDate from 'components/ui/PostsList/Post/PostDate';
+import { PostTitle } from 'components/ui/PostsList/Post/styles';
 import getSrcSet from 'utils/image/getSrcSet';
 
 interface PostContentProps {

@@ -1263,6 +1263,25 @@ export type CategoryFragmentFragment = {
   } | null;
 } & { ' $fragmentName'?: 'CategoryFragmentFragment' };
 
+export type HomePageFragmentFragment = {
+  __typename?: 'HomePageEntityResponse';
+  data?: {
+    __typename?: 'HomePageEntity';
+    id?: string | null;
+    attributes?: {
+      __typename?: 'HomePage';
+      title: string;
+      hero?: {
+        __typename?: 'ComponentLayoutHero';
+        id: string;
+        title: string;
+        callToAction: string;
+        image: string;
+      } | null;
+    } | null;
+  } | null;
+} & { ' $fragmentName'?: 'HomePageFragmentFragment' };
+
 export type PostFieldsFragmentFragment = {
   __typename?: 'PostEntityResponseCollection';
   data: Array<{
@@ -1296,6 +1315,13 @@ export type IndexPageQueryQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IndexPageQueryQuery = {
   __typename?: 'Query';
+  homePage?:
+    | ({ __typename?: 'HomePageEntityResponse' } & {
+        ' $fragmentRefs'?: {
+          HomePageFragmentFragment: HomePageFragmentFragment;
+        };
+      })
+    | null;
   blogItems?:
     | ({ __typename?: 'PostEntityResponseCollection' } & {
         ' $fragmentRefs'?: {
@@ -1329,6 +1355,69 @@ export type PostsPathQueryQuery = {
   } | null;
 };
 
+export const HomePageFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'HomePageFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'HomePageEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'hero' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'callToAction' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'image' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HomePageFragmentFragment, unknown>;
 export const CategoryFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -2024,6 +2113,31 @@ export const IndexPageQueryDocument = {
         selections: [
           {
             kind: 'Field',
+            name: { kind: 'Name', value: 'homePage' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'publicationState' },
+                value: { kind: 'EnumValue', value: 'LIVE' },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'locale' },
+                value: { kind: 'StringValue', value: 'ru', block: false },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'HomePageFragment' },
+                },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
             alias: { kind: 'Name', value: 'blogItems' },
             name: { kind: 'Name', value: 'posts' },
             arguments: [
@@ -2219,6 +2333,64 @@ export const IndexPageQueryDocument = {
                     selections: [
                       { kind: 'Field', name: { kind: 'Name', value: 'title' } },
                       { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'HomePageFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'HomePageEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'hero' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'callToAction' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'image' },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },

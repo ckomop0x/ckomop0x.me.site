@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import { Navbar } from './styles';
 
-import Logo from 'components/UI/Nav/Logo';
-import TopMenu from 'components/UI/Nav/TopMenu';
+import Logo from 'components/ui/Nav/Logo';
+import TopMenu from 'components/ui/Nav/TopMenu';
 
 export interface NavProps {
   isInner?: boolean;

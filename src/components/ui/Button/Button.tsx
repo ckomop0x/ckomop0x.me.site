@@ -1,6 +1,6 @@
 import { FC, forwardRef, PropsWithChildren } from 'react';
 
-import { ButtonWrapper } from 'components/UI/Button/styles';
+import { ButtonWrapper } from 'components/ui/Button/styles';
 
 export interface ButtonProps {
   onClick?(): void;

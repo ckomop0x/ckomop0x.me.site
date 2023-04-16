@@ -33,6 +33,12 @@ type ComponentContentRichText {
   id: ID!
   description: String
 }
+type ComponentLayoutHero {
+  id: ID!
+  title: String!
+  callToAction: String!
+  image: String!
+}
 type UploadFile {
   name: String!
   alternativeText: String
@@ -187,6 +193,25 @@ type CategoryEntityResponseCollection {
 type CategoryRelationResponseCollection {
   data: [CategoryEntity!]!
 }
+type HomePage {
+  title: String!
+  hero: ComponentLayoutHero
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+  localizations(publicationState: PublicationState = LIVE): HomePageRelationResponseCollection
+  locale: String
+}
+type HomePageEntity {
+  id: ID
+  attributes: HomePage
+}
+type HomePageEntityResponse {
+  data: HomePageEntity
+}
+type HomePageRelationResponseCollection {
+  data: [HomePageEntity!]!
+}
 type Post {
   title: String!
   slug: String!
@@ -259,6 +284,7 @@ type Query {
   usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
   category(id: ID, locale: I18NLocaleCode): CategoryEntityResponse
   categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE, locale: I18NLocaleCode): CategoryEntityResponseCollection
+  homePage(publicationState: PublicationState = LIVE, locale: I18NLocaleCode): HomePageEntityResponse
   post(id: ID, locale: I18NLocaleCode): PostEntityResponse
   posts(filters: PostFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], publicationState: PublicationState = LIVE, locale: I18NLocaleCode): PostEntityResponseCollection
   me: UsersPermissionsMe
@@ -273,6 +299,8 @@ type Mutation {
   createCategory(data: CategoryInput!, locale: I18NLocaleCode): CategoryEntityResponse
   updateCategory(id: ID!, data: CategoryInput!, locale: I18NLocaleCode): CategoryEntityResponse
   deleteCategory(id: ID!, locale: I18NLocaleCode): CategoryEntityResponse
+  updateHomePage(data: HomePageInput!, locale: I18NLocaleCode): HomePageEntityResponse
+  deleteHomePage(locale: I18NLocaleCode): HomePageEntityResponse
   createPost(data: PostInput!, locale: I18NLocaleCode): PostEntityResponse
   updatePost(id: ID!, data: PostInput!, locale: I18NLocaleCode): PostEntityResponse
   deletePost(id: ID!, locale: I18NLocaleCode): PostEntityResponse
@@ -281,6 +309,7 @@ type Mutation {
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
   removeFile(id: ID!): UploadFileEntityResponse
   createCategoryLocalization(id: ID, data: CategoryInput, locale: I18NLocaleCode): CategoryEntityResponse
+  createHomePageLocalization(id: ID, data: HomePageInput, locale: I18NLocaleCode): HomePageEntityResponse
   createPostLocalization(id: ID, data: PostInput, locale: I18NLocaleCode): PostEntityResponse
   "Create a new role"
   createUsersPermissionsRole(data: UsersPermissionsRoleInput!): UsersPermissionsCreateRolePayload
@@ -307,7 +336,7 @@ type Mutation {
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 }
 union PostContentDynamicZone = ComponentContentImage | ComponentContentRichText | Error
-union GenericMorph = ComponentContentImage | ComponentContentRichText | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Category | Post
+union GenericMorph = ComponentContentImage | ComponentContentRichText | ComponentLayoutHero | UploadFile | UploadFolder | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | Category | HomePage | Post
 enum PublicationState {
   LIVE
   PREVIEW
@@ -485,6 +514,12 @@ input ComponentContentImageInput {
   title: String
   url: String
 }
+input ComponentLayoutHeroInput {
+  id: ID
+  title: String
+  callToAction: String
+  image: String
+}
 input UploadFileFiltersInput {
   id: IDFilterInput
   name: StringFilterInput
@@ -633,6 +668,11 @@ input CategoryFiltersInput {
 input CategoryInput {
   title: String
   slug: String
+  publishedAt: DateTime
+}
+input HomePageInput {
+  title: String
+  hero: ComponentLayoutHeroInput
   publishedAt: DateTime
 }
 input PostFiltersInput {

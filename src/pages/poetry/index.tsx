@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 
-import PostsList from 'components/UI/PostsList';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
+import PostsList from 'components/ui/PostsList';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 import { CategoryPageProps, CategoryInterface } from 'types';

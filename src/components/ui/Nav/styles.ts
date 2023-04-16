@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { LogoTitle, LogoWrapper } from 'components/UI/Nav/Logo/Logo';
-import { MenuItemWrapper } from 'components/UI/Nav/MenuItem/MenuItem';
-import { NavProps } from 'components/UI/Nav/Nav';
+import { LogoTitle, LogoWrapper } from 'components/ui/Nav/Logo/Logo';
+import { MenuItemWrapper } from 'components/ui/Nav/MenuItem/MenuItem';
+import { NavProps } from 'components/ui/Nav/Nav';
 import { themePalette } from 'styles/colors';
 
 export const LinkStyled = styled.a`
