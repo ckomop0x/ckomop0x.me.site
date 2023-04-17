@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "6.4.1",
+  "version": "6.5.0",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -23,6 +23,7 @@
     "start:server": "cd ../ckomop0x.me.admin.v2 && yarn develop",
     "dev": "next dev -p 8000",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "test": "jest --env=jsdom --ci --verbose --passWithNoTests",
     "check-style": "prettier --check \"./**/*.{ts,tsx,js,jsx,json,md}\"",
