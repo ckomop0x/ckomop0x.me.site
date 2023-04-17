@@ -140,6 +140,21 @@ export type ComponentContentRichText = {
   id: Scalars['ID'];
 };
 
+export type ComponentLayoutHero = {
+  __typename?: 'ComponentLayoutHero';
+  callToAction: Scalars['String'];
+  id: Scalars['ID'];
+  image: Scalars['String'];
+  title: Scalars['String'];
+};
+
+export type ComponentLayoutHeroInput = {
+  callToAction?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  image?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -204,6 +219,8 @@ export type GenericMorph =
   | Category
   | ComponentContentImage
   | ComponentContentRichText
+  | ComponentLayoutHero
+  | HomePage
   | I18NLocale
   | Post
   | UploadFile
@@ -211,6 +228,43 @@ export type GenericMorph =
   | UsersPermissionsPermission
   | UsersPermissionsRole
   | UsersPermissionsUser;
+
+export type HomePage = {
+  __typename?: 'HomePage';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  hero?: Maybe<ComponentLayoutHero>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<HomePageRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type HomePageLocalizationsArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type HomePageEntity = {
+  __typename?: 'HomePageEntity';
+  attributes?: Maybe<HomePage>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type HomePageEntityResponse = {
+  __typename?: 'HomePageEntityResponse';
+  data?: Maybe<HomePageEntity>;
+};
+
+export type HomePageInput = {
+  hero?: InputMaybe<ComponentLayoutHeroInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type HomePageRelationResponseCollection = {
+  __typename?: 'HomePageRelationResponseCollection';
+  data: Array<HomePageEntity>;
+};
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -326,6 +380,7 @@ export type Mutation = {
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createCategory?: Maybe<CategoryEntityResponse>;
   createCategoryLocalization?: Maybe<CategoryEntityResponse>;
+  createHomePageLocalization?: Maybe<HomePageEntityResponse>;
   createPost?: Maybe<PostEntityResponse>;
   createPostLocalization?: Maybe<PostEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -335,6 +390,7 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteCategory?: Maybe<CategoryEntityResponse>;
+  deleteHomePage?: Maybe<HomePageEntityResponse>;
   deletePost?: Maybe<PostEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -355,6 +411,7 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateCategory?: Maybe<CategoryEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
+  updateHomePage?: Maybe<HomePageEntityResponse>;
   updatePost?: Maybe<PostEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -378,6 +435,12 @@ export type MutationCreateCategoryArgs = {
 
 export type MutationCreateCategoryLocalizationArgs = {
   data?: InputMaybe<CategoryInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+export type MutationCreateHomePageLocalizationArgs = {
+  data?: InputMaybe<HomePageInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
@@ -411,6 +474,10 @@ export type MutationCreateUsersPermissionsUserArgs = {
 
 export type MutationDeleteCategoryArgs = {
   id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+export type MutationDeleteHomePageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
@@ -477,6 +544,11 @@ export type MutationUpdateCategoryArgs = {
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
+};
+
+export type MutationUpdateHomePageArgs = {
+  data: HomePageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 export type MutationUpdatePostArgs = {
@@ -619,6 +691,7 @@ export type Query = {
   __typename?: 'Query';
   categories?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<CategoryEntityResponse>;
+  homePage?: Maybe<HomePageEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
@@ -645,6 +718,11 @@ export type QueryCategoriesArgs = {
 export type QueryCategoryArgs = {
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+export type QueryHomePageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type QueryI18NLocaleArgs = {
