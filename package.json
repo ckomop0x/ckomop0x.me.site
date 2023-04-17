@@ -78,6 +78,7 @@
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.15",
     "jest-environment-jsdom": "^29.5.0",
+    "netlify-cli": "^14.0.0",
     "next": "^13.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
