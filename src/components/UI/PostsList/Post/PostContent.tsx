@@ -35,23 +35,20 @@ export const PostContentWrapper = styled.div`
   position: relative;
   margin: 32px;
   background-color: #f5f5f5c2;
-  border-radius: 30px;
   width: 100%;
-  box-shadow: 0 2px 3px #0000001c;
+  box-shadow: 0 0 4px #0000001c;
   display: flex;
   flex-direction: column;
   transition: box-shadow 0.3s ease;
 
   &:hover {
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.11);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.11);
   }
 `;
 
 export const PostImage = styled.img`
   width: 100%;
-  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 0 2px 3px #00000022;
 `;
 
 export default PostContent;

@@ -30,7 +30,6 @@ export const PostDateWrapper = styled.div`
   height: 80px;
   background: #fff;
   width: 80px;
-  border-radius: 0 0 20px 0;
 
   span {
     display: block;

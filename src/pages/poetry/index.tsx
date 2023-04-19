@@ -1,5 +1,7 @@
 import { NextPage } from 'next';
 
+import { BlogPageWrapper } from '../blog';
+
 import PostsList from 'components/UI/PostsList';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
@@ -11,7 +13,7 @@ const CATEGORY: CategoryInterface = 'poetry';
 const LIMIT = 100;
 const TITLE = 'Стихи и песни';
 const SUB_TITLE =
-  'Стихи и песни написанные в разное время, в разных городах и странах';
+  'Стихи и песни написанные в разное время, в разных городах и странах. Пишу, играю, пою и делаю то, что дарит вдохновение!';
 const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
 
 const PoetryPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
@@ -21,11 +23,13 @@ const PoetryPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
     ogDescription={TITLE}
     twitterCard={SUB_TITLE}
   >
-    <div className="container">
-      <TitleBlock>{TITLE}</TitleBlock>
-      <SubtitleBlock>{SUB_TITLE}</SubtitleBlock>
-      {posts ? <PostsList posts={posts} /> : EMPTY_PAGE_MESSAGE}
-    </div>
+    <BlogPageWrapper>
+      <div className="container">
+        <TitleBlock>{TITLE}</TitleBlock>
+        <p>{SUB_TITLE}</p>
+        {posts ? <PostsList posts={posts} /> : EMPTY_PAGE_MESSAGE}
+      </div>
+    </BlogPageWrapper>
   </InnerPageLayout>
 );
 
