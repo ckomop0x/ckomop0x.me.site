@@ -86,7 +86,7 @@
     "@graphql-codegen/cli": "3.3.0",
     "@graphql-codegen/client-preset": "3.0.0",
     "@graphql-codegen/introspection": "3.0.1",
-    "@storybook/nextjs": "^7.0.5",
+    "@storybook/nextjs": "^7.0.6",
     "babel-jest": "^29.5.0",
     "babel-loader": "^9.1.2",
     "cross-env": "^7.0.3",
