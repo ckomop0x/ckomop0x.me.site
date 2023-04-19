@@ -100,7 +100,6 @@ export const PostTitle = styled.h3`
   color: #513b34;
   font-weight: 500;
   line-height: 1;
-  border-radius: 0 0 20px 20px;
   margin: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.87);

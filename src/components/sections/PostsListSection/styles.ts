@@ -6,5 +6,5 @@ export const AllPostsLink = styled(Link)`
 `;
 
 export const PostsListSectionWrapper = styled.section`
-  padding: 0 0 80px;
+  padding: 40px 0 80px;
 `;

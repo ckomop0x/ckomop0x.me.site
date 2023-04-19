@@ -39,7 +39,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
         posts={blogItems.data}
         categoryInfo={blogItems.data[0].attributes?.category?.data?.attributes}
         blockTitle="Статьи и публикации"
-        blockSubtitle="Каждый новый вкус, запах звук раскрывает нас всё больше и больше и больше! Только так ты сможешь лучше узнать мир и себя. Будь смелее в своих желаниях."
+        blockSubtitle=""
       />
     )}
 
@@ -50,7 +50,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
           poetryItems.data[0].attributes?.category?.data?.attributes
         }
         blockTitle="Стихи и песни"
-        blockSubtitle="Пиши, играй, пой, делай то, что тебе нравится и чувствуй вдохновение!"
+        blockSubtitle=""
       />
     )}
   </MainPageLayout>

@@ -11,7 +11,8 @@ import apolloClient from 'utils/api/apollo-client';
 const CATEGORY: CategoryInterface = 'blog';
 const LIMIT = 100;
 const TITLE = 'Статьи и публикации';
-const SUB_TITLE = 'Статьи и публикации на разные темы.';
+const SUB_TITLE =
+  'Статьи и публикации на разные темы. Каждый новый вкус, запах, звук раскрывает нас всё больше и больше и больше! Только так мы можем лучше узнать мир и себя. Будьте смелее в своих желаниях.';
 const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
 
 const BlogPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
@@ -24,7 +25,7 @@ const BlogPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
     <BlogPageWrapper>
       <div className="container">
         <TitleBlock>{TITLE}</TitleBlock>
-        <SubtitleBlock>{SUB_TITLE}</SubtitleBlock>
+        <p>{SUB_TITLE}</p>
         {posts ? <PostsList posts={posts} /> : EMPTY_PAGE_MESSAGE}
       </div>
     </BlogPageWrapper>
