@@ -4,7 +4,7 @@ import { FC } from 'react';
 
 import { PostsListWrapper } from './styles';
 
-import Post from 'components/UI/PostsList/Post';
+import Post from 'components/ui/PostsList/Post';
 import { PostsType } from 'types/index';
 
 interface PostsListProps {

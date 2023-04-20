@@ -2,9 +2,9 @@ import { FC } from 'react';
 
 import { AllPostsLink, PostsListSectionWrapper } from './styles';
 
-import Button from 'components/UI/Button';
-import PostsList from 'components/UI/PostsList';
-import { CategoryInfo } from 'components/UI/PostsList/types';
+import Button from 'components/ui/Button';
+import PostsList from 'components/ui/PostsList';
+import { CategoryInfo } from 'components/ui/PostsList/types';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 import { PostsType } from 'types/index';
 
