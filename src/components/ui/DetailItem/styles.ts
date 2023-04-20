@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { PostType } from 'components/UI/DetailItem/DetailItem';
+import { PostType } from 'components/ui/DetailItem/DetailItem';
 import { themePalette } from 'styles/colors';
 
 export const DetailItemWrapper = styled.div<{ image: string | null }>`

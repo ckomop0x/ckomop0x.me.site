@@ -3,8 +3,8 @@ import { FC } from 'react';
 
 import siteConfig from '../../../config/site-config';
 
-import FacebookMeta from 'components/UI/SEO/FacebookMeta';
-import TwitterMeta from 'components/UI/SEO/TwitterMeta';
+import FacebookMeta from 'components/ui/SEO/FacebookMeta';
+import TwitterMeta from 'components/ui/SEO/TwitterMeta';
 
 export interface SEOProps {
   /* Primary meta settings */

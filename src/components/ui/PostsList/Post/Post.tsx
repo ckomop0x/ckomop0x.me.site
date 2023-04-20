@@ -3,7 +3,7 @@ import { FC } from 'react';
 import PostContent from './PostContent';
 import { PostWrapper, StyledLink } from './styles';
 
-import { PostInterface } from 'components/UI/PostsList/types';
+import { PostInterface } from 'components/ui/PostsList/types';
 
 const Post: FC<PostInterface> = ({
   publicationDate,

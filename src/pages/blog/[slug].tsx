@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import DetailItemComponent from 'components/UI/DetailItem';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import ContentMapper from 'components/slices/content/ContentMapper';
+import DetailItemComponent from 'components/ui/DetailItem';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {

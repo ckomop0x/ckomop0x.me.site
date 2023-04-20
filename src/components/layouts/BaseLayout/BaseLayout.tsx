@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { FC, PropsWithChildren } from 'react';
 
-import Footer from 'components/UI/Footer';
-import SEO from 'components/UI/SEO';
-import { SEOProps } from 'components/UI/SEO/SEO';
+import Footer from 'components/ui/Footer';
+import SEO from 'components/ui/SEO';
+import { SEOProps } from 'components/ui/SEO/SEO';
 
 export interface BaseLayoutProps extends SEOProps {
   className?: string;

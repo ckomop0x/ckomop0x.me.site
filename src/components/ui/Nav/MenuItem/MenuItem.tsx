@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
-import { LinkStyled } from 'components/UI/Nav/styles';
+import { LinkStyled } from 'components/ui/Nav/styles';
 
 interface MenuItemProps {
   linkSrc: string;

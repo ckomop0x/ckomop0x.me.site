@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { HeroSectionWrapper, Title, SubTitle, HeroSectionText } from './styles';
 
-import Nav from 'components/UI/Nav';
+import Nav from 'components/ui/Nav';
 
 export interface HeroSectionProps {
   title: string;
