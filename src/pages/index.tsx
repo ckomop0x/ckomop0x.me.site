@@ -6,34 +6,35 @@ import Hero from 'components/sections/HeroSection';
 import PostsListSection from 'components/sections/PostsListSection';
 import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
+  ComponentLayoutHeroInput,
+  HomePage,
+  HomePageEntityResponse,
   IndexPageQueryQuery,
   IndexPageQueryQueryVariables,
   PostEntityResponseCollection,
 } from 'queries/types/graphql';
 import apolloClient from 'utils/api/apollo-client';
-
-const mainPageData = {
-  title: 'Добро пожаловать в мой персональный блог',
-  subtitle: 'Здесь живут мои стихи, песни, путешествия, заметки и фотографий.',
-  backgroundImage:
-    'https://ik.imagekit.io/ckomop0x/ckomop0x-me/main-page/20180901-DSC_0568-Edit-3_qcFKvrDzNYg.jpg',
-};
+import getPosts from 'utils/api/getPosts';
 
 interface IndexPageProps {
   blogItems: PostEntityResponseCollection;
   poetryItems: PostEntityResponseCollection;
+  hero: ComponentLayoutHeroInput;
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({
   blogItems,
   poetryItems,
+  hero,
 }): JSX.Element => (
   <MainPageLayout>
-    <Hero
-      title={mainPageData.title}
-      subtitle={mainPageData.subtitle}
-      backgroundImage={mainPageData.backgroundImage}
-    />
+    {hero && (
+      <Hero
+        title={hero.title || ''}
+        subtitle={hero.callToAction || ''}
+        backgroundImage={hero.image || ''}
+      />
+    )}
     {blogItems?.data?.length > 0 && (
       <PostsListSection
         posts={blogItems.data}
@@ -57,15 +58,36 @@ const IndexPage: NextPage<IndexPageProps> = ({
 );
 
 export async function getStaticProps() {
-  const { data } = await apolloClient.query<
+  const indexPageResponse = await apolloClient.query<
     DocumentNode<IndexPageQueryQuery, IndexPageQueryQueryVariables>
   >({
     query: indexPageQuery,
+    variables: {
+      locale: 'ru',
+    },
   });
-  const { blogItems, poetryItems } = data as IndexPageQueryQuery;
 
+  const { homePage } = indexPageResponse?.data as IndexPageQueryQuery;
+  const attributes = (homePage as HomePageEntityResponse)?.data?.attributes;
+  const { hero, blogPosts, poetryPosts } = attributes as HomePage;
+
+  const [blogItems, poetryItems] = await Promise.all([
+    getPosts({
+      category: blogPosts?.category?.data?.attributes?.slug || '',
+      limit: blogPosts?.limit || 3,
+      locale: 'ru',
+      sort: blogPosts?.sort || '',
+    }),
+    getPosts({
+      category: poetryPosts?.category?.data?.attributes?.slug || '',
+      limit: poetryPosts?.limit || 3,
+      locale: 'ru',
+      sort: poetryPosts?.sort || '',
+    }),
+  ]);
   return {
     props: {
+      hero,
       blogItems,
       poetryItems,
     },

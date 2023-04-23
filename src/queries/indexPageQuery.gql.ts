@@ -1,27 +1,12 @@
 import { gql } from '@apollo/client';
 
-import { postFieldsFragment } from 'queries/fragments/postFieldsFragment.gql';
+import { homePageFragment } from 'queries/fragments/homePageFragment.gql';
 
 export const indexPageQuery = gql`
-  ${postFieldsFragment}
-  query IndexPageQuery {
-    blogItems: posts(
-      locale: "ru"
-      filters: { category: { slug: { eq: "blog" } } }
-      sort: "date:desc"
-      publicationState: LIVE
-      pagination: { limit: 3 }
-    ) {
-      ...PostFieldsFragment
-    }
-    poetryItems: posts(
-      locale: "ru"
-      filters: { category: { slug: { eq: "poetry" } } }
-      sort: "date:desc"
-      publicationState: LIVE
-      pagination: { limit: 3 }
-    ) {
-      ...PostFieldsFragment
+  ${homePageFragment}
+  query IndexPageQuery($locale: I18NLocaleCode!) {
+    homePage(publicationState: LIVE, locale: $locale) {
+      ...HomePageFragment
     }
   }
 `;

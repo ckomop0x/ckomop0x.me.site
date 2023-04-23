@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import PostsList from 'components/ui/PostsList';
-import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
+import { postsPageQuery } from 'queries/postsPageQuery.gql';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 import { CategoryInterface, CategoryPageProps } from 'types';
 import apolloClient from 'utils/api/apollo-client';
@@ -38,10 +38,12 @@ export async function getStaticProps(): Promise<{
   const {
     data: { posts },
   } = await apolloClient.query({
-    query: categoryPageQuery,
+    query: postsPageQuery,
     variables: {
       category: CATEGORY,
       limit: LIMIT,
+      locale: 'ru',
+      sort: 'date:desc',
     },
   });
 
