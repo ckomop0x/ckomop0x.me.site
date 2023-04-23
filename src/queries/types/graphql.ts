@@ -1293,17 +1293,28 @@ export type HomePageFragmentFragment = {
         limit: number;
         sort?: string | null;
         subTitle?: string | null;
-        category?: {
-          __typename?: 'CategoryEntityResponse';
-          data?: {
-            __typename?: 'CategoryEntity';
-            attributes?: {
-              __typename?: 'Category';
-              title: string;
-              slug: string;
-            } | null;
-          } | null;
-        } | null;
+        category?:
+          | ({ __typename?: 'CategoryEntityResponse' } & {
+              ' $fragmentRefs'?: {
+                CategoryFragmentFragment: CategoryFragmentFragment;
+              };
+            })
+          | null;
+      } | null;
+      poetryPosts?: {
+        __typename?: 'ComponentLayoutPostsSelection';
+        id: string;
+        title: string;
+        limit: number;
+        sort?: string | null;
+        subTitle?: string | null;
+        category?:
+          | ({ __typename?: 'CategoryEntityResponse' } & {
+              ' $fragmentRefs'?: {
+                CategoryFragmentFragment: CategoryFragmentFragment;
+              };
+            })
+          | null;
       } | null;
     } | null;
   } | null;
@@ -1390,6 +1401,44 @@ export type PostsPathQueryQuery = {
   } | null;
 };
 
+export const CategoryFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'CategoryFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'CategoryEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CategoryFragmentFragment, unknown>;
 export const HomePageFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -1475,38 +1524,55 @@ export const HomePageFragmentFragmentDoc = {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'data' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: {
-                                            kind: 'Name',
-                                            value: 'attributes',
-                                          },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: {
-                                                  kind: 'Name',
-                                                  value: 'title',
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: {
-                                                  kind: 'Name',
-                                                  value: 'slug',
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
+                                    kind: 'FragmentSpread',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'CategoryFragment',
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'poetryPosts' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'limit' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sort' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'subTitle' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'category' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'FragmentSpread',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'CategoryFragment',
                                     },
                                   },
                                 ],
@@ -1524,11 +1590,6 @@ export const HomePageFragmentFragmentDoc = {
         ],
       },
     },
-  ],
-} as unknown as DocumentNode<HomePageFragmentFragment, unknown>;
-export const CategoryFragmentFragmentDoc = {
-  kind: 'Document',
-  definitions: [
     {
       kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'CategoryFragment' },
@@ -1563,7 +1624,7 @@ export const CategoryFragmentFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<CategoryFragmentFragment, unknown>;
+} as unknown as DocumentNode<HomePageFragmentFragment, unknown>;
 export const PostFieldsFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -2027,6 +2088,39 @@ export const IndexPageQueryDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'CategoryFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'CategoryEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'HomePageFragment' },
       typeCondition: {
         kind: 'NamedType',
@@ -2107,38 +2201,55 @@ export const IndexPageQueryDocument = {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
-                                    kind: 'Field',
-                                    name: { kind: 'Name', value: 'data' },
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: {
-                                            kind: 'Name',
-                                            value: 'attributes',
-                                          },
-                                          selectionSet: {
-                                            kind: 'SelectionSet',
-                                            selections: [
-                                              {
-                                                kind: 'Field',
-                                                name: {
-                                                  kind: 'Name',
-                                                  value: 'title',
-                                                },
-                                              },
-                                              {
-                                                kind: 'Field',
-                                                name: {
-                                                  kind: 'Name',
-                                                  value: 'slug',
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
+                                    kind: 'FragmentSpread',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'CategoryFragment',
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'poetryPosts' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'limit' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sort' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'subTitle' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'category' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'FragmentSpread',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'CategoryFragment',
                                     },
                                   },
                                 ],

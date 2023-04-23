@@ -3,12 +3,15 @@ import { FC } from 'react';
 
 import projectConfig from '../../../../package.json';
 
-import { baseSettings } from 'config/site-config';
 import { themePalette } from 'styles/colors';
 
-const Footer: FC = () => {
+interface FooterProps {
+  projectTitle: string;
+}
+
+const Footer: FC<FooterProps> = ({ projectTitle = '' }) => {
   const currentYear = new Date().getFullYear();
-  const footerText = `© ${currentYear} ${baseSettings.projectTitle}. v${projectConfig.version}`;
+  const footerText = `© ${currentYear} ${projectTitle} v${projectConfig.version}`;
 
   return (
     <FooterWrapper>

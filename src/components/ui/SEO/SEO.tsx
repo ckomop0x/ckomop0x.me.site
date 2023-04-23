@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import { FC } from 'react';
 
-import siteConfig from '../../../config/site-config';
-
 import FacebookMeta from 'components/ui/SEO/FacebookMeta';
 import TwitterMeta from 'components/ui/SEO/TwitterMeta';
 
@@ -59,28 +57,23 @@ const SEO: FC<SEOProps> = ({
   twitterTitle,
 }): JSX.Element => {
   /* Primary meta settings */
-  const metaAuthor = author ?? siteConfig.author;
-  const metaArticleAuthor =
-    articleAuthor || metaAuthor || siteConfig.articleAuthor;
-  const metaDescription = `${siteConfig.projectTitle} | ${
-    headTitle ?? siteConfig.headTitle
-  }`;
+  const metaAuthor = author ?? '';
+  const metaArticleAuthor = articleAuthor || metaAuthor || '';
+  const metaDescription = `${headTitle}`;
 
   /* Google and yandex metrika */
-  const metaYandexVerification =
-    yandexVerification ?? siteConfig.yandexVerification;
-  const metaGoogleSiteVerification =
-    googleSiteVerification ?? siteConfig.googleSiteVerification;
+  const metaYandexVerification = yandexVerification ?? '';
+  const metaGoogleSiteVerification = googleSiteVerification ?? '';
 
   /* Facebook Open Graph */
-  const metaFbAppId = fbAppId ?? siteConfig.fbAppId;
-  const metaOgImage = ogImage ?? siteConfig.ogImage;
-  const metaOgUrl = ogUrl ?? siteConfig.ogUrl;
-  const metaOgType = ogType ?? siteConfig.ogType;
+  const metaFbAppId = fbAppId ?? '';
+  const metaOgImage = ogImage ?? '';
+  const metaOgUrl = ogUrl ?? '';
+  const metaOgType = ogType ?? '';
   const metaOgTitle = ogTitle ?? metaDescription;
   const metaOgDescription = ogDescription ?? metaDescription;
   const metaTwitterCard = twitterCard ?? 'summary_large_image';
-  const metaTwitterCreator = twitterCreator ?? siteConfig.twitterCreator;
+  const metaTwitterCreator = twitterCreator ?? '';
   const metaTwitterTitle = twitterTitle ?? metaOgTitle;
 
   return (
