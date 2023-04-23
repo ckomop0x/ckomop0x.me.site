@@ -4,8 +4,7 @@ import { BlogPageWrapper } from '../blog';
 
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import PostsList from 'components/ui/PostsList';
-import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
-import { TitleBlock, SubtitleBlock } from 'styles/Typography';
+import { postsPageQuery } from 'queries/postsPageQuery.gql';
 import { CategoryPageProps, CategoryInterface } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
@@ -25,7 +24,7 @@ const PoetryPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
   >
     <BlogPageWrapper>
       <div className="container">
-        <TitleBlock>{TITLE}</TitleBlock>
+        <h1>{TITLE}</h1>
         <p>{SUB_TITLE}</p>
         {posts ? <PostsList posts={posts} /> : EMPTY_PAGE_MESSAGE}
       </div>
@@ -39,10 +38,12 @@ export async function getStaticProps(): Promise<{
   const {
     data: { posts },
   } = await apolloClient.query({
-    query: categoryPageQuery,
+    query: postsPageQuery,
     variables: {
       category: CATEGORY,
       limit: LIMIT,
+      locale: 'ru',
+      sort: 'date:desc',
     },
   });
 

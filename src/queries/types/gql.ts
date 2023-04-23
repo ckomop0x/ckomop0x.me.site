@@ -13,16 +13,18 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  '\n  \n  \n\n  query CategoryPageQuery($category: String!, $limit: Int!) {\n    posts(\n      locale: "ru"\n      filters: { category: { slug: { eq: $category } } }\n      sort: "date:desc"\n      publicationState: LIVE\n      pagination: { limit: $limit }\n    ) {\n      ...PostFieldsFragment\n    }\n  }\n':
-    types.CategoryPageQueryDocument,
   '\n  \n  query DetailsPageQuery($category: String!, $slug: String!) {\n    posts(\n      filters: { slug: { eq: $slug }, category: { slug: { eq: $category } } }\n      publicationState: LIVE\n    ) {\n      data {\n        id\n        attributes {\n          category {\n            ...CategoryFragment\n          }\n          date\n          updatedAt\n          excerpt\n          title\n          slug\n          PostImage {\n            url\n            title\n          }\n          Content {\n            ... on ComponentContentRichText {\n              __typename\n              description\n            }\n            ... on ComponentContentImage {\n              __typename\n              title\n              url\n            }\n          }\n        }\n      }\n    }\n  }\n':
     types.DetailsPageQueryDocument,
   '\n  fragment CategoryFragment on CategoryEntityResponse {\n    data {\n      attributes {\n        title\n        slug\n      }\n    }\n  }\n':
     types.CategoryFragmentFragmentDoc,
+  '\n  \n  fragment HomePageFragment on HomePageEntityResponse {\n    data {\n      id\n      attributes {\n        title\n        hero {\n          id\n          title\n          callToAction\n          image\n        }\n        blogPosts {\n          id\n          title\n          limit\n          sort\n          subTitle\n          category {\n            ...CategoryFragment\n          }\n        }\n        poetryPosts {\n          id\n          title\n          limit\n          sort\n          subTitle\n          category {\n            ...CategoryFragment\n          }\n        }\n      }\n    }\n  }\n':
+    types.HomePageFragmentFragmentDoc,
   '\n  \n  fragment PostFieldsFragment on PostEntityResponseCollection {\n    data {\n      id\n      attributes {\n        date\n        updatedAt\n        excerpt\n        featured\n        title\n        slug\n        category {\n          ...CategoryFragment\n        }\n        PostImage {\n          title\n          url\n        }\n      }\n    }\n  }\n':
     types.PostFieldsFragmentFragmentDoc,
-  '\n  \n  query IndexPageQuery {\n    blogItems: posts(\n      locale: "ru"\n      filters: { category: { slug: { eq: "blog" } } }\n      sort: "date:desc"\n      publicationState: LIVE\n      pagination: { limit: 3 }\n    ) {\n      ...PostFieldsFragment\n    }\n    poetryItems: posts(\n      locale: "ru"\n      filters: { category: { slug: { eq: "poetry" } } }\n      sort: "date:desc"\n      publicationState: LIVE\n      pagination: { limit: 3 }\n    ) {\n      ...PostFieldsFragment\n    }\n  }\n':
+  '\n  \n  query IndexPageQuery($locale: I18NLocaleCode!) {\n    homePage(publicationState: LIVE, locale: $locale) {\n      ...HomePageFragment\n    }\n  }\n':
     types.IndexPageQueryDocument,
+  '\n  \n  \n\n  query PostsPageQuery(\n    $category: String!\n    $limit: Int!\n    $sort: [String]\n    $locale: I18NLocaleCode!\n  ) {\n    posts(\n      locale: $locale\n      filters: { category: { slug: { eq: $category } } }\n      sort: $sort\n      publicationState: LIVE\n      pagination: { limit: $limit }\n    ) {\n      ...PostFieldsFragment\n    }\n  }\n':
+    types.PostsPageQueryDocument,
   '\n  query PostsPathQuery(\n    $category: String!\n    $locale: I18NLocaleCode!\n    $limit: Int!\n  ) {\n    posts(\n      locale: $locale\n      filters: { category: { slug: { eq: $category } } }\n      pagination: { limit: $limit }\n    ) {\n      data {\n        attributes {\n          slug\n        }\n      }\n    }\n  }\n':
     types.PostsPathQueryDocument,
 };
@@ -45,12 +47,6 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  \n  \n\n  query CategoryPageQuery($category: String!, $limit: Int!) {\n    posts(\n      locale: "ru"\n      filters: { category: { slug: { eq: $category } } }\n      sort: "date:desc"\n      publicationState: LIVE\n      pagination: { limit: $limit }\n    ) {\n      ...PostFieldsFragment\n    }\n  }\n',
-): (typeof documents)['\n  \n  \n\n  query CategoryPageQuery($category: String!, $limit: Int!) {\n    posts(\n      locale: "ru"\n      filters: { category: { slug: { eq: $category } } }\n      sort: "date:desc"\n      publicationState: LIVE\n      pagination: { limit: $limit }\n    ) {\n      ...PostFieldsFragment\n    }\n  }\n'];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
   source: '\n  \n  query DetailsPageQuery($category: String!, $slug: String!) {\n    posts(\n      filters: { slug: { eq: $slug }, category: { slug: { eq: $category } } }\n      publicationState: LIVE\n    ) {\n      data {\n        id\n        attributes {\n          category {\n            ...CategoryFragment\n          }\n          date\n          updatedAt\n          excerpt\n          title\n          slug\n          PostImage {\n            url\n            title\n          }\n          Content {\n            ... on ComponentContentRichText {\n              __typename\n              description\n            }\n            ... on ComponentContentImage {\n              __typename\n              title\n              url\n            }\n          }\n        }\n      }\n    }\n  }\n',
 ): (typeof documents)['\n  \n  query DetailsPageQuery($category: String!, $slug: String!) {\n    posts(\n      filters: { slug: { eq: $slug }, category: { slug: { eq: $category } } }\n      publicationState: LIVE\n    ) {\n      data {\n        id\n        attributes {\n          category {\n            ...CategoryFragment\n          }\n          date\n          updatedAt\n          excerpt\n          title\n          slug\n          PostImage {\n            url\n            title\n          }\n          Content {\n            ... on ComponentContentRichText {\n              __typename\n              description\n            }\n            ... on ComponentContentImage {\n              __typename\n              title\n              url\n            }\n          }\n        }\n      }\n    }\n  }\n'];
 /**
@@ -63,14 +59,26 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n  \n  fragment HomePageFragment on HomePageEntityResponse {\n    data {\n      id\n      attributes {\n        title\n        hero {\n          id\n          title\n          callToAction\n          image\n        }\n        blogPosts {\n          id\n          title\n          limit\n          sort\n          subTitle\n          category {\n            ...CategoryFragment\n          }\n        }\n        poetryPosts {\n          id\n          title\n          limit\n          sort\n          subTitle\n          category {\n            ...CategoryFragment\n          }\n        }\n      }\n    }\n  }\n',
+): (typeof documents)['\n  \n  fragment HomePageFragment on HomePageEntityResponse {\n    data {\n      id\n      attributes {\n        title\n        hero {\n          id\n          title\n          callToAction\n          image\n        }\n        blogPosts {\n          id\n          title\n          limit\n          sort\n          subTitle\n          category {\n            ...CategoryFragment\n          }\n        }\n        poetryPosts {\n          id\n          title\n          limit\n          sort\n          subTitle\n          category {\n            ...CategoryFragment\n          }\n        }\n      }\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n  \n  fragment PostFieldsFragment on PostEntityResponseCollection {\n    data {\n      id\n      attributes {\n        date\n        updatedAt\n        excerpt\n        featured\n        title\n        slug\n        category {\n          ...CategoryFragment\n        }\n        PostImage {\n          title\n          url\n        }\n      }\n    }\n  }\n',
 ): (typeof documents)['\n  \n  fragment PostFieldsFragment on PostEntityResponseCollection {\n    data {\n      id\n      attributes {\n        date\n        updatedAt\n        excerpt\n        featured\n        title\n        slug\n        category {\n          ...CategoryFragment\n        }\n        PostImage {\n          title\n          url\n        }\n      }\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  \n  query IndexPageQuery {\n    blogItems: posts(\n      locale: "ru"\n      filters: { category: { slug: { eq: "blog" } } }\n      sort: "date:desc"\n      publicationState: LIVE\n      pagination: { limit: 3 }\n    ) {\n      ...PostFieldsFragment\n    }\n    poetryItems: posts(\n      locale: "ru"\n      filters: { category: { slug: { eq: "poetry" } } }\n      sort: "date:desc"\n      publicationState: LIVE\n      pagination: { limit: 3 }\n    ) {\n      ...PostFieldsFragment\n    }\n  }\n',
-): (typeof documents)['\n  \n  query IndexPageQuery {\n    blogItems: posts(\n      locale: "ru"\n      filters: { category: { slug: { eq: "blog" } } }\n      sort: "date:desc"\n      publicationState: LIVE\n      pagination: { limit: 3 }\n    ) {\n      ...PostFieldsFragment\n    }\n    poetryItems: posts(\n      locale: "ru"\n      filters: { category: { slug: { eq: "poetry" } } }\n      sort: "date:desc"\n      publicationState: LIVE\n      pagination: { limit: 3 }\n    ) {\n      ...PostFieldsFragment\n    }\n  }\n'];
+  source: '\n  \n  query IndexPageQuery($locale: I18NLocaleCode!) {\n    homePage(publicationState: LIVE, locale: $locale) {\n      ...HomePageFragment\n    }\n  }\n',
+): (typeof documents)['\n  \n  query IndexPageQuery($locale: I18NLocaleCode!) {\n    homePage(publicationState: LIVE, locale: $locale) {\n      ...HomePageFragment\n    }\n  }\n'];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  \n  \n\n  query PostsPageQuery(\n    $category: String!\n    $limit: Int!\n    $sort: [String]\n    $locale: I18NLocaleCode!\n  ) {\n    posts(\n      locale: $locale\n      filters: { category: { slug: { eq: $category } } }\n      sort: $sort\n      publicationState: LIVE\n      pagination: { limit: $limit }\n    ) {\n      ...PostFieldsFragment\n    }\n  }\n',
+): (typeof documents)['\n  \n  \n\n  query PostsPageQuery(\n    $category: String!\n    $limit: Int!\n    $sort: [String]\n    $locale: I18NLocaleCode!\n  ) {\n    posts(\n      locale: $locale\n      filters: { category: { slug: { eq: $category } } }\n      sort: $sort\n      publicationState: LIVE\n      pagination: { limit: $limit }\n    ) {\n      ...PostFieldsFragment\n    }\n  }\n'];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

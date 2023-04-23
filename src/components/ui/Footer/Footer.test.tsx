@@ -4,14 +4,12 @@ import projectConfig from '../../../../package.json';
 
 import Footer from './index';
 
-import { baseSettings } from 'config/site-config';
-
 describe('Footer', () => {
   const currentYear = new Date().getFullYear();
-  const footerText = `© ${currentYear} ${baseSettings.projectTitle}. v${projectConfig.version}`;
+  const footerText = `© ${currentYear} ckomop0x.me v${projectConfig.version}`;
 
   it('Should render default component', () => {
-    render(<Footer />);
+    render(<Footer projectTitle="ckomop0x.me" />);
     expect(screen.getByText(footerText).textContent).toBeTruthy();
   });
 });

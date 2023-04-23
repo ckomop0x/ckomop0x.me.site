@@ -1,27 +1,43 @@
 import { gql } from '@apollo/client';
 
-import { postFieldsFragment } from 'queries/fragments/postFieldsFragment.gql';
+import { categoryFieldsFragment } from 'queries/fragments/categoryFieldsFragment.gql';
 
 export const indexPageQuery = gql`
-  ${postFieldsFragment}
-  query IndexPageQuery {
-    blogItems: posts(
-      locale: "ru"
-      filters: { category: { slug: { eq: "blog" } } }
-      sort: "date:desc"
-      publicationState: LIVE
-      pagination: { limit: 3 }
-    ) {
-      ...PostFieldsFragment
-    }
-    poetryItems: posts(
-      locale: "ru"
-      filters: { category: { slug: { eq: "poetry" } } }
-      sort: "date:desc"
-      publicationState: LIVE
-      pagination: { limit: 3 }
-    ) {
-      ...PostFieldsFragment
+  ${categoryFieldsFragment}
+  query IndexPageQuery($locale: I18NLocaleCode!) {
+    homePage(publicationState: LIVE, locale: $locale) {
+      data {
+        id
+        attributes {
+          title
+          hero {
+            id
+            title
+            callToAction
+            image
+          }
+          blogPosts {
+            id
+            title
+            limit
+            sort
+            subTitle
+            category {
+              ...CategoryFragment
+            }
+          }
+          poetryPosts {
+            id
+            title
+            limit
+            sort
+            subTitle
+            category {
+              ...CategoryFragment
+            }
+          }
+        }
+      }
     }
   }
 `;

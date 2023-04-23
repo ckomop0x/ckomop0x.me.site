@@ -3,16 +3,14 @@ import { NextPage } from 'next';
 
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import PostsList from 'components/ui/PostsList';
-import { categoryPageQuery } from 'queries/categoryPageQuery.gql';
-import { TitleBlock, SubtitleBlock } from 'styles/Typography';
+import { postsPageQuery } from 'queries/postsPageQuery.gql';
 import { CategoryInterface, CategoryPageProps } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 
 const CATEGORY: CategoryInterface = 'blog';
 const LIMIT = 100;
-const TITLE = 'Статьи и публикации';
-const SUB_TITLE =
-  'Статьи и публикации на разные темы. Каждый новый вкус, запах, звук раскрывает нас всё больше и больше и больше! Только так мы можем лучше узнать мир и себя. Будьте смелее в своих желаниях.';
+const TITLE = 'Блог';
+const SUB_TITLE = 'Статьи и публикации на разные темы. ';
 const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
 
 const BlogPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
@@ -24,7 +22,7 @@ const BlogPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
   >
     <BlogPageWrapper>
       <div className="container">
-        <TitleBlock>{TITLE}</TitleBlock>
+        <h1>{TITLE}</h1>
         <p>{SUB_TITLE}</p>
         {posts ? <PostsList posts={posts} /> : EMPTY_PAGE_MESSAGE}
       </div>
@@ -38,10 +36,12 @@ export async function getStaticProps(): Promise<{
   const {
     data: { posts },
   } = await apolloClient.query({
-    query: categoryPageQuery,
+    query: postsPageQuery,
     variables: {
       category: CATEGORY,
       limit: LIMIT,
+      locale: 'ru',
+      sort: 'date:desc',
     },
   });
 

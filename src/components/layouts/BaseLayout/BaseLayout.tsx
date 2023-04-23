@@ -41,7 +41,7 @@ const BaseLayout: FC<PropsWithChildren<BaseLayoutProps>> = ({
       /* Primary meta settings */
       author={author}
       articleAuthor={articleAuthor}
-      headTitle={headTitle}
+      headTitle={headTitle || 'Павел Клочков | Персональный сайт'}
       /* Facebook Open Graph */
       fbAppId={fbAppId}
       ogImage={ogImage}
@@ -60,7 +60,7 @@ const BaseLayout: FC<PropsWithChildren<BaseLayoutProps>> = ({
       twitterTitle={twitterTitle}
     />
     {children}
-    <Footer />
+    <Footer projectTitle="Павел Клочков" />
   </BaseLayoutWrapper>
 );
 

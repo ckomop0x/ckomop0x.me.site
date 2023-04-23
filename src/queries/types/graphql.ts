@@ -155,6 +155,25 @@ export type ComponentLayoutHeroInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
+export type ComponentLayoutPostsSelection = {
+  __typename?: 'ComponentLayoutPostsSelection';
+  category?: Maybe<CategoryEntityResponse>;
+  id: Scalars['ID'];
+  limit: Scalars['Int'];
+  sort?: Maybe<Scalars['String']>;
+  subTitle?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+};
+
+export type ComponentLayoutPostsSelectionInput = {
+  category?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Scalars['String']>;
+  subTitle?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -220,6 +239,7 @@ export type GenericMorph =
   | ComponentContentImage
   | ComponentContentRichText
   | ComponentLayoutHero
+  | ComponentLayoutPostsSelection
   | HomePage
   | I18NLocale
   | Post
@@ -231,10 +251,12 @@ export type GenericMorph =
 
 export type HomePage = {
   __typename?: 'HomePage';
+  blogPosts?: Maybe<ComponentLayoutPostsSelection>;
   createdAt?: Maybe<Scalars['DateTime']>;
   hero?: Maybe<ComponentLayoutHero>;
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<HomePageRelationResponseCollection>;
+  poetryPosts?: Maybe<ComponentLayoutPostsSelection>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -256,7 +278,9 @@ export type HomePageEntityResponse = {
 };
 
 export type HomePageInput = {
+  blogPosts?: InputMaybe<ComponentLayoutPostsSelectionInput>;
   hero?: InputMaybe<ComponentLayoutHeroInput>;
+  poetryPosts?: InputMaybe<ComponentLayoutPostsSelectionInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   title?: InputMaybe<Scalars['String']>;
 };
@@ -1186,22 +1210,6 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type CategoryPageQueryQueryVariables = Exact<{
-  category: Scalars['String'];
-  limit: Scalars['Int'];
-}>;
-
-export type CategoryPageQueryQuery = {
-  __typename?: 'Query';
-  posts?:
-    | ({ __typename?: 'PostEntityResponseCollection' } & {
-        ' $fragmentRefs'?: {
-          PostFieldsFragmentFragment: PostFieldsFragmentFragment;
-        };
-      })
-    | null;
-};
-
 export type DetailsPageQueryQueryVariables = Exact<{
   category: Scalars['String'];
   slug: Scalars['String'];
@@ -1263,6 +1271,55 @@ export type CategoryFragmentFragment = {
   } | null;
 } & { ' $fragmentName'?: 'CategoryFragmentFragment' };
 
+export type HomePageFragmentFragment = {
+  __typename?: 'HomePageEntityResponse';
+  data?: {
+    __typename?: 'HomePageEntity';
+    id?: string | null;
+    attributes?: {
+      __typename?: 'HomePage';
+      title: string;
+      hero?: {
+        __typename?: 'ComponentLayoutHero';
+        id: string;
+        title: string;
+        callToAction: string;
+        image: string;
+      } | null;
+      blogPosts?: {
+        __typename?: 'ComponentLayoutPostsSelection';
+        id: string;
+        title: string;
+        limit: number;
+        sort?: string | null;
+        subTitle?: string | null;
+        category?:
+          | ({ __typename?: 'CategoryEntityResponse' } & {
+              ' $fragmentRefs'?: {
+                CategoryFragmentFragment: CategoryFragmentFragment;
+              };
+            })
+          | null;
+      } | null;
+      poetryPosts?: {
+        __typename?: 'ComponentLayoutPostsSelection';
+        id: string;
+        title: string;
+        limit: number;
+        sort?: string | null;
+        subTitle?: string | null;
+        category?:
+          | ({ __typename?: 'CategoryEntityResponse' } & {
+              ' $fragmentRefs'?: {
+                CategoryFragmentFragment: CategoryFragmentFragment;
+              };
+            })
+          | null;
+      } | null;
+    } | null;
+  } | null;
+} & { ' $fragmentName'?: 'HomePageFragmentFragment' };
+
 export type PostFieldsFragmentFragment = {
   __typename?: 'PostEntityResponseCollection';
   data: Array<{
@@ -1292,18 +1349,33 @@ export type PostFieldsFragmentFragment = {
   }>;
 } & { ' $fragmentName'?: 'PostFieldsFragmentFragment' };
 
-export type IndexPageQueryQueryVariables = Exact<{ [key: string]: never }>;
+export type IndexPageQueryQueryVariables = Exact<{
+  locale: Scalars['I18NLocaleCode'];
+}>;
 
 export type IndexPageQueryQuery = {
   __typename?: 'Query';
-  blogItems?:
-    | ({ __typename?: 'PostEntityResponseCollection' } & {
+  homePage?:
+    | ({ __typename?: 'HomePageEntityResponse' } & {
         ' $fragmentRefs'?: {
-          PostFieldsFragmentFragment: PostFieldsFragmentFragment;
+          HomePageFragmentFragment: HomePageFragmentFragment;
         };
       })
     | null;
-  poetryItems?:
+};
+
+export type PostsPageQueryQueryVariables = Exact<{
+  category: Scalars['String'];
+  limit: Scalars['Int'];
+  sort?: InputMaybe<
+    Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>
+  >;
+  locale: Scalars['I18NLocaleCode'];
+}>;
+
+export type PostsPageQueryQuery = {
+  __typename?: 'Query';
+  posts?:
     | ({ __typename?: 'PostEntityResponseCollection' } & {
         ' $fragmentRefs'?: {
           PostFieldsFragmentFragment: PostFieldsFragmentFragment;
@@ -1367,6 +1439,192 @@ export const CategoryFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CategoryFragmentFragment, unknown>;
+export const HomePageFragmentFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'HomePageFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'HomePageEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'hero' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'callToAction' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'image' },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'blogPosts' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'limit' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sort' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'subTitle' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'category' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'FragmentSpread',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'CategoryFragment',
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'poetryPosts' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'limit' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sort' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'subTitle' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'category' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'FragmentSpread',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'CategoryFragment',
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'CategoryFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'CategoryEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<HomePageFragmentFragment, unknown>;
 export const PostFieldsFragmentFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -1482,247 +1740,6 @@ export const PostFieldsFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<PostFieldsFragmentFragment, unknown>;
-export const CategoryPageQueryDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'CategoryPageQuery' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'category' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'limit' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'posts' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'locale' },
-                value: { kind: 'StringValue', value: 'ru', block: false },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'filters' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'category' },
-                      value: {
-                        kind: 'ObjectValue',
-                        fields: [
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'slug' },
-                            value: {
-                              kind: 'ObjectValue',
-                              fields: [
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'eq' },
-                                  value: {
-                                    kind: 'Variable',
-                                    name: { kind: 'Name', value: 'category' },
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'sort' },
-                value: {
-                  kind: 'StringValue',
-                  value: 'date:desc',
-                  block: false,
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'publicationState' },
-                value: { kind: 'EnumValue', value: 'LIVE' },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'pagination' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'limit' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'limit' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'PostFieldsFragment' },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'CategoryFragment' },
-      typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'CategoryEntityResponse' },
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'data' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'attributes' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'PostFieldsFragment' },
-      typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'PostEntityResponseCollection' },
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'data' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'attributes' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'date' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'updatedAt' },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'excerpt' },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'featured' },
-                      },
-                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'category' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'FragmentSpread',
-                              name: { kind: 'Name', value: 'CategoryFragment' },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'PostImage' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'title' },
-                            },
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'url' },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  CategoryPageQueryQuery,
-  CategoryPageQueryQueryVariables
->;
 export const DetailsPageQueryDocument = {
   kind: 'Document',
   definitions: [
@@ -2019,64 +2036,29 @@ export const IndexPageQueryDocument = {
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'IndexPageQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+      ],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
-            alias: { kind: 'Name', value: 'blogItems' },
-            name: { kind: 'Name', value: 'posts' },
+            name: { kind: 'Name', value: 'homePage' },
             arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'locale' },
-                value: { kind: 'StringValue', value: 'ru', block: false },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'filters' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'category' },
-                      value: {
-                        kind: 'ObjectValue',
-                        fields: [
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'slug' },
-                            value: {
-                              kind: 'ObjectValue',
-                              fields: [
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'eq' },
-                                  value: {
-                                    kind: 'StringValue',
-                                    value: 'blog',
-                                    block: false,
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'sort' },
-                value: {
-                  kind: 'StringValue',
-                  value: 'date:desc',
-                  block: false,
-                },
-              },
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'publicationState' },
@@ -2084,16 +2066,10 @@ export const IndexPageQueryDocument = {
               },
               {
                 kind: 'Argument',
-                name: { kind: 'Name', value: 'pagination' },
+                name: { kind: 'Name', value: 'locale' },
                 value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'limit' },
-                      value: { kind: 'IntValue', value: '3' },
-                    },
-                  ],
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
                 },
               },
             ],
@@ -2102,20 +2078,270 @@ export const IndexPageQueryDocument = {
               selections: [
                 {
                   kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'PostFieldsFragment' },
+                  name: { kind: 'Name', value: 'HomePageFragment' },
                 },
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'CategoryFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'CategoryEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
           {
             kind: 'Field',
-            alias: { kind: 'Name', value: 'poetryItems' },
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'HomePageFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'HomePageEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'hero' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'callToAction' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'image' },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'blogPosts' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'limit' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sort' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'subTitle' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'category' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'FragmentSpread',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'CategoryFragment',
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'poetryPosts' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'title' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'limit' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'sort' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'subTitle' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'category' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'FragmentSpread',
+                                    name: {
+                                      kind: 'Name',
+                                      value: 'CategoryFragment',
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<IndexPageQueryQuery, IndexPageQueryQueryVariables>;
+export const PostsPageQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'PostsPageQuery' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'category' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'limit' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'sort' } },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'locale' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'I18NLocaleCode' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
             name: { kind: 'Name', value: 'posts' },
             arguments: [
               {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'locale' },
-                value: { kind: 'StringValue', value: 'ru', block: false },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'locale' },
+                },
               },
               {
                 kind: 'Argument',
@@ -2139,9 +2365,8 @@ export const IndexPageQueryDocument = {
                                   kind: 'ObjectField',
                                   name: { kind: 'Name', value: 'eq' },
                                   value: {
-                                    kind: 'StringValue',
-                                    value: 'poetry',
-                                    block: false,
+                                    kind: 'Variable',
+                                    name: { kind: 'Name', value: 'category' },
                                   },
                                 },
                               ],
@@ -2157,9 +2382,8 @@ export const IndexPageQueryDocument = {
                 kind: 'Argument',
                 name: { kind: 'Name', value: 'sort' },
                 value: {
-                  kind: 'StringValue',
-                  value: 'date:desc',
-                  block: false,
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'sort' },
                 },
               },
               {
@@ -2176,7 +2400,10 @@ export const IndexPageQueryDocument = {
                     {
                       kind: 'ObjectField',
                       name: { kind: 'Name', value: 'limit' },
-                      value: { kind: 'IntValue', value: '3' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'limit' },
+                      },
                     },
                   ],
                 },
@@ -2306,7 +2533,7 @@ export const IndexPageQueryDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<IndexPageQueryQuery, IndexPageQueryQueryVariables>;
+} as unknown as DocumentNode<PostsPageQueryQuery, PostsPageQueryQueryVariables>;
 export const PostsPathQueryDocument = {
   kind: 'Document',
   definitions: [
