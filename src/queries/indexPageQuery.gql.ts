@@ -1,12 +1,43 @@
 import { gql } from '@apollo/client';
 
-import { homePageFragment } from 'queries/fragments/homePageFragment.gql';
+import { categoryFieldsFragment } from 'queries/fragments/categoryFieldsFragment.gql';
 
 export const indexPageQuery = gql`
-  ${homePageFragment}
+  ${categoryFieldsFragment}
   query IndexPageQuery($locale: I18NLocaleCode!) {
     homePage(publicationState: LIVE, locale: $locale) {
-      ...HomePageFragment
+      data {
+        id
+        attributes {
+          title
+          hero {
+            id
+            title
+            callToAction
+            image
+          }
+          blogPosts {
+            id
+            title
+            limit
+            sort
+            subTitle
+            category {
+              ...CategoryFragment
+            }
+          }
+          poetryPosts {
+            id
+            title
+            limit
+            sort
+            subTitle
+            category {
+              ...CategoryFragment
+            }
+          }
+        }
+      }
     }
   }
 `;
