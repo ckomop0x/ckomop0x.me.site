@@ -9,6 +9,7 @@ import {
   ComponentLayoutHeroInput,
   HomePage,
   HomePageEntityResponse,
+  HomePageFragmentFragment,
   IndexPageQueryQuery,
   IndexPageQueryQueryVariables,
   PostEntityResponseCollection,
@@ -58,7 +59,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
 );
 
 export async function getStaticProps() {
-  const indexPageResponse = await apolloClient.query<
+  const { data: indexPageResponse } = await apolloClient.query<
     DocumentNode<IndexPageQueryQuery, IndexPageQueryQueryVariables>
   >({
     query: indexPageQuery,
@@ -67,9 +68,9 @@ export async function getStaticProps() {
     },
   });
 
-  const { homePage } = indexPageResponse?.data as IndexPageQueryQuery;
-  const attributes = (homePage as HomePageEntityResponse)?.data?.attributes;
-  const { hero, blogPosts, poetryPosts } = attributes as HomePage;
+  const { homePage } = indexPageResponse as IndexPageQueryQuery;
+  const { data: homePageData } = homePage as HomePageEntityResponse;
+  const { hero, blogPosts, poetryPosts } = homePageData?.attributes as HomePage;
 
   const [blogItems, poetryItems] = await Promise.all([
     getPosts({
