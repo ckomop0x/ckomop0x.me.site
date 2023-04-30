@@ -9,7 +9,6 @@ import {
   ComponentLayoutHeroInput,
   HomePage,
   HomePageEntityResponse,
-  HomePageFragmentFragment,
   IndexPageQueryQuery,
   IndexPageQueryQueryVariables,
   PostEntityResponseCollection,
