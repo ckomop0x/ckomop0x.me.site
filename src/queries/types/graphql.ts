@@ -29,6 +29,45 @@ export type Scalars = {
   Upload: any;
 };
 
+export type BlogPage = {
+  __typename?: 'BlogPage';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<BlogPageRelationResponseCollection>;
+  posts: ComponentLayoutPostsSelection;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  slug: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type BlogPageLocalizationsArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type BlogPageEntity = {
+  __typename?: 'BlogPageEntity';
+  attributes?: Maybe<BlogPage>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type BlogPageEntityResponse = {
+  __typename?: 'BlogPageEntityResponse';
+  data?: Maybe<BlogPageEntity>;
+};
+
+export type BlogPageInput = {
+  posts?: InputMaybe<ComponentLayoutPostsSelectionInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  slug?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type BlogPageRelationResponseCollection = {
+  __typename?: 'BlogPageRelationResponseCollection';
+  data: Array<BlogPageEntity>;
+};
+
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
@@ -235,6 +274,7 @@ export type FloatFilterInput = {
 };
 
 export type GenericMorph =
+  | BlogPage
   | Category
   | ComponentContentImage
   | ComponentContentRichText
@@ -242,6 +282,7 @@ export type GenericMorph =
   | ComponentLayoutPostsSelection
   | HomePage
   | I18NLocale
+  | PoetryPage
   | Post
   | UploadFile
   | UploadFolder
@@ -402,9 +443,11 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createBlogPageLocalization?: Maybe<BlogPageEntityResponse>;
   createCategory?: Maybe<CategoryEntityResponse>;
   createCategoryLocalization?: Maybe<CategoryEntityResponse>;
   createHomePageLocalization?: Maybe<HomePageEntityResponse>;
+  createPoetryPageLocalization?: Maybe<PoetryPageEntityResponse>;
   createPost?: Maybe<PostEntityResponse>;
   createPostLocalization?: Maybe<PostEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
@@ -413,8 +456,10 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteBlogPage?: Maybe<BlogPageEntityResponse>;
   deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteHomePage?: Maybe<HomePageEntityResponse>;
+  deletePoetryPage?: Maybe<PoetryPageEntityResponse>;
   deletePost?: Maybe<PostEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -433,9 +478,11 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateBlogPage?: Maybe<BlogPageEntityResponse>;
   updateCategory?: Maybe<CategoryEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateHomePage?: Maybe<HomePageEntityResponse>;
+  updatePoetryPage?: Maybe<PoetryPageEntityResponse>;
   updatePost?: Maybe<PostEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -452,6 +499,12 @@ export type MutationChangePasswordArgs = {
   passwordConfirmation: Scalars['String'];
 };
 
+export type MutationCreateBlogPageLocalizationArgs = {
+  data?: InputMaybe<BlogPageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
 export type MutationCreateCategoryArgs = {
   data: CategoryInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
@@ -465,6 +518,12 @@ export type MutationCreateCategoryLocalizationArgs = {
 
 export type MutationCreateHomePageLocalizationArgs = {
   data?: InputMaybe<HomePageInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+export type MutationCreatePoetryPageLocalizationArgs = {
+  data?: InputMaybe<PoetryPageInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
@@ -496,12 +555,20 @@ export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
 };
 
+export type MutationDeleteBlogPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
 export type MutationDeleteCategoryArgs = {
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 export type MutationDeleteHomePageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+export type MutationDeletePoetryPageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
@@ -559,6 +626,11 @@ export type MutationResetPasswordArgs = {
   passwordConfirmation: Scalars['String'];
 };
 
+export type MutationUpdateBlogPageArgs = {
+  data: BlogPageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
 export type MutationUpdateCategoryArgs = {
   data: CategoryInput;
   id: Scalars['ID'];
@@ -572,6 +644,11 @@ export type MutationUpdateFileInfoArgs = {
 
 export type MutationUpdateHomePageArgs = {
   data: HomePageInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+export type MutationUpdatePoetryPageArgs = {
+  data: PoetryPageInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
@@ -622,6 +699,45 @@ export type PaginationArg = {
   page?: InputMaybe<Scalars['Int']>;
   pageSize?: InputMaybe<Scalars['Int']>;
   start?: InputMaybe<Scalars['Int']>;
+};
+
+export type PoetryPage = {
+  __typename?: 'PoetryPage';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  locale?: Maybe<Scalars['String']>;
+  localizations?: Maybe<PoetryPageRelationResponseCollection>;
+  posts: ComponentLayoutPostsSelection;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  slug: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PoetryPageLocalizationsArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+export type PoetryPageEntity = {
+  __typename?: 'PoetryPageEntity';
+  attributes?: Maybe<PoetryPage>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PoetryPageEntityResponse = {
+  __typename?: 'PoetryPageEntityResponse';
+  data?: Maybe<PoetryPageEntity>;
+};
+
+export type PoetryPageInput = {
+  posts?: InputMaybe<ComponentLayoutPostsSelectionInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  slug?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type PoetryPageRelationResponseCollection = {
+  __typename?: 'PoetryPageRelationResponseCollection';
+  data: Array<PoetryPageEntity>;
 };
 
 export type Post = {
@@ -713,12 +829,14 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  blogPage?: Maybe<BlogPageEntityResponse>;
   categories?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<CategoryEntityResponse>;
   homePage?: Maybe<HomePageEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  poetryPage?: Maybe<PoetryPageEntityResponse>;
   post?: Maybe<PostEntityResponse>;
   posts?: Maybe<PostEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
@@ -729,6 +847,11 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+export type QueryBlogPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type QueryCategoriesArgs = {
@@ -757,6 +880,11 @@ export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type QueryPoetryPageArgs = {
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type QueryPostArgs = {
@@ -1300,9 +1428,7 @@ export type PostFieldsFragmentFragment = {
   }>;
 } & { ' $fragmentName'?: 'PostFieldsFragmentFragment' };
 
-export type IndexPageQueryQueryVariables = Exact<{
-  locale: Scalars['I18NLocaleCode'];
-}>;
+export type IndexPageQueryQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IndexPageQueryQuery = {
   __typename?: 'Query';
@@ -1351,6 +1477,35 @@ export type IndexPageQueryQuery = {
               })
             | null;
         } | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
+export type PoetryPageQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+export type PoetryPageQueryQuery = {
+  __typename?: 'Query';
+  poetryPage?: {
+    __typename?: 'PoetryPageEntityResponse';
+    data?: {
+      __typename?: 'PoetryPageEntity';
+      attributes?: {
+        __typename?: 'PoetryPage';
+        posts: {
+          __typename?: 'ComponentLayoutPostsSelection';
+          limit: number;
+          sort?: string | null;
+          title: string;
+          subTitle?: string | null;
+          category?:
+            | ({ __typename?: 'CategoryEntityResponse' } & {
+                ' $fragmentRefs'?: {
+                  CategoryFragmentFragment: CategoryFragmentFragment;
+                };
+              })
+            | null;
+        };
       } | null;
     } | null;
   } | null;
@@ -1842,43 +1997,12 @@ export const IndexPageQueryDocument = {
       kind: 'OperationDefinition',
       operation: 'query',
       name: { kind: 'Name', value: 'IndexPageQuery' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'locale' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'I18NLocaleCode' },
-            },
-          },
-        },
-      ],
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'homePage' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'publicationState' },
-                value: { kind: 'EnumValue', value: 'LIVE' },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'locale' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'locale' },
-                },
-              },
-            ],
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
@@ -2064,6 +2188,125 @@ export const IndexPageQueryDocument = {
     },
   ],
 } as unknown as DocumentNode<IndexPageQueryQuery, IndexPageQueryQueryVariables>;
+export const PoetryPageQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'PoetryPageQuery' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'poetryPage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'data' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'attributes' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'posts' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'limit' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'sort' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'title' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'subTitle' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'category' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'FragmentSpread',
+                                          name: {
+                                            kind: 'Name',
+                                            value: 'CategoryFragment',
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'CategoryFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'CategoryEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  PoetryPageQueryQuery,
+  PoetryPageQueryQueryVariables
+>;
 export const PostsPageQueryDocument = {
   kind: 'Document',
   definitions: [
@@ -2180,11 +2423,6 @@ export const PostsPageQueryDocument = {
                   kind: 'Variable',
                   name: { kind: 'Name', value: 'sort' },
                 },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'publicationState' },
-                value: { kind: 'EnumValue', value: 'LIVE' },
               },
               {
                 kind: 'Argument',

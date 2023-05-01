@@ -1,57 +1,86 @@
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { NextPage } from 'next';
 
 import { BlogPageWrapper } from '../blog';
 
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import PostsList from 'components/ui/PostsList';
-import { postsPageQuery } from 'queries/postsPageQuery.gql';
-import { CategoryPageProps, CategoryInterface } from 'types';
+import { poetryPageQuery } from 'queries/poetryPageQuery.gql';
+import {
+  PoetryPage,
+  PoetryPageEntityResponse,
+  PoetryPageQueryQuery,
+  PoetryPageQueryQueryVariables,
+  PostEntity,
+} from 'queries/types/graphql';
 import apolloClient from 'utils/api/apollo-client';
+import getPosts from 'utils/api/getPosts';
 
-const CATEGORY: CategoryInterface = 'poetry';
-const LIMIT = 100;
-const TITLE = 'Стихи и песни';
-const SUB_TITLE =
-  'Стихи и песни написанные в разное время, в разных городах и странах. Пишу, играю, пою и делаю то, что дарит вдохновение!';
 const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
 
-const PoetryPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
+interface PoetryPageProps {
+  category: string;
+  postItems: PostEntity[];
+  title: string;
+  subTitle: string;
+}
+
+const PoetryPageComponent: NextPage<PoetryPageProps> = ({
+  postItems,
+  title,
+  subTitle,
+  category,
+}) => (
   <InnerPageLayout
-    headTitle={TITLE}
-    ogUrl={CATEGORY}
-    ogDescription={TITLE}
-    twitterCard={SUB_TITLE}
+    headTitle={title}
+    ogUrl={category}
+    ogDescription={title}
+    twitterCard={subTitle}
   >
     <BlogPageWrapper>
       <div className="container">
-        <h1>{TITLE}</h1>
-        <p>{SUB_TITLE}</p>
-        {posts ? <PostsList posts={posts} /> : EMPTY_PAGE_MESSAGE}
+        <h1>{title}</h1>
+        <p>{subTitle}</p>
+        {postItems?.length > 0 ? (
+          <PostsList posts={postItems} />
+        ) : (
+          EMPTY_PAGE_MESSAGE
+        )}
       </div>
     </BlogPageWrapper>
   </InnerPageLayout>
 );
 
-export async function getStaticProps(): Promise<{
-  props: CategoryPageProps;
-}> {
-  const {
-    data: { posts },
-  } = await apolloClient.query({
-    query: postsPageQuery,
-    variables: {
-      category: CATEGORY,
-      limit: LIMIT,
-      locale: 'ru',
-      sort: 'date:desc',
-    },
+export async function getStaticProps() {
+  const { data: poetryPageResponse } = await apolloClient.query<
+    DocumentNode<PoetryPageQueryQuery, PoetryPageQueryQueryVariables>
+  >({
+    query: poetryPageQuery,
+  });
+
+  const { poetryPage } = poetryPageResponse as PoetryPageQueryQuery;
+  const { data: poetryPageData } = poetryPage as PoetryPageEntityResponse;
+  const { posts } = poetryPageData?.attributes as PoetryPage;
+
+  const category = posts?.category?.data?.attributes?.slug || '';
+  const limit = posts?.limit || 3;
+  const sort = posts?.sort || '';
+
+  const { data: postItems } = await getPosts({
+    category,
+    limit,
+    locale: 'ru',
+    sort,
   });
 
   return {
     props: {
-      posts: posts.data,
+      category,
+      postItems,
+      title: posts.title,
+      subTitle: posts.subTitle,
     },
   };
 }
 
-export default PoetryPage;
+export default PoetryPageComponent;
