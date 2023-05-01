@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "apollographql.vscode-apollo",
+    "mikestead.dotenv",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "graphql.vscode-graphql-execution",
+    "styled-components.vscode-styled-components"
+  ]
+}

@@ -43,7 +43,6 @@ const IndexPage: NextPage<IndexPageProps> = ({
         blockSubtitle=""
       />
     )}
-
     {poetryItems?.data?.length > 0 && (
       <PostsListSection
         posts={poetryItems.data}
@@ -62,9 +61,6 @@ export async function getStaticProps() {
     DocumentNode<IndexPageQueryQuery, IndexPageQueryQueryVariables>
   >({
     query: indexPageQuery,
-    variables: {
-      locale: 'ru',
-    },
   });
 
   const { homePage } = indexPageResponse as IndexPageQueryQuery;

@@ -4,8 +4,9 @@ import { categoryFieldsFragment } from 'queries/fragments/categoryFieldsFragment
 
 export const indexPageQuery = gql`
   ${categoryFieldsFragment}
-  query IndexPageQuery($locale: I18NLocaleCode!) {
-    homePage(publicationState: LIVE, locale: $locale) {
+
+  query IndexPageQuery {
+    homePage {
       data {
         id
         attributes {
