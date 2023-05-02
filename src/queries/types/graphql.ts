@@ -1338,6 +1338,35 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type BlogPageQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+export type BlogPageQueryQuery = {
+  __typename?: 'Query';
+  blogPage?: {
+    __typename?: 'BlogPageEntityResponse';
+    data?: {
+      __typename?: 'BlogPageEntity';
+      attributes?: {
+        __typename?: 'BlogPage';
+        posts: {
+          __typename?: 'ComponentLayoutPostsSelection';
+          limit: number;
+          sort?: string | null;
+          title: string;
+          subTitle?: string | null;
+          category?:
+            | ({ __typename?: 'CategoryEntityResponse' } & {
+                ' $fragmentRefs'?: {
+                  CategoryFragmentFragment: CategoryFragmentFragment;
+                };
+              })
+            | null;
+        };
+      } | null;
+    } | null;
+  } | null;
+};
+
 export type DetailsPageQueryQueryVariables = Exact<{
   category: Scalars['String'];
   slug: Scalars['String'];
@@ -1701,6 +1730,122 @@ export const PostFieldsFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<PostFieldsFragmentFragment, unknown>;
+export const BlogPageQueryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'BlogPageQuery' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'blogPage' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'data' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'attributes' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'posts' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'limit' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'sort' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'title' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'subTitle' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'category' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'FragmentSpread',
+                                          name: {
+                                            kind: 'Name',
+                                            value: 'CategoryFragment',
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'CategoryFragment' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'CategoryEntityResponse' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'data' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'attributes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>;
 export const DetailsPageQueryDocument = {
   kind: 'Document',
   definitions: [
@@ -2423,6 +2568,11 @@ export const PostsPageQueryDocument = {
                   kind: 'Variable',
                   name: { kind: 'Name', value: 'sort' },
                 },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'publicationState' },
+                value: { kind: 'EnumValue', value: 'LIVE' },
               },
               {
                 kind: 'Argument',

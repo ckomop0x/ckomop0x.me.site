@@ -1,53 +1,79 @@
 import styled from '@emotion/styled';
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { NextPage } from 'next';
 
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import PostsList from 'components/ui/PostsList';
-import { postsPageQuery } from 'queries/postsPageQuery.gql';
-import { CategoryInterface, CategoryPageProps } from 'types';
+import { blogPageQuery } from 'queries/blogPageQuery.gql';
+import {
+  BlogPage,
+  BlogPageEntityResponse,
+  BlogPageQueryQuery,
+  BlogPageQueryQueryVariables,
+  PostEntity,
+} from 'queries/types/graphql';
 import apolloClient from 'utils/api/apollo-client';
+import getPosts from 'utils/api/getPosts';
 
-const CATEGORY: CategoryInterface = 'blog';
-const LIMIT = 100;
-const TITLE = 'Блог';
-const SUB_TITLE = 'Статьи и публикации на разные темы. ';
 const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
 
-const BlogPage: NextPage<CategoryPageProps> = ({ posts }): JSX.Element => (
+interface BlogPageProps {
+  category: string;
+  postItems: PostEntity[];
+  title: string;
+  subTitle: string;
+}
+
+const BlogPageComponent: NextPage<BlogPageProps> = ({
+  postItems,
+  title,
+  subTitle,
+  category,
+}) => (
   <InnerPageLayout
-    headTitle={TITLE}
-    ogUrl={CATEGORY}
-    ogDescription={TITLE}
-    twitterCard={SUB_TITLE}
+    headTitle={title}
+    ogUrl={category}
+    ogDescription={title}
+    twitterCard={subTitle}
   >
     <BlogPageWrapper>
       <div className="container">
-        <h1>{TITLE}</h1>
-        <p>{SUB_TITLE}</p>
-        {posts ? <PostsList posts={posts} /> : EMPTY_PAGE_MESSAGE}
+        <h1>{title}</h1>
+        <p>{subTitle}</p>
+        {postItems ? <PostsList posts={postItems} /> : EMPTY_PAGE_MESSAGE}
       </div>
     </BlogPageWrapper>
   </InnerPageLayout>
 );
 
-export async function getStaticProps(): Promise<{
-  props: CategoryPageProps;
-}> {
-  const {
-    data: { posts },
-  } = await apolloClient.query({
-    query: postsPageQuery,
-    variables: {
-      category: CATEGORY,
-      limit: LIMIT,
-      locale: 'ru',
-      sort: 'date:desc',
-    },
+export async function getStaticProps() {
+  const { data: blogPageResponse } = await apolloClient.query<
+    DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>
+  >({
+    query: blogPageQuery,
+  });
+
+  const { blogPage } = blogPageResponse as BlogPageQueryQuery;
+  const { data: blogPageData } = blogPage as BlogPageEntityResponse;
+  const { posts } = blogPageData?.attributes as BlogPage;
+
+  const category = posts?.category?.data?.attributes?.slug || '';
+  const limit = posts?.limit || 3;
+  const sort = posts?.sort || '';
+
+  const { data: postItems } = await getPosts({
+    category,
+    limit,
+    locale: 'ru',
+    sort,
   });
 
   return {
     props: {
-      posts: posts.data,
+      category,
+      postItems,
+      title: posts.title,
+      subTitle: posts.subTitle,
     },
   };
 }
@@ -57,4 +83,4 @@ export const BlogPageWrapper = styled.div`
   min-height: calc(100vh - 130px);
 `;
 
-export default BlogPage;
+export default BlogPageComponent;
