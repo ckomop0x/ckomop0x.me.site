@@ -4,7 +4,5 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    # Allow up to 10 open pull requests for pip dependencies
-    open-pull-requests-limit: 100
     ignore:
       - dependency-name: "bootstrap"
