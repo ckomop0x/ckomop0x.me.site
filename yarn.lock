@@ -34,10 +34,10 @@
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
-"@apollo/rover@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@apollo/rover/-/rover-0.14.1.tgz#a61cee77f2f625ac3fbe1cb41552757e3fa104f8"
-  integrity sha512-lVw0m7FbRsJUEtvANf7OoQtXI7UdXtj4MoTq7TVdQrfcnH7mSCxRelFySvvgp5jg7UlcgdtwZHnUiXdu+ytj3w==
+"@apollo/rover@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@apollo/rover/-/rover-0.16.0.tgz#1820aa2910df140e9a1ef178f420708611cd6f8f"
+  integrity sha512-N4aLyM8xrEWmnoM5q3AHMFTEZ85NKTITH4X6YuuXzC6MaQRJ3qDhiyEmYvPT0SOZgsk/+DkWgYU57RQMe9uvPw==
   dependencies:
     axios-proxy-builder "^0.1.1"
     binary-install "^1.0.6"
