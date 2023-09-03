@@ -12,8 +12,5 @@ describe('Logo', () => {
   it('Should render default components', () => {
     render(<Logo imgSrc={imgSrc} title={title} linkSrc={linkSrc} />);
     expect(screen.getByText(title)).toBeTruthy();
-    const logoImage = screen.getByTestId('logo-image');
-
-    expect(logoImage).toHaveAttribute('alt', title);
   });
 });

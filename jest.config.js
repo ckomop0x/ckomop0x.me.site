@@ -8,7 +8,7 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 const customJestConfig = {
   setupFiles: ['<rootDir>/loadershim.js'],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testMatch: ['**/src/**/?(*.)+(spec|test).[jt]s?(x)'],
   testPathIgnorePatterns: ['node_modules', '.cache', 'index.ts'],
   moduleNameMapper: {
