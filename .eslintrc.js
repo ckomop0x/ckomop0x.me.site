@@ -1,5 +1,4 @@
 module.exports = {
-  plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
@@ -8,6 +7,7 @@ module.exports = {
     'plugin:storybook/recommended',
     'plugin:jsx-a11y/recommended',
   ],
+  plugins: ['@typescript-eslint', 'import', 'prettier', 'react', 'react-hooks'],
   ignorePatterns: [
     'jest-preprocess.js',
     'jest.config.js',
@@ -44,16 +44,16 @@ module.exports = {
   rules: {
     'prettier/prettier': [
       'error',
-      {
-        printWidth: 80,
-        singleQuote: true,
-        tabWidth: 2,
-        useTabs: false,
-        arrowParens: 'avoid',
-        trailingComma: 'all',
-        endOfLine: 'auto',
-        semi: true,
-      },
+      // {
+      //   printWidth: 80,
+      //   singleQuote: true,
+      //   tabWidth: 2,
+      //   useTabs: false,
+      //   arrowParens: 'avoid',
+      //   trailingComma: 'all',
+      //   endOfLine: 'auto',
+      //   semi: true,
+      // },
     ],
     'import/no-unresolved': 'warn',
     'import/no-unused-modules': 'error',
@@ -138,7 +138,7 @@ module.exports = {
     '@typescript-eslint/triple-slash-reference': 'error',
     '@typescript-eslint/type-annotation-spacing': 'error',
     '@typescript-eslint/unified-signatures': 'error',
-    'arrow-body-style': 'error',
+    // 'arrow-body-style': 'error',
     'arrow-parens': ['error', 'as-needed'],
     camelcase: 'off',
     'comma-dangle': 'off',
