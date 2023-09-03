@@ -20,8 +20,7 @@
   },
   "type": "commonjs",
   "scripts": {
-    "predev": "yarn gen",
-    "start:server": "cd ../ckomop0x.me.admin.v2 && yarn develop",
+    "predev": "npm run gen",
     "dev": "next dev -p 8000",
     "build": "next build",
     "start": "next start",
@@ -32,7 +31,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install",
-    "gen": "yarn graphql:get-schema && yarn codegen",
+    "gen": "npm run graphql:get-schema && yarn codegen",
     "graphql:get-schema": "dotenv cross-var rover graph introspect %NEXT_PUBLIC_GRAPHQL_URL_LOCAL% > schema.graphql",
     "graphql:gen-types": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/queries/**/*.gql.ts' --tagName=gql --addTypename types",
     "rover": "rover",
