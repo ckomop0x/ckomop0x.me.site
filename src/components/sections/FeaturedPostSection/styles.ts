@@ -51,7 +51,10 @@ export const LinkStyled = styled.a`
   display: inline-block;
   padding: 10px 20px;
   margin-top: 40px;
-  box-shadow: 40px 10px 0 #b3710037, -40px -10px 0 #ffa20050, 0 0 10px #0000002e;
+  box-shadow:
+    40px 10px 0 #b3710037,
+    -40px -10px 0 #ffa20050,
+    0 0 10px #0000002e;
   transition: all 0.5s ease;
   cursor: pointer;
   text-decoration: none;
@@ -60,6 +63,9 @@ export const LinkStyled = styled.a`
     text-decoration: none;
     background: #0056b3;
     color: #f5f5f5;
-    box-shadow: 30px 10px 0 #b37100, -30px -10px 0 #ffa200, 0 0 10px #0000004e;
+    box-shadow:
+      30px 10px 0 #b37100,
+      -30px -10px 0 #ffa200,
+      0 0 10px #0000004e;
   }
 `;

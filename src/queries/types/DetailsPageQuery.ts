@@ -8,46 +8,49 @@
 // ====================================================
 
 export interface DetailsPageQuery_posts_data_attributes_category_data_attributes {
-  __typename: "Category";
+  __typename: 'Category';
   title: string;
   slug: string;
 }
 
 export interface DetailsPageQuery_posts_data_attributes_category_data {
-  __typename: "CategoryEntity";
+  __typename: 'CategoryEntity';
   attributes: DetailsPageQuery_posts_data_attributes_category_data_attributes | null;
 }
 
 export interface DetailsPageQuery_posts_data_attributes_category {
-  __typename: "CategoryEntityResponse";
+  __typename: 'CategoryEntityResponse';
   data: DetailsPageQuery_posts_data_attributes_category_data | null;
 }
 
 export interface DetailsPageQuery_posts_data_attributes_PostImage {
-  __typename: "ComponentContentImage";
+  __typename: 'ComponentContentImage';
   url: string | null;
   title: string;
 }
 
 export interface DetailsPageQuery_posts_data_attributes_Content_Error {
-  __typename: "Error";
+  __typename: 'Error';
 }
 
 export interface DetailsPageQuery_posts_data_attributes_Content_ComponentContentRichText {
-  __typename: "ComponentContentRichText";
+  __typename: 'ComponentContentRichText';
   description: string | null;
 }
 
 export interface DetailsPageQuery_posts_data_attributes_Content_ComponentContentImage {
-  __typename: "ComponentContentImage";
+  __typename: 'ComponentContentImage';
   title: string;
   url: string | null;
 }
 
-export type DetailsPageQuery_posts_data_attributes_Content = DetailsPageQuery_posts_data_attributes_Content_Error | DetailsPageQuery_posts_data_attributes_Content_ComponentContentRichText | DetailsPageQuery_posts_data_attributes_Content_ComponentContentImage;
+export type DetailsPageQuery_posts_data_attributes_Content =
+  | DetailsPageQuery_posts_data_attributes_Content_Error
+  | DetailsPageQuery_posts_data_attributes_Content_ComponentContentRichText
+  | DetailsPageQuery_posts_data_attributes_Content_ComponentContentImage;
 
 export interface DetailsPageQuery_posts_data_attributes {
-  __typename: "Post";
+  __typename: 'Post';
   category: DetailsPageQuery_posts_data_attributes_category | null;
   date: any;
   updatedAt: any | null;
@@ -59,13 +62,13 @@ export interface DetailsPageQuery_posts_data_attributes {
 }
 
 export interface DetailsPageQuery_posts_data {
-  __typename: "PostEntity";
+  __typename: 'PostEntity';
   id: string | null;
   attributes: DetailsPageQuery_posts_data_attributes | null;
 }
 
 export interface DetailsPageQuery_posts {
-  __typename: "PostEntityResponseCollection";
+  __typename: 'PostEntityResponseCollection';
   data: DetailsPageQuery_posts_data[];
 }
 

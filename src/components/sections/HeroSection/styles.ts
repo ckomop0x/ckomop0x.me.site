@@ -5,7 +5,8 @@ export const HeroSectionWrapper = styled.section<{
 }>`
   height: 100vh;
   max-height: 100%;
-  background: radial-gradient(ellipse at 80% 50%, #00000010, #00000080) 100% 50%,
+  background:
+    radial-gradient(ellipse at 80% 50%, #00000010, #00000080) 100% 50%,
     url(${({ backgroundImage }) => `${backgroundImage}?tr=w-2000`}) no-repeat;
   background-size: cover;
   background-position: center;
