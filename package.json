@@ -18,6 +18,7 @@
     "type": "git",
     "url": "https://github.com/ckomop0x/ckomop0x.me.site.v2"
   },
+  "type": "commonjs",
   "scripts": {
     "predev": "yarn gen",
     "start:server": "cd ../ckomop0x.me.admin.v2 && yarn develop",
