@@ -1,4 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4e2ba325-713e-47b8-ba50-22b4433a5832/deploy-status)](https://app.netlify.com/sites/ckomop0x-me/deploys)
 [![codecov](https://codecov.io/gh/ckomop0x/ckomop0x.me.site.v2/branch/master/graph/badge.svg?token=ENO8W3HTIX)](https://codecov.io/gh/ckomop0x/ckomop0x.me.site.v2)
 
 # Ckomop0x.me blog website
@@ -11,17 +10,17 @@ Personal blog website. It uses NextJS, Strapi, TypeScript, GraphQL and other tec
 
 ### Backend
 
-I use Strapi as headless CMS and gather data via GraphQL.
+I use Strapi as a headless CMS and gather data via GraphQL.
 
 ### Frontend
 
-For the client I use NextJS and Apollo, each deploy it gets the newest data via GraphqQL.
+For the client, I use NextJS and Apollo. Each deployment gets the newest data via GraphqQL.
 TypeScript types are generated during deployment. They are based on schema and queries.
 
 For automatization, I use GitHub actions and Netlify deploy.
-Strict policies allows deploying to `prod` only from `master` and it's possible to push to
+Strict policies allow deploying to `prod` only from `master`, and it's possible to push to
 `master` or merge PR only if tests are ✅ passing and everything is `ok` with build/deploy
-to Netlify.
+to Vercel.
 
 ## Technologies
 
