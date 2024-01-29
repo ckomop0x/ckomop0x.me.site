@@ -1,21 +1,17 @@
-import { format } from 'date-fns';
-import ruLocale from 'date-fns/locale/ru';
 import { FC } from 'react';
 
 import { PostsListWrapper } from './styles';
 
 import Post from 'components/ui/PostsList/Post';
 import { PostsType } from 'types/index';
+import formatDate from 'utils/dates/formatDate';
 
 interface PostsListProps {
   posts: PostsType;
 }
 
 const PostsList: FC<PostsListProps> = ({ posts }): JSX.Element => {
-  const getPublicationDate = (date: string): string =>
-    format(new Date(date), 'dd MMMM yyyy', {
-      locale: ruLocale,
-    });
+  const getPublicationDate = (date: string): string => formatDate(date);
 
   return (
     <PostsListWrapper className="row">
