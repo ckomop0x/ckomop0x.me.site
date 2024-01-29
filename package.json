@@ -48,11 +48,11 @@
     ]
   },
   "dependencies": {
-    "@apollo/client": "^3.8.7",
+    "@apollo/client": "^3.8.10",
     "@apollo/rover": "^0.22.0",
     "@babel/core": "^7.23.0",
     "@emotion/babel-plugin": "^11.10.8",
-    "@emotion/react": "^11.11.1",
+    "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@storybook/addon-actions": "^7.5.3",
     "@storybook/addon-essentials": "^7.4.6",
@@ -105,6 +105,6 @@
     "ts-graphql-plugin": "^3.0.1",
     "ts-jest": "^29.1.1",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   }
 }
