@@ -10,5 +10,6 @@
     "[bot] renovate"
   ],
   "prConcurrentLimit": 5,
-  "rebaseWhen": "auto"
+  "rebaseWhen": "auto",
+  "excludePackageNames": ["bootstrap"]
 }
