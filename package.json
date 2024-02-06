@@ -84,9 +84,9 @@
     "react-markdown": "^9.0.1"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "5.0.0",
-    "@graphql-codegen/client-preset": "4.1.0",
-    "@graphql-codegen/introspection": "4.0.0",
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/client-preset": "4.2.2",
+    "@graphql-codegen/introspection": "4.0.2",
     "@storybook/nextjs": "7.6.12",
     "babel-jest": "29.7.0",
     "babel-loader": "9.1.3",
