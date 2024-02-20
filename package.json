@@ -85,8 +85,8 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
-    "@graphql-codegen/client-preset": "4.2.2",
-    "@graphql-codegen/introspection": "4.0.2",
+    "@graphql-codegen/client-preset": "4.2.3",
+    "@graphql-codegen/introspection": "4.0.3",
     "@storybook/nextjs": "7.6.16",
     "babel-jest": "29.7.0",
     "babel-loader": "9.1.3",
