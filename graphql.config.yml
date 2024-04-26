@@ -1,0 +1,2 @@
+schema: https://ckme-prod.webtime.dev/graphql
+documents: '**/*.graphql'
