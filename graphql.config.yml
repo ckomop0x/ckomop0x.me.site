@@ -1,0 +1,2 @@
+schema: https://admin.ckomop0x.me/graphql
+documents: '**/*.graphql'
