@@ -66,6 +66,6 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2024 [Pavel Klochkov, paul.klochkov@gmail.com](https://github.com/ckomop0x).
+Copyright ©2024 [Pavel Klochkov, paul.klochkov@gmail.com](https://github.com/ckomop0x).
 
 This project is [MIT](https://github.com/ckomop0x/ckomop0x.me.site.v2/blob/master/LICENSE) licensed.
