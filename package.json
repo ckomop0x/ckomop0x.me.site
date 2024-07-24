@@ -109,6 +109,6 @@
     "ts-graphql-plugin": "4.0.3",
     "ts-jest": "29.2.3",
     "tsconfig-paths-webpack-plugin": "4.1.0",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   }
 }
