@@ -107,7 +107,7 @@
     "prettier": "3.3.3",
     "storybook": "8.2.9",
     "ts-graphql-plugin": "4.0.3",
-    "ts-jest": "29.2.4",
+    "ts-jest": "29.2.5",
     "tsconfig-paths-webpack-plugin": "4.1.0",
     "typescript": "5.5.4"
   }
