@@ -105,7 +105,7 @@ export default [{
         "react/no-unescaped-entities": 0,
         "@typescript-eslint/adjacent-overload-signatures": "error",
         "@typescript-eslint/array-type": "error",
-        "@typescript-eslint/ban-types": "error",
+        // "@typescript-eslint/ban-types": "error",
         "@typescript-eslint/class-name-casing": "off",
         "@typescript-eslint/consistent-type-assertions": "error",
         "@typescript-eslint/consistent-type-definitions": "error",
@@ -118,17 +118,17 @@ export default [{
         "@typescript-eslint/indent": "off",
         "@typescript-eslint/interface-name-prefix": "off",
 
-        "@typescript-eslint/member-delimiter-style": ["error", {
-            multiline: {
-                delimiter: "semi",
-                requireLast: true,
-            },
-
-            singleline: {
-                delimiter: "semi",
-                requireLast: false,
-            },
-        }],
+        // "@typescript-eslint/member-delimiter-style": ["error", {
+        //     multiline: {
+        //         delimiter: "semi",
+        //         requireLast: true,
+        //     },
+        //
+        //     singleline: {
+        //         delimiter: "semi",
+        //         requireLast: false,
+        //     },
+        // }],
 
         "@typescript-eslint/ban-ts-ignore": "off",
         "@typescript-eslint/camelcase": "off",
@@ -148,13 +148,13 @@ export default [{
         "@typescript-eslint/prefer-function-type": "error",
         "@typescript-eslint/prefer-namespace-keyword": "error",
 
-        "@typescript-eslint/quotes": ["error", "single", {
-            avoidEscape: true,
-        }],
+        // "@typescript-eslint/quotes": ["error", "single", {
+        //     avoidEscape: true,
+        // }],
 
-        "@typescript-eslint/semi": ["error", "always"],
+        // "@typescript-eslint/semi": ["error", "always"],
         "@typescript-eslint/triple-slash-reference": "error",
-        "@typescript-eslint/type-annotation-spacing": "error",
+        // "@typescript-eslint/type-annotation-spacing": "error",
         "@typescript-eslint/unified-signatures": "error",
         "arrow-parens": ["error", "as-needed"],
         camelcase: "off",
