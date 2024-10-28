@@ -31,7 +31,7 @@
     "lint": "eslint \"./src/**/*.{ts,tsx,js}\" --fix",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "husky install",
+    "prepare": "husky",
     "gen": "npm run graphql:get-schema && npm run codegen",
     "graphql:get-schema": "dotenv cross-var rover graph introspect %NEXT_PUBLIC_GRAPHQL_URL_LOCAL% > schema.graphql",
     "graphql:gen-types": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/queries/**/*.gql.ts' --tagName=gql --addTypename types",
