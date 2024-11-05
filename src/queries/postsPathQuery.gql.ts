@@ -11,11 +11,7 @@ export const postsPathQuery = gql`
       filters: { category: { slug: { eq: $category } } }
       pagination: { limit: $limit }
     ) {
-      data {
-        attributes {
-          slug
-        }
-      }
+      slug
     }
   }
 `;

@@ -4,27 +4,30 @@ import { NextPage } from 'next';
 import MainPageLayout from 'components/layouts/MainPageLayout';
 import Hero from 'components/sections/HeroSection';
 import PostsListSection from 'components/sections/PostsListSection';
+import { CategoryInfo } from 'components/ui/PostsList/types';
 import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
   ComponentLayoutHeroInput,
-  HomePage,
-  HomePageEntityResponse,
   IndexPageQueryQuery,
   IndexPageQueryQueryVariables,
-  PostEntityResponseCollection,
+  PostInput,
 } from 'queries/types/graphql';
 import apolloClient from 'utils/api/apollo-client';
 import getPosts from 'utils/api/getPosts';
 
 interface IndexPageProps {
-  blogItems: PostEntityResponseCollection;
-  poetryItems: PostEntityResponseCollection;
+  blogItems: PostInput[];
+  blogPostsCategoryInfo: CategoryInfo;
+  poetryItems: PostInput[];
+  poetryPostsCategoryInfo: CategoryInfo;
   hero: ComponentLayoutHeroInput;
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({
   blogItems,
+  blogPostsCategoryInfo,
   poetryItems,
+  poetryPostsCategoryInfo,
   hero,
 }): JSX.Element => (
   <MainPageLayout>
@@ -35,20 +38,18 @@ const IndexPage: NextPage<IndexPageProps> = ({
         backgroundImage={hero.image || ''}
       />
     )}
-    {blogItems?.data?.length > 0 && (
+    {blogItems?.length > 0 && (
       <PostsListSection
-        posts={blogItems.data}
-        categoryInfo={blogItems.data[0].attributes?.category?.data?.attributes}
+        posts={blogItems}
+        categoryInfo={blogPostsCategoryInfo}
         blockTitle="Статьи и публикации"
         blockSubtitle=""
       />
     )}
-    {poetryItems?.data?.length > 0 && (
+    {poetryItems?.length > 0 && (
       <PostsListSection
-        posts={poetryItems.data}
-        categoryInfo={
-          poetryItems.data[0].attributes?.category?.data?.attributes
-        }
+        posts={poetryItems}
+        categoryInfo={poetryPostsCategoryInfo}
         blockTitle="Стихи и песни"
         blockSubtitle=""
       />
@@ -63,29 +64,31 @@ export async function getStaticProps() {
     query: indexPageQuery,
   });
 
-  const { homePage } = indexPageResponse as IndexPageQueryQuery;
-  const { data: homePageData } = homePage as HomePageEntityResponse;
-  const { hero, blogPosts, poetryPosts } = homePageData?.attributes as HomePage;
+  const { hero, blogPosts, poetryPosts } =
+    indexPageResponse.homePage satisfies IndexPageQueryQuery;
 
   const [blogItems, poetryItems] = await Promise.all([
     getPosts({
-      category: blogPosts?.category?.data?.attributes?.slug || '',
+      category: blogPosts?.category?.slug || '',
       limit: blogPosts?.limit || 3,
       locale: 'ru',
       sort: blogPosts?.sort || '',
     }),
     getPosts({
-      category: poetryPosts?.category?.data?.attributes?.slug || '',
+      category: poetryPosts?.category?.slug || '',
       limit: poetryPosts?.limit || 3,
       locale: 'ru',
       sort: poetryPosts?.sort || '',
     }),
   ]);
+
   return {
     props: {
       hero,
       blogItems,
+      blogPostsCategoryInfo: blogPosts?.category || {},
       poetryItems,
+      poetryPostsCategoryInfo: poetryPosts?.category || {},
     },
   };
 }

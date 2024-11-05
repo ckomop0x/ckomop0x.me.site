@@ -21,36 +21,20 @@ export type Scalars = {
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: { input: any; output: any; }
   PostContentDynamicZoneInput: { input: any; output: any; }
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: { input: any; output: any; }
 };
 
 export type BlogPage = {
   __typename?: 'BlogPage';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
   locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<BlogPageRelationResponseCollection>;
+  localizations: Array<Maybe<BlogPage>>;
+  localizations_connection?: Maybe<BlogPageRelationResponseCollection>;
   posts: ComponentLayoutPostsSelection;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type BlogPageLocalizationsArgs = {
-  publicationState?: InputMaybe<PublicationState>;
-};
-
-export type BlogPageEntity = {
-  __typename?: 'BlogPageEntity';
-  attributes?: Maybe<BlogPage>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type BlogPageEntityResponse = {
-  __typename?: 'BlogPageEntityResponse';
-  data?: Maybe<BlogPageEntity>;
 };
 
 export type BlogPageInput = {
@@ -62,7 +46,7 @@ export type BlogPageInput = {
 
 export type BlogPageRelationResponseCollection = {
   __typename?: 'BlogPageRelationResponseCollection';
-  data: Array<BlogPageEntity>;
+  nodes: Array<BlogPage>;
 };
 
 export type BooleanFilterInput = {
@@ -93,8 +77,10 @@ export type BooleanFilterInput = {
 export type Category = {
   __typename?: 'Category';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
   locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<CategoryRelationResponseCollection>;
+  localizations: Array<Maybe<Category>>;
+  localizations_connection?: Maybe<CategoryRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
@@ -105,31 +91,26 @@ export type Category = {
 export type CategoryLocalizationsArgs = {
   filters?: InputMaybe<CategoryFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type CategoryEntity = {
-  __typename?: 'CategoryEntity';
-  attributes?: Maybe<Category>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
 
-export type CategoryEntityResponse = {
-  __typename?: 'CategoryEntityResponse';
-  data?: Maybe<CategoryEntity>;
+export type CategoryLocalizations_ConnectionArgs = {
+  filters?: InputMaybe<CategoryFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type CategoryEntityResponseCollection = {
   __typename?: 'CategoryEntityResponseCollection';
-  data: Array<CategoryEntity>;
-  meta: ResponseCollectionMeta;
+  nodes: Array<Category>;
+  pageInfo: Pagination;
 };
 
 export type CategoryFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<CategoryFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<CategoryFiltersInput>;
   not?: InputMaybe<CategoryFiltersInput>;
@@ -148,7 +129,7 @@ export type CategoryInput = {
 
 export type CategoryRelationResponseCollection = {
   __typename?: 'CategoryRelationResponseCollection';
-  data: Array<CategoryEntity>;
+  nodes: Array<Category>;
 };
 
 export type ComponentContentImage = {
@@ -195,12 +176,23 @@ export type ComponentLayoutHeroInput = {
 
 export type ComponentLayoutPostsSelection = {
   __typename?: 'ComponentLayoutPostsSelection';
-  category?: Maybe<CategoryEntityResponse>;
+  category?: Maybe<Category>;
   id: Scalars['ID']['output'];
   limit: Scalars['Int']['output'];
   sort?: Maybe<Scalars['String']['output']>;
   subTitle?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
+};
+
+export type ComponentLayoutPostsSelectionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentLayoutPostsSelectionFiltersInput>>>;
+  category?: InputMaybe<CategoryFiltersInput>;
+  limit?: InputMaybe<IntFilterInput>;
+  not?: InputMaybe<ComponentLayoutPostsSelectionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentLayoutPostsSelectionFiltersInput>>>;
+  sort?: InputMaybe<StringFilterInput>;
+  subTitle?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
 };
 
 export type ComponentLayoutPostsSelectionInput = {
@@ -235,6 +227,11 @@ export type DateTimeFilterInput = {
   null?: InputMaybe<Scalars['Boolean']['input']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   startsWith?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type DeleteMutationResponse = {
+  __typename?: 'DeleteMutationResponse';
+  documentId: Scalars['ID']['output'];
 };
 
 export type Error = {
@@ -274,35 +271,21 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = BlogPage | Category | ComponentContentImage | ComponentContentRichText | ComponentLayoutHero | ComponentLayoutPostsSelection | HomePage | I18NLocale | PoetryPage | Post | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = BlogPage | Category | ComponentContentImage | ComponentContentRichText | ComponentLayoutHero | ComponentLayoutPostsSelection | HomePage | I18NLocale | PoetryPage | Post | PostsPage | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type HomePage = {
   __typename?: 'HomePage';
   blogPosts?: Maybe<ComponentLayoutPostsSelection>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
   hero?: Maybe<ComponentLayoutHero>;
   locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<HomePageRelationResponseCollection>;
+  localizations: Array<Maybe<HomePage>>;
+  localizations_connection?: Maybe<HomePageRelationResponseCollection>;
   poetryPosts?: Maybe<ComponentLayoutPostsSelection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type HomePageLocalizationsArgs = {
-  publicationState?: InputMaybe<PublicationState>;
-};
-
-export type HomePageEntity = {
-  __typename?: 'HomePageEntity';
-  attributes?: Maybe<HomePage>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type HomePageEntityResponse = {
-  __typename?: 'HomePageEntityResponse';
-  data?: Maybe<HomePageEntity>;
 };
 
 export type HomePageInput = {
@@ -315,42 +298,36 @@ export type HomePageInput = {
 
 export type HomePageRelationResponseCollection = {
   __typename?: 'HomePageRelationResponseCollection';
-  data: Array<HomePageEntity>;
+  nodes: Array<HomePage>;
 };
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
   code?: Maybe<Scalars['String']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
   name?: Maybe<Scalars['String']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-export type I18NLocaleEntity = {
-  __typename?: 'I18NLocaleEntity';
-  attributes?: Maybe<I18NLocale>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type I18NLocaleEntityResponse = {
-  __typename?: 'I18NLocaleEntityResponse';
-  data?: Maybe<I18NLocaleEntity>;
 };
 
 export type I18NLocaleEntityResponseCollection = {
   __typename?: 'I18NLocaleEntityResponseCollection';
-  data: Array<I18NLocaleEntity>;
-  meta: ResponseCollectionMeta;
+  nodes: Array<I18NLocale>;
+  pageInfo: Pagination;
 };
 
 export type I18NLocaleFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
   code?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<I18NLocaleFiltersInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<I18NLocaleFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -433,26 +410,24 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
-  createBlogPageLocalization?: Maybe<BlogPageEntityResponse>;
-  createCategory?: Maybe<CategoryEntityResponse>;
-  createCategoryLocalization?: Maybe<CategoryEntityResponse>;
-  createHomePageLocalization?: Maybe<HomePageEntityResponse>;
-  createPoetryPageLocalization?: Maybe<PoetryPageEntityResponse>;
-  createPost?: Maybe<PostEntityResponse>;
-  createPostLocalization?: Maybe<PostEntityResponse>;
-  createUploadFile?: Maybe<UploadFileEntityResponse>;
-  createUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  createCategory?: Maybe<Category>;
+  createPost?: Maybe<Post>;
+  createPostsPage?: Maybe<PostsPage>;
+  createReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
+  createReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  deleteBlogPage?: Maybe<BlogPageEntityResponse>;
-  deleteCategory?: Maybe<CategoryEntityResponse>;
-  deleteHomePage?: Maybe<HomePageEntityResponse>;
-  deletePoetryPage?: Maybe<PoetryPageEntityResponse>;
-  deletePost?: Maybe<PostEntityResponse>;
-  deleteUploadFile?: Maybe<UploadFileEntityResponse>;
-  deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  deleteBlogPage?: Maybe<DeleteMutationResponse>;
+  deleteCategory?: Maybe<DeleteMutationResponse>;
+  deleteHomePage?: Maybe<DeleteMutationResponse>;
+  deletePoetryPage?: Maybe<DeleteMutationResponse>;
+  deletePost?: Maybe<DeleteMutationResponse>;
+  deletePostsPage?: Maybe<DeleteMutationResponse>;
+  deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
+  deleteReviewWorkflowsWorkflowStage?: Maybe<DeleteMutationResponse>;
+  deleteUploadFile?: Maybe<UploadFile>;
   /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
   /** Delete an existing user */
@@ -462,25 +437,23 @@ export type Mutation = {
   /** Request a reset password token */
   forgotPassword?: Maybe<UsersPermissionsPasswordPayload>;
   login: UsersPermissionsLoginPayload;
-  multipleUpload: Array<Maybe<UploadFileEntityResponse>>;
   /** Register a user */
   register: UsersPermissionsLoginPayload;
-  removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
-  updateBlogPage?: Maybe<BlogPageEntityResponse>;
-  updateCategory?: Maybe<CategoryEntityResponse>;
-  updateFileInfo: UploadFileEntityResponse;
-  updateHomePage?: Maybe<HomePageEntityResponse>;
-  updatePoetryPage?: Maybe<PoetryPageEntityResponse>;
-  updatePost?: Maybe<PostEntityResponse>;
-  updateUploadFile?: Maybe<UploadFileEntityResponse>;
-  updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  updateBlogPage?: Maybe<BlogPage>;
+  updateCategory?: Maybe<Category>;
+  updateHomePage?: Maybe<HomePage>;
+  updatePoetryPage?: Maybe<PoetryPage>;
+  updatePost?: Maybe<Post>;
+  updatePostsPage?: Maybe<PostsPage>;
+  updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
+  updateReviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
+  updateUploadFile: UploadFile;
   /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  upload: UploadFileEntityResponse;
 };
 
 
@@ -491,60 +464,36 @@ export type MutationChangePasswordArgs = {
 };
 
 
-export type MutationCreateBlogPageLocalizationArgs = {
-  data?: InputMaybe<BlogPageInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
 export type MutationCreateCategoryArgs = {
   data: CategoryInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationCreateCategoryLocalizationArgs = {
-  data?: InputMaybe<CategoryInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationCreateHomePageLocalizationArgs = {
-  data?: InputMaybe<HomePageInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationCreatePoetryPageLocalizationArgs = {
-  data?: InputMaybe<PoetryPageInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type MutationCreatePostArgs = {
   data: PostInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
-export type MutationCreatePostLocalizationArgs = {
-  data?: InputMaybe<PostInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
+export type MutationCreatePostsPageArgs = {
+  data: PostsPageInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
-export type MutationCreateUploadFileArgs = {
-  data: UploadFileInput;
+export type MutationCreateReviewWorkflowsWorkflowArgs = {
+  data: ReviewWorkflowsWorkflowInput;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
-export type MutationCreateUploadFolderArgs = {
-  data: UploadFolderInput;
+export type MutationCreateReviewWorkflowsWorkflowStageArgs = {
+  data: ReviewWorkflowsWorkflowStageInput;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -564,7 +513,7 @@ export type MutationDeleteBlogPageArgs = {
 
 
 export type MutationDeleteCategoryArgs = {
-  id: Scalars['ID']['input'];
+  documentId: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
@@ -580,17 +529,28 @@ export type MutationDeletePoetryPageArgs = {
 
 
 export type MutationDeletePostArgs = {
-  id: Scalars['ID']['input'];
+  documentId: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
-export type MutationDeleteUploadFileArgs = {
-  id: Scalars['ID']['input'];
+export type MutationDeletePostsPageArgs = {
+  documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
 };
 
 
-export type MutationDeleteUploadFolderArgs = {
+export type MutationDeleteReviewWorkflowsWorkflowArgs = {
+  documentId: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteReviewWorkflowsWorkflowStageArgs = {
+  documentId: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteUploadFileArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -620,21 +580,8 @@ export type MutationLoginArgs = {
 };
 
 
-export type MutationMultipleUploadArgs = {
-  field?: InputMaybe<Scalars['String']['input']>;
-  files: Array<InputMaybe<Scalars['Upload']['input']>>;
-  ref?: InputMaybe<Scalars['String']['input']>;
-  refId?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
 export type MutationRegisterArgs = {
   input: UsersPermissionsRegisterInput;
-};
-
-
-export type MutationRemoveFileArgs = {
-  id: Scalars['ID']['input'];
 };
 
 
@@ -648,50 +595,65 @@ export type MutationResetPasswordArgs = {
 export type MutationUpdateBlogPageArgs = {
   data: BlogPageInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type MutationUpdateCategoryArgs = {
   data: CategoryInput;
-  id: Scalars['ID']['input'];
+  documentId: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-};
-
-
-export type MutationUpdateFileInfoArgs = {
-  id: Scalars['ID']['input'];
-  info?: InputMaybe<FileInfoInput>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type MutationUpdateHomePageArgs = {
   data: HomePageInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type MutationUpdatePoetryPageArgs = {
   data: PoetryPageInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type MutationUpdatePostArgs = {
   data: PostInput;
-  id: Scalars['ID']['input'];
+  documentId: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdatePostsPageArgs = {
+  data: PostsPageInput;
+  documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdateReviewWorkflowsWorkflowArgs = {
+  data: ReviewWorkflowsWorkflowInput;
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdateReviewWorkflowsWorkflowStageArgs = {
+  data: ReviewWorkflowsWorkflowStageInput;
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type MutationUpdateUploadFileArgs = {
-  data: UploadFileInput;
   id: Scalars['ID']['input'];
-};
-
-
-export type MutationUpdateUploadFolderArgs = {
-  data: UploadFolderInput;
-  id: Scalars['ID']['input'];
+  info?: InputMaybe<FileInfoInput>;
 };
 
 
@@ -704,15 +666,6 @@ export type MutationUpdateUsersPermissionsRoleArgs = {
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
   id: Scalars['ID']['input'];
-};
-
-
-export type MutationUploadArgs = {
-  field?: InputMaybe<Scalars['String']['input']>;
-  file: Scalars['Upload']['input'];
-  info?: InputMaybe<FileInfoInput>;
-  ref?: InputMaybe<Scalars['String']['input']>;
-  refId?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type Pagination = {
@@ -733,29 +686,15 @@ export type PaginationArg = {
 export type PoetryPage = {
   __typename?: 'PoetryPage';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
   locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<PoetryPageRelationResponseCollection>;
+  localizations: Array<Maybe<PoetryPage>>;
+  localizations_connection?: Maybe<PoetryPageRelationResponseCollection>;
   posts: ComponentLayoutPostsSelection;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type PoetryPageLocalizationsArgs = {
-  publicationState?: InputMaybe<PublicationState>;
-};
-
-export type PoetryPageEntity = {
-  __typename?: 'PoetryPageEntity';
-  attributes?: Maybe<PoetryPage>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type PoetryPageEntityResponse = {
-  __typename?: 'PoetryPageEntityResponse';
-  data?: Maybe<PoetryPageEntity>;
 };
 
 export type PoetryPageInput = {
@@ -767,20 +706,22 @@ export type PoetryPageInput = {
 
 export type PoetryPageRelationResponseCollection = {
   __typename?: 'PoetryPageRelationResponseCollection';
-  data: Array<PoetryPageEntity>;
+  nodes: Array<PoetryPage>;
 };
 
 export type Post = {
   __typename?: 'Post';
   Content?: Maybe<Array<Maybe<PostContentDynamicZone>>>;
   PostImage?: Maybe<ComponentContentImage>;
-  category?: Maybe<CategoryEntityResponse>;
+  category?: Maybe<Category>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   date: Scalars['DateTime']['output'];
+  documentId: Scalars['ID']['output'];
   excerpt: Scalars['String']['output'];
   featured?: Maybe<Scalars['Boolean']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
-  localizations?: Maybe<PostRelationResponseCollection>;
+  localizations: Array<Maybe<Post>>;
+  localizations_connection?: Maybe<PostRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   slug: Scalars['String']['output'];
   title: Scalars['String']['output'];
@@ -791,27 +732,22 @@ export type Post = {
 export type PostLocalizationsArgs = {
   filters?: InputMaybe<PostFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type PostLocalizations_ConnectionArgs = {
+  filters?: InputMaybe<PostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type PostContentDynamicZone = ComponentContentImage | ComponentContentRichText | Error;
 
-export type PostEntity = {
-  __typename?: 'PostEntity';
-  attributes?: Maybe<Post>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type PostEntityResponse = {
-  __typename?: 'PostEntityResponse';
-  data?: Maybe<PostEntity>;
-};
-
 export type PostEntityResponseCollection = {
   __typename?: 'PostEntityResponseCollection';
-  data: Array<PostEntity>;
-  meta: ResponseCollectionMeta;
+  nodes: Array<Post>;
+  pageInfo: Pagination;
 };
 
 export type PostFiltersInput = {
@@ -820,9 +756,9 @@ export type PostFiltersInput = {
   category?: InputMaybe<CategoryFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   date?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
   excerpt?: InputMaybe<StringFilterInput>;
   featured?: InputMaybe<BooleanFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<PostFiltersInput>;
   not?: InputMaybe<PostFiltersInput>;
@@ -847,40 +783,114 @@ export type PostInput = {
 
 export type PostRelationResponseCollection = {
   __typename?: 'PostRelationResponseCollection';
-  data: Array<PostEntity>;
+  nodes: Array<Post>;
 };
 
-export enum PublicationState {
-  Live = 'LIVE',
-  Preview = 'PREVIEW'
+export type PostsPage = {
+  __typename?: 'PostsPage';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  locale?: Maybe<Scalars['String']['output']>;
+  localizations: Array<Maybe<PostsPage>>;
+  localizations_connection?: Maybe<PostsPageRelationResponseCollection>;
+  posts?: Maybe<ComponentLayoutPostsSelection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type PostsPageLocalizationsArgs = {
+  filters?: InputMaybe<PostsPageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type PostsPageLocalizations_ConnectionArgs = {
+  filters?: InputMaybe<PostsPageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type PostsPageEntityResponseCollection = {
+  __typename?: 'PostsPageEntityResponseCollection';
+  nodes: Array<PostsPage>;
+  pageInfo: Pagination;
+};
+
+export type PostsPageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PostsPageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<PostsPageFiltersInput>;
+  not?: InputMaybe<PostsPageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PostsPageFiltersInput>>>;
+  posts?: InputMaybe<ComponentLayoutPostsSelectionFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type PostsPageInput = {
+  posts?: InputMaybe<ComponentLayoutPostsSelectionInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PostsPageRelationResponseCollection = {
+  __typename?: 'PostsPageRelationResponseCollection';
+  nodes: Array<PostsPage>;
+};
+
+export enum PublicationStatus {
+  Draft = 'DRAFT',
+  Published = 'PUBLISHED'
 }
 
 export type Query = {
   __typename?: 'Query';
-  blogPage?: Maybe<BlogPageEntityResponse>;
-  categories?: Maybe<CategoryEntityResponseCollection>;
-  category?: Maybe<CategoryEntityResponse>;
-  homePage?: Maybe<HomePageEntityResponse>;
-  i18NLocale?: Maybe<I18NLocaleEntityResponse>;
-  i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
+  blogPage?: Maybe<BlogPage>;
+  categories: Array<Maybe<Category>>;
+  categories_connection?: Maybe<CategoryEntityResponseCollection>;
+  category?: Maybe<Category>;
+  homePage?: Maybe<HomePage>;
+  i18NLocale?: Maybe<I18NLocale>;
+  i18NLocales: Array<Maybe<I18NLocale>>;
+  i18NLocales_connection?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
-  poetryPage?: Maybe<PoetryPageEntityResponse>;
-  post?: Maybe<PostEntityResponse>;
-  posts?: Maybe<PostEntityResponseCollection>;
-  uploadFile?: Maybe<UploadFileEntityResponse>;
-  uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
-  uploadFolder?: Maybe<UploadFolderEntityResponse>;
-  uploadFolders?: Maybe<UploadFolderEntityResponseCollection>;
-  usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
-  usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
-  usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
-  usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+  poetryPage?: Maybe<PoetryPage>;
+  post?: Maybe<Post>;
+  posts: Array<Maybe<Post>>;
+  postsPage?: Maybe<PostsPage>;
+  postsPages: Array<Maybe<PostsPage>>;
+  postsPages_connection?: Maybe<PostsPageEntityResponseCollection>;
+  posts_connection?: Maybe<PostEntityResponseCollection>;
+  reviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
+  reviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
+  reviewWorkflowsWorkflowStages: Array<Maybe<ReviewWorkflowsWorkflowStage>>;
+  reviewWorkflowsWorkflowStages_connection?: Maybe<ReviewWorkflowsWorkflowStageEntityResponseCollection>;
+  reviewWorkflowsWorkflows: Array<Maybe<ReviewWorkflowsWorkflow>>;
+  reviewWorkflowsWorkflows_connection?: Maybe<ReviewWorkflowsWorkflowEntityResponseCollection>;
+  uploadFile?: Maybe<UploadFile>;
+  uploadFiles: Array<Maybe<UploadFile>>;
+  uploadFiles_connection?: Maybe<UploadFileEntityResponseCollection>;
+  usersPermissionsRole?: Maybe<UsersPermissionsRole>;
+  usersPermissionsRoles: Array<Maybe<UsersPermissionsRole>>;
+  usersPermissionsRoles_connection?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
+  usersPermissionsUser?: Maybe<UsersPermissionsUser>;
+  usersPermissionsUsers: Array<Maybe<UsersPermissionsUser>>;
+  usersPermissionsUsers_connection?: Maybe<UsersPermissionsUserEntityResponseCollection>;
 };
 
 
 export type QueryBlogPageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-  publicationState?: InputMaybe<PublicationState>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -888,25 +898,36 @@ export type QueryCategoriesArgs = {
   filters?: InputMaybe<CategoryFiltersInput>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryCategories_ConnectionArgs = {
+  filters?: InputMaybe<CategoryFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryCategoryArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>;
+  documentId: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryHomePageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-  publicationState?: InputMaybe<PublicationState>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryI18NLocaleArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>;
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -914,18 +935,28 @@ export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryI18NLocales_ConnectionArgs = {
+  filters?: InputMaybe<I18NLocaleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryPoetryPageArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
-  publicationState?: InputMaybe<PublicationState>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryPostArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>;
+  documentId: Scalars['ID']['input'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -933,13 +964,92 @@ export type QueryPostsArgs = {
   filters?: InputMaybe<PostFiltersInput>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
   pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryPostsPageArgs = {
+  documentId: Scalars['ID']['input'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryPostsPagesArgs = {
+  filters?: InputMaybe<PostsPageFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryPostsPages_ConnectionArgs = {
+  filters?: InputMaybe<PostsPageFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryPosts_ConnectionArgs = {
+  filters?: InputMaybe<PostFiltersInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']['input']>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryReviewWorkflowsWorkflowArgs = {
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryReviewWorkflowsWorkflowStageArgs = {
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryReviewWorkflowsWorkflowStagesArgs = {
+  filters?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryReviewWorkflowsWorkflowStages_ConnectionArgs = {
+  filters?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryReviewWorkflowsWorkflowsArgs = {
+  filters?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryReviewWorkflowsWorkflows_ConnectionArgs = {
+  filters?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryUploadFileArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>;
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -947,23 +1057,21 @@ export type QueryUploadFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
-export type QueryUploadFolderArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-
-export type QueryUploadFoldersArgs = {
-  filters?: InputMaybe<UploadFolderFiltersInput>;
+export type QueryUploadFiles_ConnectionArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryUsersPermissionsRoleArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>;
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -971,11 +1079,21 @@ export type QueryUsersPermissionsRolesArgs = {
   filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryUsersPermissionsRoles_ConnectionArgs = {
+  filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
 export type QueryUsersPermissionsUserArgs = {
-  id?: InputMaybe<Scalars['ID']['input']>;
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -983,11 +1101,115 @@ export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
-export type ResponseCollectionMeta = {
-  __typename?: 'ResponseCollectionMeta';
-  pagination: Pagination;
+
+export type QueryUsersPermissionsUsers_ConnectionArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+export type ReviewWorkflowsWorkflow = {
+  __typename?: 'ReviewWorkflowsWorkflow';
+  contentTypes: Scalars['JSON']['output'];
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  stages: Array<Maybe<ReviewWorkflowsWorkflowStage>>;
+  stages_connection?: Maybe<ReviewWorkflowsWorkflowStageRelationResponseCollection>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type ReviewWorkflowsWorkflowStagesArgs = {
+  filters?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ReviewWorkflowsWorkflowStages_ConnectionArgs = {
+  filters?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ReviewWorkflowsWorkflowEntityResponseCollection = {
+  __typename?: 'ReviewWorkflowsWorkflowEntityResponseCollection';
+  nodes: Array<ReviewWorkflowsWorkflow>;
+  pageInfo: Pagination;
+};
+
+export type ReviewWorkflowsWorkflowFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ReviewWorkflowsWorkflowFiltersInput>>>;
+  contentTypes?: InputMaybe<JsonFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ReviewWorkflowsWorkflowFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  stages?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ReviewWorkflowsWorkflowInput = {
+  contentTypes?: InputMaybe<Scalars['JSON']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  stages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+};
+
+export type ReviewWorkflowsWorkflowStage = {
+  __typename?: 'ReviewWorkflowsWorkflowStage';
+  color?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  workflow?: Maybe<ReviewWorkflowsWorkflow>;
+};
+
+export type ReviewWorkflowsWorkflowStageEntityResponseCollection = {
+  __typename?: 'ReviewWorkflowsWorkflowStageEntityResponseCollection';
+  nodes: Array<ReviewWorkflowsWorkflowStage>;
+  pageInfo: Pagination;
+};
+
+export type ReviewWorkflowsWorkflowStageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>>>;
+  color?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  workflow?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
+};
+
+export type ReviewWorkflowsWorkflowStageInput = {
+  color?: InputMaybe<Scalars['String']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  workflow?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type ReviewWorkflowsWorkflowStageRelationResponseCollection = {
+  __typename?: 'ReviewWorkflowsWorkflowStageRelationResponseCollection';
+  nodes: Array<ReviewWorkflowsWorkflowStage>;
 };
 
 export type StringFilterInput = {
@@ -1020,6 +1242,7 @@ export type UploadFile = {
   alternativeText?: Maybe<Scalars['String']['output']>;
   caption?: Maybe<Scalars['String']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
   ext?: Maybe<Scalars['String']['output']>;
   formats?: Maybe<Scalars['JSON']['output']>;
   hash: Scalars['String']['output'];
@@ -1029,6 +1252,7 @@ export type UploadFile = {
   previewUrl?: Maybe<Scalars['String']['output']>;
   provider: Scalars['String']['output'];
   provider_metadata?: Maybe<Scalars['JSON']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
   related?: Maybe<Array<Maybe<GenericMorph>>>;
   size: Scalars['Float']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1036,21 +1260,10 @@ export type UploadFile = {
   width?: Maybe<Scalars['Int']['output']>;
 };
 
-export type UploadFileEntity = {
-  __typename?: 'UploadFileEntity';
-  attributes?: Maybe<UploadFile>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type UploadFileEntityResponse = {
-  __typename?: 'UploadFileEntityResponse';
-  data?: Maybe<UploadFileEntity>;
-};
-
 export type UploadFileEntityResponseCollection = {
   __typename?: 'UploadFileEntityResponseCollection';
-  data: Array<UploadFileEntity>;
-  meta: ResponseCollectionMeta;
+  nodes: Array<UploadFile>;
+  pageInfo: Pagination;
 };
 
 export type UploadFileFiltersInput = {
@@ -1058,13 +1271,14 @@ export type UploadFileFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
   caption?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
   ext?: InputMaybe<StringFilterInput>;
-  folder?: InputMaybe<UploadFolderFiltersInput>;
   folderPath?: InputMaybe<StringFilterInput>;
   formats?: InputMaybe<JsonFilterInput>;
   hash?: InputMaybe<StringFilterInput>;
   height?: InputMaybe<IntFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<UploadFileFiltersInput>;
   mime?: InputMaybe<StringFilterInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<UploadFileFiltersInput>;
@@ -1072,106 +1286,11 @@ export type UploadFileFiltersInput = {
   previewUrl?: InputMaybe<StringFilterInput>;
   provider?: InputMaybe<StringFilterInput>;
   provider_metadata?: InputMaybe<JsonFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
   size?: InputMaybe<FloatFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   url?: InputMaybe<StringFilterInput>;
   width?: InputMaybe<IntFilterInput>;
-};
-
-export type UploadFileInput = {
-  alternativeText?: InputMaybe<Scalars['String']['input']>;
-  caption?: InputMaybe<Scalars['String']['input']>;
-  ext?: InputMaybe<Scalars['String']['input']>;
-  folder?: InputMaybe<Scalars['ID']['input']>;
-  folderPath?: InputMaybe<Scalars['String']['input']>;
-  formats?: InputMaybe<Scalars['JSON']['input']>;
-  hash?: InputMaybe<Scalars['String']['input']>;
-  height?: InputMaybe<Scalars['Int']['input']>;
-  mime?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  previewUrl?: InputMaybe<Scalars['String']['input']>;
-  provider?: InputMaybe<Scalars['String']['input']>;
-  provider_metadata?: InputMaybe<Scalars['JSON']['input']>;
-  size?: InputMaybe<Scalars['Float']['input']>;
-  url?: InputMaybe<Scalars['String']['input']>;
-  width?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type UploadFileRelationResponseCollection = {
-  __typename?: 'UploadFileRelationResponseCollection';
-  data: Array<UploadFileEntity>;
-};
-
-export type UploadFolder = {
-  __typename?: 'UploadFolder';
-  children?: Maybe<UploadFolderRelationResponseCollection>;
-  createdAt?: Maybe<Scalars['DateTime']['output']>;
-  files?: Maybe<UploadFileRelationResponseCollection>;
-  name: Scalars['String']['output'];
-  parent?: Maybe<UploadFolderEntityResponse>;
-  path: Scalars['String']['output'];
-  pathId: Scalars['Int']['output'];
-  updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-
-export type UploadFolderChildrenArgs = {
-  filters?: InputMaybe<UploadFolderFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-export type UploadFolderFilesArgs = {
-  filters?: InputMaybe<UploadFileFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type UploadFolderEntity = {
-  __typename?: 'UploadFolderEntity';
-  attributes?: Maybe<UploadFolder>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
-export type UploadFolderEntityResponse = {
-  __typename?: 'UploadFolderEntityResponse';
-  data?: Maybe<UploadFolderEntity>;
-};
-
-export type UploadFolderEntityResponseCollection = {
-  __typename?: 'UploadFolderEntityResponseCollection';
-  data: Array<UploadFolderEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type UploadFolderFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
-  children?: InputMaybe<UploadFolderFiltersInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  files?: InputMaybe<UploadFileFiltersInput>;
-  id?: InputMaybe<IdFilterInput>;
-  name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<UploadFolderFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
-  parent?: InputMaybe<UploadFolderFiltersInput>;
-  path?: InputMaybe<StringFilterInput>;
-  pathId?: InputMaybe<IntFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type UploadFolderInput = {
-  children?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  files?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  parent?: InputMaybe<Scalars['ID']['input']>;
-  path?: InputMaybe<Scalars['String']['input']>;
-  pathId?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type UploadFolderRelationResponseCollection = {
-  __typename?: 'UploadFolderRelationResponseCollection';
-  data: Array<UploadFolderEntity>;
 };
 
 export type UsersPermissionsCreateRolePayload = {
@@ -1223,30 +1342,29 @@ export type UsersPermissionsPermission = {
   __typename?: 'UsersPermissionsPermission';
   action: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['DateTime']['output']>;
-  role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  documentId: Scalars['ID']['output'];
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  role?: Maybe<UsersPermissionsRole>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-};
-
-export type UsersPermissionsPermissionEntity = {
-  __typename?: 'UsersPermissionsPermissionEntity';
-  attributes?: Maybe<UsersPermissionsPermission>;
-  id?: Maybe<Scalars['ID']['output']>;
 };
 
 export type UsersPermissionsPermissionFiltersInput = {
   action?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
   not?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type UsersPermissionsPermissionRelationResponseCollection = {
   __typename?: 'UsersPermissionsPermissionRelationResponseCollection';
-  data: Array<UsersPermissionsPermissionEntity>;
+  nodes: Array<UsersPermissionsPermission>;
 };
 
 export type UsersPermissionsRegisterInput = {
@@ -1259,15 +1377,26 @@ export type UsersPermissionsRole = {
   __typename?: 'UsersPermissionsRole';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  documentId: Scalars['ID']['output'];
   name: Scalars['String']['output'];
-  permissions?: Maybe<UsersPermissionsPermissionRelationResponseCollection>;
+  permissions: Array<Maybe<UsersPermissionsPermission>>;
+  permissions_connection?: Maybe<UsersPermissionsPermissionRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
   type?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+  users: Array<Maybe<UsersPermissionsUser>>;
+  users_connection?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
 
 
 export type UsersPermissionsRolePermissionsArgs = {
+  filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type UsersPermissionsRolePermissions_ConnectionArgs = {
   filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
@@ -1280,32 +1409,31 @@ export type UsersPermissionsRoleUsersArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type UsersPermissionsRoleEntity = {
-  __typename?: 'UsersPermissionsRoleEntity';
-  attributes?: Maybe<UsersPermissionsRole>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
 
-export type UsersPermissionsRoleEntityResponse = {
-  __typename?: 'UsersPermissionsRoleEntityResponse';
-  data?: Maybe<UsersPermissionsRoleEntity>;
+export type UsersPermissionsRoleUsers_ConnectionArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type UsersPermissionsRoleEntityResponseCollection = {
   __typename?: 'UsersPermissionsRoleEntityResponseCollection';
-  data: Array<UsersPermissionsRoleEntity>;
-  meta: ResponseCollectionMeta;
+  nodes: Array<UsersPermissionsRole>;
+  pageInfo: Pagination;
 };
 
 export type UsersPermissionsRoleFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
   permissions?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
   type?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   users?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -1313,8 +1441,10 @@ export type UsersPermissionsRoleFiltersInput = {
 
 export type UsersPermissionsRoleInput = {
   description?: InputMaybe<Scalars['String']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   permissions?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   type?: InputMaybe<Scalars['String']['input']>;
   users?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
 };
@@ -1329,28 +1459,24 @@ export type UsersPermissionsUser = {
   blocked?: Maybe<Scalars['Boolean']['output']>;
   confirmed?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
   email: Scalars['String']['output'];
   provider?: Maybe<Scalars['String']['output']>;
-  role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  role?: Maybe<UsersPermissionsRole>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   username: Scalars['String']['output'];
 };
 
-export type UsersPermissionsUserEntity = {
-  __typename?: 'UsersPermissionsUserEntity';
-  attributes?: Maybe<UsersPermissionsUser>;
-  id?: Maybe<Scalars['ID']['output']>;
-};
-
 export type UsersPermissionsUserEntityResponse = {
   __typename?: 'UsersPermissionsUserEntityResponse';
-  data?: Maybe<UsersPermissionsUserEntity>;
+  data?: Maybe<UsersPermissionsUser>;
 };
 
 export type UsersPermissionsUserEntityResponseCollection = {
   __typename?: 'UsersPermissionsUserEntityResponseCollection';
-  data: Array<UsersPermissionsUserEntity>;
-  meta: ResponseCollectionMeta;
+  nodes: Array<UsersPermissionsUser>;
+  pageInfo: Pagination;
 };
 
 export type UsersPermissionsUserFiltersInput = {
@@ -1359,12 +1485,15 @@ export type UsersPermissionsUserFiltersInput = {
   confirmationToken?: InputMaybe<StringFilterInput>;
   confirmed?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
   email?: InputMaybe<StringFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<UsersPermissionsUserFiltersInput>;
   not?: InputMaybe<UsersPermissionsUserFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
   password?: InputMaybe<StringFilterInput>;
   provider?: InputMaybe<StringFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
   resetPasswordToken?: InputMaybe<StringFilterInput>;
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
@@ -1376,8 +1505,10 @@ export type UsersPermissionsUserInput = {
   confirmationToken?: InputMaybe<Scalars['String']['input']>;
   confirmed?: InputMaybe<Scalars['Boolean']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
   provider?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   resetPasswordToken?: InputMaybe<Scalars['String']['input']>;
   role?: InputMaybe<Scalars['ID']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
@@ -1385,16 +1516,13 @@ export type UsersPermissionsUserInput = {
 
 export type UsersPermissionsUserRelationResponseCollection = {
   __typename?: 'UsersPermissionsUserRelationResponseCollection';
-  data: Array<UsersPermissionsUserEntity>;
+  nodes: Array<UsersPermissionsUser>;
 };
 
 export type BlogPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type BlogPageQueryQuery = { __typename?: 'Query', blogPage?: { __typename?: 'BlogPageEntityResponse', data?: { __typename?: 'BlogPageEntity', attributes?: { __typename?: 'BlogPage', posts: { __typename?: 'ComponentLayoutPostsSelection', limit: number, sort?: string | null, title: string, subTitle?: string | null, category?: (
-            { __typename?: 'CategoryEntityResponse' }
-            & { ' $fragmentRefs'?: { 'CategoryFragmentFragment': CategoryFragmentFragment } }
-          ) | null } } | null } | null } | null };
+export type BlogPageQueryQuery = { __typename?: 'Query', blogPage?: { __typename?: 'BlogPage', posts: { __typename?: 'ComponentLayoutPostsSelection', limit: number, sort?: string | null, title: string, category?: { __typename?: 'Category', title: string, slug: string } | null } } | null };
 
 export type DetailsPageQueryQueryVariables = Exact<{
   category: Scalars['String']['input'];
@@ -1402,36 +1530,19 @@ export type DetailsPageQueryQueryVariables = Exact<{
 }>;
 
 
-export type DetailsPageQueryQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', date: any, updatedAt?: any | null, excerpt: string, title: string, slug: string, category?: (
-          { __typename?: 'CategoryEntityResponse' }
-          & { ' $fragmentRefs'?: { 'CategoryFragmentFragment': CategoryFragmentFragment } }
-        ) | null, PostImage?: { __typename?: 'ComponentContentImage', url?: string | null, title: string } | null, Content?: Array<{ __typename: 'ComponentContentImage', title: string, url?: string | null } | { __typename: 'ComponentContentRichText', description?: string | null } | { __typename?: 'Error' } | null> | null } | null }> } | null };
+export type DetailsPageQueryQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', documentId: string, date: any, updatedAt?: any | null, excerpt: string, title: string, slug: string, category?: { __typename?: 'Category', title: string, slug: string } | null, PostImage?: { __typename?: 'ComponentContentImage', url?: string | null, title: string } | null, Content?: Array<{ __typename: 'ComponentContentImage', title: string, url?: string | null } | { __typename: 'ComponentContentRichText', description?: string | null } | { __typename?: 'Error' } | null> | null } | null> };
 
-export type CategoryFragmentFragment = { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', title: string, slug: string } | null } | null } & { ' $fragmentName'?: 'CategoryFragmentFragment' };
-
-export type PostFieldsFragmentFragment = { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', date: any, updatedAt?: any | null, excerpt: string, featured?: boolean | null, title: string, slug: string, category?: (
-        { __typename?: 'CategoryEntityResponse' }
-        & { ' $fragmentRefs'?: { 'CategoryFragmentFragment': CategoryFragmentFragment } }
-      ) | null, PostImage?: { __typename?: 'ComponentContentImage', title: string, url?: string | null } | null } | null }> } & { ' $fragmentName'?: 'PostFieldsFragmentFragment' };
+export type PostFieldsFragmentFragment = { __typename?: 'Post', documentId: string, date: any, updatedAt?: any | null, excerpt: string, featured?: boolean | null, title: string, slug: string, category?: { __typename?: 'Category', title: string, slug: string } | null, PostImage?: { __typename?: 'ComponentContentImage', title: string, url?: string | null } | null } & { ' $fragmentName'?: 'PostFieldsFragmentFragment' };
 
 export type IndexPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type IndexPageQueryQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePageEntityResponse', data?: { __typename?: 'HomePageEntity', id?: string | null, attributes?: { __typename?: 'HomePage', title: string, hero?: { __typename?: 'ComponentLayoutHero', id: string, title: string, callToAction: string, image: string } | null, blogPosts?: { __typename?: 'ComponentLayoutPostsSelection', id: string, title: string, limit: number, sort?: string | null, subTitle?: string | null, category?: (
-            { __typename?: 'CategoryEntityResponse' }
-            & { ' $fragmentRefs'?: { 'CategoryFragmentFragment': CategoryFragmentFragment } }
-          ) | null } | null, poetryPosts?: { __typename?: 'ComponentLayoutPostsSelection', id: string, title: string, limit: number, sort?: string | null, subTitle?: string | null, category?: (
-            { __typename?: 'CategoryEntityResponse' }
-            & { ' $fragmentRefs'?: { 'CategoryFragmentFragment': CategoryFragmentFragment } }
-          ) | null } | null } | null } | null } | null };
+export type IndexPageQueryQuery = { __typename?: 'Query', homePage?: { __typename?: 'HomePage', documentId: string, title: string, hero?: { __typename?: 'ComponentLayoutHero', id: string, title: string, callToAction: string, image: string } | null, blogPosts?: { __typename?: 'ComponentLayoutPostsSelection', id: string, title: string, limit: number, sort?: string | null, subTitle?: string | null, category?: { __typename?: 'Category', title: string, slug: string } | null } | null, poetryPosts?: { __typename?: 'ComponentLayoutPostsSelection', id: string, title: string, limit: number, sort?: string | null, subTitle?: string | null, category?: { __typename?: 'Category', title: string, slug: string } | null } | null } | null };
 
 export type PoetryPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PoetryPageQueryQuery = { __typename?: 'Query', poetryPage?: { __typename?: 'PoetryPageEntityResponse', data?: { __typename?: 'PoetryPageEntity', attributes?: { __typename?: 'PoetryPage', posts: { __typename?: 'ComponentLayoutPostsSelection', limit: number, sort?: string | null, title: string, subTitle?: string | null, category?: (
-            { __typename?: 'CategoryEntityResponse' }
-            & { ' $fragmentRefs'?: { 'CategoryFragmentFragment': CategoryFragmentFragment } }
-          ) | null } } | null } | null } | null };
+export type PoetryPageQueryQuery = { __typename?: 'Query', poetryPage?: { __typename?: 'PoetryPage', posts: { __typename?: 'ComponentLayoutPostsSelection', limit: number, sort?: string | null, title: string, subTitle?: string | null, category?: { __typename?: 'Category', title: string, slug: string } | null } } | null };
 
 export type PostsPageQueryQueryVariables = Exact<{
   category: Scalars['String']['input'];
@@ -1441,10 +1552,10 @@ export type PostsPageQueryQueryVariables = Exact<{
 }>;
 
 
-export type PostsPageQueryQuery = { __typename?: 'Query', posts?: (
-    { __typename?: 'PostEntityResponseCollection' }
+export type PostsPageQueryQuery = { __typename?: 'Query', posts: Array<(
+    { __typename?: 'Post' }
     & { ' $fragmentRefs'?: { 'PostFieldsFragmentFragment': PostFieldsFragmentFragment } }
-  ) | null };
+  ) | null> };
 
 export type PostsPathQueryQueryVariables = Exact<{
   category: Scalars['String']['input'];
@@ -1453,13 +1564,12 @@ export type PostsPathQueryQueryVariables = Exact<{
 }>;
 
 
-export type PostsPathQueryQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', attributes?: { __typename?: 'Post', slug: string } | null }> } | null };
+export type PostsPathQueryQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', slug: string } | null> };
 
-export const CategoryFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CategoryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CategoryEntityResponse"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<CategoryFragmentFragment, unknown>;
-export const PostFieldsFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PostEntityResponseCollection"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featured"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CategoryFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"PostImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CategoryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CategoryEntityResponse"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<PostFieldsFragmentFragment, unknown>;
-export const BlogPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogPageQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blogPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"limit"}},{"kind":"Field","name":{"kind":"Name","value":"sort"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CategoryFragment"}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CategoryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CategoryEntityResponse"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>;
-export const DetailsPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"DetailsPageQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"category"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"category"}}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"publicationState"},"value":{"kind":"EnumValue","value":"LIVE"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CategoryFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"PostImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentContentRichText"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentContentImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CategoryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CategoryEntityResponse"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<DetailsPageQueryQuery, DetailsPageQueryQueryVariables>;
-export const IndexPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"IndexPageQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"hero"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"callToAction"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blogPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"limit"}},{"kind":"Field","name":{"kind":"Name","value":"sort"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CategoryFragment"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"poetryPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"limit"}},{"kind":"Field","name":{"kind":"Name","value":"sort"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CategoryFragment"}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CategoryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CategoryEntityResponse"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<IndexPageQueryQuery, IndexPageQueryQueryVariables>;
-export const PoetryPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PoetryPageQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"poetryPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"limit"}},{"kind":"Field","name":{"kind":"Name","value":"sort"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CategoryFragment"}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CategoryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CategoryEntityResponse"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]} as unknown as DocumentNode<PoetryPageQueryQuery, PoetryPageQueryQueryVariables>;
-export const PostsPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PostsPageQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"category"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sort"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"I18NLocaleCode"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}},{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"category"}}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sort"}}},{"kind":"Argument","name":{"kind":"Name","value":"publicationState"},"value":{"kind":"EnumValue","value":"LIVE"}},{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostFieldsFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CategoryFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CategoryEntityResponse"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PostEntityResponseCollection"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featured"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CategoryFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"PostImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<PostsPageQueryQuery, PostsPageQueryQueryVariables>;
-export const PostsPathQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PostsPathQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"category"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"I18NLocaleCode"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}},{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"category"}}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]} as unknown as DocumentNode<PostsPathQueryQuery, PostsPathQueryQueryVariables>;
+export const PostFieldsFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"documentId"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featured"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"PostImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]} as unknown as DocumentNode<PostFieldsFragmentFragment, unknown>;
+export const BlogPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BlogPageQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"blogPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"limit"}},{"kind":"Field","name":{"kind":"Name","value":"sort"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]} as unknown as DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>;
+export const DetailsPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"DetailsPageQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"category"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"category"}}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"status"},"value":{"kind":"EnumValue","value":"PUBLISHED"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"documentId"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"PostImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentContentRichText"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ComponentContentImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]} as unknown as DocumentNode<DetailsPageQueryQuery, DetailsPageQueryQueryVariables>;
+export const IndexPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"IndexPageQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homePage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"documentId"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"hero"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"callToAction"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blogPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"limit"}},{"kind":"Field","name":{"kind":"Name","value":"sort"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"poetryPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"limit"}},{"kind":"Field","name":{"kind":"Name","value":"sort"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]} as unknown as DocumentNode<IndexPageQueryQuery, IndexPageQueryQueryVariables>;
+export const PoetryPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PoetryPageQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"poetryPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"limit"}},{"kind":"Field","name":{"kind":"Name","value":"sort"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]} as unknown as DocumentNode<PoetryPageQueryQuery, PoetryPageQueryQueryVariables>;
+export const PostsPageQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PostsPageQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"category"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sort"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"I18NLocaleCode"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}},{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"category"}}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"sort"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sort"}}},{"kind":"Argument","name":{"kind":"Name","value":"status"},"value":{"kind":"EnumValue","value":"PUBLISHED"}},{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostFieldsFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostFieldsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"documentId"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"excerpt"}},{"kind":"Field","name":{"kind":"Name","value":"featured"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"category"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"PostImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]} as unknown as DocumentNode<PostsPageQueryQuery, PostsPageQueryQueryVariables>;
+export const PostsPathQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PostsPathQuery"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"category"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"I18NLocaleCode"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"limit"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}},{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"category"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"category"}}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"pagination"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"limit"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]} as unknown as DocumentNode<PostsPathQueryQuery, PostsPathQueryQueryVariables>;

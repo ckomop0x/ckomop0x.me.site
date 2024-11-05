@@ -6,12 +6,12 @@ import Button from 'components/ui/Button';
 import PostsList from 'components/ui/PostsList';
 import { CategoryInfo } from 'components/ui/PostsList/types';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
-import { PostsType } from 'types/index';
+import { Post } from 'types/index';
 
 interface PostsListSectionProps {
   blockTitle: string;
   blockSubtitle: string;
-  posts: PostsType;
+  posts: Post[];
   categoryInfo?: CategoryInfo | null;
 }
 
@@ -27,6 +27,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
       <SubtitleBlock>{blockSubtitle}</SubtitleBlock>
       <div className="text-center">
         <PostsList posts={posts} />
+        {console.log('categoryInfo', categoryInfo)}
         <AllPostsLink href={categoryInfo?.slug || ''}>
           <Button>Перейти в {categoryInfo?.title || ''}</Button>
         </AllPostsLink>
