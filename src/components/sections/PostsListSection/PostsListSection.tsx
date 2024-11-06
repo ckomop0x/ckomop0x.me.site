@@ -27,7 +27,6 @@ const PostsListSection: FC<PostsListSectionProps> = ({
       <SubtitleBlock>{blockSubtitle}</SubtitleBlock>
       <div className="text-center">
         <PostsList posts={posts} />
-        {console.log('categoryInfo', categoryInfo)}
         <AllPostsLink href={categoryInfo?.slug || ''}>
           <Button>Перейти в {categoryInfo?.title || ''}</Button>
         </AllPostsLink>

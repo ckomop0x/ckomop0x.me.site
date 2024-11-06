@@ -7,6 +7,7 @@ export const blogPageQuery = gql`
         limit
         sort
         title
+        subTitle
         category {
           title
           slug
