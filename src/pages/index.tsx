@@ -8,17 +8,19 @@ import { CategoryInfo } from 'components/ui/PostsList/types';
 import { indexPageQuery } from 'queries/indexPageQuery.gql';
 import {
   ComponentLayoutHeroInput,
+  HomePage,
   IndexPageQueryQuery,
   IndexPageQueryQueryVariables,
   PostInput,
 } from 'queries/types/graphql';
+import { Post } from 'types/index';
 import apolloClient from 'utils/api/apollo-client';
 import getPosts from 'utils/api/getPosts';
 
 interface IndexPageProps {
-  blogItems: PostInput[];
+  blogItems: Post[];
   blogPostsCategoryInfo: CategoryInfo;
-  poetryItems: PostInput[];
+  poetryItems: Post[];
   poetryPostsCategoryInfo: CategoryInfo;
   hero: ComponentLayoutHeroInput;
 }
@@ -64,8 +66,8 @@ export async function getStaticProps() {
     query: indexPageQuery,
   });
 
-  const { hero, blogPosts, poetryPosts } =
-    indexPageResponse.homePage satisfies IndexPageQueryQuery;
+  const { homePage } = indexPageResponse as IndexPageQueryQuery;
+  const { hero, blogPosts, poetryPosts } = homePage as HomePage;
 
   const [blogItems, poetryItems] = await Promise.all([
     getPosts({
