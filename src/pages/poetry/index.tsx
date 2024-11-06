@@ -8,11 +8,10 @@ import PostsList from 'components/ui/PostsList';
 import { poetryPageQuery } from 'queries/poetryPageQuery.gql';
 import {
   PoetryPage,
-  PoetryPageEntityResponse,
   PoetryPageQueryQuery,
   PoetryPageQueryQueryVariables,
-  PostEntity,
 } from 'queries/types/graphql';
+import { Post } from 'types/index';
 import apolloClient from 'utils/api/apollo-client';
 import getPosts from 'utils/api/getPosts';
 
@@ -20,7 +19,7 @@ const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-
 
 interface PoetryPageProps {
   category: string;
-  postItems: PostEntity[];
+  postItems: Post[];
   title: string;
   subTitle: string;
 }
@@ -59,10 +58,9 @@ export async function getStaticProps() {
   });
 
   const { poetryPage } = poetryPageResponse as PoetryPageQueryQuery;
-  const { data: poetryPageData } = poetryPage as PoetryPageEntityResponse;
-  const { posts } = poetryPageData?.attributes as PoetryPage;
+  const { posts } = poetryPage as PoetryPage;
 
-  const category = posts?.category?.data?.attributes?.slug || '';
+  const category = posts?.category?.slug || '';
   const limit = posts?.limit || 3;
   const sort = posts?.sort || '';
 
