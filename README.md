@@ -1,8 +1,8 @@
-[![codecov](https://codecov.io/gh/ckomop0x/ckomop0x.me.site.v2/branch/master/graph/badge.svg?token=ENO8W3HTIX)](https://codecov.io/gh/ckomop0x/ckomop0x.me.site.v2)
+[![codecov](https://codecov.io/gh/ckomop0x/ckomop0x.me.site/branch/main/graph/badge.svg?token=ENO8W3HTIX)](https://codecov.io/gh/ckomop0x/ckomop0x.me.site)
 
 # Ckomop0x.me blog website
 
-Personal blog website. It uses NextJS, Strapi, TypeScript, GraphQL and other technologies. It has many good optimisations under the hood.
+This is a personal blog website that uses NextJS, Strapi, TypeScript, GraphQL, and other technologies. It has many good optimizations under the hood.
 
 **[https://ckomop0x.me](https://ckomop0x.me)**
 
