@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
-    "\n  query BlogPageQuery {\n    blogPage {\n      posts {\n        limit\n        sort\n        title\n        category {\n          title\n          slug\n        }\n      }\n    }\n  }\n": types.BlogPageQueryDocument,
+    "\n  query BlogPageQuery {\n    blogPage {\n      posts {\n        limit\n        sort\n        title\n        subTitle\n        category {\n          title\n          slug\n        }\n      }\n    }\n  }\n": types.BlogPageQueryDocument,
     "\n  query DetailsPageQuery($category: String!, $slug: String!) {\n    posts(\n      filters: { slug: { eq: $slug }, category: { slug: { eq: $category } } }\n      status: PUBLISHED\n    ) {\n      documentId\n      category {\n        title\n        slug\n      }\n      date\n      updatedAt\n      excerpt\n      title\n      slug\n      PostImage {\n        url\n        title\n      }\n      Content {\n        ... on ComponentContentRichText {\n          __typename\n          description\n        }\n        ... on ComponentContentImage {\n          __typename\n          title\n          url\n        }\n      }\n    }\n  }\n": types.DetailsPageQueryDocument,
     "\n  fragment PostFieldsFragment on Post {\n    documentId\n    date\n    updatedAt\n    excerpt\n    featured\n    title\n    slug\n    category {\n      title\n      slug\n    }\n    PostImage {\n      title\n      url\n    }\n  }\n": types.PostFieldsFragmentFragmentDoc,
     "\n  query IndexPageQuery {\n    homePage {\n      documentId\n      title\n      hero {\n        id\n        title\n        callToAction\n        image\n      }\n      blogPosts {\n        id\n        title\n        limit\n        sort\n        subTitle\n        category {\n          title\n          slug\n        }\n      }\n      poetryPosts {\n        id\n        title\n        limit\n        sort\n        subTitle\n        category {\n          title\n          slug\n        }\n      }\n    }\n  }\n": types.IndexPageQueryDocument,
@@ -40,7 +40,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query BlogPageQuery {\n    blogPage {\n      posts {\n        limit\n        sort\n        title\n        category {\n          title\n          slug\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query BlogPageQuery {\n    blogPage {\n      posts {\n        limit\n        sort\n        title\n        category {\n          title\n          slug\n        }\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query BlogPageQuery {\n    blogPage {\n      posts {\n        limit\n        sort\n        title\n        subTitle\n        category {\n          title\n          slug\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query BlogPageQuery {\n    blogPage {\n      posts {\n        limit\n        sort\n        title\n        subTitle\n        category {\n          title\n          slug\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
