@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import projectConfig from '../../../../package.json';
 
@@ -15,28 +14,31 @@ const Footer: FC<FooterProps> = ({ projectTitle = '' }) => {
 
   return (
     <FooterWrapper>
-      <FooterCopyright>{footerText}</FooterCopyright>
+      <p className="text-[16px] p-0 m-0 text-center">{footerText}</p>
     </FooterWrapper>
   );
 };
 
-export const FooterWrapper = styled.footer`
-  margin: auto 0;
-  background: hsla(38, 20%, 80%, 1);
-  color: ${themePalette.primaryTitle};
-  box-sizing: border-box;
-  height: 70px;
-  padding: 16px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const FooterCopyright = styled.p`
-  font-size: 16px;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-`;
+export const FooterWrapper: FC<PropsWithChildren<FooterWrapperProps>> = ({
+  children,
+}) => (
+  <footer
+    className="
+      m-auto
+      h-[70px]
+      p-4
+      flex
+      justify-center
+      items-center
+      box-border
+    "
+    style={{
+      background: 'hsla(38, 20%, 80%, 1)',
+      color: themePalette.primaryTitle,
+    }}
+  >
+    {children}
+  </footer>
+);
 
 export default Footer;

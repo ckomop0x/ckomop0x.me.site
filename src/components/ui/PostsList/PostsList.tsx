@@ -10,11 +10,11 @@ interface PostsListProps {
   posts: PostsType[];
 }
 
-const PostsList: FC<PostsListProps> = ({ posts }): JSX.Element => {
+const PostsList: FC<PostsListProps> = ({ posts }) => {
   const getPublicationDate = (date: string): string => formatDate(date);
 
   return (
-    <PostsListWrapper className="row">
+    <PostsListWrapper className="container mx-auto flex">
       {posts.map(
         ({
           documentId,
@@ -37,7 +37,6 @@ const PostsList: FC<PostsListProps> = ({ posts }): JSX.Element => {
               image={PostImage?.url || ''}
             />
           );
-          return null;
         },
       )}
     </PostsListWrapper>

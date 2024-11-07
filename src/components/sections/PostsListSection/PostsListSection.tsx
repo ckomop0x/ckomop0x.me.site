@@ -22,7 +22,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
   categoryInfo,
 }) => (
   <PostsListSectionWrapper>
-    <div className="container">
+    <div className="container mx-auto">
       <TitleBlock>{blockTitle}</TitleBlock>
       <SubtitleBlock>{blockSubtitle}</SubtitleBlock>
       <div className="text-center">

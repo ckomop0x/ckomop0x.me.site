@@ -1,32 +1,53 @@
-import styled from '@emotion/styled';
+import { FC, PropsWithChildren } from 'react';
 
-export const HeroSectionText = styled.div`
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-`;
+export const HeroSectionText: FC<PropsWithChildren> = ({ children }) => (
+  <div
+    className="
+      container
+      mx-auto
+      flex
+      flex-grow
+      flex-col
+      justify-center
+      items-start
+    "
+  >
+    {children}
+  </div>
+);
 
-export const Title = styled.h1`
-  font-family: var(--font-secondary), Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  line-height: 1.1;
-  font-size: 30px;
-  max-width: 400px;
-  color: #fff;
+export const Title: FC<PropsWithChildren> = ({ children }) => (
+  <h1
+    className="
+      font-bold
+      leading-tight
+      text-white
+      text-[30px]
+      max-w-[400px]
+      sm:text-[48px]
+    "
+    style={{
+      fontFamily: 'var(--font-secondary), Roboto, Helvetica, Arial, sans-serif',
+    }}
+  >
+    {children}
+  </h1>
+);
 
-  @media (min-width: 700px) {
-    font-size: 48px;
-  }
-`;
-
-export const SubTitle = styled.p`
-  font-family: var(--font-secondary), Roboto, Helvetica, Arial, sans-serif;
-  color: #fff;
-  font-size: 20px;
-  line-height: 32px;
-  margin-top: 24px;
-  max-width: 400px;
-  font-weight: 400;
-`;
+export const SubTitle: FC<PropsWithChildren> = ({ children }) => (
+  <p
+    className="
+      text-white
+      text-[20px]
+      leading-[32px]
+      mt-6
+      max-w-[400px]
+      font-normal
+    "
+    style={{
+      fontFamily: 'var(--font-secondary), Roboto, Helvetica, Arial, sans-serif',
+    }}
+  >
+    {children}
+  </p>
+);

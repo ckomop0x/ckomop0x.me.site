@@ -1,7 +1,9 @@
-import styled from '@emotion/styled';
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { NextPage } from 'next';
+import { FC, PropsWithChildren } from 'react';
 
+import { TitleBlock } from '@/styles';
+import { Post } from '@/types';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import PostsList from 'components/ui/PostsList';
 import { blogPageQuery } from 'queries/blogPageQuery.gql';
@@ -10,7 +12,6 @@ import {
   BlogPageQueryQuery,
   BlogPageQueryQueryVariables,
 } from 'queries/types/graphql';
-import { Post } from 'types/index';
 import apolloClient from 'utils/api/apollo-client';
 import getPosts from 'utils/api/getPosts';
 
@@ -38,8 +39,9 @@ const BlogPageComponent: NextPage<BlogPageProps> = ({
     >
       <BlogPageWrapper>
         <div className="container">
-          <h1>{title}</h1>
-          <p>{subTitle}</p>
+          <TitleBlock>
+            {title} - {subTitle}
+          </TitleBlock>
           {postItems ? <PostsList posts={postItems} /> : EMPTY_PAGE_MESSAGE}
         </div>
       </BlogPageWrapper>
@@ -78,9 +80,10 @@ export async function getStaticProps() {
   };
 }
 
-export const BlogPageWrapper = styled.div`
-  padding: 40px 0;
-  min-height: calc(100vh - 130px);
-`;
+export const BlogPageWrapper: FC<PropsWithChildren> = ({ children }) => (
+  <div className="py-10" style={{ minHeight: 'calc(100vh - 130px)' }}>
+    {children}
+  </div>
+);
 
 export default BlogPageComponent;

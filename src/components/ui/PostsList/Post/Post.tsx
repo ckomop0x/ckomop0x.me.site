@@ -11,10 +11,10 @@ const Post: FC<PostInterface> = ({
   slug,
   category,
   image,
-}): JSX.Element => (
-  <PostWrapper className="col-12 col-md-6 col-lg-4">
+}) => (
+  <PostWrapper className="w-full md:w-1/2 lg:w-1/3">
     <StyledLink href={`/${category?.slug || ''}/${slug}`}>
-      <div className="row h-100">
+      <div className="flex flex-wrap h-full">
         <PostContent
           image={image}
           title={title}

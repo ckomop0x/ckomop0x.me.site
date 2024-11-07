@@ -1,48 +1,40 @@
-import styled from '@emotion/styled';
-import { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 
 interface PostDateProps {
   publicationDate: string;
 }
 
-const PostDate: FC<PostDateProps> = ({ publicationDate }): JSX.Element => {
+const PostDate: FC<PostDateProps> = ({ publicationDate }) => {
   const [publicationDay, publicationMonth, publicationYear] =
     publicationDate.split(' ');
 
   return (
     <PostDateWrapper>
-      <span>{publicationDay}</span>
-      <span>{publicationMonth}</span>
-      <span>{publicationYear}</span>
+      <span className="text-[22px] text-[#513b34] pt-1">{publicationDay}</span>
+      <span className="block">{publicationMonth}</span>
+      <span className="block">{publicationYear}</span>
     </PostDateWrapper>
   );
 };
 
-export const PostDateWrapper = styled.div`
-  position: absolute;
-  box-sizing: border-box;
-  z-index: 20;
-  right: 0;
-  bottom: 0;
-  color: #747474;
-  text-align: center;
-  font-size: 13px;
-  height: 80px;
-  background: #fff;
-  width: 80px;
-
-  span {
-    display: block;
-    padding: 0;
-    margin: 0;
-  }
-
-  span:first-of-type {
-    display: block;
-    font-size: 22px;
-    padding: 4px 0 0 0;
-    color: #513b34;
-  }
-`;
+const PostDateWrapper: FC<PropsWithChildren> = ({ children }) => (
+  <div
+    className="
+      absolute
+      box-border
+      z-20
+      right-0
+      bottom-0
+      text-[#747474]
+      text-center
+      text-[13px]
+      h-[80px]
+      w-[80px]
+      bg-white
+    "
+  >
+    {children}
+  </div>
+);
 
 export default PostDate;

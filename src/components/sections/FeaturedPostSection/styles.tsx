@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { FC, PropsWithChildren } from 'react';
 
 export const FeaturedPostWrapper = styled.section`
   min-height: 100vh;
@@ -70,7 +71,14 @@ export const ItemImage = styled.div`
 //   }
 // `;
 
-export const LinkStyled = ({ href, children }) => (
+interface LinkStyledProps {
+  href: string;
+}
+
+export const LinkStyled: FC<PropsWithChildren<LinkStyledProps>> = ({
+  href,
+  children,
+}) => (
   <a
     href={href}
     className="

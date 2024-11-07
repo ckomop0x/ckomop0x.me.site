@@ -18,7 +18,7 @@ const HeroSection: FC<HeroSectionProps> = ({
 }) => (
   <HeroSectionWrapper backgroundImage={backgroundImage}>
     <Nav />
-    <HeroSectionText className="container">
+    <HeroSectionText>
       <Title>{title}</Title>
       <SubTitle>{subtitle}</SubTitle>
     </HeroSectionText>

@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -31,34 +30,6 @@ const Logo: FC<LogoProps> = ({ imgSrc, linkSrc, title }) => (
     >
       {title}
     </span>
-  </Link>
-);
-
-// export const LogoWrapper = styled(Link)`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   cursor: pointer;
-//
-//   &:hover {
-//     text-decoration: none;
-//     color: white;
-//   }
-// `;
-
-export const LogoWrapper = ({ href, children }) => (
-  <Link
-    href={href}
-    className="
-      flex
-      items-center
-      justify-center
-      cursor-pointer
-      hover:no-underline
-      hover:text-white
-    "
-  >
-    {children}
   </Link>
 );
 

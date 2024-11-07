@@ -3,7 +3,7 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
 import { Neucha } from 'next/font/google';
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.css';
 
 import apolloClient from 'utils/api/apollo-client';

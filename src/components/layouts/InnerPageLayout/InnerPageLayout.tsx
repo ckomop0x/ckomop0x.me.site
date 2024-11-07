@@ -1,9 +1,8 @@
-import styled from '@emotion/styled';
 import { FC, PropsWithChildren } from 'react';
 
 import BaseLayout, { BaseLayoutProps } from '../BaseLayout/BaseLayout';
 
-import Nav from 'components/ui/Nav';
+import Nav from '@/components/ui/Nav';
 
 export type InnerPageLayoutProps = BaseLayoutProps;
 
@@ -54,8 +53,8 @@ const InnerPageLayout: FC<PropsWithChildren<InnerPageLayoutProps>> = ({
   </BaseLayout>
 );
 
-export const InnerPageLayoutWrapper = styled.main`
-  color: #a5a5a5;
-`;
+export const InnerPageLayoutWrapper: FC<PropsWithChildren> = ({ children }) => (
+  <main className="text-[#a5a5a5]">{children}</main>
+);
 
 export default InnerPageLayout;
