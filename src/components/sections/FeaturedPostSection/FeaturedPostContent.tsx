@@ -3,7 +3,7 @@ import parse from 'html-react-parser';
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { LinkStyled } from 'components/sections/FeaturedPostSection/styles';
+import { LinkStyled } from '@/components/sections/FeaturedPostSection/styles';
 import formatDate from 'utils/dates/formatDate';
 
 export interface FeaturedPostContentProps {
@@ -31,7 +31,7 @@ const FeaturedPostContent: FC<FeaturedPostContentProps> = ({
       {excerptText && (
         <PostContent>
           {excerptText}
-          <Link href={`/${slug}`} passHref legacyBehavior>
+          <Link href={`/${slug}`}>
             <LinkStyled>Читать далее...</LinkStyled>
           </Link>
         </PostContent>

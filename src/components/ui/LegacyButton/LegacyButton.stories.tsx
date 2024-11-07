@@ -1,14 +1,13 @@
 import { Meta } from '@storybook/react';
-import React from 'react';
 
-import Button from './Button';
+import LegacyButton from './LegacyButton';
 export default {
   title: 'components/Button',
-  component: Button,
+  component: LegacyButton,
   args: {
     children: 'Primary',
   },
-} as Meta<typeof Button>;
+} as Meta<typeof LegacyButton>;
 
 export const Primary = {
   args: {

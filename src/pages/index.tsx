@@ -1,17 +1,16 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { NextPage } from 'next';
 
-import MainPageLayout from 'components/layouts/MainPageLayout';
-import Hero from 'components/sections/HeroSection';
-import PostsListSection from 'components/sections/PostsListSection';
-import { CategoryInfo } from 'components/ui/PostsList/types';
-import { indexPageQuery } from 'queries/indexPageQuery.gql';
+import MainPageLayout from '@/components/layouts/MainPageLayout';
+import Hero from '@/components/sections/HeroSection';
+import PostsListSection from '@/components/sections/PostsListSection';
+import { CategoryInfo } from '@/components/ui/PostsList/types';
+import { indexPageQuery } from '@/queries/indexPageQuery.gql';
 import {
   ComponentLayoutHeroInput,
   HomePage,
   IndexPageQueryQuery,
   IndexPageQueryQueryVariables,
-  PostInput,
 } from 'queries/types/graphql';
 import { Post } from 'types/index';
 import apolloClient from 'utils/api/apollo-client';

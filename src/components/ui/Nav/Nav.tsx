@@ -2,17 +2,24 @@ import { FC } from 'react';
 
 import { Navbar } from './styles';
 
+import MenuItem from '@/components/ui/Nav/MenuItem';
 import Logo from 'components/ui/Nav/Logo';
-import TopMenu from 'components/ui/Nav/TopMenu';
 
 export interface NavProps {
   isInner?: boolean;
 }
 
 const Nav: FC<NavProps> = ({ isInner }): JSX.Element => (
-  <Navbar className="container" isInner={isInner}>
+  <Navbar>
     <Logo imgSrc="/images/apple-icon.png" title="Павел Клочков" linkSrc="/" />
-    <TopMenu />
+    <ul className="m-0 flex items-center">
+      <MenuItem linkSrc="/blog/" isInner={isInner}>
+        Блог
+      </MenuItem>
+      <MenuItem linkSrc="/poetry/" isInner={isInner}>
+        Стихи
+      </MenuItem>
+    </ul>
   </Navbar>
 );
 

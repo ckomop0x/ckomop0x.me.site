@@ -4,8 +4,8 @@ import { CacheProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
 import { Neucha } from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.css';
+import '../styles/globals.css';
 
-import { globalStyles } from 'styles/GlobalStyle';
 import apolloClient from 'utils/api/apollo-client';
 
 const cache = createCache({ key: 'next' });
@@ -17,12 +17,11 @@ const neucha = Neucha({
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => (
   <ApolloProvider client={apolloClient}>
-    <main className={neucha.variable}>
-      <CacheProvider value={cache}>
-        {globalStyles}
+    <CacheProvider value={cache}>
+      <main className={neucha.variable}>
         <Component {...pageProps} />
-      </CacheProvider>
-    </main>
+      </main>
+    </CacheProvider>
   </ApolloProvider>
 );
 

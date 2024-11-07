@@ -2,11 +2,11 @@ import { FC } from 'react';
 
 import { AllPostsLink, PostsListSectionWrapper } from './styles';
 
-import Button from 'components/ui/Button';
+import { Button } from '@/components/ui/Button/Button';
+import { Post } from '@/types';
 import PostsList from 'components/ui/PostsList';
 import { CategoryInfo } from 'components/ui/PostsList/types';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
-import { Post } from 'types/index';
 
 interface PostsListSectionProps {
   blockTitle: string;
