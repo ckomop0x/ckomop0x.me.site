@@ -88,7 +88,7 @@
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.14.0",
     "@graphql-codegen/cli": "5.0.3",
-    "@graphql-codegen/client-preset": "4.5.0",
+    "@graphql-codegen/client-preset": "4.5.1",
     "@graphql-codegen/introspection": "4.0.3",
     "@storybook/nextjs": "8.4.6",
     "babel-jest": "29.7.0",
