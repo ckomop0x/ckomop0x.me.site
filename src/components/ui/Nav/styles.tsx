@@ -20,7 +20,5 @@ export const LinkStyled: FC<PropsWithChildren<LinkStyledProps>> = ({
 );
 
 export const Navbar: FC<PropsWithChildren> = ({ children }) => (
-  <nav className="container mx-auto h-[60px] flex justify-between flex-grow-0">
-    {children}
-  </nav>
+  <nav className="w-full h-[60px] flex justify-between px-10">{children}</nav>
 );

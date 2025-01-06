@@ -14,7 +14,7 @@ const PostsList: FC<PostsListProps> = ({ posts }) => {
   const getPublicationDate = (date: string): string => formatDate(date);
 
   return (
-    <PostsListWrapper className="container mx-auto flex">
+    <div className="container mx-auto flex flex-wrap justify-center">
       {posts.map(
         ({
           documentId,
@@ -39,7 +39,7 @@ const PostsList: FC<PostsListProps> = ({ posts }) => {
           );
         },
       )}
-    </PostsListWrapper>
+    </div>
   );
 };
 

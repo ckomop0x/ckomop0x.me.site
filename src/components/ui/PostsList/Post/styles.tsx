@@ -84,16 +84,6 @@ export const PostWrapper = styled.article`
   }
 `;
 
-interface StyledLinkProps extends PropsWithChildren {
-  href: string;
-}
-
-export const StyledLink: FC<StyledLinkProps> = ({ href, children }) => (
-  <Link href={href} className="no-underline hover:no-underline">
-    {children}
-  </Link>
-);
-
 export const PostTitle: FC<PropsWithChildren> = ({ children }) => (
   <h3
     className="

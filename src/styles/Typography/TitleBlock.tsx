@@ -9,6 +9,7 @@ export const TitleBlock: FC<PropsWithChildren> = ({ children }) => (
       uppercase
       text-[#312420]
       border-b-2
+      mx-20
       border-[#3124205e]
     "
     style={{ fontFamily: 'var(--font-secondary), Roboto, sans-serif' }}

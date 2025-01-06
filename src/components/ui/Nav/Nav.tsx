@@ -9,10 +9,15 @@ export interface NavProps {
   isInner?: boolean;
 }
 
-const Nav: FC<NavProps> = ({ isInner }): JSX.Element => (
+const Nav: FC<NavProps> = ({ isInner }) => (
   <Navbar>
-    <Logo imgSrc="/images/apple-icon.png" title="Павел Клочков" linkSrc="/" />
-    <ul className="m-0 flex items-center">
+    <Logo
+      imgSrc="/images/apple-icon.png"
+      title="Павел Клочков"
+      linkSrc="/"
+      isInner={isInner}
+    />
+    <ul className="flex items-center">
       <MenuItem linkSrc="/blog/" isInner={isInner}>
         Блог
       </MenuItem>
