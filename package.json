@@ -84,7 +84,7 @@
     "react-markdown": "^9.0.1"
   },
   "devDependencies": {
-    "@eslint/compat": "1.2.2",
+    "@eslint/compat": "1.2.6",
     "@eslint/eslintrc": "3.1.0",
     "@eslint/js": "9.17.0",
     "@graphql-codegen/cli": "5.0.3",
