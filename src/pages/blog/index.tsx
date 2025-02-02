@@ -38,7 +38,7 @@ const BlogPageComponent: NextPage<BlogPageProps> = ({
       twitterCard={subTitle}
     >
       <BlogPageWrapper>
-        <div className="container">
+        <div className="container text-center mx-auto">
           <TitleBlock>
             {title} - {subTitle}
           </TitleBlock>
