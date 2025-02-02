@@ -1,9 +1,8 @@
-import styled from '@emotion/styled';
 import { FC, PropsWithChildren } from 'react';
 
-import Footer from 'components/ui/Footer';
-import SEO from 'components/ui/SEO';
-import { SEOProps } from 'components/ui/SEO/SEO';
+import Footer from '@/components/ui/Footer';
+import SEO from '@/components/ui/SEO';
+import { SEOProps } from '@/components/ui/SEO/SEO';
 
 export interface BaseLayoutProps extends SEOProps {
   className?: string;
@@ -64,8 +63,8 @@ const BaseLayout: FC<PropsWithChildren<BaseLayoutProps>> = ({
   </BaseLayoutWrapper>
 );
 
-export const BaseLayoutWrapper = styled.div`
-  min-height: 100vh;
-`;
+export const BaseLayoutWrapper: FC<PropsWithChildren> = ({ children }) => (
+  <div className="min-h-screen">{children}</div>
+);
 
 export default BaseLayout;

@@ -1,11 +1,9 @@
 import { gql } from '@apollo/client';
 
-import { categoryFieldsFragment } from './fragments/categoryFieldsFragment.gql';
 import { postFieldsFragment } from './fragments/postFieldsFragment.gql';
 
 export const postsPageQuery = gql`
   ${postFieldsFragment}
-  ${categoryFieldsFragment}
 
   query PostsPageQuery(
     $category: String!
@@ -17,7 +15,7 @@ export const postsPageQuery = gql`
       locale: $locale
       filters: { category: { slug: { eq: $category } } }
       sort: $sort
-      publicationState: LIVE
+      status: PUBLISHED
       pagination: { limit: $limit }
     ) {
       ...PostFieldsFragment

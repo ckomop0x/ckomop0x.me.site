@@ -1,8 +1,8 @@
-import styled from '@emotion/styled';
-import { FC } from 'react';
+import Image from 'next/image';
+import { FC, PropsWithChildren } from 'react';
 
+import { PostTitle } from '@/components/ui/PostsList/Post/styles';
 import PostDate from 'components/ui/PostsList/Post/PostDate';
-import { PostTitle } from 'components/ui/PostsList/Post/styles';
 import getSrcSet from 'utils/image/getSrcSet';
 
 interface PostContentProps {
@@ -18,37 +18,53 @@ const PostContent: FC<PostContentProps> = ({
 }) => (
   <PostContentWrapper>
     {!!image && (
-      <PostImage
-        loading="lazy"
-        src={`${image}`}
-        srcSet={getSrcSet(image)}
-        sizes="(max-width: 600px) 480px, 600px"
-        alt={title}
-      />
+      <div className="overflow-hidden w-full h-full flex justify-center">
+        <PostImage
+          src={`${image}`}
+          srcSet={getSrcSet(image)}
+          // sizes="(max-width: 600px) 480px, 600px"
+          alt={title}
+        />
+      </div>
     )}
     {publicationDate && <PostDate publicationDate={publicationDate} />}
     <PostTitle>{title}</PostTitle>
   </PostContentWrapper>
 );
 
-export const PostContentWrapper = styled.div`
-  position: relative;
-  margin: 32px;
-  background-color: #f5f5f5c2;
-  width: 100%;
-  box-shadow: 0 0 4px #0000001c;
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.3s ease;
+export const PostContentWrapper: FC<PropsWithChildren> = ({ children }) => (
+  <div
+    className="
+      relative
+      m-8
+      bg-[#f5f5f5c2]
+      w-full
+      shadow
+      shadow-[0_0_4px_#0000001c]
+      flex
+      flex-col
+      transition-shadow
+      duration-300
+      ease-in-out
+      hover:shadow-[0_0_20px_rgba(0,0,0,0.11)]
+    "
+  >
+    {children}
+  </div>
+);
 
-  &:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.11);
-  }
-`;
-
-export const PostImage = styled.img`
-  width: 100%;
-  overflow: hidden;
-`;
+export const PostImage: FC<{ src: string; alt: string; srcSet: string }> = ({
+  src,
+  alt,
+}) => (
+  <Image
+    src={src}
+    alt={alt}
+    className="w-full h-full object-cover"
+    width={192}
+    height={192}
+    sizes="100vw"
+  />
+);
 
 export default PostContent;

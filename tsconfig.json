@@ -15,13 +15,16 @@
     "noEmit": true,
     "skipLibCheck": true,
     "paths": {
-      "components/*": ["components/*"],
-      "config/*": ["config/*"],
-      "queries/*": ["queries/*"],
-      "styles/*": ["styles/*"],
-      "types/*": ["types/*"],
-      "utils/*": ["utils/*"]
+      "@/*": ["./*"]
     },
+//    "paths": {
+//      "components/*": ["components/*"],
+//      "config/*": ["config/*"],
+//      "queries/*": ["queries/*"],
+//      "styles/*": ["styles/*"],
+//      "types/*": ["types/*"],
+//      "utils/*": ["utils/*"]
+//    },
     "plugins": [
       {
         "name": "ts-graphql-plugin"

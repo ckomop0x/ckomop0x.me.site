@@ -7,22 +7,22 @@ import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {
   CategoryInterface,
-  DetailPageType,
   IGetStaticPathsResponse,
   IGetStaticProps,
   IGetStaticPropsResponse,
 } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 import getItemPath, { IItemPath } from 'utils/queries/getItemPath';
+import { Post } from '@/queries/types/graphql';
 
 const CATEGORY: CategoryInterface = 'poetry';
 
 interface PoetryPostPageProps {
-  post: DetailPageType;
+  post: Post;
 }
 
 const PoetryPostPage: FC<PoetryPostPageProps> = ({ post }): JSX.Element => {
-  if (!post?.attributes) {
+  if (!post?.Content) {
     return (
       <InnerPageLayout
         headTitle="Пост не найден"
@@ -34,7 +34,7 @@ const PoetryPostPage: FC<PoetryPostPageProps> = ({ post }): JSX.Element => {
     );
   }
 
-  const { Content, PostImage, slug, title, date } = post?.attributes;
+  const { Content, PostImage, slug, title, date } = post;
   const socialImage = `${PostImage?.url}?tr=w-1080,h-280,fo-top`;
   const ogUrl = `https://ckomop0x.me/${CATEGORY}/${slug}/`;
 
@@ -51,10 +51,12 @@ const PoetryPostPage: FC<PoetryPostPageProps> = ({ post }): JSX.Element => {
         date={date}
         image={PostImage?.url ?? ''}
         postType="poetry"
+        contentClassName="text-center"
       >
         {Content
           ? Content?.map(
-              (ContentSlice, index) =>
+              // TODO: Fix this type
+              (ContentSlice: any, index: number) =>
                 ContentSlice && (
                   <ContentMapper key={index} Content={ContentSlice} />
                 ),
@@ -74,7 +76,7 @@ export async function getStaticProps({
     query: detailsPageQuery,
     variables: { category: CATEGORY, slug: params.slug },
   });
-  const [post] = data.posts.data;
+  const [post] = data.posts;
 
   return {
     props: {
@@ -92,7 +94,7 @@ export async function getStaticPaths(): Promise<IGetStaticPathsResponse> {
       locale: 'ru',
     },
   });
-  const paths: IItemPath[] | string[] = [...data.posts.data.map(getItemPath)];
+  const paths: IItemPath[] | string[] = [...data.posts.map(getItemPath)];
 
   return {
     paths,

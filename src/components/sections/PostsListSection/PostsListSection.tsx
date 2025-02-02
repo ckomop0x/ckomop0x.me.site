@@ -1,17 +1,16 @@
+import Link from 'next/link';
 import { FC } from 'react';
 
-import { AllPostsLink, PostsListSectionWrapper } from './styles';
-
-import Button from 'components/ui/Button';
+import { Button } from '@/components/ui/Button/Button';
+import { Post } from '@/types';
 import PostsList from 'components/ui/PostsList';
 import { CategoryInfo } from 'components/ui/PostsList/types';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
-import { PostsType } from 'types/index';
 
 interface PostsListSectionProps {
   blockTitle: string;
   blockSubtitle: string;
-  posts: PostsType;
+  posts: Post[];
   categoryInfo?: CategoryInfo | null;
 }
 
@@ -21,18 +20,18 @@ const PostsListSection: FC<PostsListSectionProps> = ({
   posts,
   categoryInfo,
 }) => (
-  <PostsListSectionWrapper>
-    <div className="container">
+  <section className="pt-10 pb-20">
+    <div className="container mx-auto text-center">
       <TitleBlock>{blockTitle}</TitleBlock>
       <SubtitleBlock>{blockSubtitle}</SubtitleBlock>
       <div className="text-center">
         <PostsList posts={posts} />
-        <AllPostsLink href={categoryInfo?.slug || ''}>
+        <Link href={categoryInfo?.slug || ''} className="inline-block">
           <Button>Перейти в {categoryInfo?.title || ''}</Button>
-        </AllPostsLink>
+        </Link>
       </div>
     </div>
-  </PostsListSectionWrapper>
+  </section>
 );
 
 export default PostsListSection;

@@ -2,10 +2,10 @@ import { ApolloProvider } from '@apollo/client';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
-import { Neucha } from 'next/font/google';
-import 'bootstrap/dist/css/bootstrap.css';
+import { Neucha, Roboto } from 'next/font/google';
+// import 'bootstrap/dist/css/bootstrap.css';
+import '../styles/globals.css';
 
-import { globalStyles } from 'styles/GlobalStyle';
 import apolloClient from 'utils/api/apollo-client';
 
 const cache = createCache({ key: 'next' });
@@ -15,14 +15,20 @@ const neucha = Neucha({
   variable: '--font-secondary',
 });
 
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['cyrillic', 'latin'],
+  variable: '--font-primary',
+});
+
 const App = ({ Component, pageProps }: AppProps): JSX.Element => (
   <ApolloProvider client={apolloClient}>
-    <main className={neucha.variable}>
-      <CacheProvider value={cache}>
-        {globalStyles}
+    <CacheProvider value={cache}>
+      <main className={`${neucha.variable} ${roboto.variable}`}>
         <Component {...pageProps} />
-      </CacheProvider>
-    </main>
+      </main>
+    </CacheProvider>
   </ApolloProvider>
 );
 

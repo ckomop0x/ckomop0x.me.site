@@ -1,26 +1,22 @@
-import styled from '@emotion/styled';
-import Link from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
 import { LinkStyled } from 'components/ui/Nav/styles';
 
 interface MenuItemProps {
   linkSrc: string;
+  isInner?: boolean;
 }
 
 const MenuItem: FC<PropsWithChildren<MenuItemProps>> = ({
+  isInner,
   linkSrc,
   children,
-}): JSX.Element => (
-  <MenuItemWrapper>
-    <Link href={linkSrc} passHref legacyBehavior>
-      <LinkStyled>{children}</LinkStyled>
-    </Link>
-  </MenuItemWrapper>
+}) => (
+  <li className="list-none">
+    <LinkStyled href={linkSrc} isInner={isInner}>
+      {children}
+    </LinkStyled>
+  </li>
 );
-
-export const MenuItemWrapper = styled.li`
-  list-style: none;
-`;
 
 export default MenuItem;

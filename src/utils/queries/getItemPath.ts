@@ -1,7 +1,5 @@
 export interface IGetItemPathProps {
-  attributes: {
-    slug: string | null;
-  };
+  slug: string | null;
 }
 
 export interface IItemPath {
@@ -13,13 +11,13 @@ export interface IItemPath {
 export default function getItemPath(
   item: IGetItemPathProps,
 ): IItemPath | string {
-  if (!item.attributes.slug) {
+  if (!item.slug) {
     return 'Wrong item format, should be item.slug:string';
   }
 
   return {
     params: {
-      slug: `${item.attributes.slug}`,
+      slug: `${item.slug}`,
     },
   };
 }

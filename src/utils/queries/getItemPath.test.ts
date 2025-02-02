@@ -4,9 +4,7 @@ describe('utils/queries', () => {
   describe('getItemPath', () => {
     it('Should return text with error', () => {
       const params: IGetItemPathProps = {
-        attributes: {
-          slug: null,
-        },
+        slug: null,
       };
       expect(getItemPath(params)).toBe(
         'Wrong item format, should be item.slug:string',
@@ -14,9 +12,7 @@ describe('utils/queries', () => {
     });
     it('Should return params with slug', () => {
       const params: IGetItemPathProps = {
-        attributes: {
-          slug: 'main-post',
-        },
+        slug: 'main-post',
       };
       expect(getItemPath(params)).toEqual({
         params: {

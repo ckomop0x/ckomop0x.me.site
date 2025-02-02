@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import { FC } from 'react';
 
 import PostContent from './PostContent';
-import { PostWrapper, StyledLink } from './styles';
+import { PostWrapper } from './styles';
 
 import { PostInterface } from 'components/ui/PostsList/types';
 
@@ -11,23 +12,20 @@ const Post: FC<PostInterface> = ({
   slug,
   category,
   image,
-}): JSX.Element => (
-  <PostWrapper className="col-12 col-md-6 col-lg-4">
-    <StyledLink
+}) => (
+  <PostWrapper className="w-full max-w-sm min-w-96">
+    <Link
       href={`/${category?.slug || ''}/${slug}`}
-      passHref
-      legacyBehavior
+      className="no-underline hover:no-underline"
     >
-      <a href={`/${category?.slug || ''}/${slug}`}>
-        <div className="row h-100">
-          <PostContent
-            image={image}
-            title={title}
-            publicationDate={publicationDate}
-          />
-        </div>
-      </a>
-    </StyledLink>
+      <div className="flex flex-wrap h-full">
+        <PostContent
+          image={image}
+          title={title}
+          publicationDate={publicationDate}
+        />
+      </div>
+    </Link>
   </PostWrapper>
 );
 

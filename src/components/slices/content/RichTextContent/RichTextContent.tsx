@@ -1,4 +1,3 @@
-import parse from 'html-react-parser';
 import { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 

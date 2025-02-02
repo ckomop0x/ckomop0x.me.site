@@ -1,1 +1,2 @@
-npm run check-ts && npm run test
+npm run check-ts # run the "check-ts" package script
+npm test # Test the project

@@ -1,2 +1,2 @@
-schema: https://admin.ckomop0x.me/graphql
+schema: http://localhost:8002/graphql
 documents: '**/*.graphql'
