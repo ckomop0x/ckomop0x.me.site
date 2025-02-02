@@ -104,6 +104,7 @@ export const PostTitle: FC<PropsWithChildren> = ({ children }) => (
       m-0
       bottom-0
       bg-white/90
+      var(--font-secondary)
     "
   >
     {children}
