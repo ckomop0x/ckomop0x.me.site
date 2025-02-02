@@ -322,8 +322,6 @@ export type I18NLocaleFiltersInput = {
   code?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<I18NLocaleFiltersInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<I18NLocaleFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
@@ -1119,6 +1117,7 @@ export type ReviewWorkflowsWorkflow = {
   documentId: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  stageRequiredToPublish?: Maybe<ReviewWorkflowsWorkflowStage>;
   stages: Array<Maybe<ReviewWorkflowsWorkflowStage>>;
   stages_connection?: Maybe<ReviewWorkflowsWorkflowStageRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -1149,21 +1148,20 @@ export type ReviewWorkflowsWorkflowFiltersInput = {
   contentTypes?: InputMaybe<JsonFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ReviewWorkflowsWorkflowFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ReviewWorkflowsWorkflowFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
+  stageRequiredToPublish?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
   stages?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type ReviewWorkflowsWorkflowInput = {
   contentTypes?: InputMaybe<Scalars['JSON']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  stageRequiredToPublish?: InputMaybe<Scalars['ID']['input']>;
   stages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
 };
 
@@ -1189,8 +1187,6 @@ export type ReviewWorkflowsWorkflowStageFiltersInput = {
   color?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ReviewWorkflowsWorkflowStageFiltersInput>>>;
@@ -1201,7 +1197,6 @@ export type ReviewWorkflowsWorkflowStageFiltersInput = {
 
 export type ReviewWorkflowsWorkflowStageInput = {
   color?: InputMaybe<Scalars['String']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   workflow?: InputMaybe<Scalars['ID']['input']>;
@@ -1273,12 +1268,9 @@ export type UploadFileFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
   ext?: InputMaybe<StringFilterInput>;
-  folderPath?: InputMaybe<StringFilterInput>;
   formats?: InputMaybe<JsonFilterInput>;
   hash?: InputMaybe<StringFilterInput>;
   height?: InputMaybe<IntFilterInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<UploadFileFiltersInput>;
   mime?: InputMaybe<StringFilterInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<UploadFileFiltersInput>;
@@ -1319,6 +1311,7 @@ export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
   blocked?: Maybe<Scalars['Boolean']['output']>;
   confirmed?: Maybe<Scalars['Boolean']['output']>;
+  documentId: Scalars['ID']['output'];
   email?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   role?: Maybe<UsersPermissionsMeRole>;
@@ -1353,8 +1346,6 @@ export type UsersPermissionsPermissionFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
   not?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
@@ -1427,8 +1418,6 @@ export type UsersPermissionsRoleFiltersInput = {
   createdAt?: InputMaybe<DateTimeFilterInput>;
   description?: InputMaybe<StringFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   name?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
@@ -1441,7 +1430,6 @@ export type UsersPermissionsRoleFiltersInput = {
 
 export type UsersPermissionsRoleInput = {
   description?: InputMaybe<Scalars['String']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   permissions?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1482,19 +1470,14 @@ export type UsersPermissionsUserEntityResponseCollection = {
 export type UsersPermissionsUserFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
   blocked?: InputMaybe<BooleanFilterInput>;
-  confirmationToken?: InputMaybe<StringFilterInput>;
   confirmed?: InputMaybe<BooleanFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   documentId?: InputMaybe<IdFilterInput>;
   email?: InputMaybe<StringFilterInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<UsersPermissionsUserFiltersInput>;
   not?: InputMaybe<UsersPermissionsUserFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
-  password?: InputMaybe<StringFilterInput>;
   provider?: InputMaybe<StringFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
-  resetPasswordToken?: InputMaybe<StringFilterInput>;
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   username?: InputMaybe<StringFilterInput>;
@@ -1502,14 +1485,11 @@ export type UsersPermissionsUserFiltersInput = {
 
 export type UsersPermissionsUserInput = {
   blocked?: InputMaybe<Scalars['Boolean']['input']>;
-  confirmationToken?: InputMaybe<Scalars['String']['input']>;
   confirmed?: InputMaybe<Scalars['Boolean']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
   provider?: InputMaybe<Scalars['String']['input']>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  resetPasswordToken?: InputMaybe<Scalars['String']['input']>;
   role?: InputMaybe<Scalars['ID']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
 };
