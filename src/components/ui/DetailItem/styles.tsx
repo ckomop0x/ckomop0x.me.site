@@ -10,17 +10,12 @@ export const DetailItemWrapper: FC<DetailItemWrapperProps> = ({
   children,
   image,
 }) => (
-  <div
-    className="relative bg-cover bg-center bg-no-repeat min-h-[calc(100vh-130px)] py-10"
-    style={{
-      backgroundImage: image ? `url(${image}?tr=h-960)` : undefined,
-    }}
-  >
+  <div className="relative bg-cover bg-center bg-no-repeat min-h-[calc(100vh-130px)] py-10">
     {/* eslint-disable-next-line react/no-unknown-property */}
     <style jsx>{`
       @media (min-width: 700px) {
         div {
-          background-image: url(${image}?tr=w-900);
+          background-image: url(${image}?tr=w-1200);
         }
       }
       @media (min-width: 1200px) {

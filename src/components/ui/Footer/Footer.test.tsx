@@ -6,7 +6,7 @@ import Footer from './index';
 
 describe('Footer', () => {
   const currentYear = new Date().getFullYear();
-  const footerText = `© ${currentYear} ckomop0x.me v${projectConfig.version}`;
+  const footerText = `© 2019 - ${currentYear} ckomop0x.me v${projectConfig.version}`;
 
   it('Should render default component', () => {
     render(<Footer projectTitle="ckomop0x.me" />);

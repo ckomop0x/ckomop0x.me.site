@@ -10,7 +10,7 @@ interface FooterProps {
 
 const Footer: FC<FooterProps> = ({ projectTitle = '' }) => {
   const currentYear = new Date().getFullYear();
-  const footerText = `© ${currentYear} ${projectTitle} v${projectConfig.version}`;
+  const footerText = `© 2019 - ${currentYear} ${projectTitle} v${projectConfig.version}`;
 
   return (
     <footer
