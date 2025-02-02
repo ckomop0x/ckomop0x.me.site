@@ -85,6 +85,99 @@
   h5,
   h6 {
     color: #312420;
-    font-family: var(--font-secondary), Ubuntu, Helvetica, Arial, sans-serif;
+    font-family: var(--font-primary), sans-serif;
+    @apply font-medium;
+  }
+
+  h1 {
+    @apply text-4xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl leading-snug;
+  }
+
+  h3 {
+    @apply text-2xl leading-snug;
+  }
+
+  h4 {
+    @apply text-xl leading-normal;
+  }
+
+  h5 {
+    @apply text-lg leading-normal;
+  }
+
+  h6 {
+    @apply text-base leading-relaxed;
+  }
+
+  .content-wrapper {
+    h1,
+    h2,
+    h3,
+    h4,
+    h6 {
+      text-align: center;
+      @apply mb-4;
+    }
+
+    p {
+      font-family: var(--font-primary), sans-serif;
+      font-size: 16px;
+      line-height: 26px;
+      margin: 0 0 20px;
+      /*text-align: justify;*/
+    }
+
+    p img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    blockquote,
+    cite {
+      position: relative;
+      margin: 10px 0 10px 40px;
+      font-style: italic;
+    }
+
+    blockquote::before,
+    cite::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 0;
+      border-left: 4px solid #7c7c7c78;
+      height: 100%;
+    }
+
+    .poetry-item__date {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      margin: 0 0 20px;
+    }
+
+    ul li {
+      position: relative;
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      width: 4px;
+      top: 0;
+      border-left: 4px solid;
+      height: 100%;
+    }
   }
 }

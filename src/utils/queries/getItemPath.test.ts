@@ -14,9 +14,7 @@ describe('utils/queries', () => {
     });
     it('Should return params with slug', () => {
       const params: IGetItemPathProps = {
-        attributes: {
-          slug: 'main-post',
-        },
+        slug: 'main-post',
       };
       expect(getItemPath(params)).toEqual({
         params: {
