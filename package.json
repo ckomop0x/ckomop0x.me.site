@@ -82,7 +82,7 @@
     "html-react-parser": "^5.1.10",
     "jest-environment-jsdom": "^29.7.0",
     "lucide-react": "^0.454.0",
-    "next": "^14.2.3",
+    "next": "^14.2.23",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "react-markdown": "^9.0.1",
