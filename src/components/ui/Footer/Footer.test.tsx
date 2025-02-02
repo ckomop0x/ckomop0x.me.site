@@ -6,10 +6,14 @@ import Footer from './index';
 
 describe('Footer', () => {
   const currentYear = new Date().getFullYear();
-  const footerText = `© 2019 - ${currentYear} ckomop0x.me v${projectConfig.version}`;
+  const footerText = `© 2019-${currentYear}, Павел Клочков`;
 
-  it('Should render default component', () => {
-    render(<Footer projectTitle="ckomop0x.me" />);
+  render(<Footer projectTitle="Павел Клочков" />);
+
+  it('Should render footer text component', () => {
     expect(screen.getByText(footerText).textContent).toBeTruthy();
+    expect(
+      screen.getByText(`v${projectConfig.version}`).textContent,
+    ).toBeTruthy();
   });
 });

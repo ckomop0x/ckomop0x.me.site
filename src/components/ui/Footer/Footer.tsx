@@ -10,7 +10,7 @@ interface FooterProps {
 
 const Footer: FC<FooterProps> = ({ projectTitle = '' }) => {
   const currentYear = new Date().getFullYear();
-  const footerText = `© 2019 - ${currentYear} ${projectTitle} v${projectConfig.version}`;
+  const footerText = `© 2019-${currentYear}, ${projectTitle}`;
 
   return (
     <footer
@@ -18,17 +18,14 @@ const Footer: FC<FooterProps> = ({ projectTitle = '' }) => {
       m-auto
       h-[70px]
       p-4
-      flex
-      justify-center
-      items-center
-      box-border
     "
       style={{
         background: 'hsla(38, 20%, 80%, 1)',
         color: themePalette.primaryTitle,
       }}
     >
-      <p className="text-[16px] p-0 m-0 text-center">{footerText}</p>
+      <p className="p-0 m-0 text-center">{footerText}</p>
+      <p className="text-center text-[12px]">v{projectConfig.version}</p>
     </footer>
   );
 };
