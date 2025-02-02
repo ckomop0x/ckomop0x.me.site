@@ -1,6 +1,5 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { NextPage } from 'next';
-import { FC, PropsWithChildren } from 'react';
 
 import { TitleBlock } from '@/styles';
 import { Post } from '@/types';
@@ -37,14 +36,14 @@ const BlogPageComponent: NextPage<BlogPageProps> = ({
       ogDescription={title}
       twitterCard={subTitle}
     >
-      <BlogPageWrapper>
+      <div className="py-10" style={{ minHeight: 'calc(100vh - 130px)' }}>
         <div className="container text-center mx-auto">
           <TitleBlock>
             {title} - {subTitle}
           </TitleBlock>
           {postItems ? <PostsList posts={postItems} /> : EMPTY_PAGE_MESSAGE}
         </div>
-      </BlogPageWrapper>
+      </div>
     </InnerPageLayout>
   );
 };
@@ -79,11 +78,5 @@ export async function getStaticProps() {
     },
   };
 }
-
-export const BlogPageWrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div className="py-10" style={{ minHeight: 'calc(100vh - 130px)' }}>
-    {children}
-  </div>
-);
 
 export default BlogPageComponent;

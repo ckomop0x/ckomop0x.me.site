@@ -58,9 +58,9 @@ export const PostImage: FC<{ src: string; alt: string }> = ({ src, alt }) => (
   <Image
     src={src}
     alt={alt}
-    className="w-full h-full"
-    width={0}
-    height={0}
+    className="w-full h-full object-cover"
+    width={192}
+    height={192}
     sizes="100vw"
   />
 );

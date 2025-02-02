@@ -1,8 +1,7 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { NextPage } from 'next';
 
-import { BlogPageWrapper } from '../blog';
-
+import { TitleBlock } from '@/styles';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import PostsList from 'components/ui/PostsList';
 import { poetryPageQuery } from 'queries/poetryPageQuery.gql';
@@ -36,9 +35,9 @@ const PoetryPageComponent: NextPage<PoetryPageProps> = ({
     ogDescription={title}
     twitterCard={subTitle}
   >
-    <BlogPageWrapper>
-      <div className="container">
-        <h1>{title}</h1>
+    <div className="py-10" style={{ minHeight: 'calc(100vh - 130px)' }}>
+      <div className="container text-center mx-auto">
+        <TitleBlock>{title}</TitleBlock>
         <p>{subTitle}</p>
         {postItems?.length > 0 ? (
           <PostsList posts={postItems} />
@@ -46,7 +45,7 @@ const PoetryPageComponent: NextPage<PoetryPageProps> = ({
           EMPTY_PAGE_MESSAGE
         )}
       </div>
-    </BlogPageWrapper>
+    </div>
   </InnerPageLayout>
 );
 
@@ -64,7 +63,7 @@ export async function getStaticProps() {
   const limit = posts?.limit || 3;
   const sort = posts?.sort || '';
 
-  const { data: postItems } = await getPosts({
+  const postItems = await getPosts({
     category,
     limit,
     locale: 'ru',

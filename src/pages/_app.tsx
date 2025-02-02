@@ -22,9 +22,6 @@ const roboto = Roboto({
   variable: '--font-primary',
 });
 
-console.log('roboto ---->', roboto);
-console.log('neucha ---->', neucha);
-
 const App = ({ Component, pageProps }: AppProps): JSX.Element => (
   <ApolloProvider client={apolloClient}>
     <CacheProvider value={cache}>

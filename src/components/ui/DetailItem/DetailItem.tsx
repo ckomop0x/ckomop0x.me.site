@@ -12,6 +12,7 @@ export interface DetailItemProps {
   image: string | null;
   date: Date;
   children: ReactNode | ReactNode[];
+  contentClassName?: string;
 }
 
 const DetailItem: FC<DetailItemProps> = ({
@@ -20,6 +21,7 @@ const DetailItem: FC<DetailItemProps> = ({
   children,
   image,
   postType,
+  contentClassName,
 }: DetailItemProps): JSX.Element => {
   const postDate = formatDate(date);
 
@@ -30,7 +32,7 @@ const DetailItem: FC<DetailItemProps> = ({
         <div className="poetry-item__date mb-4 text-center">
           Опубликовано: {postDate}
         </div>
-        <div className="content-wrapper">{children}</div>
+        <div className={`content-wrapper ${contentClassName}`}>{children}</div>
       </Content>
     </DetailItemWrapper>
   );

@@ -22,8 +22,6 @@ interface BlogPostPageProps {
 }
 
 const BlogPostPage: FC<BlogPostPageProps> = ({ post }) => {
-  console.log('post ---->', post);
-
   if (!post?.Content) {
     return (
       <InnerPageLayout
