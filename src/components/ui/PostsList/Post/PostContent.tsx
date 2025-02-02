@@ -20,10 +20,9 @@ const PostContent: FC<PostContentProps> = ({
     {!!image && (
       <div className="overflow-hidden w-full h-full flex justify-center">
         <PostImage
-          loading="lazy"
           src={`${image}`}
           srcSet={getSrcSet(image)}
-          sizes="(max-width: 600px) 480px, 600px"
+          // sizes="(max-width: 600px) 480px, 600px"
           alt={title}
         />
       </div>
@@ -54,7 +53,10 @@ export const PostContentWrapper: FC<PropsWithChildren> = ({ children }) => (
   </div>
 );
 
-export const PostImage: FC<{ src: string; alt: string }> = ({ src, alt }) => (
+export const PostImage: FC<{ src: string; alt: string; srcSet: string }> = ({
+  src,
+  alt,
+}) => (
   <Image
     src={src}
     alt={alt}

@@ -11,12 +11,7 @@ export interface NavProps {
 
 const Nav: FC<NavProps> = ({ isInner }) => (
   <Navbar>
-    <Logo
-      imgSrc="/images/apple-icon.png"
-      title="Павел Клочков"
-      linkSrc="/"
-      isInner={isInner}
-    />
+    <Logo imgSrc="/images/apple-icon.png" title="Павел Клочков" linkSrc="/" />
     <ul className="flex items-center">
       <MenuItem linkSrc="/blog/" isInner={isInner}>
         Блог

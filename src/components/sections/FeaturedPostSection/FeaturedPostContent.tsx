@@ -23,22 +23,8 @@ const FeaturedPostContent: FC<FeaturedPostContentProps> = ({
   const publicationDate = formatDate(date);
 
   return (
-    <ContentWrapper className="col-12 col-sm-12 col-md-5">
-      <Title>{title}</Title>
-      <Date>Опубликовано: {publicationDate}</Date>
-      {excerptText && (
-        <PostContent>
-          {excerptText}
-          <LinkStyled href={`/${slug}`}>Читать далее...</LinkStyled>
-        </PostContent>
-      )}
-    </ContentWrapper>
-  );
-};
-
-export const ContentWrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div
-    className="
+    <div
+      className="
       relative
       p-0
       my-4
@@ -49,14 +35,9 @@ export const ContentWrapper: FC<PropsWithChildren> = ({ children }) => (
       justify-center
       bg-[#f5f5f5]
     "
-  >
-    {children}
-  </div>
-);
-
-export const Title: FC<PropsWithChildren> = ({ children }) => (
-  <h3
-    className="
+    >
+      <h3
+        className="
       text-[46px]
       text-center
       pt-8
@@ -65,26 +46,21 @@ export const Title: FC<PropsWithChildren> = ({ children }) => (
       leading-none
       mt-0
     "
-  >
-    {children}
-  </h3>
-);
-
-export const Date: FC<PropsWithChildren> = ({ children }) => (
-  <p
-    className="
+      >
+        {title}
+      </h3>
+      <p
+        className="
       text-[#747474]
       text-center
       text-[12px]
     "
-  >
-    {children}
-  </p>
-);
-
-export const PostContent: FC<PropsWithChildren> = ({ children }) => (
-  <div
-    className="
+      >
+        Опубликовано: {publicationDate}
+      </p>
+      {excerptText && (
+        <div
+          className="
       text-center
       leading-relaxed
       py-4
@@ -93,9 +69,13 @@ export const PostContent: FC<PropsWithChildren> = ({ children }) => (
       text-[#777]
       text-[18px]
     "
-  >
-    {children}
-  </div>
-);
+        >
+          {excerptText}
+          <LinkStyled href={`/${slug}`}>Читать далее...</LinkStyled>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default FeaturedPostContent;

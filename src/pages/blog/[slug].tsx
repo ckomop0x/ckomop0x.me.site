@@ -7,18 +7,18 @@ import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {
   CategoryInterface,
-  DetailPageType,
   IGetStaticPathsResponse,
   IGetStaticProps,
   IGetStaticPropsResponse,
 } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 import getItemPath, { IItemPath } from 'utils/queries/getItemPath';
+import { Post } from '@/queries/types/graphql';
 
 const CATEGORY: CategoryInterface = 'blog';
 
 interface BlogPostPageProps {
-  post: DetailPageType;
+  post: Post;
 }
 
 const BlogPostPage: FC<BlogPostPageProps> = ({ post }) => {
@@ -53,7 +53,8 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ post }) => {
       >
         {Content
           ? Content?.map(
-              (ContentSlice, index) =>
+              // TODO: Fix this type
+              (ContentSlice: any, index: number) =>
                 ContentSlice && (
                   <ContentMapper key={index} Content={ContentSlice} />
                 ),

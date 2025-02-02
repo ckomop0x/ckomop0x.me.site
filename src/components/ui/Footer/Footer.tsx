@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC } from 'react';
 
 import projectConfig from '../../../../package.json';
 
@@ -13,17 +13,8 @@ const Footer: FC<FooterProps> = ({ projectTitle = '' }) => {
   const footerText = `© ${currentYear} ${projectTitle} v${projectConfig.version}`;
 
   return (
-    <FooterWrapper>
-      <p className="text-[16px] p-0 m-0 text-center">{footerText}</p>
-    </FooterWrapper>
-  );
-};
-
-export const FooterWrapper: FC<PropsWithChildren<FooterWrapperProps>> = ({
-  children,
-}) => (
-  <footer
-    className="
+    <footer
+      className="
       m-auto
       h-[70px]
       p-4
@@ -32,13 +23,14 @@ export const FooterWrapper: FC<PropsWithChildren<FooterWrapperProps>> = ({
       items-center
       box-border
     "
-    style={{
-      background: 'hsla(38, 20%, 80%, 1)',
-      color: themePalette.primaryTitle,
-    }}
-  >
-    {children}
-  </footer>
-);
+      style={{
+        background: 'hsla(38, 20%, 80%, 1)',
+        color: themePalette.primaryTitle,
+      }}
+    >
+      <p className="text-[16px] p-0 m-0 text-center">{footerText}</p>
+    </footer>
+  );
+};
 
 export default Footer;

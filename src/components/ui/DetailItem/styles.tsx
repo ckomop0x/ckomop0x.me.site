@@ -33,7 +33,10 @@ export const DetailItemWrapper: FC<DetailItemWrapperProps> = ({
   </div>
 );
 
-export const Content: FC<PropsWithChildren> = ({ children, className }) => (
+export const Content: FC<PropsWithChildren<{ className?: string }>> = ({
+  children,
+  className,
+}) => (
   <div
     className={`
       p-5

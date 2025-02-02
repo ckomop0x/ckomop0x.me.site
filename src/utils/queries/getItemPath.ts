@@ -1,7 +1,5 @@
 export interface IGetItemPathProps {
-  attributes: {
-    slug: string | null;
-  };
+  slug: string | null;
 }
 
 export interface IItemPath {

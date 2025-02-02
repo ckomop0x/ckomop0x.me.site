@@ -20,14 +20,13 @@ const DetailItem: FC<DetailItemProps> = ({
   title,
   children,
   image,
-  postType,
   contentClassName,
 }: DetailItemProps): JSX.Element => {
   const postDate = formatDate(date);
 
   return (
     <DetailItemWrapper image={image}>
-      <Content postType={postType}>
+      <Content>
         <h1 className="text-center">{title}</h1>
         <div className="poetry-item__date mb-4 text-center">
           Опубликовано: {postDate}
