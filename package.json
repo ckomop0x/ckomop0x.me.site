@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -118,7 +118,7 @@
     "ts-graphql-plugin": "4.0.3",
     "ts-jest": "29.2.5",
     "tsconfig-paths-webpack-plugin": "4.2.0",
-    "typescript": "5.7.2"
+    "typescript": "5.7.3"
   },
   "overrides": {
     "eslint": "$eslint"
