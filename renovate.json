@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "bumpVersion": "patch",
   "extends": [
     "config:best-practices",
     ":semanticCommits",
