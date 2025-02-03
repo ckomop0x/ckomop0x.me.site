@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "7.0.5",
+  "version": "7.0.6",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -102,7 +102,7 @@
     "babel-loader": "9.2.1",
     "cross-env": "7.0.3",
     "cross-var": "1.1.0",
-    "dotenv": "16.4.5",
+    "dotenv": "16.4.7",
     "dotenv-cli": "8.0.0",
     "eslint": "9.17.0",
     "eslint-plugin-storybook": "0.11.2",
