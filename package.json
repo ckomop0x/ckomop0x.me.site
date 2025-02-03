@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "7.0.12",
+  "version": "7.0.13",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -114,7 +114,7 @@
     "postcss": "8.5.1",
     "prettier": "3.4.2",
     "storybook": "8.5.3",
-    "tailwindcss": "3.4.17",
+    "tailwindcss": "4.0.3",
     "ts-graphql-plugin": "4.0.3",
     "ts-jest": "29.2.5",
     "tsconfig-paths-webpack-plugin": "4.2.0",
