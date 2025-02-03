@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "7.0.10",
+  "version": "7.0.11",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -81,7 +81,7 @@
     "graphql": "^16.8.1",
     "html-react-parser": "^5.1.10",
     "jest-environment-jsdom": "^29.7.0",
-    "lucide-react": "^0.454.0",
+    "lucide-react": "^0.474.0",
     "next": "^14.2.3",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
