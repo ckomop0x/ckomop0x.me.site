@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "7.0.8",
+  "version": "7.0.9",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -92,7 +92,7 @@
   "devDependencies": {
     "@eslint/compat": "1.2.6",
     "@eslint/eslintrc": "3.2.0",
-    "@eslint/js": "9.17.0",
+    "@eslint/js": "9.19.0",
     "@graphql-codegen/cli": "5.0.4",
     "@graphql-codegen/client-preset": "4.6.1",
     "@graphql-codegen/introspection": "4.0.3",
@@ -104,7 +104,7 @@
     "cross-var": "1.1.0",
     "dotenv": "16.4.7",
     "dotenv-cli": "8.0.0",
-    "eslint": "9.17.0",
+    "eslint": "9.19.0",
     "eslint-plugin-storybook": "0.11.2",
     "globals": "15.14.0",
     "husky": "9.1.7",
