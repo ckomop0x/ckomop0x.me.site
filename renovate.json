@@ -10,5 +10,5 @@
   "labels": [
     "[bot] renovate"
   ],
-  "rebaseWhen": "auto"
+  "rebaseWhen": "never"
 }
