@@ -5,8 +5,7 @@
   "keywords": [
     "nextjs",
     "graphql",
-    "strapi",
-    "emotion"
+    "strapi"
   ],
   "author": {
     "name": "Pavel Klochkov",
@@ -51,9 +50,6 @@
     "@apollo/client": "^3.10.1",
     "@apollo/rover": "^0.26.0",
     "@babel/core": "^7.24.4",
-    "@emotion/babel-plugin": "^11.11.0",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
     "@radix-ui/react-slot": "^1.1.0",
     "@storybook/addon-actions": "^8.0.9",
     "@storybook/addon-essentials": "^8.0.9",
@@ -66,7 +62,6 @@
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "babel-plugin-styled-components": "^2.1.4",
-    "bootstrap": "^4.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.0.0",

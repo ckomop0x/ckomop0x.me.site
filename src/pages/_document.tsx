@@ -1,7 +1,7 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 export default class WebtimeDocument extends Document {
-  render(): JSX.Element {
+  render() {
     return (
       <Html>
         <Head></Head>
