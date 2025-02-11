@@ -9,6 +9,7 @@
 .idea
 .env
 .env.production
+.env.local
 
 node_modules
 /webtime-studio/public/
