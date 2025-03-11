@@ -1,7 +1,5 @@
 import { FC } from 'react';
 
-import { PostsListWrapper } from './styles';
-
 import Post from 'components/ui/PostsList/Post';
 import { Post as PostsType } from 'types/index';
 import formatDate from 'utils/dates/formatDate';

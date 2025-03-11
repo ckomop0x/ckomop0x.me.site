@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { FC } from 'react';
 
 import PostContent from './PostContent';
-import { PostWrapper } from './styles';
 
 import { PostInterface } from 'components/ui/PostsList/types';
 
@@ -13,7 +12,7 @@ const Post: FC<PostInterface> = ({
   category,
   image,
 }) => (
-  <PostWrapper className="w-full max-w-sm min-w-96">
+  <div className="w-full max-w-sm min-w-96">
     <Link
       href={`/${category?.slug || ''}/${slug}`}
       className="no-underline hover:no-underline"
@@ -26,7 +25,7 @@ const Post: FC<PostInterface> = ({
         />
       </div>
     </Link>
-  </PostWrapper>
+  </div>
 );
 
 export default Post;
