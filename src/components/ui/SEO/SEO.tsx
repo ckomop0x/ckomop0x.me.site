@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { FC } from 'react';
 
-import FacebookMeta from 'components/ui/SEO/FacebookMeta';
-import TwitterMeta from 'components/ui/SEO/TwitterMeta';
+import FacebookMeta from '@/components/ui/SEO/FacebookMeta';
+import TwitterMeta from '@/components/ui/SEO/TwitterMeta';
 
 export interface SEOProps {
   /* Primary meta settings */
@@ -55,7 +55,7 @@ const SEO: FC<SEOProps> = ({
   twitterCard,
   twitterCreator,
   twitterTitle,
-}): JSX.Element => {
+}) => {
   /* Primary meta settings */
   const metaAuthor = author ?? '';
   const metaArticleAuthor = articleAuthor || metaAuthor || '';

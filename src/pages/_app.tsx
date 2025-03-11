@@ -19,7 +19,7 @@ const roboto = Roboto({
   variable: '--font-primary',
 });
 
-const App = ({ Component, pageProps }: AppProps): JSX.Element => (
+const App = ({ Component, pageProps }: AppProps) => (
   <ApolloProvider client={apolloClient}>
     <main className={`${neucha.variable} ${roboto.variable}`}>
       <Component {...pageProps} />

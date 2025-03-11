@@ -14,7 +14,7 @@ const TwitterMeta: FC<TwitterMetaProps> = ({
   metaTwitterTitle,
   metaOgDescription,
   metaOgImage,
-}): JSX.Element => (
+}) => (
   <>
     {metaTwitterCard && <meta name="twitter:card" content={metaTwitterCard} />}
     {metaTwitterCreator && (

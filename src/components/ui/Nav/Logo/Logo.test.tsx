@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-
-import { mockImageUrl } from '../../../../../__mocks__/mockImageUrl';
+import React from 'react';
+import { describe, it } from 'vitest';
 
 import Logo from './index';
 

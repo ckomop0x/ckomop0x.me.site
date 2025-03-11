@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 
-const Page404: NextPage = (): JSX.Element => (
+const Page404: NextPage = () => (
   <InnerPageLayout>
     <div className="container text-center">
       <h1>404</h1>

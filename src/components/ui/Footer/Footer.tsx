@@ -2,8 +2,6 @@ import { FC } from 'react';
 
 import projectConfig from '../../../../package.json';
 
-import { themePalette } from 'styles/colors';
-
 interface FooterProps {
   projectTitle: string;
 }
@@ -21,7 +19,6 @@ const Footer: FC<FooterProps> = ({ projectTitle = '' }) => {
     "
       style={{
         background: 'hsla(38, 20%, 80%, 1)',
-        color: themePalette.primaryTitle,
       }}
     >
       <p className="p-0 m-0 text-center">{footerText}</p>

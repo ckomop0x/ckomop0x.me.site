@@ -1,2 +1,2 @@
 npm run check-ts # run the "check-ts" package script
-npm test # Test the project
+npm run test:coverage # Test the project
