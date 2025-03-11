@@ -1,1 +1,1 @@
-npm test # Test the project
+npm run test:coverage # Test the project
