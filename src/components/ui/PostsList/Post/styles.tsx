@@ -1,13 +1,4 @@
-import styled from '@emotion/styled';
 import { FC, PropsWithChildren } from 'react';
-
-export const PostWrapper = styled.article`
-  padding: 0;
-
-  a:hover {
-    text-decoration: none;
-  }
-`;
 
 export const PostTitle: FC<PropsWithChildren> = ({ children }) => (
   <h3
