@@ -1,4 +1,4 @@
-import getSrcSet from 'utils/image/getSrcSet';
+import getSrcSet from '@/utils/image/getSrcSet';
 
 describe('utils/image', () => {
   describe('getSrcSet', () => {

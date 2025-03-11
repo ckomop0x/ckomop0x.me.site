@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 
 import { Content, DetailItemWrapper } from './styles';
 
-import formatDate from 'utils/dates/formatDate';
+import formatDate from '@/utils/dates/formatDate';
 
 export type PostType = 'blog' | 'poetry';
 
