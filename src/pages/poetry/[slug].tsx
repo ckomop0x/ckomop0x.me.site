@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import { NextPage } from 'next';
 
+import { Post } from '@/queries/types/graphql';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import ContentMapper from 'components/slices/content/ContentMapper';
 import DetailItemComponent from 'components/ui/DetailItem';
@@ -13,7 +14,6 @@ import {
 } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 import getItemPath, { IItemPath } from 'utils/queries/getItemPath';
-import { Post } from '@/queries/types/graphql';
 
 const CATEGORY: CategoryInterface = 'poetry';
 
@@ -21,7 +21,7 @@ interface PoetryPostPageProps {
   post: Post;
 }
 
-const PoetryPostPage: FC<PoetryPostPageProps> = ({ post }): JSX.Element => {
+const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
   if (!post?.Content) {
     return (
       <InnerPageLayout

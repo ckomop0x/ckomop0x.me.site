@@ -21,7 +21,7 @@ const DetailItem: FC<DetailItemProps> = ({
   children,
   image,
   contentClassName,
-}: DetailItemProps): JSX.Element => {
+}: DetailItemProps) => {
   const postDate = formatDate(date);
 
   return (

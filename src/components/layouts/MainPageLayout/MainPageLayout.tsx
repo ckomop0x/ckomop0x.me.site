@@ -7,6 +7,6 @@ type MainPageLayoutProps = BaseLayoutProps;
 
 const MainPageLayout: FC<PropsWithChildren<MainPageLayoutProps>> = ({
   children,
-}): JSX.Element => <BaseLayout>{children}</BaseLayout>;
+}) => <BaseLayout>{children}</BaseLayout>;
 
 export default MainPageLayout;

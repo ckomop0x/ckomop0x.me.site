@@ -34,7 +34,7 @@ const BaseLayout: FC<PropsWithChildren<BaseLayoutProps>> = ({
 
   /* Layout specific */
   children,
-}): JSX.Element => (
+}) => (
   <BaseLayoutWrapper>
     <SEO
       /* Primary meta settings */

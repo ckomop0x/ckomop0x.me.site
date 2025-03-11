@@ -55,7 +55,7 @@ const SEO: FC<SEOProps> = ({
   twitterCard,
   twitterCreator,
   twitterTitle,
-}): JSX.Element => {
+}) => {
   /* Primary meta settings */
   const metaAuthor = author ?? '';
   const metaArticleAuthor = articleAuthor || metaAuthor || '';

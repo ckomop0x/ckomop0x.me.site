@@ -30,7 +30,7 @@ const InnerPageLayout: FC<PropsWithChildren<InnerPageLayoutProps>> = ({
   twitterTitle,
 
   children,
-}): JSX.Element => (
+}) => (
   <BaseLayout
     /* Primary meta settings */
     author={author}

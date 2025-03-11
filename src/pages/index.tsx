@@ -6,13 +6,13 @@ import Hero from '@/components/sections/HeroSection';
 import PostsListSection from '@/components/sections/PostsListSection';
 import { CategoryInfo } from '@/components/ui/PostsList/types';
 import { indexPageQuery } from '@/queries/indexPageQuery.gql';
+import { Post } from '@/types';
 import {
   ComponentLayoutHeroInput,
   HomePage,
   IndexPageQueryQuery,
   IndexPageQueryQueryVariables,
 } from 'queries/types/graphql';
-import { Post } from 'types/index';
 import apolloClient from 'utils/api/apollo-client';
 import getPosts from 'utils/api/getPosts';
 
@@ -30,7 +30,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
   poetryItems,
   poetryPostsCategoryInfo,
   hero,
-}): JSX.Element => (
+}) => (
   <MainPageLayout>
     {hero && (
       <Hero
