@@ -16,13 +16,19 @@ export default defineConfig(() => {
       environment: 'jsdom',
       globals: true,
       setupFiles: './test.setup.js',
+      include: [
+        'src/**/*.test.ts',
+        'src/**/*.test.tsx',
+        'src/**/*.spec.tsx',
+        'src/**/*.spec.ts',
+      ],
       exclude: [
-        'node_modules',
+        '**/node_modules',
         'dist',
         'coverage',
         'postcss.config.js',
         'tailwind.config.js',
-        'storybook-static',
+        '**/storybook-static/**',
         'jest-preprocess.js',
         'jest-setup.js',
         'loadershim.js',
@@ -30,7 +36,8 @@ export default defineConfig(() => {
         'postcss.config.mjs',
         '__mocks__',
         'out',
-        'coverage',
+        '**/coverage',
+        '**/codegen.ts',
       ],
       coverage: {
         provider: 'v8', // Use v8 for coverage
