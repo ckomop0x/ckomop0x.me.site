@@ -6,7 +6,7 @@ export const HeroSectionText: FC<PropsWithChildren> = ({ children }) => (
       container
       mx-auto
       flex
-      flex-grow
+      grow
       flex-col
       justify-center
       items-start
