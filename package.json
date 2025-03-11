@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site-v2",
-  "version": "7.0.50",
+  "version": "7.0.51",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -93,7 +93,7 @@
     "@storybook/nextjs": "8.6.4",
     "autoprefixer": "10.4.21",
     "babel-jest": "29.7.0",
-    "babel-loader": "9.2.1",
+    "babel-loader": "10.0.0",
     "cross-env": "7.0.3",
     "cross-var": "1.1.0",
     "dotenv": "16.4.7",
