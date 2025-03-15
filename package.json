@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "7.1.6",
+  "version": "7.1.7",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -23,7 +23,7 @@
     "predev": "npm run gen",
     "dev": "next dev -p 8000",
     "build": "next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap --config next-sitemap.config.mjs",
     "start": "next start",
     "test": "vitest run --passWithNoTests",
     "test:coverage": "vitest run --passWithNoTests --coverage",
