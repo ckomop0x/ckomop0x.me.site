@@ -1,0 +1,11 @@
+@media (min-width: 700px) {
+  .bgImage {
+    background-image: var(--bg-image-700);
+  }
+}
+
+@media (min-width: 1200px) {
+  .bgImage {
+    background-image: var(--bg-image-1200);
+  }
+}

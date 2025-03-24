@@ -1,11 +1,13 @@
 import { FC } from 'react';
 
+import { Post } from '@/queries/types/graphql';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
 import ContentMapper from 'components/slices/content/ContentMapper';
 import DetailItemComponent from 'components/ui/DetailItem';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {
+  BreadcrumbItemType,
   CategoryInterface,
   IGetStaticPathsResponse,
   IGetStaticProps,
@@ -13,7 +15,6 @@ import {
 } from 'types';
 import apolloClient from 'utils/api/apollo-client';
 import getItemPath, { IItemPath } from 'utils/queries/getItemPath';
-import { Post } from '@/queries/types/graphql';
 
 const CATEGORY: CategoryInterface = 'blog';
 
@@ -37,6 +38,19 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ post }) => {
   const { Content, PostImage, slug, title, date } = post;
   const socialImage = `${PostImage?.url}?tr=w-1080,h-280,fo-top`;
   const ogUrl = `https://ckomop0x.me/${CATEGORY}/${slug}/`;
+  const breadcrumbs: BreadcrumbItemType[] = [
+    {
+      label: 'Главная',
+      href: '/',
+    },
+    {
+      label: 'Блог',
+      href: `/${CATEGORY}`,
+    },
+    {
+      label: title,
+    },
+  ];
 
   return (
     <InnerPageLayout
@@ -49,6 +63,7 @@ const BlogPostPage: FC<BlogPostPageProps> = ({ post }) => {
       <DetailItemComponent
         title={title}
         date={date}
+        breadcrumbs={breadcrumbs}
         image={PostImage?.url ?? ''}
       >
         {Content

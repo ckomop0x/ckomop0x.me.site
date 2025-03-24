@@ -7,6 +7,7 @@ import DetailItemComponent from 'components/ui/DetailItem';
 import { detailsPageQuery } from 'queries/detailPageQuery.gql';
 import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {
+  BreadcrumbItemType,
   CategoryInterface,
   IGetStaticPathsResponse,
   IGetStaticProps,
@@ -37,6 +38,19 @@ const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
   const { Content, PostImage, slug, title, date } = post;
   const socialImage = `${PostImage?.url}?tr=w-1080,h-280,fo-top`;
   const ogUrl = `https://ckomop0x.me/${CATEGORY}/${slug}/`;
+  const breadcrumbs: BreadcrumbItemType[] = [
+    {
+      label: 'Главная',
+      href: '/',
+    },
+    {
+      label: 'Стихи',
+      href: `/${CATEGORY}`,
+    },
+    {
+      label: title,
+    },
+  ];
 
   return (
     <InnerPageLayout
@@ -51,7 +65,7 @@ const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
         date={date}
         image={PostImage?.url ?? ''}
         postType="poetry"
-        contentClassName="text-center"
+        breadcrumbs={breadcrumbs}
       >
         {Content
           ? Content?.map(

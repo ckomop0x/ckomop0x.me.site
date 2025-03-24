@@ -24,3 +24,8 @@ export type Post = StrapiPost;
 export type CategoryInterface = 'blog' | 'poetry';
 
 export type DetailPageType = DetailsPageQuery_posts_data;
+
+export interface BreadcrumbItemType {
+  label: string;
+  href?: string;
+}
