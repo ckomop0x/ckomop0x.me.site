@@ -1,7 +1,10 @@
 import { FC, ReactNode } from 'react';
 
-import { Content, DetailItemWrapper } from './styles';
+import { Content } from './Content';
+import { DetailItemWrapper } from './DetailItemWrapper';
 
+import { Breadcrumbs } from '@/components/ui/BreadCrumbs/BreadCrumbs';
+import { BreadcrumbItemType } from '@/types';
 import formatDate from '@/utils/dates/formatDate';
 
 export type PostType = 'blog' | 'poetry';
@@ -12,6 +15,7 @@ export interface DetailItemProps {
   image: string | null;
   date: Date;
   children: ReactNode | ReactNode[];
+  breadcrumbs: BreadcrumbItemType[];
   contentClassName?: string;
 }
 
@@ -20,20 +24,31 @@ const DetailItem: FC<DetailItemProps> = ({
   title,
   children,
   image,
+  breadcrumbs,
   contentClassName,
-}: DetailItemProps) => {
+}) => {
   const postDate = formatDate(date);
 
   return (
-    <DetailItemWrapper image={image}>
-      <Content>
-        <h1 className="text-center">{title}</h1>
-        <div className="poetry-item__date mb-4 text-center">
-          Опубликовано: {postDate}
-        </div>
-        <div className={`content-wrapper ${contentClassName}`}>{children}</div>
-      </Content>
-    </DetailItemWrapper>
+    <>
+      <DetailItemWrapper image={image}>
+        <Content>
+          <div className="mb-4">
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+          </div>
+          <h1>{title}</h1>
+
+          <div className="text-sm mb-5 text-[#5d443c]/80">
+            Опубликовано: {postDate}
+          </div>
+          <div
+            className={`content-wrapper ${contentClassName ? contentClassName : ''}`}
+          >
+            {children}
+          </div>
+        </Content>
+      </DetailItemWrapper>
+    </>
   );
 };
 

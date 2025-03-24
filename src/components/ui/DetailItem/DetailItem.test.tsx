@@ -16,6 +16,7 @@ describe('DetailItem', () => {
       image,
       date,
       children,
+      breadcrumbs: [],
     };
 
     render(<DetailItem {...detailItemProps} />);
