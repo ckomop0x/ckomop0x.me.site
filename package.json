@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "7.2.6",
+  "version": "7.2.7",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -74,7 +74,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "graphql": "^16.8.1",
     "html-react-parser": "^5.1.10",
-    "lucide-react": "^0.484.0",
+    "lucide-react": "^0.485.0",
     "next": "^14.2.3",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
