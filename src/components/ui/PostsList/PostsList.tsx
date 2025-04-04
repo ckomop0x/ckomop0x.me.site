@@ -21,8 +21,11 @@ const PostsList: FC<PostsListProps> = ({ posts }) => {
           title = '',
           slug = '',
           category,
+          coverImage,
           PostImage,
         }) => {
+          const image = coverImage?.url || PostImage?.url || '';
+
           return (
             <Post
               key={documentId}
@@ -32,7 +35,7 @@ const PostsList: FC<PostsListProps> = ({ posts }) => {
               title={title}
               slug={slug}
               category={category}
-              image={PostImage?.url || ''}
+              image={image}
             />
           );
         },

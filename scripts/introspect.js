@@ -1,4 +1,3 @@
-// scripts/introspect.js
 import { exec } from 'child_process';
 import path from 'path';
 
@@ -7,10 +6,10 @@ import dotenv from 'dotenv';
 // Load .env file from root
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
-const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_URL_LOCAL;
+const endpoint = `${process.env.NEXT_PUBLIC_URL_LOCAL}/graphql`;
 
 if (!endpoint) {
-  console.error('❌ NEXT_PUBLIC_GRAPHQL_URL_LOCAL is not defined in .env');
+  console.error('❌ NEXT_PUBLIC_URL_LOCAL is not defined in .env');
   process.exit(1);
 }
 

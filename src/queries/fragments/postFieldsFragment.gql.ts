@@ -13,6 +13,9 @@ export const postFieldsFragment = gql`
       title
       slug
     }
+    coverImage {
+      url
+    }
     PostImage {
       title
       url

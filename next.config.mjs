@@ -1,9 +1,33 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
+  // output: 'export',
+  // images: {
+  //   unoptimized: true,
+  // },
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ik.imagekit.io',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'admin.ckomop0x.me',
+        port: '',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8300',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ckme-admin-pr-*.render.com',
+        port: '',
+      },
+    ],
   },
 };
 
