@@ -1,3 +1,7 @@
+import '../src/styles/globals.css';
+
+import { withThemeByClassName } from "@storybook/addon-themes";
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
@@ -12,3 +16,12 @@ export const parameters = {
     },
   },
 };
+
+export const decorators = [withThemeByClassName({
+    themes: {
+        // nameOfTheme: 'classNameForTheme',
+        light: '',
+        dark: 'dark',
+    },
+    defaultTheme: 'light',
+})];
