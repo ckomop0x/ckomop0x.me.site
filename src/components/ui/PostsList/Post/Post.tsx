@@ -3,7 +3,19 @@ import { FC } from 'react';
 
 import PostContent from './PostContent';
 
-import { PostInterface } from 'components/ui/PostsList/types';
+import { getApiUrl } from '@/utils/api/getApiUrl';
+import { CategoryInfo } from 'components/ui/PostsList/types';
+
+interface PostInterface {
+  id: string | null | undefined;
+  excerpt: string | null;
+  publicationDate: string;
+  title: string;
+  slug: string | null;
+  category?: CategoryInfo | null;
+  image: string;
+  updateDate?: string;
+}
 
 const Post: FC<PostInterface> = ({
   publicationDate,
@@ -19,7 +31,7 @@ const Post: FC<PostInterface> = ({
     >
       <div className="flex flex-wrap h-full">
         <PostContent
-          image={image}
+          image={image.includes('https://') ? image : `${getApiUrl()}${image}`}
           title={title}
           publicationDate={publicationDate}
         />

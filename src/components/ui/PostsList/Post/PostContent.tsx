@@ -3,7 +3,6 @@ import { FC, PropsWithChildren } from 'react';
 
 import { PostTitle } from '@/components/ui/PostsList/Post/styles';
 import PostDate from 'components/ui/PostsList/Post/PostDate';
-import getSrcSet from 'utils/image/getSrcSet';
 
 interface PostContentProps {
   title: string;
@@ -19,11 +18,12 @@ const PostContent: FC<PostContentProps> = ({
   <PostContentWrapper>
     {!!image && (
       <div className="overflow-hidden w-full h-full flex justify-center">
-        <PostImage
-          src={`${image}`}
-          srcSet={getSrcSet(image)}
-          // sizes="(max-width: 600px) 480px, 600px"
+        <Image
           alt={title}
+          className="w-full h-full object-cover"
+          src={image}
+          width={192}
+          height={192}
         />
       </div>
     )}
