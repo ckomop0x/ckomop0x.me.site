@@ -90,6 +90,7 @@
     "@graphql-codegen/cli": "5.0.5",
     "@graphql-codegen/client-preset": "4.8.0",
     "@graphql-codegen/introspection": "4.0.3",
+    "@storybook/addon-themes": "^8.6.11",
     "@storybook/nextjs": "8.6.11",
     "@tailwindcss/postcss": "4.0.17",
     "@vitejs/plugin-react": "4.3.4",
