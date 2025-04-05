@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "7.2.13",
+  "version": "7.2.14",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -110,7 +110,7 @@
     "tailwindcss": "4.1.2",
     "ts-graphql-plugin": "4.0.3",
     "tsconfig-paths-webpack-plugin": "4.2.0",
-    "typescript": "5.8.2",
+    "typescript": "5.8.3",
     "vitest": "3.1.1"
   },
   "overrides": {
