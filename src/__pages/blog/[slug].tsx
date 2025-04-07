@@ -1,11 +1,11 @@
-import { NextPage } from 'next';
+import { FC } from 'react';
 
+import DetailItemComponent from '@/components/DetailItem';
+import InnerPageLayout from '@/components/layouts/InnerPageLayout';
+import ContentMapper from '@/components/slices/content/ContentMapper';
+import { detailsPageQuery } from '@/queries/detailPageQuery.gql';
+import { postsPathQuery } from '@/queries/postsPathQuery.gql';
 import { Post } from '@/queries/types/graphql';
-import InnerPageLayout from 'components/layouts/InnerPageLayout';
-import ContentMapper from 'components/slices/content/ContentMapper';
-import DetailItemComponent from 'components/ui/DetailItem';
-import { detailsPageQuery } from 'queries/detailPageQuery.gql';
-import { postsPathQuery } from 'queries/postsPathQuery.gql';
 import {
   BreadcrumbItemType,
   CategoryInterface,
@@ -16,13 +16,13 @@ import {
 import apolloClient from 'utils/api/apollo-client';
 import getItemPath, { IItemPath } from 'utils/queries/getItemPath';
 
-const CATEGORY: CategoryInterface = 'poetry';
+const CATEGORY: CategoryInterface = 'blog';
 
-interface PoetryPostPageProps {
+interface BlogPostPageProps {
   post: Post;
 }
 
-const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
+const BlogPostPage: FC<BlogPostPageProps> = ({ post }) => {
   if (!post?.Content) {
     return (
       <InnerPageLayout
@@ -44,7 +44,7 @@ const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
       href: '/',
     },
     {
-      label: 'Стихи',
+      label: 'Блог',
       href: `/${CATEGORY}`,
     },
     {
@@ -63,9 +63,8 @@ const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
       <DetailItemComponent
         title={title}
         date={date}
-        image={PostImage?.url ?? ''}
-        postType="poetry"
         breadcrumbs={breadcrumbs}
+        image={PostImage?.url ?? ''}
       >
         {Content
           ? Content?.map(
@@ -81,7 +80,7 @@ const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
   );
 };
 
-export default PoetryPostPage;
+export default BlogPostPage;
 
 export async function getStaticProps({
   params,

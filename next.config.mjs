@@ -24,7 +24,12 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'ckme-admin-pr-*.render.com',
+        hostname: 'ckme-admin-pr-*.onrender.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
         port: '',
       },
     ],

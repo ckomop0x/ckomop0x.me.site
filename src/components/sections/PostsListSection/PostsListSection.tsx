@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
+import { CategoryInfo } from '@/components/PostsList/types';
 import { Button } from '@/components/ui/Button/Button';
 import { Post } from '@/types';
-import PostsList from 'components/ui/PostsList';
-import { CategoryInfo } from 'components/ui/PostsList/types';
+import PostsList from 'components/PostsList';
 import { TitleBlock, SubtitleBlock } from 'styles/Typography';
 
 interface PostsListSectionProps {

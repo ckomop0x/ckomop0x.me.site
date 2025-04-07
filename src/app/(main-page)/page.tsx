@@ -1,11 +1,37 @@
-import MainPageLayout from '@/components/layouts/MainPageLayout';
 import Hero from '@/components/sections/HeroSection';
 import PostsListSection from '@/components/sections/PostsListSection';
 import { indexPageQuery } from '@/queries/indexPageQuery.gql';
 import apolloClient from '@/utils/api/apollo-client';
 import getPosts from '@/utils/api/getPosts';
+import { getSEOMetadata } from '@/utils/seo/getSEOMetadata';
 
 export const revalidate = 10; // revalidate at most every 10 sec
+
+export const generateMetadata = async () => {
+  const { data: indexPageResponse } = await apolloClient.query({
+    query: indexPageQuery,
+  });
+
+  const { homePage } = indexPageResponse;
+
+  return getSEOMetadata({
+    title: 'Главная',
+    description: `${homePage.hero.title}. ${homePage.hero.callToAction}`,
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://ckomop0x.me',
+    siteName: 'ckomop0x.me. Личный сайт Павла Клочкова',
+    author: 'Павел Клочков',
+    openGraph: {
+      images: [
+        {
+          url: homePage.hero.image,
+          width: 800,
+          height: 600,
+          alt: `${homePage.hero.title}. ${homePage.hero.callToAction}`,
+        },
+      ],
+    },
+  });
+};
 
 export default async function IndexPage() {
   const { data: indexPageResponse } = await apolloClient.query({
@@ -31,7 +57,7 @@ export default async function IndexPage() {
   ]);
 
   return (
-    <MainPageLayout>
+    <>
       {hero && (
         <Hero
           title={hero.title || ''}
@@ -55,6 +81,6 @@ export default async function IndexPage() {
           blockSubtitle=""
         />
       )}
-    </MainPageLayout>
+    </>
   );
 }

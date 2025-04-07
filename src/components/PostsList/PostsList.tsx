@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import Post from 'components/ui/PostsList/Post';
-import { Post as PostsType } from 'types/index';
-import formatDate from 'utils/dates/formatDate';
+import Post from '@/components/PostsList/Post';
+import { Post as PostsType } from '@/types';
+import formatDate from '@/utils/dates/formatDate';
 
 interface PostsListProps {
   posts: PostsType[];
@@ -25,6 +25,9 @@ const PostsList: FC<PostsListProps> = ({ posts }) => {
           PostImage,
         }) => {
           const image = coverImage?.url || PostImage?.url || '';
+
+          console.log('coverImage', coverImage);
+          // console.log('image', image);
 
           return (
             <Post

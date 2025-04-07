@@ -2,8 +2,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 import { NextPage } from 'next';
 
 import { TitleBlock } from '@/styles';
+import PostsList from 'components/PostsList';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
-import PostsList from 'components/ui/PostsList';
 import { poetryPageQuery } from 'queries/poetryPageQuery.gql';
 import {
   PoetryPage,

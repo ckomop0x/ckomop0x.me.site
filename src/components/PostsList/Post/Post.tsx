@@ -3,8 +3,8 @@ import { FC } from 'react';
 
 import PostContent from './PostContent';
 
+import { CategoryInfo } from '@/components/PostsList/types';
 import { getApiUrl } from '@/utils/api/getApiUrl';
-import { CategoryInfo } from 'components/ui/PostsList/types';
 
 interface PostInterface {
   id: string | null | undefined;

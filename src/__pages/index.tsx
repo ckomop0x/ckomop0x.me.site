@@ -1,10 +1,10 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { NextPage } from 'next';
 
+import { CategoryInfo } from '@/components/PostsList/types';
 import MainPageLayout from '@/components/layouts/MainPageLayout';
 import Hero from '@/components/sections/HeroSection';
 import PostsListSection from '@/components/sections/PostsListSection';
-import { CategoryInfo } from '@/components/ui/PostsList/types';
 import { indexPageQuery } from '@/queries/indexPageQuery.gql';
 import { Post } from '@/types';
 import {

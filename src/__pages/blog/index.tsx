@@ -3,8 +3,8 @@ import { NextPage } from 'next';
 
 import { TitleBlock } from '@/styles';
 import { Post } from '@/types';
+import PostsList from 'components/PostsList';
 import InnerPageLayout from 'components/layouts/InnerPageLayout';
-import PostsList from 'components/ui/PostsList';
 import { blogPageQuery } from 'queries/blogPageQuery.gql';
 import {
   BlogPage,

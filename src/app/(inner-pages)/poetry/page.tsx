@@ -1,5 +1,5 @@
+import PostsList from '@/components/PostsList';
 import InnerPageLayout from '@/components/layouts/InnerPageLayout';
-import PostsList from '@/components/ui/PostsList';
 import { poetryPageQuery } from '@/queries/poetryPageQuery.gql';
 import { TitleBlock } from '@/styles';
 import apolloClient from '@/utils/api/apollo-client';
@@ -7,7 +7,7 @@ import getPosts from '@/utils/api/getPosts';
 
 const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
 
-export const revalidate = 10; // revalidate at most every hour
+export const revalidate = 10;
 
 export default async function PoetryPage() {
   const { data: poetryPageResponse } = await apolloClient.query({
