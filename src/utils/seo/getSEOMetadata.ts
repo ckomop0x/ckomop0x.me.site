@@ -22,12 +22,12 @@ interface SEOOptions {
   // twitterSite?: string;
   // twitterCreator?: string;
   // twitterTitle?: string;
-  author: string;
+  author?: string;
   description: string;
   title: string;
 
-  siteName: string;
-  url: string;
+  siteName?: string;
+  url?: string;
 
   openGraph?: {
     title?: string;
@@ -39,11 +39,11 @@ interface SEOOptions {
 
 export const getSEOMetadata = (options: SEOOptions): Metadata => {
   const {
-    author,
+    author = 'Павел Клочков',
     description,
-    siteName,
+    siteName = 'ckomop0x.me. Личный сайт Павла Клочкова',
     title,
-    url,
+    url = process.env.NEXT_PUBLIC_SITE_URL || 'https://ckomop0x.me',
 
     openGraph,
   } = options;

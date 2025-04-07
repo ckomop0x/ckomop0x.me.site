@@ -1,5 +1,12 @@
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+
 import PostsList from '@/components/PostsList';
-import { poetryPageQuery } from '@/queries/poetryPageQuery.gql';
+import { blogPageQuery } from '@/queries/blogPageQuery.gql';
+import {
+  BlogPage,
+  BlogPageQueryQuery,
+  BlogPageQueryQueryVariables,
+} from '@/queries/types/graphql';
 import { TitleBlock } from '@/styles';
 import apolloClient from '@/utils/api/apollo-client';
 import getPosts from '@/utils/api/getPosts';
@@ -10,12 +17,14 @@ const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-
 export const revalidate = 10;
 
 export const generateMetadata = async () => {
-  const { data: poetryPageResponse } = await apolloClient.query({
-    query: poetryPageQuery,
+  const { data: blogPageResponse } = await apolloClient.query<
+    DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>
+  >({
+    query: blogPageQuery,
   });
 
-  const { poetryPage } = poetryPageResponse;
-  const { posts } = poetryPage;
+  const { blogPage } = blogPageResponse as BlogPageQueryQuery;
+  const { posts } = blogPage as BlogPage;
 
   return getSEOMetadata({
     title: posts.title,
@@ -34,16 +43,18 @@ export const generateMetadata = async () => {
 };
 
 export default async function PoetryPage() {
-  const { data: poetryPageResponse } = await apolloClient.query({
-    query: poetryPageQuery,
+  const { data: blogPageResponse } = await apolloClient.query<
+    DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>
+  >({
+    query: blogPageQuery,
   });
 
-  const { poetryPage } = poetryPageResponse;
-  const { posts } = poetryPage;
+  const { blogPage } = blogPageResponse as BlogPageQueryQuery;
+  const { posts } = blogPage as BlogPage;
 
   const category = posts?.category?.slug || '';
   const limit = posts?.limit;
-  const sort = posts?.sort;
+  const sort = posts?.sort || '';
 
   const postItems = await getPosts({
     category,

@@ -5,7 +5,7 @@ import apolloClient from '@/utils/api/apollo-client';
 import getPosts from '@/utils/api/getPosts';
 import { getSEOMetadata } from '@/utils/seo/getSEOMetadata';
 
-export const revalidate = 10; // revalidate at most every 10 sec
+export const revalidate = 3600;
 
 export const generateMetadata = async () => {
   const { data: indexPageResponse } = await apolloClient.query({
@@ -17,9 +17,6 @@ export const generateMetadata = async () => {
   return getSEOMetadata({
     title: 'Главная',
     description: `${homePage.hero.title}. ${homePage.hero.callToAction}`,
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://ckomop0x.me',
-    siteName: 'ckomop0x.me. Личный сайт Павла Клочкова',
-    author: 'Павел Клочков',
     openGraph: {
       images: [
         {
@@ -44,15 +41,15 @@ export default async function IndexPage() {
   const [blogItems, poetryItems] = await Promise.all([
     getPosts({
       category: blogPosts?.category?.slug || '',
-      limit: blogPosts?.limit || 3,
+      limit: blogPosts?.limit,
       locale: 'ru',
-      sort: blogPosts?.sort || '',
+      sort: blogPosts?.sort,
     }),
     getPosts({
       category: poetryPosts?.category?.slug || '',
-      limit: poetryPosts?.limit || 3,
+      limit: poetryPosts?.limit,
       locale: 'ru',
-      sort: poetryPosts?.sort || '',
+      sort: poetryPosts?.sort,
     }),
   ]);
 
