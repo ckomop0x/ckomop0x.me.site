@@ -20,18 +20,6 @@ export const DetailItemWrapper: FC<DetailItemWrapperProps> = ({
       className={`relative bg-cover bg-center bg-no-repeat min-h-[calc(100vh-130px)] py-10  ${styles.bgImage}`}
       style={styleVars}
     >
-      <style jsx>{`
-        @media (min-width: 700px) {
-          div {
-            background-image: url(${image}?tr=w-1200);
-          }
-        }
-        @media (min-width: 1200px) {
-          div {
-            background-image: url(${image}?tr=w-2000);
-          }
-        }
-      `}</style>
       {children}
     </div>
   );

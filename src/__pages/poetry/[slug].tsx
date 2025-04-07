@@ -24,7 +24,7 @@ interface PoetryPostPageProps {
 
 const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
   if (!post?.Content) {
-    return <InnerPageLayout />;
+    return 'No content available';
   }
 
   const { Content, PostImage, slug, title, date } = post;

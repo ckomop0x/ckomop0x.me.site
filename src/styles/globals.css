@@ -180,7 +180,7 @@
     h3,
     h4,
     h6 {
-      font-family: var(--font-secondary);
+      font-family: var(--font-secondary), serif;
       @apply mb-4 ;
     }
 
@@ -200,7 +200,8 @@
     blockquote,
     cite {
       position: relative;
-      margin: 10px 0 10px 40px;
+      margin: 10px 0 10px 0;
+      padding-left: 20px;
       font-style: italic;
     }
 
@@ -208,7 +209,7 @@
     cite::before {
       content: '';
       position: absolute;
-      left: -24px;
+      left: 0;
       top: 0;
       border-left: 4px solid rgba(50, 50, 50, 0.47);
       height: 100%;
@@ -220,18 +221,10 @@
 
     ul li {
       position: relative;
-      list-style: none;
+      list-style: square;
       margin-bottom: 20px;
-    }
-
-    ul li::before {
-      content: '';
-      position: absolute;
-      left: -20px;
-      width: 4px;
-      top: 0;
-      border-left: 4px solid;
-      height: 100%;
+      margin-left: 20px;
+      color: #5d443c;
     }
   }
 }

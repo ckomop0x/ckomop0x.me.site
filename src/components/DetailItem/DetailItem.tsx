@@ -30,25 +30,23 @@ const DetailItem: FC<DetailItemProps> = ({
   const postDate = formatDate(date);
 
   return (
-    <>
-      <DetailItemWrapper image={image}>
-        <Content>
-          <div className="mb-4">
-            <Breadcrumbs breadcrumbs={breadcrumbs} />
-          </div>
-          <h1>{title}</h1>
+    <DetailItemWrapper image={image}>
+      <Content>
+        <div className="mb-4">
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+        </div>
+        <h1>{title}</h1>
 
-          <div className="text-sm mb-5 text-[#5d443c]/80">
-            Опубликовано: {postDate}
-          </div>
-          <div
-            className={`content-wrapper ${contentClassName ? contentClassName : ''}`}
-          >
-            {children}
-          </div>
-        </Content>
-      </DetailItemWrapper>
-    </>
+        <div className="text-sm mb-5 text-[#5d443c]/80">
+          Опубликовано: {postDate}
+        </div>
+        <div
+          className={`content-wrapper ${contentClassName ? contentClassName : ''}`}
+        >
+          {children}
+        </div>
+      </Content>
+    </DetailItemWrapper>
   );
 };
 
