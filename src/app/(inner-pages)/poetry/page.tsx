@@ -29,12 +29,7 @@ export default async function PoetryPage() {
   });
 
   return (
-    <InnerPageLayout
-      headTitle={posts.title}
-      ogUrl={category}
-      ogDescription={posts.title}
-      twitterCard={posts.subTitle}
-    >
+    <InnerPageLayout>
       <div className="py-10" style={{ minHeight: 'calc(100vh - 130px)' }}>
         <div className="container text-center mx-auto">
           <TitleBlock>{posts.title}</TitleBlock>

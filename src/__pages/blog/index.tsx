@@ -30,12 +30,7 @@ const BlogPageComponent: NextPage<BlogPageProps> = ({
   category,
 }) => {
   return (
-    <InnerPageLayout
-      headTitle={title}
-      ogUrl={category}
-      ogDescription={title}
-      twitterCard={subTitle}
-    >
+    <InnerPageLayout>
       <div className="py-10" style={{ minHeight: 'calc(100vh - 130px)' }}>
         <div className="container text-center mx-auto">
           <TitleBlock>

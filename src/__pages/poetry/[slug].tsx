@@ -24,15 +24,7 @@ interface PoetryPostPageProps {
 
 const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
   if (!post?.Content) {
-    return (
-      <InnerPageLayout
-        headTitle="Пост не найден"
-        ogUrl=""
-        ogImage=""
-        ogDescription=""
-        twitterCard=""
-      />
-    );
+    return <InnerPageLayout />;
   }
 
   const { Content, PostImage, slug, title, date } = post;
@@ -53,13 +45,7 @@ const PoetryPostPage: NextPage<PoetryPostPageProps> = ({ post }) => {
   ];
 
   return (
-    <InnerPageLayout
-      headTitle={title}
-      ogUrl={ogUrl}
-      ogImage={socialImage}
-      ogDescription={title}
-      twitterCard={title}
-    >
+    <InnerPageLayout>
       <DetailItemComponent
         title={title}
         date={date}
