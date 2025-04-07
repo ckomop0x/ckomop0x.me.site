@@ -1,8 +1,8 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-const isDev = process?.env?.NODE_ENV === 'development';
-const graphQLUrl = isDev
-  ? process.env.NEXT_PUBLIC_GRAPHQL_URL_LOCAL
-  : process.env.NEXT_PUBLIC_GRAPHQL_URL;
+
+import { getGraphQLUrl } from '@/utils/api/getGraphQLUrl';
+
+const graphQLUrl = getGraphQLUrl();
 
 const apolloClient = new ApolloClient({
   uri: graphQLUrl,

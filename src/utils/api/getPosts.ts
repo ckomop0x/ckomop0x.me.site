@@ -3,11 +3,16 @@ import apolloClient from 'utils/api/apollo-client';
 
 interface GetPostsProps {
   category: string;
-  limit: number;
+  limit?: number;
   locale: string;
-  sort: string;
+  sort?: string;
 }
-const getPosts = async ({ category, limit, locale, sort }: GetPostsProps) => {
+const getPosts = async ({
+  category,
+  limit = 3,
+  locale,
+  sort = '',
+}: GetPostsProps) => {
   const blogPostsResponse = await apolloClient.query({
     query: postsPageQuery,
     variables: {
