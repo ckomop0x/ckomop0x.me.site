@@ -37,11 +37,6 @@ const nextConfig = {
         hostname: 'market-assets.strapi.io',
         port: '',
       },
-      {
-        protocol: 'https',
-        hostname: '*.cloudinary.com',
-        port: '',
-      },
     ],
   },
 };
