@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-import { getGraphQLUrl } from '@/utils/api/getApiUrl';
+import { getGraphQLUrl } from '@/utils/api/getGraphQLUrl';
 
 const graphQLUrl = getGraphQLUrl();
 

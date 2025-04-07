@@ -8,20 +8,6 @@ interface OpenGraphImage {
 }
 
 interface SEOOptions {
-  // author?: string;
-  // articleAuthor?: string;
-  // headTitle?: string | null;
-  // googleSiteVerification?: string;
-  // fbAppId?: string;
-  // ogImage?: string;
-  // ogType?: string;
-  // ogTitle?: string;
-  // ogUrl?: string;
-  // ogDescription?: string | null;
-  // twitterCard?: string | null;
-  // twitterSite?: string;
-  // twitterCreator?: string;
-  // twitterTitle?: string;
   author?: string;
   description: string;
   title: string;
