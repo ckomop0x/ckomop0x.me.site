@@ -7,14 +7,10 @@ export interface BaseLayoutProps {
 }
 
 const BaseLayout: FC<PropsWithChildren<BaseLayoutProps>> = ({ children }) => (
-  <BaseLayoutWrapper>
+  <div className="min-h-screen">
     {children}
     <Footer projectTitle="Павел Клочков" />
-  </BaseLayoutWrapper>
-);
-
-export const BaseLayoutWrapper: FC<PropsWithChildren> = ({ children }) => (
-  <div className="min-h-screen">{children}</div>
+  </div>
 );
 
 export default BaseLayout;
