@@ -26,9 +26,6 @@ const PostsList: FC<PostsListProps> = ({ posts }) => {
         }) => {
           const image = coverImage?.url || PostImage?.url || '';
 
-          console.log('coverImage', coverImage);
-          // console.log('image', image);
-
           return (
             <Post
               key={documentId}
