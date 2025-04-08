@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "8.0.6",
+  "version": "8.0.7",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -49,7 +49,7 @@
     ]
   },
   "dependencies": {
-    "@apollo/client": "3.13.5",
+    "@apollo/client": "3.13.6",
     "@apollo/rover": "0.28.1",
     "@radix-ui/react-slot": "^1.1.2",
     "@testing-library/jest-dom": "6.6.3",
