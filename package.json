@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "8.0.56",
+  "version": "9.0.0",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -21,7 +21,7 @@
   "type": "module",
   "scripts": {
     "predev": "npm run gen",
-    "dev": "next dev -p 8000",
+    "dev": "next dev --turbopack -p 8000",
     "build": "next build",
     "postbuild": "next-sitemap --config next-sitemap.config.mjs",
     "start": "next start",
@@ -63,9 +63,9 @@
     "graphql": "^16.8.1",
     "html-react-parser": "^5.1.10",
     "lucide-react": "^0.511.0",
-    "next": "^14.2.3",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0",
+    "next": "15.3.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "react-markdown": "^10.0.0",
     "tailwind-merge": "^3.0.0",
     "tailwindcss-animate": "^1.0.7"
@@ -91,7 +91,7 @@
     "dotenv": "16.5.0",
     "dotenv-cli": "8.0.0",
     "eslint": "9.26.0",
-    "eslint-config-next": "14.2.29",
+    "eslint-config-next": "15.3.3",
     "eslint-config-prettier": "10.1.5",
     "eslint-import-resolver-typescript": "4.4.2",
     "eslint-plugin-import": "2.31.0",
@@ -115,6 +115,7 @@
     "vitest": "3.2.0"
   },
   "overrides": {
-    "eslint": "$eslint"
+    "eslint": "$eslint",
+    "@types/react": "19.1.6"
   }
 }
