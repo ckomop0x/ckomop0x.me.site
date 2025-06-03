@@ -24,11 +24,10 @@ export async function generateStaticParams() {
   return data.posts.map((post: any) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const params = await props.params;
   const { data } = await apolloClient.query({
     query: detailsPageQuery,
     variables: { category: CATEGORY, slug: params.slug },
@@ -57,11 +56,10 @@ export async function generateMetadata({
   });
 }
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: { slug: string };
+export default async function BlogPostPage(props: {
+  params: Promise<{ slug: string }>;
 }) {
+  const params = await props.params;
   const { data } = await apolloClient.query({
     query: detailsPageQuery,
     variables: { category: CATEGORY, slug: params.slug },

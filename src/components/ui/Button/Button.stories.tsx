@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import NextLink from 'next/link';
 
 import { Button } from './Button';
 
@@ -72,6 +73,6 @@ export const Icon: Story = {
 export const AsChild: Story = {
   args: {
     asChild: true,
-    children: <a href="#">Link as Button</a>,
+    children: <NextLink href="/">Link as Button</NextLink>,
   },
 };
