@@ -15,6 +15,9 @@ export const Default: Story = {
     blockTitle: 'blockTitle',
     blockSubtitle: 'blockSubtitle',
     posts: [],
-    categoryInfo: {},
+    categoryInfo: {
+      title: 'Category Title',
+      slug: '/category-slug',
+    },
   },
 };
