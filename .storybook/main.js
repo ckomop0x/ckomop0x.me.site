@@ -1,11 +1,14 @@
-const path = require('path');
-module.exports = {
+import path from 'path';
+
+export default {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-themes'
+    '@storybook/addon-themes',
+    '@storybook/addon-docs',
   ],
+
   webpackFinal: async config => {
     return {
       ...config,
@@ -30,11 +33,9 @@ module.exports = {
       },
     };
   },
+
   framework: {
     name: '@storybook/nextjs',
     options: {},
-  },
-  docs: {
-    autodocs: true,
   },
 };

@@ -25,3 +25,4 @@ export const decorators = [withThemeByClassName({
     },
     defaultTheme: 'light',
 })];
+export const tags = ['autodocs'];
