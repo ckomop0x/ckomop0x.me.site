@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "9.0.10",
+  "version": "9.0.11",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -77,7 +77,7 @@
     "@graphql-codegen/cli": "5.0.7",
     "@graphql-codegen/client-preset": "4.8.2",
     "@graphql-codegen/introspection": "4.0.3",
-    "@storybook/addon-docs": "^9.0.6",
+    "@storybook/addon-docs": "9.0.6",
     "@storybook/addon-links": "9.0.6",
     "@storybook/addon-themes": "9.0.6",
     "@storybook/nextjs": "9.0.6",
