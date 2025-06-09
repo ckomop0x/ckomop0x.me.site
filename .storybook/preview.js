@@ -1,6 +1,6 @@
 import '../src/styles/globals.css';
 
-import { withThemeByClassName } from "@storybook/addon-themes";
+import { withThemeByClassName } from '@storybook/addon-themes';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -17,12 +17,14 @@ export const parameters = {
   },
 };
 
-export const decorators = [withThemeByClassName({
+export const decorators = [
+  withThemeByClassName({
     themes: {
-        // nameOfTheme: 'classNameForTheme',
-        light: '',
-        dark: 'dark',
+      // nameOfTheme: 'classNameForTheme',
+      light: '',
+      dark: 'dark',
     },
     defaultTheme: 'light',
-})];
+  }),
+];
 export const tags = ['autodocs'];
