@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "9.0.18",
+  "version": "9.0.19",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -101,7 +101,7 @@
     "globals": "16.2.0",
     "husky": "9.1.7",
     "jsdom": "26.1.0",
-    "lint-staged": "16.1.0",
+    "lint-staged": "16.1.1",
     "next-sitemap": "4.2.3",
     "postcss": "8.5.4",
     "prettier": "3.5.3",
