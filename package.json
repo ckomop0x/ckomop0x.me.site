@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "9.0.37",
+  "version": "9.0.38",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -94,7 +94,7 @@
     "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-prefer-arrow": "1.2.3",
-    "eslint-plugin-prettier": "5.5.0",
+    "eslint-plugin-prettier": "5.5.1",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-storybook": "9.0.12",
