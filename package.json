@@ -20,7 +20,7 @@
   },
   "type": "module",
   "scripts": {
-    "predev": "npm run gen",
+    "predev": "pnpm run gen",
     "dev": "next dev --turbopack -p 8000",
     "build": "next build",
     "postbuild": "next-sitemap --config next-sitemap.config.mjs",
@@ -33,7 +33,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky",
-    "gen": "npm run introspect && npm run codegen",
+    "gen": "pnpm run introspect && pnpm run codegen",
     "introspect": "node scripts/introspect.js",
     "graphql:gen-types": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/queries/**/*.gql.ts' --tagName=gql --addTypename types",
     "rover": "rover",
