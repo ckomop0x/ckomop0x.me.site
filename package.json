@@ -118,5 +118,6 @@
     "eslint": "$eslint",
     "@types/react": "19.1.8",
     "storybook": "$storybook"
-  }
+  },
+  "packageManager": "pnpm@10"
 }
