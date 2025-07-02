@@ -119,5 +119,5 @@
     "@types/react": "19.1.8",
     "storybook": "$storybook"
   },
-  "packageManager": "pnpm@10"
+  "packageManager": "pnpm@10.x.x"
 }
