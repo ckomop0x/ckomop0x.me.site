@@ -1,2 +1,2 @@
-npm run check-ts # run the "check-ts" package script
-npm run test:coverage # Test the project
+pnpm run check-ts # run the "check-ts" package script
+pnpm run test:coverage # Test the project

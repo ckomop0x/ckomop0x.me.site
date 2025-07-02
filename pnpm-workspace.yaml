@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - '@apollo/rover'
+  - '@tailwindcss/oxide'
+  - core-js-pure
+  - esbuild
+  - sharp
+  - unrs-resolver
