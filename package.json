@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "10.0.18",
+  "version": "10.0.19",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -64,7 +64,7 @@
     "graphql": "^16.8.1",
     "html-react-parser": "^5.1.10",
     "lucide-react": "^0.525.0",
-    "next": "15.3.5",
+    "next": "15.4.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-markdown": "^10.0.0",
@@ -91,7 +91,7 @@
     "dotenv": "17.2.0",
     "dotenv-cli": "8.0.0",
     "eslint": "9.31.0",
-    "eslint-config-next": "15.3.5",
+    "eslint-config-next": "15.4.1",
     "eslint-config-prettier": "10.1.5",
     "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import": "2.32.0",
