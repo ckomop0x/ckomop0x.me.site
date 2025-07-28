@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
-import { globalIgnores } from 'eslint/config';
 import _import from 'eslint-plugin-import';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import eslintConfigPrettier from 'eslint-config-prettier/flat';
@@ -23,7 +22,7 @@ const compat = new FlatCompat({
 });
 
 export default tseslint.config([
-  globalIgnores(['**/next-env.d.ts', 'src/queries/types/*.ts']),
+  { ignores: ['**/next-env.d.ts', 'src/queries/types/*.ts'] },
   eslintConfigPrettier,
   eslintPluginPrettierRecommended,
   reactPlugin.configs.flat.recommended,
