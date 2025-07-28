@@ -4,13 +4,14 @@ import { fileURLToPath } from 'node:url';
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
 import _import from 'eslint-plugin-import';
-import prettier from 'eslint-plugin-prettier';
-import react from 'eslint-plugin-react';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import eslintConfigPrettier from 'eslint-config-prettier/flat';
+import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,33 +21,24 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 });
 
-export default [
-  {
-    ignores: [
-      '**/jest-preprocess.js',
-      '**/jest.config.js',
-      '**/.eslintrc.js',
-      '**/loadershim.js',
-      '**/next-env.d.ts',
-      'src/queries/types/*.ts',
-    ],
-  },
+export default tseslint.config([
+  { ignores: ['**/next-env.d.ts', 'src/queries/types/*.ts'] },
+  eslintConfigPrettier,
+  eslintPluginPrettierRecommended,
+  reactPlugin.configs.flat.recommended,
+  reactPlugin.configs.flat['jsx-runtime'],
+  jsxA11y.flatConfigs.recommended,
   ...fixupConfigRules(
     compat.extends(
-      'plugin:@typescript-eslint/recommended',
-      'plugin:react/recommended',
-      'plugin:prettier/recommended',
       'plugin:@next/next/recommended',
       'plugin:storybook/recommended',
-      'plugin:jsx-a11y/recommended',
     ),
   ),
   {
+    files: ['**/*.{js,ts,tsx,jsx}'],
     plugins: {
-      '@typescript-eslint': fixupPluginRules(typescriptEslint),
+      '@typescript-eslint': fixupPluginRules(tseslint.plugin),
       import: fixupPluginRules(_import),
-      prettier: fixupPluginRules(prettier),
-      react: fixupPluginRules(react),
       'react-hooks': fixupPluginRules(reactHooks),
     },
 
@@ -55,7 +47,7 @@ export default [
         ...globals.browser,
       },
 
-      parser: tsParser,
+      parser: tseslint.parser,
       ecmaVersion: 5,
       sourceType: 'module',
 
@@ -257,4 +249,4 @@ export default [
       'react-hooks/exhaustive-deps': 'warn',
     },
   },
-];
+]);
