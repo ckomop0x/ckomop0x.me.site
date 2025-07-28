@@ -35,7 +35,7 @@ export default tseslint.config([
     ),
   ),
   {
-    files: ['**/*.{js,ts,tsx,json,md}'],
+    files: ['**/*.{js,ts,tsx,jsx}'],
     plugins: {
       '@typescript-eslint': fixupPluginRules(tseslint.plugin),
       import: fixupPluginRules(_import),
