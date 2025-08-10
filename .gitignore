@@ -27,7 +27,6 @@ tsconfig.tsbuildinfo
 out
 graphql.schema.json
 .graphqlconfig
-schema.graphql
 schema.json
 .swc
 
