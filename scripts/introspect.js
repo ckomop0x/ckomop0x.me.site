@@ -6,8 +6,6 @@ import dotenv from 'dotenv';
 // Load .env file from root
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
-// const endpoint = `${process.env.NEXT_PUBLIC_URL_LOCAL}/graphql`;
-
 const schemaUrl = dotenv.config().parsed?.NEXT_PUBLIC_URL_LOCAL
   ? `${dotenv.config().parsed.NEXT_PUBLIC_URL_LOCAL}/graphql`
   : '';
