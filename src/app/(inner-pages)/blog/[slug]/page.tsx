@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
 
 import DetailItemComponent from '@/components/DetailItem';
-import InnerPageLayout from '@/components/layouts/InnerPageLayout';
 import ContentMapper from '@/components/slices/content/ContentMapper';
+import { Post, PostContentDynamicZone } from '@/queries/__generated__/graphql';
 import { detailsPageQuery } from '@/queries/detailPageQuery.gql';
 import { postsPathQuery } from '@/queries/postsPathQuery.gql';
-import { Post } from '@/queries/types/graphql';
 import apolloClient from '@/utils/api/apollo-client';
 import { getSEOMetadata } from '@/utils/seo/getSEOMetadata';
 
@@ -21,7 +20,7 @@ export async function generateStaticParams() {
     },
   });
 
-  return data.posts.map((post: any) => ({ slug: post.slug }));
+  return data.posts.map((post: Post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata(props: {
@@ -83,10 +82,11 @@ export default async function BlogPostPage(props: {
       breadcrumbs={breadcrumbs}
       image={PostImage?.url ?? ''}
     >
-      {Content.map((ContentSlice: any, index: number) =>
-        ContentSlice ? (
-          <ContentMapper key={index} Content={ContentSlice} />
-        ) : null,
+      {Content.map(
+        (ContentSlice: PostContentDynamicZone | null, index: number) =>
+          ContentSlice ? (
+            <ContentMapper key={index} Content={ContentSlice} />
+          ) : null,
       )}
     </DetailItemComponent>
   );

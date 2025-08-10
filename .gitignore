@@ -22,12 +22,8 @@ __generated__
 storybook-static/
 tsconfig.tsbuildinfo
 
-# Local Netlify folder
-.netlify
 out
-graphql.schema.json
 .graphqlconfig
-schema.graphql
 schema.json
 .swc
 

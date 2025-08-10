@@ -6,15 +6,17 @@ import dotenv from 'dotenv';
 // Load .env file from root
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
-const endpoint = `${process.env.NEXT_PUBLIC_URL_LOCAL}/graphql`;
+const schemaUrl = dotenv.config().parsed?.NEXT_PUBLIC_URL_LOCAL
+  ? `${dotenv.config().parsed.NEXT_PUBLIC_URL_LOCAL}/graphql`
+  : '';
 
-if (!endpoint) {
+if (!schemaUrl) {
   console.error('❌ NEXT_PUBLIC_URL_LOCAL is not defined in .env');
   process.exit(1);
 }
 
 exec(
-  `rover graph introspect ${endpoint} > schema.graphql`,
+  `rover graph introspect ${schemaUrl} > schema.graphql`,
   (err, stdout, stderr) => {
     if (err) {
       console.error(`❌ Error: ${stderr}`);

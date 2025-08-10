@@ -90,6 +90,9 @@ importers:
       '@graphql-codegen/introspection':
         specifier: 4.0.3
         version: 4.0.3(graphql@16.11.0)
+      '@next/eslint-plugin-next':
+        specifier: ^15.4.6
+        version: 15.4.6
       '@storybook/addon-docs':
         specifier: 9.0.18
         version: 9.0.18(@types/react@19.1.8)(storybook@9.0.18(@testing-library/dom@10.4.1)(prettier@3.6.2))
@@ -102,6 +105,9 @@ importers:
       '@storybook/nextjs':
         specifier: 9.0.18
         version: 9.0.18(esbuild@0.25.8)(next@15.4.3(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(storybook@9.0.18(@testing-library/dom@10.4.1)(prettier@3.6.2))(type-fest@2.19.0)(typescript@5.9.2)(webpack-hot-middleware@2.26.1)(webpack@5.101.0(esbuild@0.25.8))
+      '@stylistic/eslint-plugin':
+        specifier: ^5.2.3
+        version: 5.2.3(eslint@9.32.0(jiti@2.5.1))
       '@tailwindcss/postcss':
         specifier: 4.1.11
         version: 4.1.11
@@ -1547,6 +1553,9 @@ packages:
   '@next/eslint-plugin-next@15.4.3':
     resolution: {integrity: sha512-wYYbP29uZlm9lqD1C6HDgW9WNNt6AlTogYKYpDyATs0QrKYIv/rPueoIDRH6qttXGCe3zNrb7hxfQx4w8OSkLA==}
 
+  '@next/eslint-plugin-next@15.4.6':
+    resolution: {integrity: sha512-2NOu3ln+BTcpnbIDuxx6MNq+pRrCyey4WSXGaJIyt0D2TYicHeO9QrUENNjcf673n3B1s7hsiV5xBYRCK1Q8kA==}
+
   '@next/swc-darwin-arm64@15.4.3':
     resolution: {integrity: sha512-YAhZWKeEYY7LHQJiQ8fe3Y6ymfcDcTn7rDC8PDu/pdeIl1Z2LHD4uyPNuQUGCEQT//MSNv6oZCeQzZfTCKZv+A==}
     engines: {node: '>= 10'}
@@ -1878,6 +1887,12 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  '@stylistic/eslint-plugin@5.2.3':
+    resolution: {integrity: sha512-oY7GVkJGVMI5benlBDCaRrSC1qPasafyv5dOBLLv5MTilMGnErKhO6ziEfodDDIZbo5QxPUNW360VudJOFODMw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: '>=9.0.0'
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -7990,6 +8005,10 @@ snapshots:
     dependencies:
       fast-glob: 3.3.1
 
+  '@next/eslint-plugin-next@15.4.6':
+    dependencies:
+      fast-glob: 3.3.1
+
   '@next/swc-darwin-arm64@15.4.3':
     optional: true
 
@@ -8313,6 +8332,16 @@ snapshots:
       storybook: 9.0.18(@testing-library/dom@10.4.1)(prettier@3.6.2)
     optionalDependencies:
       typescript: 5.9.2
+
+  '@stylistic/eslint-plugin@5.2.3(eslint@9.32.0(jiti@2.5.1))':
+    dependencies:
+      '@eslint-community/eslint-utils': 4.7.0(eslint@9.32.0(jiti@2.5.1))
+      '@typescript-eslint/types': 8.38.0
+      eslint: 9.32.0(jiti@2.5.1)
+      eslint-visitor-keys: 4.2.1
+      espree: 10.4.0
+      estraverse: 5.3.0
+      picomatch: 4.0.3
 
   '@swc/helpers@0.5.15':
     dependencies:

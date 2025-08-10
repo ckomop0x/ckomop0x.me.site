@@ -1,13 +1,14 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, ReactNode } from 'react';
 
 import Footer from '@/components/ui/Footer';
 
 export interface BaseLayoutProps {
   className?: string;
+  children?: ReactNode;
 }
 
-const BaseLayout: FC<PropsWithChildren<BaseLayoutProps>> = ({ children }) => (
-  <div className="min-h-screen">
+const BaseLayout: FC<BaseLayoutProps> = ({ children, className }) => (
+  <div className={`min-h-screen ${className ?? ''}`}>
     {children}
     <Footer projectTitle="Павел Клочков" />
   </div>

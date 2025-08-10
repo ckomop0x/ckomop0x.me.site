@@ -1,16 +1,11 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
-import * as dotenv from 'dotenv';
-
-const schemaUrl = dotenv.config().parsed?.NEXT_PUBLIC_URL_LOCAL
-  ? `${dotenv.config().parsed.NEXT_PUBLIC_URL_LOCAL}/graphql`
-  : '';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: schemaUrl,
+  schema: './schema.graphql',
   documents: 'src/queries/**/*.gql.ts',
   generates: {
-    'src/queries/types/': {
+    'src/queries/__generated__/': {
       preset: 'client',
       plugins: [],
     },

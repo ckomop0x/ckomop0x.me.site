@@ -1,12 +1,12 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 
 import PostsList from '@/components/PostsList';
-import { blogPageQuery } from '@/queries/blogPageQuery.gql';
 import {
   BlogPage,
   BlogPageQueryQuery,
   BlogPageQueryQueryVariables,
-} from '@/queries/types/graphql';
+} from '@/queries/__generated__/graphql';
+import { blogPageQuery } from '@/queries/blogPageQuery.gql';
 import { TitleBlock } from '@/styles';
 import apolloClient from '@/utils/api/apollo-client';
 import getPosts from '@/utils/api/getPosts';
