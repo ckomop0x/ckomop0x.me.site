@@ -29,4 +29,4 @@ export const PostDate: FC<PostDateProps> = ({ publicationDate }) => {
       <span className="block">{publicationYear}</span>
     </div>
   );
-}
+};

@@ -42,6 +42,6 @@ const PostsList: FC<PostsListProps> = ({ posts }) => {
       )}
     </div>
   );
-}
+};
 
 export default PostsList;

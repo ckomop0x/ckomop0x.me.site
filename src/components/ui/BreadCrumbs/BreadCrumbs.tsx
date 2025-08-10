@@ -22,12 +22,12 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
           <Fragment key={index}>
             <BreadcrumbItem>
               {breadcrumb.href ? (
-                    <BreadcrumbLink href={breadcrumb.href}>
-                      {breadcrumb.label}
-                    </BreadcrumbLink>
-                  ) : (
-                    <BreadcrumbPage>{breadcrumb.label}</BreadcrumbPage>
-                  )}
+                <BreadcrumbLink href={breadcrumb.href}>
+                  {breadcrumb.label}
+                </BreadcrumbLink>
+              ) : (
+                <BreadcrumbPage>{breadcrumb.label}</BreadcrumbPage>
+              )}
             </BreadcrumbItem>
             {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
           </Fragment>
@@ -35,4 +35,4 @@ export const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
       </BreadcrumbList>
     </Breadcrumb>
   );
-}
+};

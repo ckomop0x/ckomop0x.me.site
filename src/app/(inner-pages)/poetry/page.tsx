@@ -31,7 +31,7 @@ export const generateMetadata = async () => {
       ],
     },
   });
-}
+};
 
 export default async function PoetryPage() {
   const { data: poetryPageResponse } = await apolloClient.query({
@@ -58,10 +58,10 @@ export default async function PoetryPage() {
         <TitleBlock>{posts.title}</TitleBlock>
         <p>{posts.subTitle}</p>
         {postItems?.length > 0 ? (
-              <PostsList posts={postItems} />
-            ) : (
-              EMPTY_PAGE_MESSAGE
-            )}
+          <PostsList posts={postItems} />
+        ) : (
+          EMPTY_PAGE_MESSAGE
+        )}
       </div>
     </div>
   );

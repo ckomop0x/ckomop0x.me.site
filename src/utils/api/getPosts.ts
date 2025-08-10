@@ -24,6 +24,6 @@ const getPosts = async ({
   });
 
   return blogPostsResponse.data.posts || [];
-}
+};
 
 export default getPosts;

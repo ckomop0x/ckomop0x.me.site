@@ -25,6 +25,6 @@ const Footer: FC<FooterProps> = ({ projectTitle = '' }) => {
       <p className="text-center text-[12px]">v{projectConfig.version}</p>
     </footer>
   );
-}
+};
 
 export default Footer;

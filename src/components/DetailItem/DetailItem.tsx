@@ -38,9 +38,7 @@ const DetailItem: FC<DetailItemProps> = ({
         <h1>{title}</h1>
 
         <div className="text-sm mb-5 text-[#5d443c]/80">
-          Опубликовано: 
-{' '}
-{postDate}
+          Опубликовано: {postDate}
         </div>
         <div
           className={`content-wrapper ${contentClassName ? contentClassName : ''}`}
@@ -50,6 +48,6 @@ const DetailItem: FC<DetailItemProps> = ({
       </Content>
     </DetailItemWrapper>
   );
-}
+};
 
 export default DetailItem;

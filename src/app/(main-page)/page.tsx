@@ -28,7 +28,7 @@ export const generateMetadata = async () => {
       ],
     },
   });
-}
+};
 
 export default async function IndexPage() {
   const { data: indexPageResponse } = await apolloClient.query({
