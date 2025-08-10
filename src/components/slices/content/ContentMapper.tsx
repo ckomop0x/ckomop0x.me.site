@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
 import RichTextContent from 'components/slices/content/RichTextContent/RichTextContent';
-import { DetailsPageQuery_posts_data_attributes_Content } from 'queries/types/DetailsPageQuery';
+import { PostContentDynamicZone } from 'queries/__generated__/graphql';
 
 interface ContentMapperProps {
-  Content: DetailsPageQuery_posts_data_attributes_Content;
+  Content: PostContentDynamicZone;
 }
 
 const ContentMapper: FC<ContentMapperProps> = ({ Content }) => (

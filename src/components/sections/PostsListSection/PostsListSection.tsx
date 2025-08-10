@@ -27,7 +27,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
       <div className="text-center">
         <PostsList posts={posts} />
         <Link href={categoryInfo?.slug || ''} className="inline-block">
-          <Button>Перейти в {categoryInfo?.title || ''}</Button>
+          <Button>Перейти в{categoryInfo?.title || ''}</Button>
         </Link>
       </div>
     </div>

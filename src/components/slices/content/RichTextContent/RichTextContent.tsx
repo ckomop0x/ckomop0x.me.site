@@ -2,7 +2,7 @@ import { FC } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 interface RichTextContentProps {
-  richText: string | null;
+  richText: string | null | undefined;
 }
 
 const RichTextContent: FC<RichTextContentProps> = ({ richText }) => (

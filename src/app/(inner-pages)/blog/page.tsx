@@ -1,12 +1,12 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 
 import PostsList from '@/components/PostsList';
-import { blogPageQuery } from '@/queries/blogPageQuery.gql';
 import {
   BlogPage,
   BlogPageQueryQuery,
   BlogPageQueryQueryVariables,
-} from '@/queries/types/graphql';
+} from '@/queries/__generated__/graphql';
+import { blogPageQuery } from '@/queries/blogPageQuery.gql';
 import { TitleBlock } from '@/styles';
 import apolloClient from '@/utils/api/apollo-client';
 import getPosts from '@/utils/api/getPosts';
@@ -40,7 +40,7 @@ export const generateMetadata = async () => {
       ],
     },
   });
-};
+}
 
 export default async function PoetryPage() {
   const { data: blogPageResponse } = await apolloClient.query<
@@ -69,10 +69,10 @@ export default async function PoetryPage() {
         <TitleBlock>{posts.title}</TitleBlock>
         <p>{posts.subTitle}</p>
         {postItems?.length > 0 ? (
-          <PostsList posts={postItems} />
-        ) : (
-          EMPTY_PAGE_MESSAGE
-        )}
+              <PostsList posts={postItems} />
+            ) : (
+              EMPTY_PAGE_MESSAGE
+            )}
       </div>
     </div>
   );

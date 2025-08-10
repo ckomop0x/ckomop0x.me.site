@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { type FC } from 'react';
 
 interface PostDateProps {
   publicationDate: string;
@@ -29,4 +29,4 @@ export const PostDate: FC<PostDateProps> = ({ publicationDate }) => {
       <span className="block">{publicationYear}</span>
     </div>
   );
-};
+}

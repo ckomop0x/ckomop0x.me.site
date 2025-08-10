@@ -1,9 +1,9 @@
-import { describe, it, expect, vi, afterEach } from 'vitest';
+import { describe, it, expect, vi, afterEach } from 'vitest'
 
-import { getSEOMetadata } from './getSEOMetadata';
+import { getSEOMetadata } from './getSEOMetadata'
 
 afterEach(() => {
-  vi.unstubAllEnvs();
+  vi.unstubAllEnvs()
 });
 
 describe('utils/getSEOMetadata', () => {
@@ -11,7 +11,7 @@ describe('utils/getSEOMetadata', () => {
     const meta = getSEOMetadata({
       title: 'Test Title',
       description: 'Test Description',
-    });
+    })
 
     expect(meta).toEqual({
       title: 'Test Title',
@@ -25,18 +25,18 @@ describe('utils/getSEOMetadata', () => {
         siteName: 'ckomop0x.me. Личный сайт Павла Клочкова',
         images: [{ url: 'https://example.com/og.png' }],
       },
-    });
+    })
   });
 
   it('respects env override for site URL', () => {
-    vi.stubEnv('NEXT_PUBLIC_SITE_URL', 'https://env-url.com');
+    vi.stubEnv('NEXT_PUBLIC_SITE_URL', 'https://env-url.com')
 
     const meta = getSEOMetadata({
       title: 'With Env',
       description: 'From Env',
-    });
+    })
 
-    expect(meta.openGraph?.url).toBe('https://env-url.com');
+    expect(meta.openGraph?.url).toBe('https://env-url.com')
   });
 
   it('merges custom openGraph values', () => {
@@ -48,12 +48,12 @@ describe('utils/getSEOMetadata', () => {
         url: 'https://custom.com',
         images: [{ url: 'https://custom.com/img.png', alt: 'alt' }],
       },
-    });
+    })
 
-    expect(meta.openGraph?.title).toBe('OG Title');
-    expect(meta.openGraph?.url).toBe('https://custom.com');
+    expect(meta.openGraph?.title).toBe('OG Title')
+    expect(meta.openGraph?.url).toBe('https://custom.com')
     expect(meta.openGraph?.images).toEqual([
       { url: 'https://custom.com/img.png', alt: 'alt' },
-    ]);
+    ])
   });
-});
+})

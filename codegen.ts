@@ -10,7 +10,7 @@ const config: CodegenConfig = {
   schema: schemaUrl,
   documents: 'src/queries/**/*.gql.ts',
   generates: {
-    'src/queries/types/': {
+    'src/queries/__generated__/': {
       preset: 'client',
       plugins: [],
     },
