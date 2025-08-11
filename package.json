@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "10.0.39",
+  "version": "10.0.40",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -78,12 +78,12 @@
     "@graphql-codegen/cli": "5.0.7",
     "@graphql-codegen/client-preset": "4.8.3",
     "@graphql-codegen/introspection": "4.0.3",
-    "@next/eslint-plugin-next": "^15.4.6",
+    "@next/eslint-plugin-next": "15.4.6",
     "@storybook/addon-docs": "9.0.18",
     "@storybook/addon-links": "9.0.18",
     "@storybook/addon-themes": "9.0.18",
     "@storybook/nextjs": "9.0.18",
-    "@stylistic/eslint-plugin": "^5.2.3",
+    "@stylistic/eslint-plugin": "5.2.3",
     "@tailwindcss/postcss": "4.1.11",
     "@types/node": "24.2.1",
     "@types/react": "19.1.8",
@@ -97,7 +97,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-prettier": "5.5.4",
     "eslint-plugin-react": "7.37.5",
@@ -115,7 +115,7 @@
     "ts-graphql-plugin": "4.0.3",
     "tsconfig-paths-webpack-plugin": "4.2.0",
     "typescript": "5.9.2",
-    "typescript-eslint": "^8.38.0",
+    "typescript-eslint": "8.38.0",
     "vitest": "3.2.4"
   },
   "overrides": {
