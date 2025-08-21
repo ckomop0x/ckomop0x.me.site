@@ -1,5 +1,5 @@
 import PostsList from '@/components/PostsList';
-import Pagination from '@/components/ui/Pagination';
+import { PaginationNavigation } from '@/components/ui/Pagination';
 import { poetryPageQuery } from '@/queries/poetryPageQuery.gql';
 import { TitleBlock } from '@/styles';
 import apolloClient from '@/utils/api/apollo-client';
@@ -69,20 +69,9 @@ export default async function PoetryPage({
         {postItems?.length > 0 ? (
           <>
             <PostsList posts={postItems} />
-            <Pagination
+            <PaginationNavigation
               currentPage={pagination.page}
               totalPages={pagination.pageCount}
-              onPageChange={page => {
-                if (typeof window !== 'undefined') {
-                  const url = new URL(window.location.href);
-                  if (page === 1) {
-                    url.searchParams.delete('page');
-                  } else {
-                    url.searchParams.set('page', page.toString());
-                  }
-                  window.location.href = url.toString();
-                }
-              }}
             />
           </>
         ) : (
