@@ -1,8 +1,9 @@
 import PostsList from '@/components/PostsList';
+import { PaginationNavigation } from '@/components/ui/Pagination';
 import { poetryPageQuery } from '@/queries/poetryPageQuery.gql';
 import { TitleBlock } from '@/styles';
 import apolloClient from '@/utils/api/apollo-client';
-import getPosts from '@/utils/api/getPosts';
+import getPostsWithPagination from '@/utils/api/getPostsWithPagination';
 import { getSEOMetadata } from '@/utils/seo/getSEOMetadata';
 
 const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
@@ -33,7 +34,15 @@ export const generateMetadata = async () => {
   });
 };
 
-export default async function PoetryPage() {
+export default async function PoetryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const params = await searchParams;
+  const currentPage = parseInt(params.page || '1', 10);
+  const pageSize = 6;
+
   const { data: poetryPageResponse } = await apolloClient.query({
     query: poetryPageQuery,
   });
@@ -42,12 +51,12 @@ export default async function PoetryPage() {
   const { posts } = poetryPage;
 
   const category = posts?.category?.slug || '';
-  const limit = posts?.limit;
   const sort = posts?.sort;
 
-  const postItems = await getPosts({
+  const { posts: postItems, pagination } = await getPostsWithPagination({
     category,
-    limit,
+    page: currentPage,
+    pageSize,
     locale: 'ru',
     sort,
   });
@@ -58,7 +67,13 @@ export default async function PoetryPage() {
         <TitleBlock>{posts.title}</TitleBlock>
         <p>{posts.subTitle}</p>
         {postItems?.length > 0 ? (
-          <PostsList posts={postItems} />
+          <>
+            <PostsList posts={postItems} />
+            <PaginationNavigation
+              currentPage={pagination.page}
+              totalPages={pagination.pageCount}
+            />
+          </>
         ) : (
           EMPTY_PAGE_MESSAGE
         )}
