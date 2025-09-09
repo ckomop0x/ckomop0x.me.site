@@ -1,7 +1,7 @@
 import { Neucha, Roboto } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import '../styles/globals.css';
+import '../../styles/globals.css';
 
 const neucha = Neucha({
   subsets: ['cyrillic', 'latin'],
