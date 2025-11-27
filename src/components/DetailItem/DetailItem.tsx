@@ -1,8 +1,8 @@
 import { FC, ReactNode } from 'react';
 
-import { Content } from './Content';
 import { DetailItemWrapper } from './DetailItemWrapper';
 
+import { Content } from '@/components/DetailItem/Content';
 import { Breadcrumbs } from '@/components/ui/BreadCrumbs/BreadCrumbs';
 import { BreadcrumbItemType } from '@/types';
 import formatDate from '@/utils/dates/formatDate';
