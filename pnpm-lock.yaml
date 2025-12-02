@@ -106,8 +106,8 @@ importers:
         specifier: 9.1.10
         version: 9.1.10(esbuild@0.25.8)(next@15.4.7(@babel/core@7.28.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(storybook@9.1.10(@testing-library/dom@10.4.1)(prettier@3.6.2)(vite@7.0.6(@types/node@24.7.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.43.1)(yaml@2.8.1)))(type-fest@2.19.0)(typescript@5.9.3)(webpack-hot-middleware@2.26.1)(webpack@5.101.0(esbuild@0.25.8))
       '@stylistic/eslint-plugin':
-        specifier: 5.4.0
-        version: 5.4.0(eslint@9.36.0(jiti@2.6.1))
+        specifier: 5.6.1
+        version: 5.6.1(eslint@9.36.0(jiti@2.6.1))
       '@tailwindcss/postcss':
         specifier: 4.1.17
         version: 4.1.17
@@ -1948,8 +1948,8 @@ packages:
       typescript:
         optional: true
 
-  '@stylistic/eslint-plugin@5.4.0':
-    resolution: {integrity: sha512-UG8hdElzuBDzIbjG1QDwnYH0MQ73YLXDFHgZzB4Zh/YJfnw8XNsloVtytqzx0I2Qky9THSdpTmi8Vjn/pf/Lew==}
+  '@stylistic/eslint-plugin@5.6.1':
+    resolution: {integrity: sha512-JCs+MqoXfXrRPGbGmho/zGS/jMcn3ieKl/A8YImqib76C8kjgZwq5uUFzc30lJkMvcchuRn6/v8IApLxli3Jyw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=9.0.0'
@@ -2235,6 +2235,10 @@ packages:
 
   '@typescript-eslint/types@8.44.1':
     resolution: {integrity: sha512-Lk7uj7y9uQUOEguiDIDLYLJOrYHQa7oBiURYVFqIpGxclAFQ78f6VUOM8lI2XEuNOKNB7XuvM2+2cMXAoq4ALQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript-eslint/types@8.48.1':
+    resolution: {integrity: sha512-+fZ3LZNeiELGmimrujsDCT4CRIbq5oXdHe7chLiW8qzqyPMnn1puNstCrMNVAqwcl2FdIxkuJ4tOs/RFDBVc/Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/typescript-estree@8.41.0':
@@ -8515,10 +8519,10 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.3
 
-  '@stylistic/eslint-plugin@5.4.0(eslint@9.36.0(jiti@2.6.1))':
+  '@stylistic/eslint-plugin@5.6.1(eslint@9.36.0(jiti@2.6.1))':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.36.0(jiti@2.6.1))
-      '@typescript-eslint/types': 8.44.1
+      '@typescript-eslint/types': 8.48.1
       eslint: 9.36.0(jiti@2.6.1)
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
@@ -8824,6 +8828,8 @@ snapshots:
   '@typescript-eslint/types@8.41.0': {}
 
   '@typescript-eslint/types@8.44.1': {}
+
+  '@typescript-eslint/types@8.48.1': {}
 
   '@typescript-eslint/typescript-estree@8.41.0(typescript@5.9.3)':
     dependencies:
