@@ -21,7 +21,7 @@ export async function generateStaticParams() {
     },
   });
 
-  // @ts-expect-error
+  // @ts-expect-error this should be fixed properly
   return data.posts.map((post: Post) => ({ slug: post.slug }));
 }
 
@@ -34,7 +34,7 @@ export async function generateMetadata(props: {
     variables: { category: CATEGORY, slug: params.slug },
   });
 
-  // @ts-expect-error
+  // @ts-expect-error this should be fixed properly
   const post: Post = data.posts[0];
   const title = post?.title || 'Стихи';
   const description = title;
@@ -67,7 +67,7 @@ export default async function PoetryPostPage(props: {
     variables: { category: CATEGORY, slug: params.slug },
   });
 
-  // @ts-expect-error
+  // @ts-expect-error this should be fixed properly
   const post: Post = data.posts[0];
   if (!post?.Content) return <InnerPageLayout />;
 

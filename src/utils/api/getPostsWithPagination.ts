@@ -34,7 +34,7 @@ const getPostsWithPagination = async ({
     },
   });
 
-  // @ts-expect-error
+  // @ts-expect-error this should be fixed properly
   const { nodes: posts, pageInfo } = response.data.posts_connection;
 
   return {

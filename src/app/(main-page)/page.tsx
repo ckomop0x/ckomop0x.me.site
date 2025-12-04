@@ -12,7 +12,7 @@ export const generateMetadata = async () => {
     query: indexPageQuery,
   });
 
-  // @ts-expect-error
+  // @ts-expect-error this should be fixed properly
   const { homePage } = indexPageResponse;
 
   return getSEOMetadata({
@@ -37,7 +37,7 @@ export default async function IndexPage() {
     variables: { locale: 'ru' },
   });
 
-  // @ts-expect-error
+  // @ts-expect-error this should be fixed properly
   const { homePage } = indexPageResponse;
 
   const { hero, blogPosts, poetryPosts } = homePage;
