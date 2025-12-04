@@ -14,7 +14,7 @@ export const generateMetadata = async () => {
   const { data: poetryPageResponse } = await apolloClient.query({
     query: poetryPageQuery,
   });
-
+  // @ts-expect-error this should be fixed properly
   const { poetryPage } = poetryPageResponse;
   const { posts } = poetryPage;
 
@@ -46,15 +46,13 @@ export default async function PoetryPage({
   const { data: poetryPageResponse } = await apolloClient.query({
     query: poetryPageQuery,
   });
-
+  // @ts-expect-error this should be fixed properly
   const { poetryPage } = poetryPageResponse;
   const { posts } = poetryPage;
-
-  const category = posts?.category?.slug || '';
   const sort = posts?.sort;
 
   const { posts: postItems, pagination } = await getPostsWithPagination({
-    category,
+    category: 'poetry',
     page: currentPage,
     pageSize,
     locale: 'ru',

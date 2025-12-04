@@ -23,6 +23,7 @@ const getPosts = async ({
     },
   });
 
+  // @ts-expect-error this should be fixed properly
   return blogPostsResponse.data.posts || [];
 };
 

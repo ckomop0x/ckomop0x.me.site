@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const blogPageQuery = gql`
   query BlogPageQuery {
-    blogPage {
+    blogPage(locale: "ru", status: PUBLISHED) {
       posts {
         limit
         sort

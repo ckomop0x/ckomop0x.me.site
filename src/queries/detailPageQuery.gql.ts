@@ -5,6 +5,7 @@ export const detailsPageQuery = gql`
     posts(
       filters: { slug: { eq: $slug }, category: { slug: { eq: $category } } }
       status: PUBLISHED
+      locale: "ru"
     ) {
       documentId
       category {

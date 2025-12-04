@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const indexPageQuery = gql`
   query IndexPageQuery {
-    homePage {
+    homePage(locale: "ru", status: PUBLISHED) {
       documentId
       title
       hero {
