@@ -12,6 +12,7 @@ export const generateMetadata = async () => {
     query: indexPageQuery,
   });
 
+  // @ts-expect-error
   const { homePage } = indexPageResponse;
 
   return getSEOMetadata({
