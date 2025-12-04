@@ -66,6 +66,7 @@ export default async function BlogPostPage(props: {
     variables: { category: CATEGORY, slug: params.slug },
   });
 
+  // @ts-expect-error
   const post: Post = data.posts[0];
   if (!post?.Content) return 'No content available';
 

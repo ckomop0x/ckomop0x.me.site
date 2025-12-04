@@ -21,6 +21,7 @@ export async function generateStaticParams() {
     },
   });
 
+  // @ts-expect-error
   return data.posts.map((post: Post) => ({ slug: post.slug }));
 }
 
@@ -33,6 +34,7 @@ export async function generateMetadata(props: {
     variables: { category: CATEGORY, slug: params.slug },
   });
 
+  // @ts-expect-error
   const post: Post = data.posts[0];
   const title = post?.title || 'Стихи';
   const description = title;
