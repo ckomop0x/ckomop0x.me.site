@@ -49,12 +49,10 @@ export default async function PoetryPage({
 
   const { poetryPage } = poetryPageResponse;
   const { posts } = poetryPage;
-
-  const category = posts?.category?.slug || '';
   const sort = posts?.sort;
 
   const { posts: postItems, pagination } = await getPostsWithPagination({
-    category,
+    category: 'poetry',
     page: currentPage,
     pageSize,
     locale: 'ru',

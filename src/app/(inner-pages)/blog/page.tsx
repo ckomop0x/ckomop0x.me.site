@@ -60,12 +60,10 @@ export default async function PoetryPage({
 
   const { blogPage } = blogPageResponse as BlogPageQueryQuery;
   const { posts } = blogPage as BlogPage;
-
-  const category = posts?.category?.slug || '';
   const sort = posts?.sort || '';
 
   const { posts: postItems, pagination } = await getPostsWithPagination({
-    category,
+    category: 'blog',
     page: currentPage,
     pageSize,
     locale: 'ru',

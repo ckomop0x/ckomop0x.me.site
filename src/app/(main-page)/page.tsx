@@ -33,20 +33,22 @@ export const generateMetadata = async () => {
 export default async function IndexPage() {
   const { data: indexPageResponse } = await apolloClient.query({
     query: indexPageQuery,
+    variables: { locale: 'ru' },
   });
 
   const { homePage } = indexPageResponse;
+
   const { hero, blogPosts, poetryPosts } = homePage;
 
   const [blogItems, poetryItems] = await Promise.all([
     getPosts({
-      category: blogPosts?.category?.slug || '',
+      category: 'blog',
       limit: blogPosts?.limit,
       locale: 'ru',
       sort: blogPosts?.sort,
     }),
     getPosts({
-      category: poetryPosts?.category?.slug || '',
+      category: 'poetry',
       limit: poetryPosts?.limit,
       locale: 'ru',
       sort: poetryPosts?.sort,
