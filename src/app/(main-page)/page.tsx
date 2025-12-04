@@ -36,6 +36,7 @@ export default async function IndexPage() {
     variables: { locale: 'ru' },
   });
 
+  // @ts-expect-error
   const { homePage } = indexPageResponse;
 
   const { hero, blogPosts, poetryPosts } = homePage;

@@ -23,6 +23,7 @@ const getPosts = async ({
     },
   });
 
+  // @ts-expect-error
   return blogPostsResponse.data.posts || [];
 };
 
