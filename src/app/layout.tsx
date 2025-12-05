@@ -16,18 +16,13 @@ const roboto = Roboto({
   variable: '--font-primary',
 });
 
-export default async function RootLayout(props: {
-  children: ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
-  const params = await props.params;
-
+export default async function RootLayout(props: { children: ReactNode }) {
   const { children } = props;
 
-  const language = 'ru'; // Example: Fetch from user settings, context, or cookies
+  const language = 'ru';
 
   return (
-    <html lang={params.locale || language}>
+    <html lang={language}>
       <body className={`${neucha.variable} ${roboto.variable}`}>
         {children}
       </body>
