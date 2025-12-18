@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "10.1.53",
+  "version": "10.1.54",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -53,8 +53,8 @@
     "@apollo/rover": "0.35.0",
     "@graphql-typed-document-node/core": "^3.2.0",
     "@radix-ui/react-slot": "^1.1.2",
-    "@testing-library/jest-dom": "6.8.0",
-    "@testing-library/react": "16.3.0",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.1",
     "@types/jest": "30.0.0",
     "@typescript-eslint/eslint-plugin": "8.48.1",
     "@typescript-eslint/parser": "8.48.1",
