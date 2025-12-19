@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "10.1.55",
+  "version": "10.1.56",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -85,7 +85,7 @@
     "@storybook/addon-themes": "9.1.10",
     "@storybook/nextjs": "9.1.10",
     "@stylistic/eslint-plugin": "5.6.1",
-    "@tailwindcss/postcss": "4.1.17",
+    "@tailwindcss/postcss": "4.1.18",
     "@types/node": "24.10.4",
     "@types/react": "19.2.7",
     "@vitejs/plugin-react": "5.1.2",
@@ -112,7 +112,7 @@
     "postcss": "8.5.6",
     "prettier": "3.7.4",
     "storybook": "9.1.17",
-    "tailwindcss": "4.1.17",
+    "tailwindcss": "4.1.18",
     "ts-graphql-plugin": "4.0.3",
     "tsconfig-paths-webpack-plugin": "4.2.0",
     "typescript": "5.9.3",
