@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "10.1.70",
+  "version": "10.1.71",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -56,8 +56,8 @@
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.1",
     "@types/jest": "30.0.0",
-    "@typescript-eslint/eslint-plugin": "8.50.1",
-    "@typescript-eslint/parser": "8.50.1",
+    "@typescript-eslint/eslint-plugin": "8.51.0",
+    "@typescript-eslint/parser": "8.51.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "cross-fetch": "^4.1.0",
@@ -116,7 +116,7 @@
     "ts-graphql-plugin": "4.0.3",
     "tsconfig-paths-webpack-plugin": "4.2.0",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.50.1",
+    "typescript-eslint": "8.51.0",
     "vitest": "3.2.4"
   },
   "overrides": {
