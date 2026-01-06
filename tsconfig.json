@@ -3,7 +3,7 @@
     "baseUrl": "src",
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "lib": [
       "dom",
