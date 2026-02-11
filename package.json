@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "10.1.91",
+  "version": "10.1.92",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -124,5 +124,5 @@
     "@types/react": "19.2.10",
     "storybook": "$storybook"
   },
-  "packageManager": "pnpm@10.28.0"
+  "packageManager": "pnpm@10.29.1"
 }
