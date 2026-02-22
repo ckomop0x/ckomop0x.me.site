@@ -10,6 +10,7 @@ export const HeroSectionText: FC<PropsWithChildren> = ({ children }) => (
       flex-col
       justify-center
       items-start
+      px-10
     "
   >
     {children}
