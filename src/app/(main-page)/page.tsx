@@ -71,7 +71,7 @@ export default async function IndexPage() {
         <PostsListSection
           posts={blogItems}
           categoryInfo={blogItems[0]?.category || {}}
-          blockTitle="Статті та публікації"
+          blockTitle={blogPosts.title || 'Блог'}
           blockSubtitle=""
         />
       )}
@@ -79,7 +79,7 @@ export default async function IndexPage() {
         <PostsListSection
           posts={poetryItems}
           categoryInfo={poetryItems[0]?.category || {}}
-          blockTitle="Вірші та пісні"
+          blockTitle={poetryPosts.title || 'Вірші та пісні'}
           blockSubtitle=""
         />
       )}
