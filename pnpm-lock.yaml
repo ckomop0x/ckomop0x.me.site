@@ -196,8 +196,8 @@ importers:
         specifier: 4.1.18
         version: 4.1.18
       ts-graphql-plugin:
-        specifier: 4.0.3
-        version: 4.0.3(graphql@16.12.0)(typescript@5.9.3)
+        specifier: 4.0.4
+        version: 4.0.4(graphql@16.12.0)(typescript@5.9.3)
       tsconfig-paths-webpack-plugin:
         specifier: 4.2.0
         version: 4.2.0
@@ -6269,8 +6269,8 @@ packages:
     resolution: {integrity: sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==}
     engines: {node: '>=6.10'}
 
-  ts-graphql-plugin@4.0.3:
-    resolution: {integrity: sha512-7VAwspW+TyYZP5RqWo6eVPXmqkbQt3CGAHPFtHkdf8sujoaYLKjne7GVOuFUVRJjdl8Osg7K9EvCwxg07QL7ww==}
+  ts-graphql-plugin@4.0.4:
+    resolution: {integrity: sha512-AOI6VU+swjpMUj/0WlsCimqa67R/GjjuAwiXurj9778Z6cLAPP9JyEGK2W6HHXjKrbiq76NtKQq1C2bBEvp98Q==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -13818,7 +13818,7 @@ snapshots:
 
   ts-dedent@2.2.0: {}
 
-  ts-graphql-plugin@4.0.3(graphql@16.12.0)(typescript@5.9.3):
+  ts-graphql-plugin@4.0.4(graphql@16.12.0)(typescript@5.9.3):
     dependencies:
       graphql: 16.12.0
       graphql-language-service: 5.5.0(graphql@16.12.0)
