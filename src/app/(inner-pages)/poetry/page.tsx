@@ -6,13 +6,14 @@ import apolloClient from '@/utils/api/apollo-client';
 import getPostsWithPagination from '@/utils/api/getPostsWithPagination';
 import { getSEOMetadata } from '@/utils/seo/getSEOMetadata';
 
-const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
+const EMPTY_PAGE_MESSAGE = 'Тут ще нічого немає чи щось пішло не так. 😎';
 
 export const revalidate = 10;
 
 export const generateMetadata = async () => {
   const { data: poetryPageResponse } = await apolloClient.query({
     query: poetryPageQuery,
+    variables: { locale: 'uk-UA' },
   });
   // @ts-expect-error this should be fixed properly
   const { poetryPage } = poetryPageResponse;
@@ -45,6 +46,7 @@ export default async function PoetryPage({
 
   const { data: poetryPageResponse } = await apolloClient.query({
     query: poetryPageQuery,
+    variables: { locale: 'uk-UA' },
   });
   // @ts-expect-error this should be fixed properly
   const { poetryPage } = poetryPageResponse;

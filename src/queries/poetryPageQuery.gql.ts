@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const poetryPageQuery = gql`
-  query PoetryPageQuery {
-    poetryPage(locale: "ru", status: PUBLISHED) {
+  query PoetryPageQuery($locale: I18NLocaleCode!) {
+    poetryPage(locale: $locale, status: PUBLISHED) {
       posts {
         limit
         sort
