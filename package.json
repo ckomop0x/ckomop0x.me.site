@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -113,7 +113,7 @@
     "prettier": "3.8.1",
     "storybook": "10.2.8",
     "tailwindcss": "4.1.18",
-    "ts-graphql-plugin": "4.0.3",
+    "ts-graphql-plugin": "4.0.4",
     "tsconfig-paths-webpack-plugin": "4.2.0",
     "typescript": "5.9.3",
     "typescript-eslint": "8.52.0",
