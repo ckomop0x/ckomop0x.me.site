@@ -36,6 +36,7 @@ export default defineConfig(() => {
         reporter: ['text', 'json', 'lcov'], // Ensure JSON and LCOV formats for Codecov
         reportsDirectory: 'coverage', // Make sure Codecov can find reports here
         include: ['src/**/*.{ts,tsx,js,jsx}'],
+        exclude: ['**/*.stories.{ts,tsx,js,jsx}'],
       },
     },
   };
