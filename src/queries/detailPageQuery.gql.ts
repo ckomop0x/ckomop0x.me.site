@@ -1,11 +1,11 @@
 import { gql } from '@apollo/client';
 
 export const detailsPageQuery = gql`
-  query DetailsPageQuery($category: String!, $slug: String!) {
+  query DetailsPageQuery($category: String!, $slug: String!, $locale: I18NLocaleCode!) {
     posts(
       filters: { slug: { eq: $slug }, category: { slug: { eq: $category } } }
       status: PUBLISHED
-      locale: "ru"
+      locale: $locale
     ) {
       documentId
       category {

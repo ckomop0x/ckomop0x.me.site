@@ -17,7 +17,7 @@ export async function generateStaticParams() {
     variables: {
       category: CATEGORY,
       limit: 100,
-      locale: 'ru',
+      locale: 'uk',
     },
   });
 
@@ -31,12 +31,12 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const { data } = await apolloClient.query({
     query: detailsPageQuery,
-    variables: { category: CATEGORY, slug: params.slug },
+    variables: { category: CATEGORY, slug: params.slug, locale: 'uk' },
   });
 
   // @ts-expect-error this should be fixed properly
   const post: Post = data.posts[0];
-  const title = post?.title || 'Стихи';
+  const title = post?.title || 'Вірші';
   const description = title;
   const image = post?.PostImage?.url || '';
   const slug = post?.slug || '';
@@ -64,7 +64,7 @@ export default async function PoetryPostPage(props: {
   const params = await props.params;
   const { data } = await apolloClient.query({
     query: detailsPageQuery,
-    variables: { category: CATEGORY, slug: params.slug },
+    variables: { category: CATEGORY, slug: params.slug, locale: 'uk' },
   });
 
   // @ts-expect-error this should be fixed properly
@@ -74,8 +74,8 @@ export default async function PoetryPostPage(props: {
   const { Content, PostImage, title, date } = post;
 
   const breadcrumbs = [
-    { label: 'Главная', href: '/' },
-    { label: 'Стихи', href: `/${CATEGORY}` },
+    { label: 'Головна', href: '/' },
+    { label: 'Вірші', href: `/${CATEGORY}` },
     { label: title },
   ];
 

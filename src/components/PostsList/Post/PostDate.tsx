@@ -19,8 +19,8 @@ export const PostDate: FC<PostDateProps> = ({ publicationDate }) => {
       text-[#747474]
       text-center
       text-[13px]
-      h-[80px]
-      w-[80px]
+      h-20
+      w-20
       bg-white
     "
     >

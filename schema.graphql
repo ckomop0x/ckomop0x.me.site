@@ -50,6 +50,7 @@ type UploadFile {
   name: String!
   alternativeText: String
   caption: String
+  focalPoint: JSON
   width: Int
   height: Int
   formats: JSON
@@ -679,6 +680,7 @@ input UploadFileFiltersInput {
   name: StringFilterInput
   alternativeText: StringFilterInput
   caption: StringFilterInput
+  focalPoint: JSONFilterInput
   width: IntFilterInput
   height: IntFilterInput
   formats: JSONFilterInput

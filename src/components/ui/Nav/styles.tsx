@@ -13,7 +13,7 @@ export const LinkStyled: FC<PropsWithChildren<LinkStyledProps>> = ({
 }) => (
   <Link
     href={href}
-    className={`inline-block ml-5 cursor-pointer no-underline transition-colors ${isInner ? 'text-gray-800' : 'text-white'}`}
+    className={`inline-block ml-5 cursor-pointer underline transition-colors ${isInner ? 'text-gray-800' : 'text-white'}`}
   >
     {children}
   </Link>

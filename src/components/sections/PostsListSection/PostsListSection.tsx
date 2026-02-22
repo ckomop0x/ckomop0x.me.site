@@ -4,8 +4,8 @@ import { FC } from 'react';
 import { CategoryInfo } from '@/components/PostsList/types';
 import { Button } from '@/components/ui/Button/Button';
 import { Post } from '@/types';
-import PostsList from 'components/PostsList';
-import { TitleBlock, SubtitleBlock } from 'styles/Typography';
+import PostsList from '@/components/PostsList';
+import { TitleBlock, SubtitleBlock } from '@/styles/Typography';
 
 interface PostsListSectionProps {
   blockTitle: string;
@@ -27,7 +27,7 @@ const PostsListSection: FC<PostsListSectionProps> = ({
       <div className="text-center">
         <PostsList posts={posts} />
         <Link href={categoryInfo?.slug || ''} className="inline-block">
-          <Button>Перейти в{categoryInfo?.title || ''}</Button>
+          <Button>Перейти у {categoryInfo?.title.toLowerCase() || ''}</Button>
         </Link>
       </div>
     </div>
