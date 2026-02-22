@@ -22,7 +22,7 @@ export const generateMetadata = async () => {
     DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>
   >({
     query: blogPageQuery,
-    variables: { locale: 'uk-UA' },
+    variables: { locale: 'uk' },
   });
 
   const { blogPage } = blogPageResponse as BlogPageQueryQuery;
@@ -57,7 +57,7 @@ export default async function PoetryPage({
     DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>
   >({
     query: blogPageQuery,
-    variables: { locale: 'uk-UA' },
+    variables: { locale: 'uk' },
   });
 
   const { blogPage } = blogPageResponse as BlogPageQueryQuery;
@@ -68,7 +68,7 @@ export default async function PoetryPage({
     category: 'blog',
     page: currentPage,
     pageSize,
-    locale: 'uk-UA',
+    locale: 'uk',
     sort,
   });
 

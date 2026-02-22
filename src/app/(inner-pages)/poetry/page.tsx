@@ -13,7 +13,7 @@ export const revalidate = 10;
 export const generateMetadata = async () => {
   const { data: poetryPageResponse } = await apolloClient.query({
     query: poetryPageQuery,
-    variables: { locale: 'uk-UA' },
+    variables: { locale: 'uk' },
   });
   // @ts-expect-error this should be fixed properly
   const { poetryPage } = poetryPageResponse;
@@ -46,7 +46,7 @@ export default async function PoetryPage({
 
   const { data: poetryPageResponse } = await apolloClient.query({
     query: poetryPageQuery,
-    variables: { locale: 'uk-UA' },
+    variables: { locale: 'uk' },
   });
   // @ts-expect-error this should be fixed properly
   const { poetryPage } = poetryPageResponse;
@@ -57,7 +57,7 @@ export default async function PoetryPage({
     category: 'poetry',
     page: currentPage,
     pageSize,
-    locale: 'uk-UA',
+    locale: 'uk',
     sort,
   });
 

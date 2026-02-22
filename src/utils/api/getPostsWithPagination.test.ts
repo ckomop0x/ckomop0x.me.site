@@ -43,7 +43,7 @@ describe('getPostsWithPagination', () => {
       category: 'blog',
       page: 2,
       pageSize: 6,
-      locale: 'uk-UA',
+      locale: 'uk',
       sort: 'date:desc',
     });
 
@@ -79,7 +79,7 @@ describe('getPostsWithPagination', () => {
       category: 'blog',
       page: 1,
       pageSize: 6,
-      locale: 'uk-UA',
+      locale: 'uk',
     });
 
     expect(result.posts).toHaveLength(0);

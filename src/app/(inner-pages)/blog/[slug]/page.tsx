@@ -16,7 +16,7 @@ export async function generateStaticParams() {
     variables: {
       category: CATEGORY,
       limit: 100,
-      locale: 'uk-UA',
+      locale: 'uk',
     },
   });
 
@@ -30,7 +30,7 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const { data } = await apolloClient.query({
     query: detailsPageQuery,
-    variables: { category: CATEGORY, slug: params.slug, locale: 'uk-UA' },
+    variables: { category: CATEGORY, slug: params.slug, locale: 'uk' },
   });
 
   // @ts-expect-error this should be fixed properly
@@ -63,7 +63,7 @@ export default async function BlogPostPage(props: {
   const params = await props.params;
   const { data } = await apolloClient.query({
     query: detailsPageQuery,
-    variables: { category: CATEGORY, slug: params.slug, locale: 'uk-UA' },
+    variables: { category: CATEGORY, slug: params.slug, locale: 'uk' },
   });
 
   // @ts-expect-error this should be fixed properly
