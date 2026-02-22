@@ -17,7 +17,7 @@ const Nav: FC<NavProps> = ({ isInner }) => (
         Блог
       </MenuItem>
       <MenuItem linkSrc="/poetry/" isInner={isInner}>
-        Стихи
+        Вірші
       </MenuItem>
     </ul>
   </Navbar>

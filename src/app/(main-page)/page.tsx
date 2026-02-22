@@ -58,10 +58,6 @@ export default async function IndexPage() {
     }),
   ]);
 
-
-  console.log('blogItems', blogItems);
-  console.log('poetryItems', poetryItems);
-
   return (
     <>
       {hero && (
@@ -82,7 +78,7 @@ export default async function IndexPage() {
       {poetryItems?.length > 0 && (
         <PostsListSection
           posts={poetryItems}
-          categoryInfo={blogItems[0]?.category || {}}
+          categoryInfo={poetryItems[0]?.category || {}}
           blockTitle="Вірші та пісні"
           blockSubtitle=""
         />
