@@ -13,7 +13,7 @@ import apolloClient from '@/utils/api/apollo-client';
 import getPostsWithPagination from '@/utils/api/getPostsWithPagination';
 import { getSEOMetadata } from '@/utils/seo/getSEOMetadata';
 
-const EMPTY_PAGE_MESSAGE = 'Здесь ещё ничего нет или что-то пошло не так. 😎';
+const EMPTY_PAGE_MESSAGE = 'Тут ще нічого немає чи щось пішло не так.. 😎';
 
 export const revalidate = 10;
 
@@ -22,6 +22,7 @@ export const generateMetadata = async () => {
     DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>
   >({
     query: blogPageQuery,
+    variables: { locale: 'uk-UA' },
   });
 
   const { blogPage } = blogPageResponse as BlogPageQueryQuery;
@@ -56,6 +57,7 @@ export default async function PoetryPage({
     DocumentNode<BlogPageQueryQuery, BlogPageQueryQueryVariables>
   >({
     query: blogPageQuery,
+    variables: { locale: 'uk-UA' },
   });
 
   const { blogPage } = blogPageResponse as BlogPageQueryQuery;
@@ -66,7 +68,7 @@ export default async function PoetryPage({
     category: 'blog',
     page: currentPage,
     pageSize,
-    locale: 'ru',
+    locale: 'uk-UA',
     sort,
   });
 

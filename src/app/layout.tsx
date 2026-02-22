@@ -19,7 +19,7 @@ const roboto = Roboto({
 export default async function RootLayout(props: { children: ReactNode }) {
   const { children } = props;
 
-  const language = 'ru';
+  const language = 'uk-UA';
 
   return (
     <html lang={language}>

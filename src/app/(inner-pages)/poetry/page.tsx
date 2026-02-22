@@ -55,7 +55,7 @@ export default async function PoetryPage({
     category: 'poetry',
     page: currentPage,
     pageSize,
-    locale: 'ru',
+    locale: 'uk-UA',
     sort,
   });
 

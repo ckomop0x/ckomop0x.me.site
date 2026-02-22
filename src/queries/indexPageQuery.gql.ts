@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const indexPageQuery = gql`
-  query IndexPageQuery {
-    homePage(locale: "ru", status: PUBLISHED) {
+  query IndexPageQuery($locale: I18NLocaleCode!) {
+    homePage(locale: $locale, status: PUBLISHED) {
       documentId
       title
       hero {

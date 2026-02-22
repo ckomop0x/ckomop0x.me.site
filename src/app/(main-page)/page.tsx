@@ -10,13 +10,14 @@ export const revalidate = 3600;
 export const generateMetadata = async () => {
   const { data: indexPageResponse } = await apolloClient.query({
     query: indexPageQuery,
+    variables: { locale: 'uk-UA' },
   });
 
   // @ts-expect-error this should be fixed properly
   const { homePage } = indexPageResponse;
 
   return getSEOMetadata({
-    title: 'Главная',
+    title: 'Головна',
     description: `${homePage.hero.title}. ${homePage.hero.callToAction}`,
     openGraph: {
       images: [
@@ -34,7 +35,7 @@ export const generateMetadata = async () => {
 export default async function IndexPage() {
   const { data: indexPageResponse } = await apolloClient.query({
     query: indexPageQuery,
-    variables: { locale: 'ru' },
+    variables: { locale: 'uk-UA' },
   });
 
   // @ts-expect-error this should be fixed properly
@@ -46,16 +47,20 @@ export default async function IndexPage() {
     getPosts({
       category: 'blog',
       limit: blogPosts?.limit,
-      locale: 'ru',
+      locale: 'uk-UA',
       sort: blogPosts?.sort,
     }),
     getPosts({
       category: 'poetry',
       limit: poetryPosts?.limit,
-      locale: 'ru',
+      locale: 'uk-UA',
       sort: poetryPosts?.sort,
     }),
   ]);
+
+
+  console.log('blogItems', blogItems);
+  console.log('poetryItems', poetryItems);
 
   return (
     <>
@@ -69,16 +74,16 @@ export default async function IndexPage() {
       {blogItems?.length > 0 && (
         <PostsListSection
           posts={blogItems}
-          categoryInfo={blogPosts?.category || {}}
-          blockTitle="Статьи и публикации"
+          categoryInfo={blogItems[0]?.category || {}}
+          blockTitle="Статті та публікації"
           blockSubtitle=""
         />
       )}
       {poetryItems?.length > 0 && (
         <PostsListSection
           posts={poetryItems}
-          categoryInfo={poetryPosts?.category || {}}
-          blockTitle="Стихи и песни"
+          categoryInfo={blogItems[0]?.category || {}}
+          blockTitle="Вірші та пісні"
           blockSubtitle=""
         />
       )}
