@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "11.1.1",
+  "version": "11.1.2",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -84,7 +84,7 @@
     "@storybook/addon-links": "10.2.10",
     "@storybook/addon-themes": "10.2.10",
     "@storybook/nextjs": "10.2.10",
-    "@stylistic/eslint-plugin": "5.7.1",
+    "@stylistic/eslint-plugin": "5.9.0",
     "@tailwindcss/postcss": "4.1.18",
     "@types/node": "24.10.12",
     "@types/react": "19.2.13",
