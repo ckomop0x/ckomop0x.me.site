@@ -54,14 +54,13 @@ const PaginationNavigation: FC<PaginationNavigationProps> = ({
         size="sm"
         onClick={handlePrevious}
         disabled={currentPage === 1}
-        className="flex items-center space-x-1"
+        className="flex items-center"
       >
         <ChevronLeft className="h-4 w-4" />
-        <span>Назад</span>
       </Button>
 
       {/* Page numbers */}
-      <div className="flex items-center space-x-1">
+      <div className="flex items-center">
         {pageNumbers.map((page, index) => {
           if (page === -1) {
             return (
@@ -91,9 +90,8 @@ const PaginationNavigation: FC<PaginationNavigationProps> = ({
         size="sm"
         onClick={handleNext}
         disabled={currentPage === totalPages}
-        className="flex items-center space-x-1"
+        className="flex items-center"
       >
-        <span>Вперёд</span>
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>
