@@ -10,7 +10,9 @@ const mockApolloClient = vi.fn();
 const mockInMemoryCache = vi.fn();
 const mockHttpLink = vi
   .fn()
-  .mockImplementation(opts => ({ __type: 'HttpLink', opts }));
+  .mockImplementation(function (opts) {
+    return { __type: 'HttpLink', opts };
+  });
 
 // mock @apollo/client – replace constructors/classes with spies
 vi.mock('@apollo/client', async () => {
