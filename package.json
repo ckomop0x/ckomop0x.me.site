@@ -1,6 +1,6 @@
 {
   "name": "ckomop0x-me-site",
-  "version": "11.1.19",
+  "version": "11.1.20",
   "description": "Pavel Klochkov personal blog — ckomop0x.me",
   "keywords": [
     "nextjs",
@@ -74,7 +74,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "2.0.2",
-    "@eslint/eslintrc": "3.3.3",
+    "@eslint/eslintrc": "3.3.4",
     "@eslint/js": "10.0.1",
     "@graphql-codegen/cli": "6.1.1",
     "@graphql-codegen/client-preset": "5.2.3",
